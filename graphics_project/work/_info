@@ -1,0 +1,31 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 d/tmp/.x2go-sbritton/media/disk/_cygdrive_C_Users_sande_OneDrive_BUREAU1_EE_Y2_Q2_EPO_3/EPO_3_repo/graphics_project
+Egraphics_top
+w1637253286
+DPx3 std 6 textio 0 22 zE1`LPoLg^DX3Oz^4Fj1K3
+DPx4 ieee 14 std_logic_1164 0 22 eNV`TJ_GofJTzYa?f<@Oe1
+R0
+8VHDL/graphics_top.vhd
+FVHDL/graphics_top.vhd
+l0
+L4
+VY2If_oDo4Xi][_m8mLHQa2
+!s100 iTAC>iA`1^A@]N^;7N6^_2
+OL;C;10.5b;63
+33
+!s110 1637253316
+!i10b 1
+!s108 1637253309.000000
+!s90 -2008|-lower|-explicit|-work|work|VHDL/graphics_top.vhd|-quiet|-nologo|
+!s107 VHDL/graphics_top.vhd|
+!i113 0
+o-quiet -nologo -2008 -lower -explicit -work work
+tExplicit 1 CvgOpt 0
