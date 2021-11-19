@@ -24,7 +24,6 @@ use IEEE.std_logic_1164.ALL;
 
 architecture behaviour of game_engine is
 	type game_state is (reset_state, loading_state, get_ready, read_inputs, wall_shape, check_border, next_position, want_to_read_0, want_to_read_1, read_memory_player_0, read_memory_player_1, check_collision, wait_state, want_to_write_0, want_to_write_1, write_memory_player_0, write_memory_player_1, change_data, player_0_won, player_1_won, tie, hold_state);
-
 	signal state, new_state: game_state;
 	signal direction_0, direction_1, next_direction_0, next_direction_1 : std_logic_vector(1 downto 0);
 	signal position_0, position_1, next_position_0, next_position_1 : std_logic_vector (10 downto 0);

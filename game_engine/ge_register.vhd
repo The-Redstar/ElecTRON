@@ -1,0 +1,48 @@
+library IEEE;
+use IEEE.std_logic_1164.ALL;
+
+entity ge_register is
+   port(e_position_0  : in  std_logic;
+        e_position_1  : in  std_logic;
+        d_position_0  : in  std_logic_vector(10 downto 0);
+        d_position_1  : in  std_logic_vector(10 downto 0);
+        e_wallshape_0 : in  std_logic;
+        e_wallshape_1 : in  std_logic;
+        d_wallshape_0 : in  std_logic_vector(2 downto 0);
+        d_wallshape_1 : in  std_logic_vector(2 downto 0);
+        e_read_mem_0  : in  std_logic;
+        e_read_mem_1  : in  std_logic;
+        d_read_mem_0  : in  std_logic_vector(7 downto 0);
+        d_read_mem_1  : in  std_logic_vector(7 downto 0);
+        e_next_pos_0  : in  std_logic;
+        e_next_pos_1  : in  std_logic;
+        d_next_pos_0  : in  std_logic_vector(10 downto 0);
+        d_next_pos_1  : in  std_logic_vector(10 downto 0);
+        e_direction_0 : in  std_logic;
+        e_direction_1 : in  std_logic;
+        d_direciton_0 : in  std_logic_vector(1 downto 0);
+        d_direciton_1 : in  std_logic_vector(1 downto 0);
+        e_next_dir_0  : in  std_logic;
+        e_next_dir_1  : in  std_logic;
+        d_next_dir_0  : in  std_logic_vector(1 downto 0);
+        d_next_dir_1  : in  std_logic_vector(1 downto 0);
+        e_p_state_0   : in  std_logic;
+        e_p_state_1   : in  std_logic;
+        d_p_state_0   : in  std_logic_vector(1 downto 0);
+        d_p_state_1   : in  std_logic_vector(1 downto 0);
+        q_position_0  : out std_logic_vector(10 downto 0);
+        q_position_1  : out std_logic_vector(10 downto 0);
+        q_wallshape_0 : out std_logic_vector(2 downto 0);
+        q_wallshape_1 : out std_logic_vector(2 downto 0);
+        q_read_mem_0  : out std_logic_vector(7 downto 0);
+        q_read_mem_1  : out std_logic_vector(7 downto 0);
+        q_next_pos_0  : out std_logic_vector(10 downto 0);
+        q_next_pos_1  : out std_logic_vector(10 downto 0);
+        q_direciton_0 : out std_logic_vector(1 downto 0);
+        q_direciton_1 : out std_logic_vector(1 downto 0);
+        q_next_dir_0  : out std_logic_vector(1 downto 0);
+        q_next_dir_1  : out std_logic_vector(1 downto 0);
+        q_p_state_0   : out std_logic_vector(1 downto 0);
+        q_p_state_1   : out std_logic_vector(1 downto 0));
+end ge_register;
+
