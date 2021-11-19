@@ -23,7 +23,7 @@ library IEEE;
 use IEEE.std_logic_1164.ALL;
 
 architecture behaviour of game_engine is
-	type game_state is (reset_state, loading_state, get_ready, wall_shape, check_border, next_position, read_memory_player_0, read_memory_player_1, check_collision, wait_state, write_memory_player_0, write_memory_player_1, change_data, player_0_won, player_1_won, tie, hold_state);
+	type game_state is (reset_state, loading_state, get_ready, wall_shape, check_border, next_position, want_to_read_0, want_to_read_1, read_memory_player_0, read_memory_player_1, check_collision, wait_state, want_to_write_0, want_to_write_1, write_memory_player_0, write_memory_player_1, change_data, player_0_won, player_1_won, tie, hold_state);
 	signal state, new_state: game_state;
 	signal direction_0, direction_1, next_direction_0, next_direction_1 : std_logic_vector(1 downto 0);
 	signal position_0, position_1, next_position_0, next_position_1 : std_logic_vector (10 downto 0);
@@ -162,6 +162,21 @@ create_next_state: 	process (state)
 				
 				new_state <= check_border;
 
+			when want_to_read_0 =>
+				state_vga   				<= "111";
+				write_enable 				<= '0';
+				write_memory  				<= "00000000";
+				address 				<= position_0(9 downto 0);
+				position_vga(10 downto 0) 				<= position_0;
+				position_vga(21 downto 11) 				<= position_1;
+				position_mem   				<= "00";
+				direction_vga (1 downto 0)				<= direction_0;
+				direction_vga (3 downto 2)				<= direction_1;
+				player_state   				<= "1111";
+				go_to		   		<= '1';	
+
+				new_state <= read_memory_player_0;	
+
 			when read_memory_player_0 =>
 				state_vga   				<= "111";
 				write_enable 				<= '0';
@@ -173,13 +188,29 @@ create_next_state: 	process (state)
 				direction_vga (1 downto 0)				<= direction_0;
 				direction_vga (3 downto 2)				<= direction_1;
 				player_state   				<= "1111";
-				go_to		   		<= '1';
+				go_to		   		<= '0';
 				
-				if (memory_ready = '1') then  --there can be read from memory
-					read_memory_0 <= read_memory;
-					new_state <= read_memory_player_1; 
-				else new_state <= read_memory_player_0; --wait for memory
+				read_memory_0 <= read_memory;
+				
+				if (memory_ready = '1') then
+					new_state <= want_to_read_1; 
+				else new_state <= read_memory_player_0;
 				end if;
+
+			when want_to_read_1 =>
+				state_vga   				<= "111";
+				write_enable 				<= '0';
+				write_memory  				<= "00000000";
+				address 				<= position_1(9 downto 0);
+				position_vga(10 downto 0) 				<= position_0;
+				position_vga(21 downto 11) 				<= position_1;
+				position_mem   				<= "00";
+				direction_vga (1 downto 0)				<= direction_0;
+				direction_vga (3 downto 2)				<= direction_1;
+				player_state   				<= "1111";
+				go_to		   		<= '1';
+
+				new_state <= read_memory_player_1;
 
 			when read_memory_player_1 =>
 				state_vga   				<= "111";
@@ -192,12 +223,13 @@ create_next_state: 	process (state)
 				direction_vga (1 downto 0)				<= direction_0;
 				direction_vga (3 downto 2)				<= direction_1;
 				player_state   				<= "1111";
-				go_to		   		<= '1';
+				go_to		   		<= '0';
+
+				read_memory_1 <= read_memory;
 				
-				if (memory_ready = '1') then  --there can be read from memory
-					read_memory_1 <= read_memory;
+				if (memory_ready = '1') then
 					new_state <= check_collision; 
-				else new_state <= read_memory_player_1; --wait for memory
+				else new_state <= read_memory_player_1;
 				end if;
 
 			when check_collision =>
@@ -229,6 +261,22 @@ create_next_state: 	process (state)
 					new_state <= player_0_won;
 				else new_state<= player_1_won;
 				end if;
+		
+			when want_to_write_0 =>
+				state_vga   				<= "111";
+				write_enable 				<= '1';
+				write_memory(7 downto 3) 				<= "00000";
+				write_memory(2 downto 0) 				<= wallshape_0;
+				address 				<= position_0(9 downto 0);
+				position_vga(10 downto 0) 				<= position_0;
+				position_vga(21 downto 11) 				<= position_1;
+				position_mem   				<= "00";
+				direction_vga (1 downto 0)				<= direction_0;
+				direction_vga (3 downto 2)				<= direction_1;
+				player_state   				<= "1111";
+				go_to 				<= '1';
+
+				new_state <= write_memory_player_0;
 
 			when write_memory_player_0 =>
 				state_vga   				<= "111";
@@ -242,13 +290,28 @@ create_next_state: 	process (state)
 				direction_vga (1 downto 0)				<= direction_0;
 				direction_vga (3 downto 2)				<= direction_1;
 				player_state   				<= "1111";
-				go_to 				<= '1';
+				go_to 				<= '0';
 				
 				if (memory_ready = '1') then
-					new_state <= write_memory_player_1;
-				else
-					new_state <= write_memory_player_0;
+					new_state <= want_to_write_1;
+				else new_state <= write_memory_player_0;
 				end if;
+
+			when want_to_write_1 =>
+				state_vga   				<= "111";
+				write_enable 				<= '1';
+				write_memory(7 downto 3) 				<= "00001" ;
+				write_memory(2 downto 0) 				<= wallshape_1;
+				address 				<= position_1(9 downto 0);
+				position_vga(10 downto 0) 				<= position_0;
+				position_vga(21 downto 11) 				<= position_1;
+				position_mem   				<= "00";
+				direction_vga (1 downto 0)				<= direction_0;
+				direction_vga (3 downto 2)				<= direction_1;
+				player_state   				<= "1111";
+				go_to 				<= '1';
+
+				new_state <= write_memory_player_1;
 
 			when write_memory_player_1 =>
 				state_vga   				<= "111";
@@ -265,9 +328,9 @@ create_next_state: 	process (state)
 				go_to 				<= '1';
 		
 				if (memory_ready = '1') then
-					new_state <= write_memory_player_1;
-				else
 					new_state <= change_data;
+				else
+					new_state <= write_memory_player_1;
 				end if;
 				
 		
