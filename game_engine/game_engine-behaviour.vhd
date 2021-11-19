@@ -171,6 +171,20 @@ create_next_state: 	process (state)
 				go_to		   		<= '0';
 				
 				new_state <= check_border;
+				
+			when check_border =>
+				
+				if ((next_position_0(4 downto 0) = "00000") or (next_position_0(4 downto 0) = "11111") or (next_position_0(9 downto 5) = "00000") or (next_position_0(9 downto 5) = "11111")then 
+					player_0_state <= "01";
+				--else 
+					--register
+				end if;
+				if ((next_position_1(4 downto 0) = "00000") or (next_position_1(4 downto 0) = "11111") or (next_position_1(9 downto 5) = "00000") or (next_position_1(9 downto 5) = "11111")then 
+					player_1_state <= "01";
+				--else
+					--register
+				end if;
+			new_state <= read_memory_player_0;
 
 			when want_to_read_0 =>
 				state_vga   				<= "111";
@@ -203,6 +217,9 @@ create_next_state: 	process (state)
 				read_memory_0 <= read_memory;
 				
 				if (memory_ready = '1') then
+					if (not read_memory = "00000000") then
+						player_0_state <= "00";
+					end if;
 					new_state <= want_to_read_1; 
 				else new_state <= read_memory_player_0;
 				end if;
@@ -238,6 +255,9 @@ create_next_state: 	process (state)
 				read_memory_1 <= read_memory;
 				
 				if (memory_ready = '1') then
+					if (not read_memory = "00000000") then
+						player_1_state <= "00";
+					end if;
 					new_state <= check_collision; 
 				else new_state <= read_memory_player_1;
 				end if;
@@ -255,22 +275,20 @@ create_next_state: 	process (state)
 				player_state   				<= "1111";
 				go_to		   		<= '0';
 				
-				if (read_memory_0 = "00000000") and (read_memory_1 = "00000000") then 
-					new_state <= wait_state; 
-				elsif (next_position_0 = next_position_1) then
-					new_state <= tie;
+				if (next_position_0 = next_position_1) then
+					player_0_state <= "00"; --collide at eachother at middle of square
+					player_1_state <= "00";
 				elsif (position_0 = next_position_1) and (position_1 = next_position_0) then
-					new_state <= tie;
+					player_0_state <= "01"; --collide at eachother at border
+					player_1_state <= "01";
 				elsif (position_0 = next_position_1) then
-					new_state <= player_0_won;
+					player_1_state <= "00"; --collide at wall other player
 				elsif (position_1 = next_position_0) then
-					new_state <= player_1_won;
-				elsif (read_memory_0 = "00000000") nand (read_memory_1 = "00000000") then
-					new_state <= tie;
-				elsif (read_memory_0 = "00000000") then
-					new_state <= player_0_won;
-				else new_state<= player_1_won;
+					player_0_state <= "00"; --collide at wall other player
+				else --iets met register
 				end if;
+				new_state<= check_who_won
+
 		
 			when want_to_write_0 =>
 				state_vga   				<= "111";
