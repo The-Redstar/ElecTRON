@@ -1,0 +1,52 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+d/tmp/.x2go-sbritton/media/disk/_cygdrive_C_Users_sande_OneDrive_BUREAU1_EE_Y2_Q2_EPO_3/EPO_3_repo/graphics_project
+Egraphics_top
+w1637310667
+Z0 DPx3 std 6 textio 0 22 zE1`LPoLg^DX3Oz^4Fj1K3
+Z1 DPx4 ieee 14 std_logic_1164 0 22 eNV`TJ_GofJTzYa?f<@Oe1
+Z2 d/tmp/.x2go-mhpadriaanse/media/disk/_cygdrive_C_Users_Marijn_Nodig_TUDELF1_B2_Q2_L_x2go/electron/graphics_project
+8VHDL/graphics_top.vhd
+FVHDL/graphics_top.vhd
+l0
+L4
+V`fQAU]iG9^0Z?2E3gE<[80
+!s100 6:K]M<Uc3eH7>GHbK7^O`2
+Z3 OL;C;10.5b;63
+33
+!s110 1637310671
+!i10b 1
+!s108 1637310668.000000
+!s90 -2008|-lower|-explicit|-work|work|VHDL/graphics_top.vhd|-quiet|-nologo|
+!s107 VHDL/graphics_top.vhd|
+!i113 0
+Z4 o-quiet -nologo -2008 -lower -explicit -work work
+Z5 tExplicit 1 CvgOpt 0
+Abehaviour
+Z6 w1637310876
+Z7 DEx4 work 12 graphics_top 0 22 `fQAU]iG9^0Z?2E3gE<[80
+R0
+R1
+Z8 8VHDL/graphics_top-behaviour.vhd
+Z9 FVHDL/graphics_top-behaviour.vhd
+l5
+L4
+Z10 VmMN]a0Jd10Pol;9;]>_lE2
+Z11 !s100 9^NhbU`zVUiPhm_OzK<_z3
+R3
+33
+!s110 1637311046
+!i10b 1
+!s108 1637311044.000000
+Z12 !s90 -2008|-lower|-explicit|-work|work|VHDL/graphics_top-behaviour.vhd|-quiet|-nologo|
+!s107 VHDL/graphics_top-behaviour.vhd|
+!i113 0
+R4
+R5
