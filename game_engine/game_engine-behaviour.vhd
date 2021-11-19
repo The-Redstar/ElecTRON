@@ -23,7 +23,7 @@ library IEEE;
 use IEEE.std_logic_1164.ALL;
 
 architecture behaviour of game_engine is
-	type game_state is (reset_state, loading_state, get_ready, wall_shape, check_border, next_position, read_memory_player_0, read_memory_player_1, check_collision, wait_state, write_memory_player_0, write_memory_player_1, change_data, player_0_won, player_1_won, tie, hold_state);
+	type game_state is (reset_state, loading_state, get_ready, read_inputs, wall_shape, check_border, next_position, read_memory_player_0, read_memory_player_1, check_collision, wait_state, write_memory_player_0, write_memory_player_1, change_data, player_0_won, player_1_won, tie, hold_state);
 	signal state, new_state: game_state;
 	signal direction_0, direction_1, next_direction_0, next_direction_1 : std_logic_vector(1 downto 0);
 	signal position_0, position_1, next_position_0, next_position_1 : std_logic_vector (10 downto 0);
@@ -116,6 +116,16 @@ create_next_state: 	process (state)
 				go_to				<= '0';
 				
 				new_state <= reset_state;	
+				
+			when wait_state =>
+			
+				if (unsigned_busy_count >= 16) then
+					busy_counter_reset <= '1'
+					new_state <= read_inputs;
+				else
+					new_state <= wait_state;
+					busy_counter_reset <= '0';
+				end if;
 
 			when wall_shape => 
 				if ((direction_0= "01") and (input (1 downto 0) ="01")) or  ((direction_0= "11") and (input (1 downto 0) ="11")) then 
