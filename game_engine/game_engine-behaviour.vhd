@@ -29,6 +29,7 @@ architecture behaviour of game_engine is
 	signal state, new_state: game_state;
 	signal direction_0, direction_1, next_direction_0, next_direction_1 : std_logic_vector(1 downto 0);
 	signal position_0, position_1, next_position_0, next_position_1 : std_logic_vector (10 downto 0);
+	signal d_position_0, d_position_1, d_next_position_0, d_next_position_1 : std_logic_vector (10 downto 0);
 	signal wallshape_0, wallshape_1 : std_logic_vector (2 downto 0);
 	signal read_memory_0, read_memory_1 : std_logic_vector (7 downto 0);
 	signal player_0_state, player_1_state: std_logic_vector (1 downto 0);
@@ -42,6 +43,55 @@ architecture behaviour of game_engine is
          busy              : in  std_logic;
          busy_count        : out unsigned(4 downto 0));
 	end component;
+	
+	signal e_position_0, e_position_1, e_wallshape_0, e_wallshape_1, e_read_mem_0, e_read_mem_1, e_next_pos_0, e_next_pos_1, e_direction_0, e_direction_1, e_next_dir_0, e_next_dir_1, e_p_state_0, e_p_state_1: std_logic;
+	
+	component ge_register is
+		port(clk, reset	  : in  std_logic;	
+			e_position_0  : in  std_logic;
+			e_position_1  : in  std_logic;
+			d_position_0  : in  std_logic_vector(10 downto 0);
+			d_position_1  : in  std_logic_vector(10 downto 0);
+			e_wallshape_0 : in  std_logic;
+			e_wallshape_1 : in  std_logic;
+			d_wallshape_0 : in  std_logic_vector(2 downto 0);
+			d_wallshape_1 : in  std_logic_vector(2 downto 0);
+			e_read_mem_0  : in  std_logic;
+			e_read_mem_1  : in  std_logic;
+			d_read_mem_0  : in  std_logic_vector(7 downto 0);
+			d_read_mem_1  : in  std_logic_vector(7 downto 0);
+			e_next_pos_0  : in  std_logic;
+			e_next_pos_1  : in  std_logic;
+			d_next_pos_0  : in  std_logic_vector(10 downto 0);
+			d_next_pos_1  : in  std_logic_vector(10 downto 0);
+			e_direction_0 : in  std_logic;
+			e_direction_1 : in  std_logic;
+			d_direction_0 : in  std_logic_vector(1 downto 0);
+			d_direction_1 : in  std_logic_vector(1 downto 0);
+			e_next_dir_0  : in  std_logic;
+			e_next_dir_1  : in  std_logic;
+			d_next_dir_0  : in  std_logic_vector(1 downto 0);
+			d_next_dir_1  : in  std_logic_vector(1 downto 0);
+			e_p_state_0   : in  std_logic;
+			e_p_state_1   : in  std_logic;
+			d_p_state_0   : in  std_logic_vector(1 downto 0);
+			d_p_state_1   : in  std_logic_vector(1 downto 0);
+			q_position_0  : out std_logic_vector(10 downto 0);
+			q_position_1  : out std_logic_vector(10 downto 0);
+			q_wallshape_0 : out std_logic_vector(2 downto 0);
+			q_wallshape_1 : out std_logic_vector(2 downto 0);
+			q_read_mem_0  : out std_logic_vector(7 downto 0);
+			q_read_mem_1  : out std_logic_vector(7 downto 0);
+			q_next_pos_0  : out std_logic_vector(10 downto 0);
+			q_next_pos_1  : out std_logic_vector(10 downto 0);
+			q_direction_0 : out std_logic_vector(1 downto 0);
+			q_direction_1 : out std_logic_vector(1 downto 0);
+			q_next_dir_0  : out std_logic_vector(1 downto 0);
+			q_next_dir_1  : out std_logic_vector(1 downto 0);
+			q_p_state_0   : out std_logic_vector(1 downto 0);
+			q_p_state_1   : out std_logic_vector(1 downto 0));
+	end component;
+
 begin
 
 counter: busy_counter 
@@ -153,6 +203,18 @@ create_next_state: 	process (state)
 					new_state <= wait_state;
 					busy_counter_reset <= '0';
 				end if;
+				
+			when read_inputs =>
+				state_vga 					<= "111";
+				write_enable 				<= '0';
+				write_memory 				<= "00000000";
+				address 					<= "0000000000";
+				position_vga(10 downto 0) 	<= position_0;
+				position_vga(21 downto 11) 	<= position_1;
+				direction_vga (1 downto 0)	<= direction_0;
+				direction_vga (3 downto 2)	<= direction_1;
+				player_state				<= "1111";
+				go_to						<= '0';
 
 			when wall_shape => 
 				if ((direction_0= "01") and (input (1 downto 0) ="01")) or  ((direction_0= "11") and (input (1 downto 0) ="11")) then 
