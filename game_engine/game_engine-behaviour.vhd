@@ -1,5 +1,6 @@
 library IEEE;
 use IEEE.std_logic_1164.ALL;
+use ieee.numeric_std.all;
 
 entity game_engine is
    port(clk            : in  std_logic;
@@ -13,14 +14,14 @@ entity game_engine is
         write_memory   : out std_logic_vector(7 downto 0);
         address        : out std_logic_vector(9 downto 0);
         position_vga   : out std_logic_vector(21 downto 0);
-        position_mem   : out std_logic_vector(1 downto 0);
         direction_vga  : out std_logic_vector(3 downto 0);
         player_state   : out std_logic_vector(3 downto 0);
-	go_to	       : out std_logic);
+		go_to	       : out std_logic);
 end game_engine;
 
 library IEEE;
 use IEEE.std_logic_1164.ALL;
+use ieee.numeric_std.all;
 
 architecture behaviour of game_engine is
 	type game_state is (reset_state, loading_state, get_ready, read_inputs, wall_shape, check_border, next_position, want_to_read_0, want_to_read_1, read_memory_player_0, read_memory_player_1, check_collision, check_who_won, wait_state, want_to_write_0, want_to_write_1, write_memory_player_0, write_memory_player_1, change_data, player_0_won, player_1_won, tie, hold_state);
@@ -31,7 +32,24 @@ architecture behaviour of game_engine is
 	signal wallshape_0, wallshape_1 : std_logic_vector (2 downto 0);
 	signal read_memory_0, read_memory_1 : std_logic_vector (7 downto 0);
 	signal player_0_state, player_1_state: std_logic_vector (1 downto 0);
+	signal busy_counter_reset: std_logic;
+	signal unsigned_busy_count: unsigned (4 downto 0):= (others => '0');
+	
+	component busy_counter is
+	port(clk               : in  std_logic;
+		 global_reset 	   : in  std_logic;
+		 game_engine_reset : in  std_logic;
+         busy              : in  std_logic;
+         busy_count        : out unsigned(4 downto 0));
+	end component;
 begin
+
+counter: busy_counter 
+			port map (clk => clk,
+						global_reset => reset,
+						game_engine_reset => busy_counter_reset,
+						busy => busy,
+						busy_count => unsigned_busy_count);
 
 updates: 	process (clk)
 	begin
@@ -60,66 +78,74 @@ create_next_state: 	process (state)
 	begin
 		case state is
 			when reset_state =>
-				state_vga 				<= "000";
+				state_vga 					<= "000";
 				write_enable 				<= '0';
 				write_memory 				<= "00000000";
-				address 				<= "0000000000";
+				address 					<= "0000000000";
 				position_vga 				<= "0111110010001111111011";
-				position_mem				<= "00";
 				direction_vga				<= "0000";
 				player_state				<= "1010";
-				go_to				<= '0';
+				go_to						<= '0';
 			
 				new_state <= loading_state;
 
 			when player_0_won =>
-				state_vga 				<= "010";
+				state_vga 					<= "010";
 				write_enable 				<= '0';
 				write_memory 				<= "00000000";
-				address 				<= "0000000000";
-				position_vga(10 downto 0) 				<= position_0;
-				position_vga(21 downto 11) 				<= position_1;
-				position_mem				<= "00";
-				direction_vga (1 downto 0)				<= direction_0;
-				direction_vga (3 downto 2)				<= direction_1;
-				player_state	(1 downto 0)			<= "11";
-				-- player_state (3 downto 2)				<= 
-				go_to				<= '0';
+				address 					<= "0000000000";
+				position_vga(10 downto 0) 	<= position_0;
+				position_vga(21 downto 11) 	<= position_1;
+				direction_vga (1 downto 0)	<= direction_0;
+				direction_vga (3 downto 2)	<= direction_1;
+				player_state (1 downto 0)	<= "11";
+				player_state (3 downto 2)	<= player_1_state;
+				go_to						<= '0';
 				
 				new_state <= reset_state;
 
 			when player_1_won =>
-				state_vga 				<= "011";
+				state_vga 					<= "011";
 				write_enable 				<= '0';
 				write_memory 				<= "00000000";
-				address 				<= "0000000000";
-				position_vga(10 downto 0) 				<= position_0;
-				position_vga(21 downto 11) 				<= position_1;
-				position_mem				<= "00";
-				direction_vga (1 downto 0)				<= direction_0;
-				direction_vga (3 downto 2)				<= direction_1;
-				-- player_state (1 downto 0)				<= 
-				player_state	(3 downto 2)			<= "11";
-				go_to				<= '0';
+				address 					<= "0000000000";
+				position_vga(10 downto 0) 	<= position_0;
+				position_vga(21 downto 11) 	<= position_1;
+				direction_vga (1 downto 0)	<= direction_0;
+				direction_vga (3 downto 2)	<= direction_1;
+				player_state (1 downto 0)	<= player_0_state;
+				player_state (3 downto 2)	<= "11";
+				go_to						<= '0';
 				
 				new_state <= reset_state;	
 				
 			when tie =>
-				state_vga 				<= "001";
+				state_vga 					<= "001";
 				write_enable 				<= '0';
 				write_memory 				<= "00000000";
-				address 				<= "0000000000";
-				position_vga(10 downto 0) 				<= position_0;
-				position_vga(21 downto 11) 				<= position_1;
-				position_mem				<= "00";
-				direction_vga (1 downto 0)				<= direction_0;
-				direction_vga (3 downto 2)				<= direction_1;
-				-- player_state				<= 
-				go_to				<= '0';
+				address 					<= "0000000000";
+				position_vga(10 downto 0) 	<= position_0;
+				position_vga(21 downto 11) 	<= position_1;
+				direction_vga (1 downto 0)	<= direction_0;
+				direction_vga (3 downto 2)	<= direction_1;
+				player_state(1 downto 0)	<= player_0_state;
+				player_state(3 downto 2)	<= player_1_state;
+				go_to						<= '0';
 				
 				new_state <= reset_state;	
 				
 			when wait_state =>
+				state_vga 					<= "111";
+				write_enable 				<= '0';
+				write_memory 				<= "00000000";
+				address 					<= "0000000000";
+				position_vga(10 downto 0) 	<= position_0;
+				position_vga(21 downto 11) 	<= position_1;
+				direction_vga (1 downto 0)	<= direction_0;
+				direction_vga (3 downto 2)	<= direction_1;
+				player_state				<= "1111";
+				go_to						<= '0';
+			
 				if (unsigned_busy_count >= 16) then
 					busy_counter_reset <= '1';
 					new_state <= read_inputs;
@@ -163,17 +189,27 @@ create_next_state: 	process (state)
 				write_enable 				<= '0';
 				write_memory  				<= "00000000";
 				address      				<= "0000000000";
-				position_vga(10 downto 0) 				<= position_0;
-				position_vga(21 downto 11) 				<= position_1;
-				position_mem   				<= "00";
-				direction_vga (1 downto 0)				<= direction_0;
-				direction_vga (3 downto 2)				<= direction_1;
+				position_vga(10 downto 0) 	<= position_0;
+				position_vga(21 downto 11) 	<= position_1;
+				direction_vga (1 downto 0)	<= direction_0;
+				direction_vga (3 downto 2)	<= direction_1;
 				player_state   				<= "1111";
-				go_to		   		<= '0';
+				go_to		   				<= '0';
 				
 				new_state <= check_border;
 				
 			when check_border =>
+				state_vga   				<= "111";
+				write_enable 				<= '0';
+				write_memory  				<= "00000000";
+				address      				<= "0000000000";
+				position_vga(10 downto 0) 	<= position_0;
+				position_vga(21 downto 11) 	<= position_1;
+				direction_vga (1 downto 0)	<= direction_0;
+				direction_vga (3 downto 2)	<= direction_1;
+				player_state   				<= "1111";
+				go_to		   				<= '0';
+			
 				if ((next_position_0(4 downto 0) = "00000") or (next_position_0(4 downto 0) = "11111")) or ((next_position_0(9 downto 5) = "00000") or (next_position_0(9 downto 5) = "11111"))then 
 					player_0_state <= "01";
 				--else 
@@ -192,14 +228,14 @@ create_next_state: 	process (state)
 				state_vga   				<= "111";
 				write_enable 				<= '0';
 				write_memory  				<= "00000000";
-				address 				<= position_0(9 downto 0);
-				position_vga(10 downto 0) 				<= position_0;
-				position_vga(21 downto 11) 				<= position_1;
-				position_mem   				<= "00";
-				direction_vga (1 downto 0)				<= direction_0;
-				direction_vga (3 downto 2)				<= direction_1;
-				player_state   				<= "1111";
-				go_to		   		<= '1';	
+				address 					<= position_0(9 downto 0);
+				position_vga(10 downto 0) 	<= position_0;
+				position_vga(21 downto 11) 	<= position_1;
+				direction_vga (1 downto 0)	<= direction_0;
+				direction_vga (3 downto 2)	<= direction_1;
+				player_state (1 downto 0)	<= player_0_state;
+				player_state (3 downto 2)	<= player_1_state;
+				go_to		   				<= '1';	
 
 				new_state <= read_memory_player_0;	
 
@@ -207,14 +243,14 @@ create_next_state: 	process (state)
 				state_vga   				<= "111";
 				write_enable 				<= '0';
 				write_memory  				<= "00000000";
-				address 				<= position_0(9 downto 0);
-				position_vga(10 downto 0) 				<= position_0;
-				position_vga(21 downto 11) 				<= position_1;
-				position_mem   				<= "00";
-				direction_vga (1 downto 0)				<= direction_0;
-				direction_vga (3 downto 2)				<= direction_1;
-				player_state   				<= "1111";
-				go_to		   		<= '0';
+				address 					<= position_0(9 downto 0);
+				position_vga(10 downto 0) 	<= position_0;
+				position_vga(21 downto 11) 	<= position_1;
+				direction_vga (1 downto 0)	<= direction_0;
+				direction_vga (3 downto 2)	<= direction_1;
+				player_state (1 downto 0)	<= player_0_state;
+				player_state (3 downto 2)	<= player_1_state;
+				go_to		   				<= '0';
 				
 				read_memory_0 <= read_memory;
 				
@@ -231,14 +267,14 @@ create_next_state: 	process (state)
 				state_vga   				<= "111";
 				write_enable 				<= '0';
 				write_memory  				<= "00000000";
-				address 				<= position_1(9 downto 0);
-				position_vga(10 downto 0) 				<= position_0;
-				position_vga(21 downto 11) 				<= position_1;
-				position_mem   				<= "00";
-				direction_vga (1 downto 0)				<= direction_0;
-				direction_vga (3 downto 2)				<= direction_1;
-				player_state   				<= "1111";
-				go_to		   		<= '1';
+				address 					<= position_1(9 downto 0);
+				position_vga(10 downto 0) 	<= position_0;
+				position_vga(21 downto 11) 	<= position_1;
+				direction_vga (1 downto 0)	<= direction_0;
+				direction_vga (3 downto 2)	<= direction_1;
+				player_state (1 downto 0)	<= player_0_state;
+				player_state (3 downto 2)	<= player_1_state;
+				go_to		   				<= '1';
 
 				new_state <= read_memory_player_1;
 
@@ -246,14 +282,14 @@ create_next_state: 	process (state)
 				state_vga   				<= "111";
 				write_enable 				<= '0';
 				write_memory  				<= "00000000";
-				address 				<= position_1(9 downto 0);
-				position_vga(10 downto 0) 				<= position_0;
-				position_vga(21 downto 11) 				<= position_1;
-				position_mem   				<= "00";
-				direction_vga (1 downto 0)				<= direction_0;
-				direction_vga (3 downto 2)				<= direction_1;
-				player_state   				<= "1111";
-				go_to		   		<= '0';
+				address 					<= position_1(9 downto 0);
+				position_vga(10 downto 0) 	<= position_0;
+				position_vga(21 downto 11) 	<= position_1;
+				direction_vga (1 downto 0)	<= direction_0;
+				direction_vga (3 downto 2)	<= direction_1;
+				player_state (1 downto 0)	<= player_0_state;
+				player_state (3 downto 2)	<= player_1_state;
+				go_to		   				<= '0';
 
 				read_memory_1 <= read_memory;
 				
@@ -271,13 +307,13 @@ create_next_state: 	process (state)
 				write_enable 				<= '0';
 				write_memory  				<= "00000000";
 				address      				<= "0000000000";
-				position_vga(10 downto 0) 				<= position_0;
-				position_vga(21 downto 11) 				<= position_1;
-				position_mem   				<= "00";
-				direction_vga (1 downto 0)				<= direction_0;
-				direction_vga (3 downto 2)				<= direction_1;
-				player_state   				<= "1111";
-				go_to		   		<= '0';
+				position_vga(10 downto 0) 	<= position_0;
+				position_vga(21 downto 11) 	<= position_1;
+				direction_vga (1 downto 0)	<= direction_0;
+				direction_vga (3 downto 2)	<= direction_1;
+				player_state (1 downto 0)	<= player_0_state;
+				player_state (3 downto 2)	<= player_1_state;
+				go_to		   				<= '0';
 				
 				if (next_position_0 = next_position_1) then
 					player_0_state <= "00"; --collide at eachother at middle of square
@@ -293,9 +329,21 @@ create_next_state: 	process (state)
 				end if;
 				new_state<= check_who_won;
 
-			when chec_who_won =>
+			when check_who_won =>
+				state_vga   				<= "111";
+				write_enable 				<= '0';
+				write_memory  				<= "00000000";
+				address      				<= "0000000000";
+				position_vga(10 downto 0) 	<= position_0;
+				position_vga(21 downto 11) 	<= position_1;
+				direction_vga (1 downto 0)	<= direction_0;
+				direction_vga (3 downto 2)	<= direction_1;
+				player_state (1 downto 0) 	<= player_0_state;
+				player_state (3 downto 2)	<= player_1_state;
+				go_to		   				<= '0';
+				
 				if ((player_0_state = "11") and (player_1_state = "11")) then
-					new_state <= write_player_memory_0;
+					new_state <= want_to_write_0;
 				elsif (player_0_state = "11") then 
 					new_state <= player_0_won;
 				elsif (player_1_state = "11") then
@@ -306,32 +354,32 @@ create_next_state: 	process (state)
 			when want_to_write_0 =>
 				state_vga   				<= "111";
 				write_enable 				<= '1';
-				write_memory(7 downto 3) 				<= "00000";
-				write_memory(2 downto 0) 				<= wallshape_0;
-				address 				<= position_0(9 downto 0);
-				position_vga(10 downto 0) 				<= position_0;
-				position_vga(21 downto 11) 				<= position_1;
-				position_mem   				<= "00";
-				direction_vga (1 downto 0)				<= direction_0;
-				direction_vga (3 downto 2)				<= direction_1;
-				player_state   				<= "1111";
-				go_to 				<= '1';
+				write_memory(7 downto 3) 	<= "00000";
+				write_memory(2 downto 0) 	<= wallshape_0;
+				address 					<= position_0(9 downto 0);
+				position_vga(10 downto 0) 	<= position_0;
+				position_vga(21 downto 11) 	<= position_1;
+				direction_vga (1 downto 0)	<= direction_0;
+				direction_vga (3 downto 2)	<= direction_1;
+				player_state (1 downto 0)	<= player_0_state;
+				player_state (3 downto 2)	<= player_1_state;
+				go_to 						<= '1';
 
 				new_state <= write_memory_player_0;
 
 			when write_memory_player_0 =>
 				state_vga   				<= "111";
 				write_enable 				<= '1';
-				write_memory(7 downto 3) 				<= "00000";
-				write_memory(2 downto 0) 				<= wallshape_0;
-				address 				<= position_0(9 downto 0);
-				position_vga(10 downto 0) 				<= position_0;
-				position_vga(21 downto 11) 				<= position_1;
-				position_mem   				<= "00";
-				direction_vga (1 downto 0)				<= direction_0;
-				direction_vga (3 downto 2)				<= direction_1;
-				player_state   				<= "1111";
-				go_to 				<= '0';
+				write_memory(7 downto 3) 	<= "00000";
+				write_memory(2 downto 0) 	<= wallshape_0;
+				address 					<= position_0(9 downto 0);
+				position_vga(10 downto 0) 	<= position_0;
+				position_vga(21 downto 11) 	<= position_1;
+				direction_vga (1 downto 0)	<= direction_0;
+				direction_vga (3 downto 2)	<= direction_1;
+				player_state (1 downto 0)	<= player_0_state;
+				player_state (3 downto 2)	<= player_1_state;
+				go_to 						<= '0';
 				
 				if (memory_ready = '1') then
 					new_state <= want_to_write_1;
@@ -341,32 +389,32 @@ create_next_state: 	process (state)
 			when want_to_write_1 =>
 				state_vga   				<= "111";
 				write_enable 				<= '1';
-				write_memory(7 downto 3) 				<= "00001" ;
-				write_memory(2 downto 0) 				<= wallshape_1;
-				address 				<= position_1(9 downto 0);
-				position_vga(10 downto 0) 				<= position_0;
-				position_vga(21 downto 11) 				<= position_1;
-				position_mem   				<= "00";
-				direction_vga (1 downto 0)				<= direction_0;
-				direction_vga (3 downto 2)				<= direction_1;
-				player_state   				<= "1111";
-				go_to 				<= '1';
+				write_memory(7 downto 3) 	<= "00001" ;
+				write_memory(2 downto 0) 	<= wallshape_1;
+				address 					<= position_1(9 downto 0);
+				position_vga(10 downto 0) 	<= position_0;
+				position_vga(21 downto 11) 	<= position_1;
+				direction_vga (1 downto 0)	<= direction_0;
+				direction_vga (3 downto 2)	<= direction_1;
+				player_state (1 downto 0)	<= player_0_state;
+				player_state (3 downto 2)	<= player_1_state;
+				go_to 						<= '1';
 
 				new_state <= write_memory_player_1;
 
 			when write_memory_player_1 =>
 				state_vga   				<= "111";
 				write_enable 				<= '1';
-				write_memory(7 downto 3) 				<= "00001" ;
-				write_memory(2 downto 0) 				<= wallshape_1;
-				address 				<= position_1(9 downto 0);
-				position_vga(10 downto 0) 				<= position_0;
-				position_vga(21 downto 11) 				<= position_1;
-				position_mem   				<= "00";
-				direction_vga (1 downto 0)				<= direction_0;
-				direction_vga (3 downto 2)				<= direction_1;
-				player_state   				<= "1111";
-				go_to 				<= '1';
+				write_memory(7 downto 3) 	<= "00001" ;
+				write_memory(2 downto 0) 	<= wallshape_1;
+				address 					<= position_1(9 downto 0);
+				position_vga(10 downto 0) 	<= position_0;
+				position_vga(21 downto 11) 	<= position_1;
+				direction_vga (1 downto 0)	<= direction_0;
+				direction_vga (3 downto 2)	<= direction_1;
+				player_state (1 downto 0)	<= player_0_state;
+				player_state (3 downto 2)	<= player_1_state;
+				go_to 						<= '1';
 		
 				if (memory_ready = '1') then
 					new_state <= change_data;
