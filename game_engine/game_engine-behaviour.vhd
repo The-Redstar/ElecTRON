@@ -27,12 +27,16 @@ architecture behaviour of game_engine is
 
 	signal state, new_state: game_state;
 	signal direction_0, direction_1, next_direction_0, next_direction_1 : std_logic_vector(1 downto 0);
+	signal d_direction_0, d_direction_1, d_next_direction_0, d_next_direction_1 : std_logic_vector(1 downto 0);
 	signal position_0, position_1, next_position_0, next_position_1 : std_logic_vector (10 downto 0);
-	signal d_position_0, d_position_1, next_position_0, next_position_1 : std_logic_vector (10 downto 0);
+	signal d_position_0, d_position_1, d_next_position_0, d_next_position_1 : std_logic_vector (10 downto 0);
 	signal wallshape_0, wallshape_1 : std_logic_vector (2 downto 0);
+	signal d_wallshape_0, d_wallshape_1 : std_logic_vector (2 downto 0);
 	signal read_memory_0, read_memory_1 : std_logic_vector (7 downto 0);
+	signal d_read_memory_0, d_read_memory_1 : std_logic_vector (7 downto 0);
 	signal player_0_state, player_1_state: std_logic_vector (1 downto 0);
-	signal e_position_0, e_position_1, e_wallshape_0, e_wallshape_1, e_read_mem_0, e_read_mem_1, e_next_pos_0, e_next_pos_1, e_direction_0, e_direction_1, e_next_dir_0, e_next_dir_1, e_p_state_0, e_p_state_1: std_logic;
+	signal d_player_0_state, d_player_1_state: std_logic_vector (1 downto 0);
+	signal e_position_0, e_position_1, e_wallshape_0, e_wallshape_1, e_read_memory_0, e_read_memory_1, e_next_position_0, e_next_position_1, e_direction_0, e_direction_1, e_next_direction_0, e_next_direction_1, e_player_0_state, e_player_1_state: std_logic;
 	
 	component ge_register is
 		port(clk, reset	  : in  std_logic;	
@@ -83,6 +87,51 @@ architecture behaviour of game_engine is
 
 	
 begin
+
+reg: port map (clk        => clk,
+			reset         => reset,	
+			e_position_0  => e_position_0,
+			e_position_1  => e_position_1,
+			d_position_0  => d_position_0,
+			d_position_1  => d_position_1,
+			e_wallshape_0 => e_wallshape_0,
+			e_wallshape_1 => e_wallshape_1,
+			d_wallshape_0 => d_wallshape_0,
+			d_wallshape_1 => d_wallshape_1,
+			e_read_mem_0  => e_read_memory_0,
+			e_read_mem_1  => e_read_memory_1,
+			d_read_mem_0  => d_read_memory_0,
+			d_read_mem_1  => d_read_memory_1,
+			e_next_pos_0  => e_next_position_0,
+			e_next_pos_1  => e_next_position_1,
+			d_next_pos_0  => d_next_position_0,
+			d_next_pos_1  => d_next_position_1,
+			e_direction_0 => e_direction_0,
+			e_direction_1 => e_direction_1,
+			d_direction_0 => d_direction_0,
+			d_direction_1 => d_direction_1,
+			e_next_dir_0  => e_next_direction_0,
+			e_next_dir_1  => e_next_direction_1,
+			d_next_dir_0  => d_next_direction_0,
+			d_next_dir_1  => d_next_direction_1,
+			e_p_state_0   => e_player_0_state,
+			e_p_state_1   => e_player_1_state,
+			d_p_state_0   => d_player_0_state,
+			d_p_state_1   => d_player_1_state,
+			q_position_0  => position_0,
+			q_position_1  => position_1,
+			q_wallshape_0 => wallshape_0,
+			q_wallshape_1 => wallshape_1,
+			q_read_mem_0  => read_memory_0,
+			q_read_mem_1  => read_memory_1,
+			q_next_pos_0  => next_position_0,
+			q_next_pos_1  => next_position_1,
+			q_direction_0 => direction_0,
+			q_direction_1 => direction_1,
+			q_next_dir_0  => next_direction_0,
+			q_next_dir_1  => next_direction_1,
+			q_p_state_0   => player_0_state,
+			q_p_state_1   => player_1_state,
 
 updates: 	process (clk)
 	begin
