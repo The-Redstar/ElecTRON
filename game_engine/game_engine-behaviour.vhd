@@ -36,10 +36,8 @@ architecture behaviour of game_engine is
 	signal read_memory_0, read_memory_1 : std_logic_vector (7 downto 0);
 	signal d_read_memory_0, d_read_memory_1 : std_logic_vector (7 downto 0);
 	signal player_0_state, player_1_state: std_logic_vector (1 downto 0);
-<<<<<<< HEAD
 	signal d_player_0_state, d_player_1_state: std_logic_vector (1 downto 0);
 	signal e_position_0, e_position_1, e_wallshape_0, e_wallshape_1, e_read_memory_0, e_read_memory_1, e_next_position_0, e_next_position_1, e_direction_0, e_direction_1, e_next_direction_0, e_next_direction_1, e_player_0_state, e_player_1_state: std_logic;
-=======
 	signal busy_counter_reset: std_logic;
 	signal unsigned_busy_count: unsigned (4 downto 0):= (others => '0');
 	
@@ -52,7 +50,6 @@ architecture behaviour of game_engine is
 	end component;
 	
 	signal e_position_0, e_position_1, e_wallshape_0, e_wallshape_1, e_read_mem_0, e_read_mem_1, e_next_pos_0, e_next_pos_1, e_direction_0, e_direction_1, e_next_dir_0, e_next_dir_1, e_p_state_0, e_p_state_1: std_logic;
->>>>>>> 02eab5dbe4f2d5837c0e42e592a57c52f512a22f
 	
 	component ge_register is
 		port(clk, reset	  : in  std_logic;	
@@ -102,7 +99,6 @@ architecture behaviour of game_engine is
 
 begin
 
-<<<<<<< HEAD
 reg: port map (clk        => clk,
 			reset         => reset,	
 			e_position_0  => e_position_0,
@@ -147,14 +143,13 @@ reg: port map (clk        => clk,
 			q_next_dir_1  => next_direction_1,
 			q_p_state_0   => player_0_state,
 			q_p_state_1   => player_1_state,
-=======
+			
 counter: busy_counter 
 			port map (clk => clk,
 						global_reset => reset,
 						game_engine_reset => busy_counter_reset,
 						busy => busy,
 						busy_count => unsigned_busy_count);
->>>>>>> 02eab5dbe4f2d5837c0e42e592a57c52f512a22f
 
 updates: 	process (clk)
 	begin
