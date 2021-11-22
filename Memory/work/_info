@@ -7,23 +7,23 @@ z2
 !i10e 25
 !i10f 100
 cModel Technology
-d/tmp/.x2go-mlmjanssen/media/disk/_Users_martijn_ElecTRON/Memory
+Z0 d/tmp/.x2go-mlmjanssen/media/disk/_Users_martijn_ElecTRON/Memory
 Ememory_cntrll
-w1637576191
-Z0 DPx3 std 6 textio 0 22 zE1`LPoLg^DX3Oz^4Fj1K3
-Z1 DPx4 ieee 14 std_logic_1164 0 22 eNV`TJ_GofJTzYa?f<@Oe1
-Z2 d/tmp/.x2go-jwnijenhuis/media/disk/_cygdrive_C_Users_jonat_OneDrive_DOCUME1_Studie_EE2L11_ElecTRON/Memory
+w1637579486
+Z1 DPx3 std 6 textio 0 22 zE1`LPoLg^DX3Oz^4Fj1K3
+Z2 DPx4 ieee 14 std_logic_1164 0 22 eNV`TJ_GofJTzYa?f<@Oe1
+R0
 8VHDL/memory_cntrll.vhd
 FVHDL/memory_cntrll.vhd
 l0
 L4
-VCM]B[JnEFA[D5A;ZH>9S51
-!s100 CFV9_;3jAkP@g9AQdW]CJ3
+VIiKNGcO_PL;jlYMRJU`V81
+!s100 8@OhP_iEh17fzDmF:BCO]3
 Z3 OL;C;10.5b;63
 33
-!s110 1637576542
+!s110 1637579567
 !i10b 1
-!s108 1637576539.000000
+!s108 1637579566.000000
 !s90 -2008|-lower|-explicit|-work|work|VHDL/memory_cntrll.vhd|-quiet|-nologo|
 !s107 VHDL/memory_cntrll.vhd|
 !i113 0
@@ -32,8 +32,8 @@ Z5 tExplicit 1 CvgOpt 0
 Abehaviour
 w1637576645
 DEx4 work 13 memory_cntrll 0 22 CM]B[JnEFA[D5A;ZH>9S51
-R0
 R1
+R2
 8VHDL/memory_cntrll-behaviour.vhd
 FVHDL/memory_cntrll-behaviour.vhd
 l5
@@ -47,6 +47,49 @@ R3
 !s108 1637576650.000000
 !s90 -2008|-lower|-explicit|-work|work|VHDL/memory_cntrll-behaviour.vhd|-quiet|-nologo|
 !s107 VHDL/memory_cntrll-behaviour.vhd|
+!i113 0
+R4
+R5
+d/tmp/.x2go-jwnijenhuis/media/disk/_cygdrive_C_Users_jonat_OneDrive_DOCUME1_Studie_EE2L11_ElecTRON/Memory
+Ereadwrite
+w1637580172
+R1
+R2
+R0
+8VHDL/readwrite.vhd
+FVHDL/readwrite.vhd
+l0
+L4
+V`KhWJk10nljbZ8lPk;JXO1
+!s100 @Bfa4YF>LD^@_j4;DQD?<2
+R3
+33
+!s110 1637580173
+!i10b 1
+!s108 1637580172.000000
+!s90 -2008|-lower|-explicit|-work|work|VHDL/readwrite.vhd|-quiet|-nologo|
+!s107 VHDL/readwrite.vhd|
+!i113 0
+R4
+R5
+Abehaviour
+w1637580221
+Z6 DEx4 work 9 readwrite 0 22 `KhWJk10nljbZ8lPk;JXO1
+R1
+R2
+Z7 8VHDL/readwrite-behaviour.vhd
+Z8 FVHDL/readwrite-behaviour.vhd
+l7
+L4
+VR769E82`;9iPjHon@I>Mb3
+!s100 >Y89LG:mZPRI>RA]Td`?F2
+R3
+33
+!s110 1637580222
+!i10b 1
+!s108 1637580222.000000
+Z9 !s90 -2008|-lower|-explicit|-work|work|VHDL/readwrite-behaviour.vhd|-quiet|-nologo|
+!s107 VHDL/readwrite-behaviour.vhd|
 !i113 0
 R4
 R5

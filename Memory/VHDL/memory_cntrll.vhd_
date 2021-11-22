@@ -20,7 +20,7 @@ entity memory_cntrll is
         XincrIN   : in  std_logic;
         YincrIN   : in  std_logic;
         readyOUT  : out std_logic;
-        curXOUT   : out std_logic_vector(4 downto 0);
-        curYOUT   : out std_logic_vector(4 downto 0));
+        curX      : out std_logic_vector(4 downto 0);
+        curY      : out std_logic_vector(4 downto 0));
 end memory_cntrll;
 
