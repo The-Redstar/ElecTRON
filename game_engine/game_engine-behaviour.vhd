@@ -23,12 +23,14 @@ library IEEE;
 use IEEE.std_logic_1164.ALL;
 
 architecture behaviour of game_engine is
-	type game_state is (reset_state, loading_state, get_ready, read_inputs, wall_shape, check_border, next_position, want_to_read_0, want_to_read_1, read_memory_player_0, read_memory_player_1, check_collision, wait_state, want_to_write_0, want_to_write_1, write_memory_player_0, write_memory_player_1, change_data, player_0_won, player_1_won, tie, hold_state);
+	type game_state is (reset_state, loading_state, get_ready, read_inputs, wall_shape, check_border, next_position, want_to_read_0, want_to_read_1, read_memory_player_0, read_memory_player_1, check_collision, check_who_won, wait_state, want_to_write_0, want_to_write_1, write_memory_player_0, write_memory_player_1, change_data, player_0_won, player_1_won, tie, hold_state);
+
 	signal state, new_state: game_state;
 	signal direction_0, direction_1, next_direction_0, next_direction_1 : std_logic_vector(1 downto 0);
 	signal position_0, position_1, next_position_0, next_position_1 : std_logic_vector (10 downto 0);
 	signal wallshape_0, wallshape_1 : std_logic_vector (2 downto 0);
 	signal read_memory_0, read_memory_1 : std_logic_vector (7 downto 0);
+	signal player_0_state, player_1_state: std_logic_vector (1 downto 0);
 begin
 
 updates: 	process (clk)
@@ -118,9 +120,8 @@ create_next_state: 	process (state)
 				new_state <= reset_state;	
 				
 			when wait_state =>
-			
 				if (unsigned_busy_count >= 16) then
-					busy_counter_reset <= '1'
+					busy_counter_reset <= '1';
 					new_state <= read_inputs;
 				else
 					new_state <= wait_state;
@@ -173,18 +174,19 @@ create_next_state: 	process (state)
 				new_state <= check_border;
 				
 			when check_border =>
-				
-				if ((next_position_0(4 downto 0) = "00000") or (next_position_0(4 downto 0) = "11111") or (next_position_0(9 downto 5) = "00000") or (next_position_0(9 downto 5) = "11111")then 
+				if ((next_position_0(4 downto 0) = "00000") or (next_position_0(4 downto 0) = "11111")) or ((next_position_0(9 downto 5) = "00000") or (next_position_0(9 downto 5) = "11111"))then 
 					player_0_state <= "01";
 				--else 
 					--register
 				end if;
-				if ((next_position_1(4 downto 0) = "00000") or (next_position_1(4 downto 0) = "11111") or (next_position_1(9 downto 5) = "00000") or (next_position_1(9 downto 5) = "11111")then 
+
+				if ((next_position_1(4 downto 0) = "00000") or (next_position_1(4 downto 0) = "11111")) or ((next_position_1(9 downto 5) = "00000") or (next_position_1(9 downto 5) = "11111"))then 
 					player_1_state <= "01";
 				--else
 					--register
 				end if;
-			new_state <= read_memory_player_0;
+
+				new_state <= read_memory_player_0;
 
 			when want_to_read_0 =>
 				state_vga   				<= "111";
@@ -220,6 +222,7 @@ create_next_state: 	process (state)
 					if (not read_memory = "00000000") then
 						player_0_state <= "00";
 					end if;
+
 					new_state <= want_to_read_1; 
 				else new_state <= read_memory_player_0;
 				end if;
@@ -258,6 +261,7 @@ create_next_state: 	process (state)
 					if (not read_memory = "00000000") then
 						player_1_state <= "00";
 					end if;
+
 					new_state <= check_collision; 
 				else new_state <= read_memory_player_1;
 				end if;
@@ -287,8 +291,17 @@ create_next_state: 	process (state)
 					player_0_state <= "00"; --collide at wall other player
 				else --iets met register
 				end if;
-				new_state<= check_who_won
+				new_state<= check_who_won;
 
+			when chec_who_won =>
+				if ((player_0_state = "11") and (player_1_state = "11")) then
+					new_state <= write_player_memory_0;
+				elsif (player_0_state = "11") then 
+					new_state <= player_0_won;
+				elsif (player_1_state = "11") then
+					new_state <= player_1_won;
+				else new_state <= tie;
+				end if;
 		
 			when want_to_write_0 =>
 				state_vga   				<= "111";
