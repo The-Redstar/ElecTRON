@@ -47,9 +47,7 @@ architecture behaviour of game_engine is
 		 game_engine_reset : in  std_logic;
          busy              : in  std_logic;
          busy_count        : out unsigned(4 downto 0));
-	end component;
-	
-	signal e_position_0, e_position_1, e_wallshape_0, e_wallshape_1, e_read_mem_0, e_read_mem_1, e_next_pos_0, e_next_pos_1, e_direction_0, e_direction_1, e_next_dir_0, e_next_dir_1, e_p_state_0, e_p_state_1: std_logic;
+	end component;	
 	
 	component ge_register is
 		port(clk, reset	  : in  std_logic;	
@@ -99,7 +97,7 @@ architecture behaviour of game_engine is
 
 begin
 
-reg: port map (clk        => clk,
+reg: ge_register port map (clk        => clk,
 			reset         => reset,	
 			e_position_0  => e_position_0,
 			e_position_1  => e_position_1,
@@ -142,7 +140,7 @@ reg: port map (clk        => clk,
 			q_next_dir_0  => next_direction_0,
 			q_next_dir_1  => next_direction_1,
 			q_p_state_0   => player_0_state,
-			q_p_state_1   => player_1_state,
+			q_p_state_1   => player_1_state);
 			
 counter: busy_counter 
 			port map (clk => clk,
