@@ -154,20 +154,8 @@ updates: 	process (clk)
 		if (clk'event and clk = '1') then
 			if (reset = '1') then
 				state <= reset_state;
-				
-				position_0 <= "00000000000";
-				position_1 <= "00000000000";
-				
-				direction_0 <= "00";
-				direction_1 <= "00";
 			else
 				state <= new_state;
-				
-				position_0 <= next_position_0;
-				position_1 <= next_position_1;
-				
-				direction_0 <= next_direction_0;
-				direction_1 <= next_direction_1;
 			end if;
 		end if;
 	end process;
