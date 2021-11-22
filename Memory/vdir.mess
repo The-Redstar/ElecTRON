@@ -1,18 +1,35 @@
 Library vendor : Model Technology
 Maximum unnamed designs : 3
 ENTITY memory_cntrll
-    Source modified time: Mon Nov 22 11:15:05 2021
+    Source modified time: Mon Nov 22 11:16:31 2021
     Depends on: P std textio zE1`LPoLg^DX3Oz^4Fj1K3
     Depends on: P ieee std_logic_1164 eNV`TJ_GofJTzYa?f<@Oe1
-    Source directory: /tmp/.x2go-mlmjanssen/media/disk/_Users_martijn_ElecTRON/Memory
+    Source directory: /tmp/.x2go-jwnijenhuis/media/disk/_cygdrive_C_Users_jonat_OneDrive_DOCUME1_Studie_EE2L11_ElecTRON/Memory
     HDL source file: VHDL/memory_cntrll.vhd
     Source file: VHDL/memory_cntrll.vhd
     Start location: VHDL/memory_cntrll.vhd:4
     Version string: CM]B[JnEFA[D5A;ZH>9S51
     Opcode format: 10.5b; VCOM SE-64 Object version 63
     VHDL language standard: 3 (VHDL-2008)
-    Compile time: Mon Nov 22 11:15:10 2021
+    Compile time: Mon Nov 22 11:22:22 2021
     Debug Symbol file exists
     Compiled in vopt flow
     Compile options: -quiet -nologo -2008 -lower -explicit -work work
     Compile defaults: Explicit=1 CvgOpt=0
+  ARCHITECTURE BODY behaviour
+    Source modified time: Mon Nov 22 11:24:05 2021
+    Depends on: E work memory_cntrll CM]B[JnEFA[D5A;ZH>9S51
+    Depends on: P std textio zE1`LPoLg^DX3Oz^4Fj1K3
+    Depends on: P ieee std_logic_1164 eNV`TJ_GofJTzYa?f<@Oe1
+    HDL source file: VHDL/memory_cntrll-behaviour.vhd
+    Source file: VHDL/memory_cntrll-behaviour.vhd
+    Start location: VHDL/memory_cntrll-behaviour.vhd:4
+    Version string: c4H@_fZR<X>>TWDi]4f0j0
+    Opcode format: 10.5b; VCOM SE-64 Object version 63
+    VHDL language standard: 3 (VHDL-2008)
+    Compile time: Mon Nov 22 11:24:13 2021
+    Debug Symbol file exists
+    Compiled in vopt flow
+    Compile options: -quiet -nologo -2008 -lower -explicit -work work
+    Compile defaults: Explicit=1 CvgOpt=0
+    Source directory: /tmp/.x2go-jwnijenhuis/media/disk/_cygdrive_C_Users_jonat_OneDrive_DOCUME1_Studie_EE2L11_ElecTRON/Memory

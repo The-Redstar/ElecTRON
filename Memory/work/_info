@@ -7,25 +7,46 @@ z2
 !i10e 25
 !i10f 100
 cModel Technology
-Z0 d/tmp/.x2go-mlmjanssen/media/disk/_Users_martijn_ElecTRON/Memory
+d/tmp/.x2go-mlmjanssen/media/disk/_Users_martijn_ElecTRON/Memory
 Ememory_cntrll
-w1637576105
-DPx3 std 6 textio 0 22 zE1`LPoLg^DX3Oz^4Fj1K3
-DPx4 ieee 14 std_logic_1164 0 22 eNV`TJ_GofJTzYa?f<@Oe1
-R0
+w1637576191
+Z0 DPx3 std 6 textio 0 22 zE1`LPoLg^DX3Oz^4Fj1K3
+Z1 DPx4 ieee 14 std_logic_1164 0 22 eNV`TJ_GofJTzYa?f<@Oe1
+Z2 d/tmp/.x2go-jwnijenhuis/media/disk/_cygdrive_C_Users_jonat_OneDrive_DOCUME1_Studie_EE2L11_ElecTRON/Memory
 8VHDL/memory_cntrll.vhd
 FVHDL/memory_cntrll.vhd
 l0
 L4
 VCM]B[JnEFA[D5A;ZH>9S51
 !s100 CFV9_;3jAkP@g9AQdW]CJ3
-OL;C;10.5b;63
+Z3 OL;C;10.5b;63
 33
-!s110 1637576110
+!s110 1637576542
 !i10b 1
-!s108 1637576105.000000
+!s108 1637576539.000000
 !s90 -2008|-lower|-explicit|-work|work|VHDL/memory_cntrll.vhd|-quiet|-nologo|
 !s107 VHDL/memory_cntrll.vhd|
 !i113 0
-o-quiet -nologo -2008 -lower -explicit -work work
-tExplicit 1 CvgOpt 0
+Z4 o-quiet -nologo -2008 -lower -explicit -work work
+Z5 tExplicit 1 CvgOpt 0
+Abehaviour
+w1637576645
+DEx4 work 13 memory_cntrll 0 22 CM]B[JnEFA[D5A;ZH>9S51
+R0
+R1
+8VHDL/memory_cntrll-behaviour.vhd
+FVHDL/memory_cntrll-behaviour.vhd
+l5
+L4
+Vc4H@_fZR<X>>TWDi]4f0j0
+!s100 bEjBjIKNflk9[:^G6LGLo3
+R3
+33
+!s110 1637576653
+!i10b 1
+!s108 1637576650.000000
+!s90 -2008|-lower|-explicit|-work|work|VHDL/memory_cntrll-behaviour.vhd|-quiet|-nologo|
+!s107 VHDL/memory_cntrll-behaviour.vhd|
+!i113 0
+R4
+R5
