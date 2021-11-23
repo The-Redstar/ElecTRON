@@ -371,6 +371,8 @@ create_next_state: 	process (state)
 				player_state				<= "1111";
 				go_to						<= '0';
 				
+				next_direction_0			<= input(1 downto 0);
+				next_direction_1			<= input(3 downto 2);										
 				e_position_0				<= '0';
 				e_position_1				<= '0';	
 				e_wallshape_0				<= '0';	
@@ -381,8 +383,8 @@ create_next_state: 	process (state)
 				e_next_position_1			<= '0';
 				e_direction_0				<= '0';
 				e_direction_1				<= '0';
-				e_next_direction_0			<= '0';	
-				e_next_direction_1			<= '0';
+				e_next_direction_0			<= '1';	
+				e_next_direction_1			<= '1';
 				e_player_0_state			<= '0';
 				e_player_1_state			<= '0';
 
@@ -575,7 +577,7 @@ create_next_state: 	process (state)
 				e_position_1				<= '0';	
 				e_wallshape_0				<= '0';	
 				e_wallshape_1				<= '0';
-				e_read_memory_0				<= '0';
+				e_read_memory_0				<= '1';
 				e_read_memory_1				<= '0';
 				e_next_position_0			<= '0';
 				e_next_position_1			<= '0';
@@ -647,7 +649,7 @@ create_next_state: 	process (state)
 				e_wallshape_0				<= '0';	
 				e_wallshape_1				<= '0';
 				e_read_memory_0				<= '0';
-				e_read_memory_1				<= '0';
+				e_read_memory_1				<= '1';
 				e_next_position_0			<= '0';
 				e_next_position_1			<= '0';
 				e_direction_0				<= '0';
