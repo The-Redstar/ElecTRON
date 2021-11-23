@@ -532,14 +532,21 @@ create_next_state: 	process (state)
 				end if;
 			
 			when change_data =>
-				e_position_0 <= '1';
-				e_position_1 <= '1';
+				
 				e_direction_0 <= '1';
 				e_direction_1 <= '1';
-				d_position_0 <= next_position_0;
-				d_position_1 <= next_position_1;  
+				if (((player_0_state <= "01")  and ((player_1_state <= "01")) then
+					e_position_0 <= '0';
+					e_position_1 <= '1';
+				else 
+					e_position_0 <= '1';
+					e_position_1 <= '1';
+					d_position_0 <= next_position_0;
+					d_position_1 <= next_position_1;  
+				end if; 
 				d_direction_0 <= next_direction_0;
 				d_direction_1 <= next_direction_1;
+				new_state <= wait_state;
 				
 		end case;
 	end process;
