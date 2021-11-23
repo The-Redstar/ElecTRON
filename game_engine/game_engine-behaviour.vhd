@@ -1222,14 +1222,10 @@ create_next_state: 	process (state)
 			
 				e_direction_0 <= '1';
 				e_direction_1 <= '1';
-<<<<<<< HEAD
 				d_direction_0 <= next_direction_0;
 				d_direction_1 <= next_direction_1;
 				
-				if (((player_0_state <= "01")  and ((player_1_state <= "01")) then
-=======
-				if ((player_0_state <= "01") and (player_1_state <= "01")) then
->>>>>>> 2b957200f616bed253677bd2a8238b10cfb6b29f
+				if ((player_0_state <= "01") and ((player_1_state <= "01")) then
 					e_position_0 <= '0';
 					e_position_1 <= '1';
 					d_position_0 <= (others => '0');
