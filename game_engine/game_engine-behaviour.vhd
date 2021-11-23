@@ -363,7 +363,6 @@ create_next_state: 	process (state)
 				end if;
 				
 			when read_inputs =>
-				-- klopt nog niet!!!!!
 				state_vga 					<= "111";
 				write_enable 				<= '0';
 				write_memory 				<= "00000000";
@@ -387,6 +386,8 @@ create_next_state: 	process (state)
 				e_next_direction_1			<= '1';
 				e_player_0_state			<= '0';
 				e_player_1_state			<= '0';
+				
+				new_state <= wall_shape;
 
 			when wall_shape => 
 				state_vga   				<= "111";
