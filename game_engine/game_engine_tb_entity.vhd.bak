@@ -77,7 +77,6 @@ reset <= '1' after 0 ns,
 	'0' after 60 ns; -- goes to loading state
 
 input <= "0000" after 230 ns, -- goes to wait state
-	"0001" after 3800 ns;
 
 
 busy <= '1' after 0 ns,
@@ -148,5 +147,5 @@ memory_ready <= '0' after 0 ns,
 --3720: want_to_write_1
 --3760: write_memory_player_1
 --3880: change data
---3920: wait_state					
+					
 end architecture structural;
