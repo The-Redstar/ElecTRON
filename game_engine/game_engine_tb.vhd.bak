@@ -121,7 +121,7 @@ read_memory <= "00000000" after 0 ns;
 
 memory_ready <= '0' after 0 ns,
 		'1' after 140 ns, --goes to get ready state
-		'0' after 180 ns,
+		'0' after 220 ns,
 		'1' after 3320 ns, --goes to want_to_read_1
 		'0' after 3360 ns,
 		'1' after 3480 ns, -- goes to check_collision

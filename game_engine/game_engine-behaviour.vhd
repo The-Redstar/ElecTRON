@@ -174,7 +174,7 @@ updates: 	process (clk)
 		end if;
 	end process;
 
-create_next_state: 	process (state)
+create_next_state: 	process (state, reset, input, busy, read_memory, memory_ready, clk, unsigned_busy_count)
 	begin
 		case state is
 			when reset_state =>
@@ -1225,7 +1225,7 @@ create_next_state: 	process (state)
 				d_direction_0 <= next_direction_0;
 				d_direction_1 <= next_direction_1;
 				
-				if ((player_0_state <= "01") and ((player_1_state <= "01")) then
+				if ((player_0_state <= "01") and (player_1_state <= "01")) then
 					e_position_0 <= '0';
 					e_position_1 <= '1';
 					d_position_0 <= (others => '0');

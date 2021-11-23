@@ -111,12 +111,12 @@ busy <= '1' after 0 ns,
 	'1' after 2980 ns,
 	'0' after 3080 ns, -- unsigned_busy_count: 15
 	'1' after 3180 ns,
-	'0' after 3280 ns; -- unsigned_busy_count: 16
+	'0' after 3080 ns; -- unsigned_busy_count: 16
 
 
 
 
-read_memory <= "00000000" after 0 ns;
+read_memory <= "00000000" after 3240 ns;
 
 
 memory_ready <= '0' after 0 ns,
