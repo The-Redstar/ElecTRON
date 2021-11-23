@@ -28,7 +28,7 @@ use IEEE.std_logic_1164.ALL;
 use ieee.numeric_std.all;
 
 architecture behaviour of game_engine is
-	type game_state is (reset_state, loading_state, get_ready, read_inputs, wall_shape, check_border, want_to_read_0, want_to_read_1, read_memory_player_0, read_memory_player_1, check_collision, check_who_won, wait_state, want_to_write_0, want_to_write_1, write_memory_player_0, write_memory_player_1, change_data, player_0_won, player_1_won, tie, hold_state);
+	type game_state is (reset_state, loading_state, get_ready, read_inputs, wall_shape, check_border, want_to_read_0, want_to_read_1, read_memory_player_0, read_memory_player_1, check_collision, check_who_won, wait_state, want_to_write_0, want_to_write_1, write_memory_player_0, write_memory_player_1, change_data, player_0_won, player_1_won, tie);
 
 	signal state, new_state: game_state;
 	signal direction_0, direction_1, next_direction_0, next_direction_1 : std_logic_vector(1 downto 0);
@@ -282,7 +282,10 @@ create_next_state: 	process (state)
 				e_player_0_state			<= '0';
 				e_player_1_state			<= '0';
 				
-				new_state <= reset_state;
+				if (reset = '1') then
+					new_state <= reset_state;
+				else new_state <= player_0_won;
+				end if;
 
 			when player_1_won =>
 				state_vga 					<= "011";
@@ -306,7 +309,10 @@ create_next_state: 	process (state)
 				e_player_0_state			<= '0';
 				e_player_1_state			<= '0';
 				
-				new_state <= reset_state;	
+				if (reset = '1') then
+					new_state <= reset_state;
+				else new_state <= player_1_won;
+				end if;	
 				
 			when tie =>
 				state_vga 					<= "001";
@@ -330,7 +336,10 @@ create_next_state: 	process (state)
 				e_player_0_state			<= '0';
 				e_player_1_state			<= '0';
 				
-				new_state <= reset_state;	
+				if (reset = '1') then
+					new_state <= reset_state;
+				else new_state <= tie;
+				end if;
 				
 			when wait_state =>
 				state_vga 					<= "111";
