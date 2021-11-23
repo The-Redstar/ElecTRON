@@ -477,11 +477,19 @@ create_next_state: 	process (state)
 					next_position_0(4 downto 0) <= std_logic_vector(to_unsigned(to_integer(unsigned(position_0(4 downto 0))) - 1, 5));
 				elsif (direction_0 = "11") then 	-- moves to the right, x is increased with 1
 					next_position_0(4 downto 0) <= std_logic_vector(to_unsigned(to_integer(unsigned(position_0(4 downto 0))) + 1, 5));
+				elsif (direction_0 <= "00") then 	-- moves up, y is decreased with 1
+					next_position_0(9 downto 5) <= std_logic_vector(to_unsigned(to_integer(unsigned(position_1(9 downto 5))) - 1, 5));
+				else 					--moves down, y is increased with 1
+					next_position_0(9 downto 5) <= std_logic_vector(to_unsigned(to_integer(unsigned(position_1(9 downto 5))) + 1, 5));	
 				end if;
-				
-				if (direction_1 <= "00") then 		-- moves up, y is decreased with 1
+
+				if (direction_1 = "01") then 		-- moves to the left, x is decreased with 1
+					next_position_1(4 downto 0) <= std_logic_vector(to_unsigned(to_integer(unsigned(position_0(4 downto 0))) - 1, 5));
+				elsif (direction_1 = "11") then 	-- moves to the right, x is increased with 1
+					next_position_1(4 downto 0) <= std_logic_vector(to_unsigned(to_integer(unsigned(position_0(4 downto 0))) + 1, 5));
+				elsif (direction_1 <= "00") then 	-- moves up, y is decreased with 1
 					next_position_1(9 downto 5) <= std_logic_vector(to_unsigned(to_integer(unsigned(position_1(9 downto 5))) - 1, 5));
-				else 								--moves down, y is increased with 1
+				else 					--moves down, y is increased with 1
 					next_position_1(9 downto 5) <= std_logic_vector(to_unsigned(to_integer(unsigned(position_1(9 downto 5))) + 1, 5));	
 				end if;
 				
