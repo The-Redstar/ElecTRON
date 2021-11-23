@@ -262,7 +262,7 @@ create_next_state: 	process (state)
 				
 				
 				
-				if (memory_ready = '0') then 
+				if (memory_ready = '1') then 
 					new_state <= get_ready;
 				else 
 					new_state <= loading_state;
@@ -710,7 +710,7 @@ create_next_state: 	process (state)
 					d_player_1_state <= (others => '0');
 				end if;
 
-				new_state <= read_memory_player_0;
+				new_state <= want_to_read_0;
 
 			when want_to_read_0 =>
 				state_vga   				<= "111";
