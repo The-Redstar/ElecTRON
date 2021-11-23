@@ -3,20 +3,24 @@ use IEEE.std_logic_1164.ALL;
 use ieee.numeric_std.all;
 
 entity game_engine is
-   port(clk            : in  std_logic;
-        reset          : in  std_logic;
-        input          : in  std_logic_vector(3 downto 0);
-        busy           : in  std_logic;
-        read_memory    : in  std_logic_vector(7 downto 0);
-        memory_ready   : in  std_logic;
-        state_vga      : out std_logic_vector(2 downto 0);
-        write_enable   : out std_logic;
-        write_memory   : out std_logic_vector(7 downto 0);
-        address        : out std_logic_vector(9 downto 0);
-        position_vga   : out std_logic_vector(21 downto 0);
-        direction_vga  : out std_logic_vector(3 downto 0);
-        player_state   : out std_logic_vector(3 downto 0);
-		go_to	       : out std_logic);
+   port(clk                : in  std_logic;
+        reset              : in  std_logic;
+        input              : in  std_logic_vector(3 downto 0);
+        busy               : in  std_logic;
+        read_memory        : in  std_logic_vector(7 downto 0);
+        memory_ready       : in  std_logic;
+        state_vga          : out std_logic_vector(2 downto 0);
+        write_enable       : out std_logic;
+        write_memory       : out std_logic_vector(7 downto 0);
+        address            : out std_logic_vector(9 downto 0);
+        position_0_vga     : out std_logic_vector(10 downto 0);
+        position_1_vga     : out std_logic_vector(10 downto 0);
+        direction_0_vga    : out std_logic_vector(1 downto 0);
+        direction_1_vga    : out std_logic_vector(1 downto 0);
+        player_state_0_vga : out std_logic_vector(1 downto 0);
+        player_state_1_vga : out std_logic_vector(1 downto 0);
+		go_to	           : out std_logic;
+		clear_memory       : out std_logic);
 end game_engine;
 
 library IEEE;
@@ -97,6 +101,8 @@ architecture behaviour of game_engine is
 
 begin
 
+
+
 reg: ge_register port map (clk        => clk,
 			reset         => reset,	
 			e_position_0  => e_position_0,
@@ -148,6 +154,16 @@ counter: busy_counter
 						game_engine_reset => busy_counter_reset,
 						busy => busy,
 						busy_count => unsigned_busy_count);
+				
+--outputs from the register to the vga				
+position_0_vga  <= position_0;
+position_1_vga  <= position_1;
+direction_0_vga <= direction_0;
+direction_1_vga <= direction_1;
+player_state_0_vga <= player_0_state;
+player_state_1_vga <= player_1_state;
+
+
 
 updates: 	process (clk)
 	begin
@@ -168,12 +184,39 @@ create_next_state: 	process (state)
 				write_enable 				<= '0';
 				write_memory 				<= "00000000";
 				address 					<= "0000000000";
-				position_vga 				<= "0111110010001111111011";
-				direction_vga				<= "0000";
-				player_state				<= "1010";
 				go_to						<= '0';
 			
 				new_state <= loading_state;
+				
+			when loading_state =>
+				state_vga 					<= "000";
+				write_enable 				<= '0';
+				write_memory 				<= "00000000";
+				address 					<= "0000000000";
+				
+				e_position_0				<= '1';
+				e_position_1				<= '1';
+				e_direction_0				<= '1';
+				e_direction_1				<= '1';
+				e_player_0_state			<= '1';
+				e_player_1_state			<= '1';
+				
+				d_position_0				<= "01111111001";
+				d_position_1				<= "01111100100";
+				d_direction_0				<= "00";
+				d_direction_1				<= "00";
+				d_player_0_state			<= "10";
+				d_player_1_state			<= "10";
+				
+				
+				go_to						<= '0';
+				clear_memory				<= '1';
+				
+				if (memory_ready = '0') then 
+					new_state <= get_ready;
+				else 
+					new_state <= loading_state;
+				end if;
 
 			when player_0_won =>
 				state_vga 					<= "010";
