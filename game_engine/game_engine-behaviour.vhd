@@ -101,9 +101,7 @@ architecture behaviour of game_engine is
 
 begin
 
-
-
-reg: ge_register port map (clk        => clk,
+reg: ge_register port map (clk => clk,
 			reset         => reset,	
 			e_position_0  => e_position_0,
 			e_position_1  => e_position_1,
@@ -155,7 +153,7 @@ counter: busy_counter
 						busy => busy,
 						busy_count => unsigned_busy_count);
 				
---outputs from the register to the vga				
+-- outputs from the register to the vga				
 position_0_vga  <= position_0;
 position_1_vga  <= position_1;
 direction_0_vga <= direction_0;
@@ -183,7 +181,7 @@ create_next_state: 	process (state)
 				state_vga 					<= "000";
 				write_enable 				<= '0';
 				write_memory 				<= "00000000";
-				address 					<= "0000000000";
+				address 					<= "0000000000";			  
 				go_to						<= '0';
 			
 				e_position_0				<= '0';
@@ -232,18 +230,41 @@ create_next_state: 	process (state)
 				else 
 					new_state <= loading_state;
 				end if;
+				
+			when get_ready =>
+				state_vga 					<= "010";
+				write_enable 				<= '0';
+				write_memory 				<= "00000000";
+				address 					<= "0000000000";
+				go_to						<= '0';
+				
+				e_position_0				<= '0';
+				e_position_1				<= '0';	
+				e_wallshape_0				<= '0';	
+				e_wallshape_1				<= '0';
+				e_read_memory_0				<= '0';
+				e_read_memory_1				<= '0';
+				e_next_position_0			<= '0';
+				e_next_position_1			<= '0';
+				e_direction_0				<= '0';
+				e_direction_1				<= '0';
+				e_next_direction_0			<= '0';	
+				e_next_direction_1			<= '0';
+				e_player_0_state			<= '0';
+				e_player_1_state			<= '0';
+				
+				if (input = "0000") then
+					new_state <= wait_state;
+				else 
+					new_state <= get_ready;
+				end if;
+				
 
 			when player_0_won =>
 				state_vga 					<= "010";
 				write_enable 				<= '0';
 				write_memory 				<= "00000000";
 				address 					<= "0000000000";
-				position_vga(10 downto 0) 	<= position_0;
-				position_vga(21 downto 11) 	<= position_1;
-				direction_vga (1 downto 0)	<= direction_0;
-				direction_vga (3 downto 2)	<= direction_1;
-				player_state (1 downto 0)	<= "11";
-				player_state (3 downto 2)	<= player_1_state;
 				go_to						<= '0';
 				
 				e_position_0				<= '0';
@@ -268,12 +289,6 @@ create_next_state: 	process (state)
 				write_enable 				<= '0';
 				write_memory 				<= "00000000";
 				address 					<= "0000000000";
-				position_vga(10 downto 0) 	<= position_0;
-				position_vga(21 downto 11) 	<= position_1;
-				direction_vga (1 downto 0)	<= direction_0;
-				direction_vga (3 downto 2)	<= direction_1;
-				player_state (1 downto 0)	<= player_0_state;
-				player_state (3 downto 2)	<= "11";
 				go_to						<= '0';
 				
 				e_position_0				<= '0';
@@ -298,12 +313,6 @@ create_next_state: 	process (state)
 				write_enable 				<= '0';
 				write_memory 				<= "00000000";
 				address 					<= "0000000000";
-				position_vga(10 downto 0) 	<= position_0;
-				position_vga(21 downto 11) 	<= position_1;
-				direction_vga (1 downto 0)	<= direction_0;
-				direction_vga (3 downto 2)	<= direction_1;
-				player_state(1 downto 0)	<= player_0_state;
-				player_state(3 downto 2)	<= player_1_state;
 				go_to						<= '0';
 				
 				e_position_0				<= '0';
@@ -328,11 +337,6 @@ create_next_state: 	process (state)
 				write_enable 				<= '0';
 				write_memory 				<= "00000000";
 				address 					<= "0000000000";
-				position_vga(10 downto 0) 	<= position_0;
-				position_vga(21 downto 11) 	<= position_1;
-				direction_vga (1 downto 0)	<= direction_0;
-				direction_vga (3 downto 2)	<= direction_1;
-				player_state				<= "1111";
 				go_to						<= '0';
 				
 				e_position_0				<= '0';
@@ -364,15 +368,11 @@ create_next_state: 	process (state)
 				write_enable 				<= '0';
 				write_memory 				<= "00000000";
 				address 					<= "0000000000";
-				position_vga(10 downto 0) 	<= position_0;
-				position_vga(21 downto 11) 	<= position_1;
-				direction_vga (1 downto 0)	<= direction_0;
-				direction_vga (3 downto 2)	<= direction_1;
-				player_state				<= "1111";
 				go_to						<= '0';
 				
 				next_direction_0			<= input(1 downto 0);
 				next_direction_1			<= input(3 downto 2);										
+	
 				e_position_0				<= '0';
 				e_position_1				<= '0';	
 				e_wallshape_0				<= '0';	
@@ -393,10 +393,6 @@ create_next_state: 	process (state)
 				write_enable 				<= '0';
 				write_memory  				<= "00000000";
 				address      				<= "0000000000";
-				position_vga(10 downto 0) 	<= position_0;
-				position_vga(21 downto 11) 	<= position_1;
-				direction_vga (1 downto 0)	<= direction_0;
-				direction_vga (3 downto 2)	<= direction_1;
 				go_to		   				<= '0';
 				
 				e_position_0				<= '1';
@@ -438,8 +434,6 @@ create_next_state: 	process (state)
 					e_wallshape_0 <= '0';	
 					e_player_0_state <= '1';
 					player_0_state <= "00";
-					player_state (1 downto 0)	<= "00";
-					player_state (3 downto 2)	<= "11";
 				end if;
 				-- player states moeten ook in de elsifs aangegeven worden!!!!!!
 
@@ -471,8 +465,6 @@ create_next_state: 	process (state)
 					e_player_1_state <= '1';	
 					e_wallshape_1 <= '0';
 					player_1_state <= "00";
-					player_state (1 downto 0)	<= "11";
-					player_state (3 downto 2)	<= "00";
 				end if;
 	
 				if (direction_0 = "01") then 		-- moves to the left, x is decreased with 1
@@ -494,11 +486,6 @@ create_next_state: 	process (state)
 				write_enable 				<= '0';
 				write_memory  				<= "00000000";
 				address      				<= "0000000000";
-				position_vga(10 downto 0) 	<= position_0;
-				position_vga(21 downto 11) 	<= position_1;
-				direction_vga (1 downto 0)	<= direction_0;
-				direction_vga (3 downto 2)	<= direction_1;
-				player_state   				<= "1111";
 				go_to		   				<= '0';
 				
 				e_position_0				<= '0';
@@ -535,12 +522,6 @@ create_next_state: 	process (state)
 				write_enable 				<= '0';
 				write_memory  				<= "00000000";
 				address 					<= position_0(9 downto 0);
-				position_vga(10 downto 0) 	<= position_0;
-				position_vga(21 downto 11) 	<= position_1;
-				direction_vga (1 downto 0)	<= direction_0;
-				direction_vga (3 downto 2)	<= direction_1;
-				player_state (1 downto 0)	<= player_0_state;
-				player_state (3 downto 2)	<= player_1_state;
 				go_to		   				<= '1';	
 				
 				e_position_0				<= '0';
@@ -565,12 +546,6 @@ create_next_state: 	process (state)
 				write_enable 				<= '0';
 				write_memory  				<= "00000000";
 				address 					<= position_0(9 downto 0);
-				position_vga(10 downto 0) 	<= position_0;
-				position_vga(21 downto 11) 	<= position_1;
-				direction_vga (1 downto 0)	<= direction_0;
-				direction_vga (3 downto 2)	<= direction_1;
-				player_state (1 downto 0)	<= player_0_state;
-				player_state (3 downto 2)	<= player_1_state;
 				go_to		   				<= '0';
 				
 				e_position_0				<= '0';
@@ -606,12 +581,6 @@ create_next_state: 	process (state)
 				write_enable 				<= '0';
 				write_memory  				<= "00000000";
 				address 					<= position_1(9 downto 0);
-				position_vga(10 downto 0) 	<= position_0;
-				position_vga(21 downto 11) 	<= position_1;
-				direction_vga (1 downto 0)	<= direction_0;
-				direction_vga (3 downto 2)	<= direction_1;
-				player_state (1 downto 0)	<= player_0_state;
-				player_state (3 downto 2)	<= player_1_state;
 				go_to		   				<= '1';
 				
 				e_position_0				<= '0';
@@ -636,12 +605,6 @@ create_next_state: 	process (state)
 				write_enable 				<= '0';
 				write_memory  				<= "00000000";
 				address 					<= position_1(9 downto 0);
-				position_vga(10 downto 0) 	<= position_0;
-				position_vga(21 downto 11) 	<= position_1;
-				direction_vga (1 downto 0)	<= direction_0;
-				direction_vga (3 downto 2)	<= direction_1;
-				player_state (1 downto 0)	<= player_0_state;
-				player_state (3 downto 2)	<= player_1_state;
 				go_to		   				<= '0';
 				
 				e_position_0				<= '0';
@@ -677,12 +640,6 @@ create_next_state: 	process (state)
 				write_enable 				<= '0';
 				write_memory  				<= "00000000";
 				address      				<= "0000000000";
-				position_vga(10 downto 0) 	<= position_0;
-				position_vga(21 downto 11) 	<= position_1;
-				direction_vga (1 downto 0)	<= direction_0;
-				direction_vga (3 downto 2)	<= direction_1;
-				player_state (1 downto 0)	<= player_0_state;
-				player_state (3 downto 2)	<= player_1_state;
 				go_to		   				<= '0';
 				
 				e_position_0				<= '0';
@@ -728,12 +685,6 @@ create_next_state: 	process (state)
 				write_enable 				<= '0';
 				write_memory  				<= "00000000";
 				address      				<= "0000000000";
-				position_vga(10 downto 0) 	<= position_0;
-				position_vga(21 downto 11) 	<= position_1;
-				direction_vga (1 downto 0)	<= direction_0;
-				direction_vga (3 downto 2)	<= direction_1;
-				player_state (1 downto 0) 	<= player_0_state;
-				player_state (3 downto 2)	<= player_1_state;
 				go_to		   				<= '0';
 				
 				e_position_0				<= '0';
@@ -766,12 +717,6 @@ create_next_state: 	process (state)
 				write_memory(7 downto 3) 	<= "00000";
 				write_memory(2 downto 0) 	<= wallshape_0;
 				address 					<= position_0(9 downto 0);
-				position_vga(10 downto 0) 	<= position_0;
-				position_vga(21 downto 11) 	<= position_1;
-				direction_vga (1 downto 0)	<= direction_0;
-				direction_vga (3 downto 2)	<= direction_1;
-				player_state (1 downto 0)	<= player_0_state;
-				player_state (3 downto 2)	<= player_1_state;
 				go_to 						<= '1';
 
 				e_position_0				<= '0';
@@ -797,12 +742,6 @@ create_next_state: 	process (state)
 				write_memory(7 downto 3) 	<= "00000";
 				write_memory(2 downto 0) 	<= wallshape_0;
 				address 					<= position_0(9 downto 0);
-				position_vga(10 downto 0) 	<= position_0;
-				position_vga(21 downto 11) 	<= position_1;
-				direction_vga (1 downto 0)	<= direction_0;
-				direction_vga (3 downto 2)	<= direction_1;
-				player_state (1 downto 0)	<= player_0_state;
-				player_state (3 downto 2)	<= player_1_state;
 				go_to 						<= '0';
 				
 				e_position_0				<= '0';
@@ -831,12 +770,6 @@ create_next_state: 	process (state)
 				write_memory(7 downto 3) 	<= "00001" ;
 				write_memory(2 downto 0) 	<= wallshape_1;
 				address 					<= position_1(9 downto 0);
-				position_vga(10 downto 0) 	<= position_0;
-				position_vga(21 downto 11) 	<= position_1;
-				direction_vga (1 downto 0)	<= direction_0;
-				direction_vga (3 downto 2)	<= direction_1;
-				player_state (1 downto 0)	<= player_0_state;
-				player_state (3 downto 2)	<= player_1_state;
 				go_to 						<= '1';
 				
 				e_position_0				<= '0';
@@ -862,12 +795,6 @@ create_next_state: 	process (state)
 				write_memory(7 downto 3) 	<= "00001" ;
 				write_memory(2 downto 0) 	<= wallshape_1;
 				address 					<= position_1(9 downto 0);
-				position_vga(10 downto 0) 	<= position_0;
-				position_vga(21 downto 11) 	<= position_1;
-				direction_vga (1 downto 0)	<= direction_0;
-				direction_vga (3 downto 2)	<= direction_1;
-				player_state (1 downto 0)	<= player_0_state;
-				player_state (3 downto 2)	<= player_1_state;
 				go_to 						<= '1';
 				
 				e_position_0				<= '0';
@@ -895,7 +822,7 @@ create_next_state: 	process (state)
 			when change_data =>
 				e_direction_0 <= '1';
 				e_direction_1 <= '1';
-				if (((player_0_state <= "01")  and ((player_1_state <= "01")) then
+				if ((player_0_state <= "01") and (player_1_state <= "01")) then
 					e_position_0 <= '0';
 					e_position_1 <= '1';
 				else 
