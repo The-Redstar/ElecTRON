@@ -172,14 +172,14 @@ memory_ready <= '0' after 0 ns,
 --3560: read_memory_player_0
 --3760: want_to_read_1
 --3800: read_memory_player_1
---4000: check_collision
---4040: check_who_won
+--4040: check_collision
 --4080: want_to_write_0
 --4120: write_memory_player_0
---4280: want_to_write_1
---4320: write_memory_player_1
---4480: change data
---4520: wait_state	
+--4320: want_to_write_1
+--4360: write_memory_player_1
+--4520: change_data
+--4560: check_who_won
+--4600: wait_state
 
 
 --4880: read inputs
