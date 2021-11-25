@@ -640,32 +640,32 @@ create_next_state: 	process (state, reset, input, busy, read_memory, memory_read
 				d_next_direction_0			<= (others => '0');	
 				d_next_direction_1			<= (others => '0');
 				
-				if ((direction_0= "01") and (input (1 downto 0) ="01")) or  ((direction_0= "11") and (input (1 downto 0) ="11")) then 
+				if ((direction_0= "01") and (next_direction_0  ="01")) or  ((direction_0= "11") and (next_direction_0  ="11")) then 
 					e_wallshape_0 <= '1';	
 					d_wallshape_0 <= "001"; -- previous: left, next: left -- previous: right, next: right 
 					e_player_0_state <= '0';
 					d_player_0_state <= (others => '0');
-				elsif ((direction_0= "00") and (input (1 downto 0) ="00")) or  ((direction_0= "10") and (input (1 downto 0) ="10")) then 
+				elsif ((direction_0= "00") and (next_direction_0  ="00")) or  ((direction_0= "10") and (next_direction_0  ="10")) then 
 					e_wallshape_0 <= '1';	
 					d_wallshape_0 <= "010"; -- previous: up, next: up -- previous: down, next: down
 					e_player_0_state <= '0';
 					d_player_0_state <= (others => '0');
-				elsif ((direction_0= "00") and (input (1 downto 0) ="11")) or  ((direction_0= "01") and (input (1 downto 0) ="10")) then 
+				elsif ((direction_0= "00") and (next_direction_0  ="11")) or  ((direction_0= "01") and (next_direction_0  ="10")) then 
 					e_wallshape_0 <= '1';	
 					d_wallshape_0 <= "110"; -- previous: up, next: right -- previous: left, next: down
 					e_player_0_state <= '0';
 					d_player_0_state <= (others => '0');
-				elsif ((direction_0= "00") and (input (1 downto 0) ="01")) or  ((direction_0= "11") and (input (1 downto 0) ="10")) then 
+				elsif ((direction_0= "00") and (next_direction_0  ="01")) or  ((direction_0= "11") and (next_direction_0  ="10")) then 
 					e_wallshape_0 <= '1';	
 					d_wallshape_0 <= "101"; -- previous: up, next: left -- previous: right, next: down
 					e_player_0_state <= '0';
 					d_player_0_state <= (others => '0');
-				elsif ((direction_0= "11") and (input (1 downto 0) ="00")) or  ((direction_0= "10") and (input (1 downto 0) ="01")) then 
+				elsif ((direction_0= "11") and (next_direction_0  ="00")) or  ((direction_0= "10") and (next_direction_0  ="01")) then 
 					e_wallshape_0 <= '1';	
 					d_wallshape_0 <= "100"; -- previous: right, next: up -- previous: down, next: left
 					e_player_0_state <= '0';
 					d_player_0_state <= (others => '0');
-				elsif ((direction_0= "10") and (input (1 downto 0) ="11")) or  ((direction_0= "01") and (input (1 downto 0) ="00")) then 
+				elsif ((direction_0= "10") and (next_direction_0 ="11")) or  ((direction_0= "01") and (next_direction_0  ="00")) then 
 					e_wallshape_0 <= '1';	
 					d_wallshape_0 <= "111"; -- previous: down, next: right -- previous: left, next: up
 					e_player_0_state <= '0';
@@ -678,32 +678,32 @@ create_next_state: 	process (state, reset, input, busy, read_memory, memory_read
 				end if;
 				-- player states moeten ook in de elsifs aangegeven worden!!!!!!
 
-				if ((direction_1= "01") and (input (3 downto 2) ="01")) or  ((direction_1= "11") and (input (3 downto 2) ="11")) then 	
+				if ((direction_1= "01") and (next_direction_1 ="01")) or  ((direction_1= "11") and (next_direction_1 ="11")) then 	
 					e_wallshape_1 <= '1';
 					d_wallshape_1 <= "001"; -- previous: left, next: left -- previous: right, next: right 
 					e_player_1_state <= '0';
 					d_player_1_state <= (others => '0');
-				elsif ((direction_1= "00") and (input (3 downto 2) ="00")) or  ((direction_1= "10") and (input (3 downto 2) ="10")) then 
+				elsif ((direction_1= "00") and (next_direction_1 ="00")) or  ((direction_1= "10") and (next_direction_1 ="10")) then 
 					e_wallshape_1 <= '1';
 					d_wallshape_1 <= "010"; -- previous: up, next: up -- previous: down, next: down
 					e_player_1_state <= '0';
 					d_player_1_state <= (others => '0');
-				elsif ((direction_1= "00") and (input (3 downto 2) ="11")) or  ((direction_1= "01") and (input (3 downto 2) ="10")) then 
+				elsif ((direction_1= "00") and (next_direction_1 ="11")) or  ((direction_1= "01") and (next_direction_1 ="10")) then 
 					e_wallshape_1 <= '1';
 					d_wallshape_1 <= "110"; -- previous: up, next: right -- previous: left, next: down
 					e_player_1_state <= '0';
 					d_player_1_state <= (others => '0');
-				elsif ((direction_1= "00") and (input (3 downto 2) ="01")) or  ((direction_1= "11") and (input (3 downto 2) ="10")) then 
+				elsif ((direction_1= "00") and (next_direction_1 ="01")) or  ((direction_1= "11") and (next_direction_1 ="10")) then 
 					e_wallshape_1 <= '1';
 					d_wallshape_1 <= "101"; -- previous: up, next: left -- previous: right, next: down
 					e_player_1_state <= '0';
 					d_player_1_state <= (others => '0');
-				elsif ((direction_1= "11") and (input (3 downto 2) ="00")) or  ((direction_1= "10") and (input (3 downto 2) ="01")) then 
+				elsif ((direction_1= "11") and (next_direction_1 ="00")) or  ((direction_1= "10") and (next_direction_1 ="01")) then 
 					e_wallshape_1 <= '1';
 					d_wallshape_1 <= "100"; -- previous: right, next: up -- previous: down, next: left
 					e_player_1_state <= '0';
 					d_player_1_state <= (others => '0');
-				elsif ((direction_1= "10") and (input (3 downto 2) ="11")) or  ((direction_1= "01") and (input (3 downto 2) ="00")) then 
+				elsif ((direction_1= "10") and (next_direction_1 ="11")) or  ((direction_1= "01") and (next_direction_1 ="00")) then 
 					e_wallshape_1 <= '1';
 					d_wallshape_1 <= "111"; -- previous: down, next: right -- previous: left, next: up
 					e_player_1_state <= '0';
@@ -716,13 +716,13 @@ create_next_state: 	process (state, reset, input, busy, read_memory, memory_read
 				end if;
 	
 				e_next_position_0 <= '1';
-				if (direction_0 = "01") then 		-- moves to the left, x is decreased with 1
+				if (next_direction_0 = "01") then 		-- moves to the left, x is decreased with 1
 					d_next_position_0(4 downto 0)  <= std_logic_vector(to_unsigned(to_integer(unsigned(position_0(4 downto 0))) - 1, 5));
 					d_next_position_0(10 downto 5) <= position_0(10 downto 5);
-				elsif (direction_0 = "11") then 	-- moves to the right, x is increased with 1
+				elsif (next_direction_0 = "11") then 	-- moves to the right, x is increased with 1
 					d_next_position_0(4 downto 0)  <= std_logic_vector(to_unsigned(to_integer(unsigned(position_0(4 downto 0))) + 1, 5));
 					d_next_position_0(10 downto 5) <= position_0(10 downto 5);
-				elsif (direction_0 <= "00") then 	-- moves up, y is decreased with 1
+				elsif (next_direction_0 <= "00") then 	-- moves up, y is decreased with 1
 					d_next_position_0(4 downto 0) <= position_0(4 downto 0);
 					d_next_position_0(9 downto 5) <= std_logic_vector(to_unsigned(to_integer(unsigned(position_1(9 downto 5))) - 1, 5));
 					d_next_position_0(10)		  <= position_0(10);
@@ -733,13 +733,13 @@ create_next_state: 	process (state, reset, input, busy, read_memory, memory_read
 				end if;
 
 				e_next_position_1 <= '1';
-				if (direction_1 = "01") then 		-- moves to the left, x is decreased with 1
+				if (next_direction_1 = "01") then 		-- moves to the left, x is decreased with 1
 					d_next_position_1(4 downto 0)  <= std_logic_vector(to_unsigned(to_integer(unsigned(position_0(4 downto 0))) - 1, 5));
 					d_next_position_1(10 downto 5) <= position_1(10 downto 5);
-				elsif (direction_1 = "11") then 	-- moves to the right, x is increased with 1
+				elsif (next_direction_1 = "11") then 	-- moves to the right, x is increased with 1
 					d_next_position_1(4 downto 0)  <= std_logic_vector(to_unsigned(to_integer(unsigned(position_0(4 downto 0))) + 1, 5));
 					d_next_position_1(10 downto 5) <= position_1(10 downto 5);
-				elsif (direction_1 <= "00") then 	-- moves up, y is decreased with 1
+				elsif (next_direction_1 <= "00") then 	-- moves up, y is decreased with 1
 					d_next_position_1(4 downto 0) <= position_1(4 downto 0);
 					d_next_position_1(9 downto 5) <= std_logic_vector(to_unsigned(to_integer(unsigned(position_1(9 downto 5))) - 1, 5));
 					d_next_position_1(10)		  <= position_1(10)	;	
