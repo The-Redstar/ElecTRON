@@ -77,7 +77,7 @@ reset <= '1' after 0 ns,
 	'0' after 60 ns; -- goes to loading state
 
 input <= "0000" after 230 ns, -- goes to wait state
-	"0001" after 3800 ns;
+	"0001" after 4000 ns;
 
 
 busy <= '1' after 0 ns,
@@ -121,32 +121,32 @@ read_memory <= "00000000" after 0 ns;
 
 memory_ready <= '0' after 0 ns,
 		'1' after 140 ns, --goes to get ready state
-		'0' after 220 ns,
-		'1' after 3320 ns, --goes to want_to_read_1
-		'0' after 3360 ns,
-		'1' after 3480 ns, -- goes to check_collision
-		'0' after 3520 ns,
-		'1' after 3720 ns, -- goes to want_to_write_1
-		'0' after 3760 ns,
-		'1' after 3880 ns, -- goes to change_data
-		'0' after 3920 ns;
+		'0' after 180 ns,
+		'1' after 3800 ns, --goes to want_to_read_1
+		'0' after 3840 ns,
+		'1' after 4000 ns, -- goes to check_collision
+		'0' after 3720 ns,
+		'1' after 4280 ns, -- goes to want_to_write_1
+		'0' after 4320 ns,
+		'1' after 4480 ns, -- goes to change_data
+		'0' after 4520 ns;
 
 -- 60 ns: loading state
 -- 140 ns: ready state
 -- 230 ns: wait_state
--- 3080 ns: read inputs
---3120 ns: wallshape
---3160 ns: check border
---3200 ns: want_to_read_0
---3240: read_memory_player_0
---3320: want_to_read_1
---3360: read_memory_player_1
---3480: check_collision
---3520: check_who_won
---3560: want_to_write_0
---3600: write_memory_player_0
---3720: want_to_write_1
---3760: write_memory_player_1
---3880: change data
---3920: wait_state					
+-- 3400 ns: read inputs
+--3440 ns: wallshape
+--3480 ns: check border
+--3520 ns: want_to_read_0
+--3560: read_memory_player_0
+--3800: want_to_read_1
+--3840: read_memory_player_1
+--4000: check_collision
+--4040: check_who_won
+--4080: want_to_write_0
+--4120: write_memory_player_0
+--4280: want_to_write_1
+--4320: write_memory_player_1
+--4480: change data
+--4520: wait_state					
 end architecture structural;

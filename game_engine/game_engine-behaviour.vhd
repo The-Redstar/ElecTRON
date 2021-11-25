@@ -358,13 +358,18 @@ create_next_state: 	process (state, reset, input, busy, read_memory, memory_read
 				e_direction_1				<= '0';
 				e_next_direction_0			<= '0';	
 				e_next_direction_1			<= '0';
-				e_player_0_state			<= '0';
-				e_player_1_state			<= '0';
+				
 				
 				if (input = "0000") then
 					new_state <= wait_state;
+					e_player_0_state			<= '1';
+					e_player_1_state			<= '1';
+					d_player_0_state			<= "11";
+					d_player_1_state			<= "11";
 				else 
 					new_state <= get_ready;
+					e_player_0_state			<= '0';
+					e_player_1_state			<= '0';
 				end if;
 				
 
