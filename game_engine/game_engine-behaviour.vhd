@@ -1217,12 +1217,7 @@ create_next_state: 	process (state, reset, input, busy, read_memory, memory_read
 				write_memory(7 downto 3) 	<= "00001" ;
 				write_memory(2 downto 0) 	<= wallshape_1;
 				address 					<= position_1(9 downto 0);
-<<<<<<< HEAD
 				go_to 						<= '0';
-=======
-				go_to 						<= '1';
-				
->>>>>>> 5ef64cf488bdd031b59fa1a63e446bc5b039e75c
 				busy_counter_reset			<= '0';
 				clear_memory				<= '0';
 				
