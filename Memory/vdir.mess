@@ -1,14 +1,131 @@
 Library vendor : Model Technology
 Maximum unnamed designs : 3
 OPTIMIZED DESIGN _opt
-    Compile time: Tue Nov 23 12:00:58 2021
-    Version string: G>1[GILoa@:hh>`cjZSoM2
+    Compile time: Tue Nov 23 12:06:07 2021
+    Version string: ICM`Mb5XZDB]Vla0HWD2m3
     Top-level model: work readwrite_tb_behaviour_cfg 1
     Compile options: -quiet -auto_acc_if_foreign -work work -L TSMCLib
     Compile defaults: CvgOpt=0
     Short name: @_opt
     Opcode format: 10.5b; VCOM/VLOG SE-64 Object version 63
     Source directory: /tmp/.x2go-mlmjanssen/media/disk/_Users_martijn_ElecTRON/Memory
+OPTIMIZED DESIGN _opt1
+    Compile time: Thu Nov 25 12:12:32 2021
+    Version string: BcJh=FU[R3YQ]QH159[]z1
+    Top-level model: work counter5b_tb_behaviour_cfg 1
+    Compile options: -quiet -auto_acc_if_foreign -work work -L TSMCLib
+    Compile defaults: CvgOpt=0
+    Short name: @_opt1
+    Opcode format: 10.5b; VCOM/VLOG SE-64 Object version 63
+    Source directory: /tmp/.x2go-mlmjanssen/media/disk/_Users_martijn_ElecTRON/Memory
+ENTITY counter5b
+    Source modified time: Thu Nov 25 11:34:11 2021
+    Depends on: P std textio zE1`LPoLg^DX3Oz^4Fj1K3
+    Depends on: P ieee std_logic_1164 eNV`TJ_GofJTzYa?f<@Oe1
+    Source directory: /tmp/.x2go-mlmjanssen/media/disk/_Users_martijn_ElecTRON/Memory
+    HDL source file: VHDL/counter5b.vhd
+    Source file: VHDL/counter5b.vhd
+    Start location: VHDL/counter5b.vhd:4
+    Version string: n[03Af<0[^ZMSKP]?`LOe3
+    Opcode format: 10.5b; VCOM SE-64 Object version 63
+    VHDL language standard: 3 (VHDL-2008)
+    Compile time: Thu Nov 25 11:34:13 2021
+    Debug Symbol file exists
+    Compiled in vopt flow
+    Compile options: -quiet -nologo -2008 -lower -explicit -work work
+    Compile defaults: Explicit=1 CvgOpt=0
+  ARCHITECTURE BODY behaviour
+    Source modified time: Thu Nov 25 12:18:24 2021
+    Depends on: E work counter5b n[03Af<0[^ZMSKP]?`LOe3
+    Depends on: P ieee numeric_std :ASDNFgHXf_ih3J@9F3Ze1
+    Depends on: P std textio zE1`LPoLg^DX3Oz^4Fj1K3
+    Depends on: P ieee std_logic_1164 eNV`TJ_GofJTzYa?f<@Oe1
+    HDL source file: VHDL/counter5b-behaviour.vhd
+    Source file: VHDL/counter5b-behaviour.vhd
+    Start location: VHDL/counter5b-behaviour.vhd:5
+    Version string: b_el0C]dYEYl;V[?ogd`R0
+    Opcode format: 10.5b; VCOM SE-64 Object version 63
+    VHDL language standard: 3 (VHDL-2008)
+    Compile time: Thu Nov 25 12:18:35 2021
+    Debug Symbol file exists
+    Compiled in vopt flow
+    Compile options: -quiet -nologo -2008 -lower -explicit -work work
+    Compile defaults: Explicit=1 CvgOpt=0
+    Source directory: /tmp/.x2go-mlmjanssen/media/disk/_Users_martijn_ElecTRON/Memory
+VHDL CONFIGURATION counter5b_behaviour_cfg
+    Configuration applies to entity: counter5b
+    Block configuration applies to architecture: behaviour
+    Depends on: P ieee numeric_std :ASDNFgHXf_ih3J@9F3Ze1
+    Depends on: A work counter5b behaviour b_el0C]dYEYl;V[?ogd`R0
+    Depends on: P std textio zE1`LPoLg^DX3Oz^4Fj1K3
+    Depends on: P ieee std_logic_1164 eNV`TJ_GofJTzYa?f<@Oe1
+    Depends on: E work counter5b n[03Af<0[^ZMSKP]?`LOe3
+    Source modified time: Thu Nov 25 11:48:34 2021
+    Source directory: /tmp/.x2go-mlmjanssen/media/disk/_Users_martijn_ElecTRON/Memory
+    HDL source file: VHDL/counter5b_behaviour_cfg.vhd
+    Source file: VHDL/counter5b_behaviour_cfg.vhd
+    Start location: VHDL/counter5b_behaviour_cfg.vhd:1
+    Version string: >FQQ2ES26QQ]S>nM1Kn?<3
+    Opcode format: 10.5b; VCOM SE-64 Object version 63
+    VHDL language standard: 3 (VHDL-2008)
+    Compile time: Thu Nov 25 12:19:07 2021
+    Compiled in vopt flow
+    Compile options: -quiet -nologo -2008 -lower -explicit -work work
+    Compile defaults: Explicit=1 CvgOpt=0
+ENTITY counter5b_tb
+    Source modified time: Thu Nov 25 11:48:52 2021
+    Depends on: P std textio zE1`LPoLg^DX3Oz^4Fj1K3
+    Depends on: P ieee std_logic_1164 eNV`TJ_GofJTzYa?f<@Oe1
+    Source directory: /tmp/.x2go-mlmjanssen/media/disk/_Users_martijn_ElecTRON/Memory
+    HDL source file: VHDL/counter5b_tb.vhd
+    Source file: VHDL/counter5b_tb.vhd
+    Start location: VHDL/counter5b_tb.vhd:4
+    Version string: D7DnOOT]bNhR:M5`IF9bY2
+    Opcode format: 10.5b; VCOM SE-64 Object version 63
+    VHDL language standard: 3 (VHDL-2008)
+    Compile time: Thu Nov 25 11:48:57 2021
+    Debug Symbol file exists
+    Compiled in vopt flow
+    Compile options: -quiet -nologo -2008 -lower -explicit -work work
+    Compile defaults: Explicit=1 CvgOpt=0
+  ARCHITECTURE BODY behaviour
+    Source modified time: Thu Nov 25 11:53:24 2021
+    Depends on: E work counter5b_tb D7DnOOT]bNhR:M5`IF9bY2
+    Depends on: P std textio zE1`LPoLg^DX3Oz^4Fj1K3
+    Depends on: P ieee std_logic_1164 eNV`TJ_GofJTzYa?f<@Oe1
+    HDL source file: VHDL/counter5b_tb-behaviour.vhd
+    Source file: VHDL/counter5b_tb-behaviour.vhd
+    Start location: VHDL/counter5b_tb-behaviour.vhd:4
+    Version string: X3J>1k7]nQj69cR`4;F:e3
+    Opcode format: 10.5b; VCOM SE-64 Object version 63
+    VHDL language standard: 3 (VHDL-2008)
+    Compile time: Thu Nov 25 11:53:26 2021
+    Debug Symbol file exists
+    Compiled in vopt flow
+    Compile options: -quiet -nologo -2008 -lower -explicit -work work
+    Compile defaults: Explicit=1 CvgOpt=0
+    Source directory: /tmp/.x2go-mlmjanssen/media/disk/_Users_martijn_ElecTRON/Memory
+VHDL CONFIGURATION counter5b_tb_behaviour_cfg
+    Configuration applies to entity: counter5b_tb
+    Block configuration applies to architecture: behaviour
+    Depends on: E work counter5b n[03Af<0[^ZMSKP]?`LOe3
+    Depends on: C work counter5b_behaviour_cfg >FQQ2ES26QQ]S>nM1Kn?<3
+    Depends on: A work counter5b_tb behaviour X3J>1k7]nQj69cR`4;F:e3
+    Depends on: P std textio zE1`LPoLg^DX3Oz^4Fj1K3
+    Depends on: P ieee std_logic_1164 eNV`TJ_GofJTzYa?f<@Oe1
+    Depends on: E work counter5b_tb D7DnOOT]bNhR:M5`IF9bY2
+    Source modified time: Thu Nov 25 11:53:35 2021
+    Source directory: /tmp/.x2go-mlmjanssen/media/disk/_Users_martijn_ElecTRON/Memory
+    HDL source file: VHDL/counter5b_tb_behaviour_cfg.vhd
+    Source file: VHDL/counter5b_tb_behaviour_cfg.vhd
+    Start location: VHDL/counter5b_tb_behaviour_cfg.vhd:1
+    Version string: 0cUBUkT7g35nM>NUK``@>3
+    Opcode format: 10.5b; VCOM SE-64 Object version 63
+    VHDL language standard: 3 (VHDL-2008)
+    Compile time: Thu Nov 25 12:19:10 2021
+    Compiled in vopt flow
+    Compile options: -quiet -nologo -2008 -lower -explicit -work work
+    Compile defaults: Explicit=1 CvgOpt=0
 ENTITY memory_cntrll
     Source modified time: Mon Nov 22 12:11:26 2021
     Depends on: P std textio zE1`LPoLg^DX3Oz^4Fj1K3

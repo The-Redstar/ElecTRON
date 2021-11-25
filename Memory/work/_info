@@ -13,14 +13,162 @@ T_opt
 VICM`Mb5XZDB]Vla0HWD2m3
 04 26 0 work readwrite_tb_behaviour_cfg 1
 =1-000ae431a4f1-619ccb1d-547b0-129f7
-o-quiet -auto_acc_if_foreign -work work -L TSMCLib
-tCvgOpt 0
+Z1 o-quiet -auto_acc_if_foreign -work work -L TSMCLib
+Z2 tCvgOpt 0
 n@_opt
-OL;O;10.5b;63
+Z3 OL;O;10.5b;63
+R0
+T_opt1
+!s110 1637839190
+V^3i_mleWfLLhdc9AIOh]b3
+04 26 0 work counter5b_tb_behaviour_cfg 1
+=1-000ae431a4f1-619f714c-8b294-18375
+R1
+R2
+n@_opt1
+R3
+Ecounter5b
+w1637836451
+Z4 DPx3 std 6 textio 0 22 zE1`LPoLg^DX3Oz^4Fj1K3
+Z5 DPx4 ieee 14 std_logic_1164 0 22 eNV`TJ_GofJTzYa?f<@Oe1
+R0
+8VHDL/counter5b.vhd
+FVHDL/counter5b.vhd
+l0
+L4
+Vn[03Af<0[^ZMSKP]?`LOe3
+!s100 Ni7=1Gl5_]SJd`Jf>IM9m1
+Z6 OL;C;10.5b;63
+33
+!s110 1637836453
+!i10b 1
+!s108 1637836451.000000
+!s90 -2008|-lower|-explicit|-work|work|VHDL/counter5b.vhd|-quiet|-nologo|
+!s107 VHDL/counter5b.vhd|
+!i113 0
+Z7 o-quiet -nologo -2008 -lower -explicit -work work
+Z8 tExplicit 1 CvgOpt 0
+Abehaviour
+w1637839104
+Z9 DEx4 work 9 counter5b 0 22 n[03Af<0[^ZMSKP]?`LOe3
+Z10 DPx4 ieee 11 numeric_std 0 22 :ASDNFgHXf_ih3J@9F3Ze1
+R4
+R5
+8VHDL/counter5b-behaviour.vhd
+FVHDL/counter5b-behaviour.vhd
+l8
+L5
+Vb_el0C]dYEYl;V[?ogd`R0
+!s100 ga@Y=[[fU_NFK@enJ3U5E3
+R6
+33
+!s110 1637839115
+!i10b 1
+!s108 1637839109.000000
+!s90 -2008|-lower|-explicit|-work|work|VHDL/counter5b-behaviour.vhd|-quiet|-nologo|
+!s107 VHDL/counter5b-behaviour.vhd|
+!i113 0
+R7
+R8
+Ccounter5b_behaviour_cfg
+ecounter5b
+Z11 abehaviour
+R10
+DAx4 work 9 counter5b 9 behaviour 22 b_el0C]dYEYl;V[?ogd`R0
+R4
+R5
+R9
+w1637837314
+R0
+8VHDL/counter5b_behaviour_cfg.vhd
+FVHDL/counter5b_behaviour_cfg.vhd
+l0
+L1
+V>FQQ2ES26QQ]S>nM1Kn?<3
+!s100 I?cH4_6?>_Y<8T=BWOLmK3
+R6
+33
+!s110 1637839147
+!i10b 0
+!s108 1637839145.000000
+!s90 -2008|-lower|-explicit|-work|work|VHDL/counter5b_behaviour_cfg.vhd|-quiet|-nologo|
+!s107 VHDL/counter5b_behaviour_cfg.vhd|
+!i113 0
+R7
+R8
+Ecounter5b_tb
+w1637837332
+R4
+R5
+R0
+8VHDL/counter5b_tb.vhd
+FVHDL/counter5b_tb.vhd
+l0
+L4
+VD7DnOOT]bNhR:M5`IF9bY2
+!s100 MVK_Ta0=T>I_eZzGUKDVf3
+R6
+33
+!s110 1637837337
+!i10b 1
+!s108 1637837332.000000
+!s90 -2008|-lower|-explicit|-work|work|VHDL/counter5b_tb.vhd|-quiet|-nologo|
+!s107 VHDL/counter5b_tb.vhd|
+!i113 0
+R7
+R8
+Abehaviour
+w1637837604
+Z12 DEx4 work 12 counter5b_tb 0 22 D7DnOOT]bNhR:M5`IF9bY2
+R4
+R5
+8VHDL/counter5b_tb-behaviour.vhd
+FVHDL/counter5b_tb-behaviour.vhd
+l15
+L4
+VX3J>1k7]nQj69cR`4;F:e3
+!s100 1Tg2069Pk;ZI:[V;YzmcN3
+R6
+33
+!s110 1637837606
+!i10b 1
+!s108 1637837605.000000
+!s90 -2008|-lower|-explicit|-work|work|VHDL/counter5b_tb-behaviour.vhd|-quiet|-nologo|
+!s107 VHDL/counter5b_tb-behaviour.vhd|
+!i113 0
+R7
+R8
+Ccounter5b_tb_behaviour_cfg
+ecounter5b_tb
+R11
+R9
+DCx4 work 23 counter5b_behaviour_cfg 0 22 >FQQ2ES26QQ]S>nM1Kn?<3
+DAx4 work 12 counter5b_tb 9 behaviour 22 X3J>1k7]nQj69cR`4;F:e3
+R4
+R5
+R12
+w1637837615
+R0
+8VHDL/counter5b_tb_behaviour_cfg.vhd
+FVHDL/counter5b_tb_behaviour_cfg.vhd
+l0
+L1
+V0cUBUkT7g35nM>NUK``@>3
+!s100 `K9H>hKC465Cb29E<bLcU2
+R6
+33
+!s110 1637839150
+!i10b 0
+!s108 1637839148.000000
+!s90 -2008|-lower|-explicit|-work|work|VHDL/counter5b_tb_behaviour_cfg.vhd|-quiet|-nologo|
+!s107 VHDL/counter5b_tb_behaviour_cfg.vhd|
+!i113 0
+R7
+R8
 Ememory_cntrll
 w1637579486
-Z1 DPx3 std 6 textio 0 22 zE1`LPoLg^DX3Oz^4Fj1K3
-Z2 DPx4 ieee 14 std_logic_1164 0 22 eNV`TJ_GofJTzYa?f<@Oe1
+R4
+R5
 R0
 8VHDL/memory_cntrll.vhd
 FVHDL/memory_cntrll.vhd
@@ -28,7 +176,7 @@ l0
 L4
 VIiKNGcO_PL;jlYMRJU`V81
 !s100 8@OhP_iEh17fzDmF:BCO]3
-Z3 OL;C;10.5b;63
+R6
 33
 !s110 1637579567
 !i10b 1
@@ -36,20 +184,20 @@ Z3 OL;C;10.5b;63
 !s90 -2008|-lower|-explicit|-work|work|VHDL/memory_cntrll.vhd|-quiet|-nologo|
 !s107 VHDL/memory_cntrll.vhd|
 !i113 0
-Z4 o-quiet -nologo -2008 -lower -explicit -work work
-Z5 tExplicit 1 CvgOpt 0
+R7
+R8
 Abehaviour
 w1637576645
 DEx4 work 13 memory_cntrll 0 22 CM]B[JnEFA[D5A;ZH>9S51
-R1
-R2
+R4
+R5
 8VHDL/memory_cntrll-behaviour.vhd
 FVHDL/memory_cntrll-behaviour.vhd
 l5
 L4
 Vc4H@_fZR<X>>TWDi]4f0j0
 !s100 bEjBjIKNflk9[:^G6LGLo3
-R3
+R6
 33
 !s110 1637576653
 !i10b 1
@@ -57,13 +205,13 @@ R3
 !s90 -2008|-lower|-explicit|-work|work|VHDL/memory_cntrll-behaviour.vhd|-quiet|-nologo|
 !s107 VHDL/memory_cntrll-behaviour.vhd|
 !i113 0
-R4
-R5
+R7
+R8
 d/tmp/.x2go-jwnijenhuis/media/disk/_cygdrive_C_Users_jonat_OneDrive_DOCUME1_Studie_EE2L11_ElecTRON/Memory
 Ereadwrite
 w1637580172
-R1
-R2
+R4
+R5
 R0
 8VHDL/readwrite.vhd
 FVHDL/readwrite.vhd
@@ -71,7 +219,7 @@ l0
 L4
 V`KhWJk10nljbZ8lPk;JXO1
 !s100 @Bfa4YF>LD^@_j4;DQD?<2
-R3
+R6
 33
 !s110 1637580173
 !i10b 1
@@ -79,20 +227,20 @@ R3
 !s90 -2008|-lower|-explicit|-work|work|VHDL/readwrite.vhd|-quiet|-nologo|
 !s107 VHDL/readwrite.vhd|
 !i113 0
-R4
-R5
+R7
+R8
 Abehaviour
 w1637665224
-Z6 DEx4 work 9 readwrite 0 22 `KhWJk10nljbZ8lPk;JXO1
-R1
-R2
+Z13 DEx4 work 9 readwrite 0 22 `KhWJk10nljbZ8lPk;JXO1
+R4
+R5
 8VHDL/readwrite-behaviour.vhd
 FVHDL/readwrite-behaviour.vhd
 l8
 L4
 VdL[W6haZ2@9z17^QjgA8h0
 !s100 nmUPIDjk=1VgKmlb6l9cL0
-R3
+R6
 33
 !s110 1637665227
 !i10b 1
@@ -100,15 +248,15 @@ R3
 !s90 -2008|-lower|-explicit|-work|work|VHDL/readwrite-behaviour.vhd|-quiet|-nologo|
 !s107 VHDL/readwrite-behaviour.vhd|
 !i113 0
-R4
-R5
+R7
+R8
 Creadwrite_behaviour_cfg
 ereadwrite
-Z7 abehaviour
+R11
 DAx4 work 9 readwrite 9 behaviour 22 dL[W6haZ2@9z17^QjgA8h0
-R1
-R2
-R6
+R4
+R5
+R13
 w1637662872
 R0
 8VHDL/readwrite_behaviour_cfg.vhd
@@ -117,7 +265,7 @@ l0
 L1
 VGLh0^jT4d5a]^iZ]OI7[11
 !s100 XY]GM4CE``7ke4_52:Z`=0
-R3
+R6
 33
 !s110 1637665234
 !i10b 0
@@ -125,12 +273,12 @@ R3
 !s90 -2008|-lower|-explicit|-work|work|VHDL/readwrite_behaviour_cfg.vhd|-quiet|-nologo|
 !s107 VHDL/readwrite_behaviour_cfg.vhd|
 !i113 0
-R4
-R5
+R7
+R8
 Ereadwrite_tb
 w1637659556
-R1
-R2
+R4
+R5
 R0
 8VHDL/readwrite_tb.vhd
 FVHDL/readwrite_tb.vhd
@@ -138,7 +286,7 @@ l0
 L4
 VEhdS;kLc_JJ2C[eG9DC[H2
 !s100 <TbXc^49?b478=ORF?2J>0
-R3
+R6
 33
 !s110 1637659572
 !i10b 1
@@ -146,21 +294,21 @@ R3
 !s90 -2008|-lower|-explicit|-work|work|VHDL/readwrite_tb.vhd|-quiet|-nologo|
 !s107 VHDL/readwrite_tb.vhd|
 !i113 0
-R4
-R5
+R7
+R8
 Abehaviour
 w1637665554
-Z8 DEx4 work 12 readwrite_tb 0 22 EhdS;kLc_JJ2C[eG9DC[H2
-Z9 DPx4 ieee 11 numeric_std 0 22 :ASDNFgHXf_ih3J@9F3Ze1
-R1
-R2
+Z14 DEx4 work 12 readwrite_tb 0 22 EhdS;kLc_JJ2C[eG9DC[H2
+R10
+R4
+R5
 8VHDL/readwrite_tb-behaviour.vhd
 FVHDL/readwrite_tb-behaviour.vhd
 l40
 L5
 VX_ij7=0Phh1=J2WAW]9fl3
 !s100 NRl`j6e^`2SQ[P]kbMiRP3
-R3
+R6
 33
 !s110 1637665554
 !i10b 1
@@ -168,18 +316,18 @@ R3
 !s90 -2008|-lower|-explicit|-work|work|VHDL/readwrite_tb-behaviour.vhd|-quiet|-nologo|
 !s107 VHDL/readwrite_tb-behaviour.vhd|
 !i113 0
-R4
-R5
+R7
+R8
 Creadwrite_tb_behaviour_cfg
 ereadwrite_tb
-R7
-R6
+R11
+R13
 DCx4 work 23 readwrite_behaviour_cfg 0 22 GLh0^jT4d5a]^iZ]OI7[11
-R9
+R10
 DAx4 work 12 readwrite_tb 9 behaviour 22 X_ij7=0Phh1=J2WAW]9fl3
-R1
-R2
-R8
+R4
+R5
+R14
 w1637662883
 R0
 8VHDL/readwrite_tb_behaviour_cfg.vhd
@@ -188,7 +336,7 @@ l0
 L1
 VW6Y^>1FkCSB=U9?^GR`:j2
 !s100 I4FLGb=gjnjn4b_X6k>`>2
-R3
+R6
 33
 !s110 1637665558
 !i10b 0
@@ -196,5 +344,5 @@ R3
 !s90 -2008|-lower|-explicit|-work|work|VHDL/readwrite_tb_behaviour_cfg.vhd|-quiet|-nologo|
 !s107 VHDL/readwrite_tb_behaviour_cfg.vhd|
 !i113 0
-R4
-R5
+R7
+R8
