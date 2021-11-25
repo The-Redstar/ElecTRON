@@ -4,7 +4,7 @@ use IEEE.std_logic_1164.ALL;
 entity busy_counter is
    port(clk               : in  std_logic;
         global_reset 			  : in  std_logic;
-	game_engine_reset : in  std_logic;
+		game_engine_reset : in  std_logic;
         busy              : in  std_logic;
         busy_count        : out std_logic_vector(4 downto 0));
 end busy_counter;
@@ -98,7 +98,7 @@ use IEEE.std_logic_1164.ALL;
 use ieee.numeric_std.all;
 
 architecture behaviour of game_engine is
-	type game_state is (reset_state, loading_state, get_ready, read_inputs, wall_shape, check_border, want_to_read_0, want_to_read_1, read_memory_player_0, read_memory_player_1, check_collision, check_who_won, wait_state, want_to_write_0, want_to_write_1, write_memory_player_0, write_memory_player_1, change_data, player_0_won, player_1_won, tie);
+	type game_state is (reset_state, want_to_load, loading_state, get_ready, read_inputs, wall_shape, check_border, want_to_read_0, want_to_read_1, read_memory_player_0, read_memory_player_1, check_collision, check_who_won, wait_state, want_to_write_0, want_to_write_1, write_memory_player_0, write_memory_player_1, change_data, player_0_won, player_1_won, tie);
 
 	signal state, new_state: game_state;
 	signal direction_0, direction_1, next_direction_0, next_direction_1 : std_logic_vector(1 downto 0);
@@ -287,8 +287,52 @@ create_next_state: 	process (state, reset, input, busy, read_memory, memory_read
 				d_player_0_state			<= (others => '0');
 				d_player_1_state			<= (others => '0');
 			
-				new_state <= loading_state;
+				new_state <= want_to_load;
+			
+			when want_to_load =>
+				state_vga 					<= "000";
+				write_enable 				<= '0';
+				write_memory 				<= "00000000";
+				address 					<= "0000000000";
+				busy_counter_reset			<= '0';
+				go_to						<= '0';
 				
+				clear_memory				<= '1';
+				
+				e_position_0				<= '1';
+				e_position_1				<= '1';
+				e_direction_0				<= '1';
+				e_direction_1				<= '1';
+				e_player_0_state			<= '1';
+				e_player_1_state			<= '1';
+				
+				e_wallshape_0				<= '0';	
+				e_wallshape_1				<= '0';
+				e_read_memory_0				<= '0';
+				e_read_memory_1				<= '0';
+				e_next_position_0			<= '0';
+				e_next_position_1			<= '0';
+				e_next_direction_0			<= '0';	
+				e_next_direction_1			<= '0';
+				
+				d_position_0				<= "01111011010";
+				d_position_1				<= "01111000101";
+				d_direction_0				<= "00";
+				d_direction_1				<= "00";
+				d_player_0_state			<= "10";
+				d_player_1_state			<= "10";
+				
+				d_wallshape_0				<= (others => '0');	
+				d_wallshape_1				<= (others => '0');
+				d_read_memory_0				<= (others => '0');
+				d_read_memory_1				<= (others => '0');
+				d_next_position_0			<= (others => '0');
+				d_next_position_1			<= (others => '0');
+				d_next_direction_0			<= (others => '0');	
+				d_next_direction_1			<= (others => '0');
+				
+				new_state <= loading_state;
+			
 			when loading_state =>
 				state_vga 					<= "000";
 				write_enable 				<= '0';
@@ -315,8 +359,8 @@ create_next_state: 	process (state, reset, input, busy, read_memory, memory_read
 				e_next_direction_0			<= '0';	
 				e_next_direction_1			<= '0';
 				
-				d_position_0				<= "01111111001";
-				d_position_1				<= "01111100100";
+				d_position_0				<= "01111011010";
+				d_position_1				<= "01111000101";
 				d_direction_0				<= "00";
 				d_direction_1				<= "00";
 				d_player_0_state			<= "10";
@@ -375,7 +419,9 @@ create_next_state: 	process (state, reset, input, busy, read_memory, memory_read
 			
 				
 				if (input = "0000") then
-					new_state <= wait_state;
+					-- normally it should go to the wait state however for testing reasons we skip that state for now since we know it works
+					-- new_state <= wait_state;
+					new_state <= read_inputs;
 					e_player_0_state			<= '1';
 					e_player_1_state			<= '1';
 					d_player_0_state			<= "11";
@@ -1352,7 +1398,9 @@ create_next_state: 	process (state, reset, input, busy, read_memory, memory_read
 				d_player_1_state			<= (others => '0');
 				
 				if ((player_0_state = "11") and (player_1_state = "11")) then
-					new_state <= wait_state;
+					-- normally it should go to the wait state however for testing reasons we skip that state for now since we know it works
+					-- new_state <= wait_state;
+					new_state <= read_inputs;
 				elsif (player_0_state = "11") then 
 					new_state <= player_0_won;
 				elsif (player_1_state = "11") then
