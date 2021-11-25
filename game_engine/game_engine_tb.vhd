@@ -160,7 +160,15 @@ memory_ready <= '0' after 0 ns,
 		'0' after 4120 ns,
 		'1' after 4280 ns,
 		'0' after 4320 ns,
-		'1' after 4480 ns;
+		'1' after 4480 ns,
+		'0' after 8040 ns,
+		'1' after 8240 ns,
+		'0' after 8280 ns,
+		'1' after 8480 ns,
+		'0' after 8600 ns,
+		'1' after 8740 ns,
+		'0' after 8780 ns,
+		'1' after 8920 ns;
 
 -- 60 ns: loading state
 -- 140 ns: ready state
