@@ -111,7 +111,39 @@ busy <= '1' after 0 ns,
 	'1' after 2980 ns,
 	'0' after 3080 ns, -- unsigned_busy_count: 15
 	'1' after 3180 ns,
-	'0' after 3280 ns; -- unsigned_busy_count: 16
+	'0' after 3280 ns, -- unsigned_busy_count: 16
+	'1' after 4680 ns,
+	'0' after 4780 ns, 
+	'1' after 4880 ns,
+	'0' after 4980 ns,
+	'1' after 5080 ns,
+	'0' after 5180 ns, 
+	'1' after 5280 ns,
+	'0' after 5380 ns,
+	'1' after 5480 ns,
+	'0' after 5580 ns, 
+	'1' after 5680 ns,
+	'0' after 5780 ns,
+	'1' after 5880 ns,
+	'0' after 5980 ns, 
+	'1' after 6080 ns,
+	'0' after 6180 ns,
+	'1' after 6280 ns,
+	'0' after 6380 ns,
+	'1' after 6480 ns,
+	'0' after 6580 ns, 
+	'1' after 6680 ns,
+	'0' after 6780 ns,
+	'1' after 6880 ns,
+	'0' after 6980 ns, 
+	'1' after 7080 ns,
+	'0' after 7180 ns,
+	'1' after 7280 ns,
+	'0' after 7380 ns, 
+	'1' after 7480 ns,
+	'0' after 7580 ns,
+	'1' after 7680 ns,
+	'0' after 7780 ns;
 
 
 
@@ -121,15 +153,14 @@ read_memory <= "00000000" after 0 ns;
 
 memory_ready <= '0' after 0 ns,
 		'1' after 140 ns, --goes to get ready state
-		'0' after 180 ns,
-		'1' after 3800 ns, --goes to want_to_read_1
-		'0' after 3840 ns,
+		'0' after 3560 ns,
+		'1' after 3760 ns, --goes to want_to_read_1
+		'0' after 3800 ns,
 		'1' after 4000 ns, -- goes to check_collision
-		'0' after 4040 ns,
-		'1' after 4280 ns, -- goes to want_to_write_1
+		'0' after 4120 ns,
+		'1' after 4280 ns,
 		'0' after 4320 ns,
-		'1' after 4480 ns, -- goes to change_data
-		'0' after 4520 ns;
+		'1' after 4480 ns;
 
 -- 60 ns: loading state
 -- 140 ns: ready state
@@ -139,8 +170,8 @@ memory_ready <= '0' after 0 ns,
 --3480 ns: check border
 --3520 ns: want_to_read_0
 --3560: read_memory_player_0
---3800: want_to_read_1
---3840: read_memory_player_1
+--3760: want_to_read_1
+--3800: read_memory_player_1
 --4000: check_collision
 --4040: check_who_won
 --4080: want_to_write_0
@@ -148,5 +179,10 @@ memory_ready <= '0' after 0 ns,
 --4280: want_to_write_1
 --4320: write_memory_player_1
 --4480: change data
---4520: wait_state					
+--4520: wait_state	
+
+
+--4880: read inputs
+
+			
 end architecture structural;
