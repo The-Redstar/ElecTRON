@@ -359,6 +359,19 @@ create_next_state: 	process (state, reset, input, busy, read_memory, memory_read
 				e_next_direction_0			<= '0';	
 				e_next_direction_1			<= '0';
 				
+				d_position_0				<= (others => '0');
+				d_position_1				<= (others => '0');	
+				d_wallshape_0				<= (others => '0');	
+				d_wallshape_1				<= (others => '0');
+				d_read_memory_0				<= (others => '0');
+				d_read_memory_1				<= (others => '0');
+				d_next_position_0			<= (others => '0');
+				d_next_position_1			<= (others => '0');
+				d_direction_0				<= (others => '0');
+				d_direction_1				<= (others => '0');
+				d_next_direction_0			<= (others => '0');	
+				d_next_direction_1			<= (others => '0');
+			
 				
 				if (input = "0000") then
 					new_state <= wait_state;
@@ -370,6 +383,8 @@ create_next_state: 	process (state, reset, input, busy, read_memory, memory_read
 					new_state <= get_ready;
 					e_player_0_state			<= '0';
 					e_player_1_state			<= '0';
+					d_player_0_state			<= (others => '0');
+					d_player_1_state			<= (others => '0');
 				end if;
 				
 
@@ -1038,63 +1053,27 @@ create_next_state: 	process (state, reset, input, busy, read_memory, memory_read
 					d_player_1_state <= (others => '0');
 				end if;
 				
-				new_state<= check_who_won;
+				new_state<= want_to_write_0;
 
-			when check_who_won =>
-				state_vga   				<= "111";
-				write_enable 				<= '0';
-				write_memory  				<= "00000000";
-				address      				<= "0000000000";
-				go_to		   				<= '0';
-				busy_counter_reset			<= '0';
-				clear_memory				<= '0';
-				
-				e_position_0				<= '0';
-				e_position_1				<= '0';	
-				e_wallshape_0				<= '0';	
-				e_wallshape_1				<= '0';
-				e_read_memory_0				<= '0';
-				e_read_memory_1				<= '0';
-				e_next_position_0			<= '0';
-				e_next_position_1			<= '0';
-				e_direction_0				<= '0';
-				e_direction_1				<= '0';
-				e_next_direction_0			<= '0';	
-				e_next_direction_1			<= '0';
-				e_player_0_state			<= '0';
-				e_player_1_state			<= '0';
-				
-				d_position_0				<= (others => '0');
-				d_position_1				<= (others => '0');	
-				d_wallshape_0				<= (others => '0');	
-				d_wallshape_1				<= (others => '0');
-				d_read_memory_0				<= (others => '0');
-				d_read_memory_1				<= (others => '0');
-				d_next_position_0			<= (others => '0');
-				d_next_position_1			<= (others => '0');
-				d_direction_0				<= (others => '0');
-				d_direction_1				<= (others => '0');
-				d_next_direction_0			<= (others => '0');	
-				d_next_direction_1			<= (others => '0');
-				d_player_0_state			<= (others => '0');
-				d_player_1_state			<= (others => '0');
-				
-				if ((player_0_state = "11") and (player_1_state = "11")) then
-					new_state <= want_to_write_0;
-				elsif (player_0_state = "11") then 
-					new_state <= player_0_won;
-				elsif (player_1_state = "11") then
-					new_state <= player_1_won;
-				else new_state <= tie;
-				end if;
-		
 			when want_to_write_0 =>
 				state_vga   				<= "111";
-				write_enable 				<= '1';
-				write_memory(7 downto 3) 	<= "00000";
-				write_memory(2 downto 0) 	<= wallshape_0;
-				address 					<= position_0(9 downto 0);
-				go_to 						<= '1';
+				
+				--if collide on border, there shall be no writing
+				if (player_0_state = "01") then 
+					write_enable 				<= '0';
+					write_memory			 	<= "00000000";
+					address 					<= "0000000000";
+					go_to 						<= '0';
+					new_state 					<= want_to_write_1;
+				else 
+					write_enable 				<= '1';
+					write_memory(7 downto 3) 	<= "00000";
+					write_memory(2 downto 0) 	<= wallshape_0;
+					address 					<= position_0(9 downto 0);
+					go_to 						<= '1';
+					new_state 					<= write_memory_player_0;
+				end if;
+				
 				busy_counter_reset			<= '0';
 				clear_memory				<= '0';
 
@@ -1127,8 +1106,8 @@ create_next_state: 	process (state, reset, input, busy, read_memory, memory_read
 				d_next_direction_1			<= (others => '0');
 				d_player_0_state			<= (others => '0');
 				d_player_1_state			<= (others => '0');
-
-				new_state <= write_memory_player_0;
+				
+				--new_state is in if statement above
 
 			when write_memory_player_0 =>
 				state_vga   				<= "111";
@@ -1178,11 +1157,23 @@ create_next_state: 	process (state, reset, input, busy, read_memory, memory_read
 
 			when want_to_write_1 =>
 				state_vga   				<= "111";
-				write_enable 				<= '1';
-				write_memory(7 downto 3) 	<= "00001" ;
-				write_memory(2 downto 0) 	<= wallshape_1;
-				address 					<= position_1(9 downto 0);
-				go_to 						<= '1';
+				
+				--if collide on border, there shall be no writing
+				if (player_1_state = "01") then 
+					write_enable 				<= '0';
+					write_memory			 	<= "00000000";
+					address 					<= "0000000000";
+					go_to 						<= '0';
+					new_state 					<= change_data;
+				else 
+					write_enable 				<= '1';
+					write_memory(7 downto 3) 	<= "00000";
+					write_memory(2 downto 0) 	<= wallshape_1;
+					address 					<= position_1(9 downto 0);
+					go_to 						<= '1';
+					new_state 					<= write_memory_player_1;
+				end if;
+				
 				busy_counter_reset			<= '0';
 				clear_memory				<= '0';
 				
@@ -1215,16 +1206,18 @@ create_next_state: 	process (state, reset, input, busy, read_memory, memory_read
 				d_next_direction_1			<= (others => '0');
 				d_player_0_state			<= (others => '0');
 				d_player_1_state			<= (others => '0');
-
-				new_state <= write_memory_player_1;
+				
+				--new_state is in if statement above
 
 			when write_memory_player_1 =>
 				state_vga   				<= "111";
+				
 				write_enable 				<= '1';
 				write_memory(7 downto 3) 	<= "00001" ;
 				write_memory(2 downto 0) 	<= wallshape_1;
 				address 					<= position_1(9 downto 0);
 				go_to 						<= '1';
+				
 				busy_counter_reset			<= '0';
 				clear_memory				<= '0';
 				
@@ -1270,7 +1263,7 @@ create_next_state: 	process (state, reset, input, busy, read_memory, memory_read
 				write_enable 				<= '0';
 				write_memory				<= "00000000";
 				address 					<= "0000000000";
-				go_to 						<= '1';
+				go_to 						<= '0';
 				busy_counter_reset			<= '0';
 				clear_memory				<= '0';
 				
@@ -1303,16 +1296,67 @@ create_next_state: 	process (state, reset, input, busy, read_memory, memory_read
 				
 				if ((player_0_state <= "01") and (player_1_state <= "01")) then
 					e_position_0 <= '0';
-					e_position_1 <= '1';
+					e_position_1 <= '0';
 					d_position_0 <= (others => '0');
 					d_position_1 <= (others => '0');
 				else 
 					e_position_0 <= '1';
 					e_position_1 <= '1';
 					d_position_0 <= next_position_0;
-					d_position_1 <= next_position_1;  
+					d_position_1 <= next_position_1;
 				end if; 
-				new_state <= wait_state;		
+				
+				new_state <= check_who_won;		
+				
+			when check_who_won =>
+				state_vga   				<= "111";
+				write_enable 				<= '0';
+				write_memory  				<= "00000000";
+				address      				<= "0000000000";
+				go_to		   				<= '0';
+				busy_counter_reset			<= '0';
+				clear_memory				<= '0';
+				
+				e_position_0				<= '0';
+				e_position_1				<= '0';	
+				e_wallshape_0				<= '0';	
+				e_wallshape_1				<= '0';
+				e_read_memory_0				<= '0';
+				e_read_memory_1				<= '0';
+				e_next_position_0			<= '0';
+				e_next_position_1			<= '0';
+				e_direction_0				<= '0';
+				e_direction_1				<= '0';
+				e_next_direction_0			<= '0';	
+				e_next_direction_1			<= '0';
+				e_player_0_state			<= '0';
+				e_player_1_state			<= '0';
+				
+				d_position_0				<= (others => '0');
+				d_position_1				<= (others => '0');	
+				d_wallshape_0				<= (others => '0');	
+				d_wallshape_1				<= (others => '0');
+				d_read_memory_0				<= (others => '0');
+				d_read_memory_1				<= (others => '0');
+				d_next_position_0			<= (others => '0');
+				d_next_position_1			<= (others => '0');
+				d_direction_0				<= (others => '0');
+				d_direction_1				<= (others => '0');
+				d_next_direction_0			<= (others => '0');	
+				d_next_direction_1			<= (others => '0');
+				d_player_0_state			<= (others => '0');
+				d_player_1_state			<= (others => '0');
+				
+				if ((player_0_state = "11") and (player_1_state = "11")) then
+					new_state <= wait_state;
+				elsif (player_0_state = "11") then 
+					new_state <= player_0_won;
+				elsif (player_1_state = "11") then
+					new_state <= player_1_won;
+				else 
+					new_state <= tie;
+				end if;
+		
 				
 		end case;
 	end process;
