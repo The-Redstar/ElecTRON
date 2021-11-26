@@ -319,6 +319,7 @@ create_next_state: 	process (state, reset, input, busy, read_memory, memory_read
 				d_position_1				<= "01110100100";
 				d_direction_0				<= "00";
 				d_direction_1				<= "00";
+				
 				d_player_0_state			<= "10";
 				d_player_1_state			<= "10";
 				
@@ -414,7 +415,7 @@ create_next_state: 	process (state, reset, input, busy, read_memory, memory_read
 				d_next_direction_1			<= (others => '0');
 			
 				
-				if (input = "0000") then
+				if ((input(3 downto 2) = direction_1) and (input(1 downto 0) = direction_0)) then
 					-- normally it should go to the wait state however for testing reasons we skip that state for now since we know it works
 					-- new_state <= wait_state;
 					new_state <= read_inputs;
@@ -1218,7 +1219,7 @@ create_next_state: 	process (state, reset, input, busy, read_memory, memory_read
 					new_state 					<= change_data;
 				else 
 					write_enable 				<= '1';
-					write_memory(7 downto 3) 	<= "00000";
+					write_memory(7 downto 3) 	<= "00001";
 					write_memory(2 downto 0) 	<= wallshape_1;
 					address 					<= position_1(9 downto 0);
 					go_to 						<= '1';

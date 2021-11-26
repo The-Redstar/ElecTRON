@@ -140,7 +140,12 @@ memory_ready <= '1' after 0 ns,
 				'0' after 5320 ns,
 				'1' after 5420 ns;
 
--- 
+
+-- the starting positions used to test this test bench
+-- d_position_0				<= "00010000000";
+-- d_position_1				<= "01100000000";
+-- d_direction_0				<= "11";
+-- d_direction_1				<= "11";
 
 			
 end architecture structural;
