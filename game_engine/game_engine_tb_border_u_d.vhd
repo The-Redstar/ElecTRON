@@ -49,7 +49,7 @@ architecture structural of game_engine_tb is
 
 begin
 
-	lbl0: game_engine port map	(clk           => clk,
+lbl0: game_engine port map	(clk           => clk,
 							reset              => reset,
 							input              => input,
 							busy               => busy,
