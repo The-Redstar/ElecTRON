@@ -1344,7 +1344,7 @@ create_next_state: 	process (state, reset, input, busy, read_memory, memory_read
 				d_direction_0 <= next_direction_0;
 				d_direction_1 <= next_direction_1;
 				
-				if (player_0_state <= "01") then
+				if (player_0_state = "01") then
 					e_position_0 <= '0';
 					d_position_0 <= (others => '0');					
 				else
@@ -1352,7 +1352,7 @@ create_next_state: 	process (state, reset, input, busy, read_memory, memory_read
 					d_position_0 <= next_position_0;
 				end if;
 					
-				if (player_1_state <= "01") then
+				if (player_1_state = "01") then
 					e_position_1 <= '0';
 					d_position_1 <= (others => '0');
 				else 
