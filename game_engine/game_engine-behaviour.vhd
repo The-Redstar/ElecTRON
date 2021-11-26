@@ -315,8 +315,8 @@ create_next_state: 	process (state, reset, input, busy, read_memory, memory_read
 				e_next_direction_0			<= '0';	
 				e_next_direction_1			<= '0';
 				
-				d_position_0				<= "01111011010";
-				d_position_1				<= "01111000101";
+				d_position_0				<= "01110111001";
+				d_position_1				<= "01110100100";
 				d_direction_0				<= "00";
 				d_direction_1				<= "00";
 				d_player_0_state			<= "10";
@@ -832,7 +832,7 @@ create_next_state: 	process (state, reset, input, busy, read_memory, memory_read
 				d_next_direction_0			<= (others => '0');	
 				d_next_direction_1			<= (others => '0');
 			
-				if ((next_position_0(4 downto 0) = "00000") or (next_position_0(4 downto 0) = "11111")) or ((next_position_0(9 downto 5) = "00000") or (next_position_0(9 downto 5) = "11111"))then 
+				if ((next_position_0(4 downto 0) = "11111") or (next_position_0(4 downto 0) = "11110")) or ((next_position_0(9 downto 5) = "11111") or (next_position_0(9 downto 5) = "11110"))then 
 					e_player_0_state <= '1';
 					d_player_0_state <= "01";
 				else 
@@ -840,7 +840,7 @@ create_next_state: 	process (state, reset, input, busy, read_memory, memory_read
 					d_player_0_state <= (others => '0');
 				end if;
 
-				if ((next_position_1(4 downto 0) = "00000") or (next_position_1(4 downto 0) = "11111")) or ((next_position_1(9 downto 5) = "00000") or (next_position_1(9 downto 5) = "11111"))then 
+				if ((next_position_1(4 downto 0) = "11111") or (next_position_1(4 downto 0) = "11110")) or ((next_position_1(9 downto 5) = "11111") or (next_position_1(9 downto 5) = "11110"))then 
 					e_player_1_state <= '1';
 					d_player_1_state <= "01";
 				else
