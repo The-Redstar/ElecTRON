@@ -343,12 +343,12 @@ create_next_state: 	process (state, reset, input, busy, read_memory, memory_read
 				
 				clear_memory				<= '1';
 				
-				e_position_0				<= '1';
-				e_position_1				<= '1';
-				e_direction_0				<= '1';
-				e_direction_1				<= '1';
-				e_player_0_state			<= '1';
-				e_player_1_state			<= '1';
+				e_position_0				<= '0';
+				e_position_1				<= '0';
+				e_direction_0				<= '0';
+				e_direction_1				<= '0';
+				e_player_0_state			<= '0';
+				e_player_1_state			<= '0';
 				
 				e_wallshape_0				<= '0';	
 				e_wallshape_1				<= '0';
@@ -358,23 +358,19 @@ create_next_state: 	process (state, reset, input, busy, read_memory, memory_read
 				e_next_position_1			<= '0';
 				e_next_direction_0			<= '0';	
 				e_next_direction_1			<= '0';
-				
-				d_position_0				<= "01111011010";
-				d_position_1				<= "01111000101";
-				d_direction_0				<= "00";
-				d_direction_1				<= "00";
-				d_player_0_state			<= "10";
-				d_player_1_state			<= "10";
-				
+
+				d_position_0				<= (others => '0');
+				d_position_1				<= (others => '0');	
 				d_wallshape_0				<= (others => '0');	
 				d_wallshape_1				<= (others => '0');
 				d_read_memory_0				<= (others => '0');
 				d_read_memory_1				<= (others => '0');
 				d_next_position_0			<= (others => '0');
 				d_next_position_1			<= (others => '0');
+				d_direction_0				<= (others => '0');
+				d_direction_1				<= (others => '0');
 				d_next_direction_0			<= (others => '0');	
 				d_next_direction_1			<= (others => '0');
-				
 				
 				
 				if (memory_ready = '1') then 
