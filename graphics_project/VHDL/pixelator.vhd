@@ -15,7 +15,7 @@ entity pixelator is
         player0_mode  : in  std_logic_vector(1 downto 0);
         player1_mode  : in  std_logic_vector(1 downto 0);
 
-	walls	      : in  std_logic_vector(7 downto 0);
+		walls	      : in  std_logic_vector(7 downto 0);
         borders       : in  std_logic_vector(7 downto 0);
         jumps         : in  std_logic_vector(7 downto 0);
 
@@ -26,11 +26,14 @@ architecture behaviour of pixelator is
 
 signal  xe0, xe1, xg1, xg3, xg4, xg5, xg6, xs9, xs10, xs11, xs12, xs14, xe14, xe15: std_logic;
 signal  ye0, ye1, yg1, yg3, yg4, yg5, yg6, ys9, ys10, ys11, ys12, ys14, ye14, ye15: std_logic;
+signal rel_x, rel_y: std_logic_vector(1 downto 0);
+signal rounding: std_logic;
 -------------------------------------------------------------
 signal bbox_dot: std_logic;
 signal bbox_jump, bbox_border: std_logic_vector(3 downto 0);--W,E,S,N same order as the walls
 signal bbox_wall: std_logic_vector(7 downto 0);--W,E,S,N,W,E,S,N last 4 are of the first layer
 signal bbox_h, bbox_v: std_logic;
+signal bbox_explosion_outer, bbox_explosion_inner: std_logic;
 
 begin
 LUT:	process(dx, dy)-- the needed conditions for making the bounding boxes
@@ -151,39 +154,74 @@ LUT:	process(dx, dy)-- the needed conditions for making the bounding boxes
 			when "1111"  => ye15<='1';
 			when others => ye15<='0'; 
 		end case;	
+		
+		-----------------------------------------
+		-- determining relative position to the axis depending on its region
+		
+		if (dx(3) = '0') then
+			rel_x(1) <= not(dx(1));
+			rel_x(0) <= not(dx(0));
+		else
+			rel_x(1) <= dx(1);
+			rel_x(0) <= dx(0);
+		end if;
+		if (dy(3) = '1') then
+			rel_y(1) <= not(dy(1));
+			rel_y(0) <= not(dy(0));
+		else
+			rel_y(1) <= dy(1);
+			rel_y(0) <= dy(0);
+		end if;
 	end process;	
+
+	process(rel_x, rel_y)
+	begin
+		if (rel_x < rel_y) then
+			rounding <= '1';
+		else
+			rounding <= '0';
+		end if;
+	end process;
 	
 
-bounds:	process(xe0, xe1, xg1, xg3, xg4, xg5, xg6, xs9, xs10, xs11, xs12, xs14, xe14, xe15, ye0, ye1, yg1, yg3, yg4, yg5, yg6, ys9, ys10, ys11, ys12, ys14, ye14, ye15)
+bounds:	process(xe0, xe1, xg1, xg3, xg4, xg5, xg6, xs9, xs10, xs11, xs12, xs14, xe14, xe15, ye0, ye1, yg1, yg3, yg4, yg5, yg6, ys9, ys10, ys11, ys12, ys14, ye14, ye15, dx, dy, rounding)
 	--using the conditions above make the bounding box signals
 	begin
+		--the bounds of the first layer
 		bbox_wall(0)<=xg4 and xs11 and ys11;
 		bbox_wall(1)<=yg4  and xg4 and xs11;
 		bbox_wall(2)<=yg4 and ys11 and xg4 ;
 		bbox_wall(3)<=yg4 and ys11 and xs11;
-		--the bounds of the first layer
 		-------------------------------------
 		--the bounds of the second layer 
+		--(the walls are thinner on the second layer)
 		bbox_wall(4)<=xg5 and xs10 and ys11;
 		bbox_wall(5)<=xg5 and xs10 and yg4;
 		bbox_wall(6)<=yg5 and ys10 and xg4;
 		bbox_wall(7)<=yg5 and ys10 and xs11; 
-		--(the walls are thinner on the second layer)
 		-------------------------------------
+		--the bounds of the cell dot
 		bbox_dot<=xg6 and xs9 and yg6 and ys9;
 		-------------------------------------
+		--the bounds of the player (horizontal and vertical positioning)
 		bbox_v<=xg3 and xs12 and yg1 and ys14;
 		bbox_h<=xg1 and xs14 and yg3 and ys12;
 		-------------------------------------
+		--the bounds of the borders
 		bbox_border(0)<=ye0;
 		bbox_border(1)<=ye15;
 		bbox_border(2)<=xe15;
 		bbox_border(3)<=xe0;
 		-------------------------------------
+		--the bounds of the jumps
 		bbox_jump(0)<=ye0 or (ye1 and dx(1));
 		bbox_jump(1)<=ye15 or (ye14 and dx(0));
 		bbox_jump(2)<=xe15 or (xe14 and dy(1));
 		bbox_jump(3)<=xe0 or (xe1 and dy(0));
+		-------------------------------------
+		--the bounds of the outer explosion cloud
+		bbox_explosion_outer<= (xg3 and xs12) or (yg3 and ys12) or rounding;
+		bbox_explosion_inner<= (xg3 and xs12) and (yg3 and ys12) and rounding;
 	end process;
 
 
