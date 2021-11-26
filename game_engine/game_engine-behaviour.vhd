@@ -350,8 +350,8 @@ create_next_state: 	process (state, reset, input, busy, read_memory, memory_read
 				
 				if ((input(3 downto 2) = direction_1) and (input(1 downto 0) = direction_0)) then
 					-- normally it should go to the wait state however for testing reasons we skip that state for now since we know it works
-					-- new_state <= wait_state;
-					new_state <= read_inputs;
+					new_state <= wait_state;
+					-- new_state <= read_inputs;
 					e_player_0_state			<= '1';
 					e_player_1_state			<= '1';
 					d_player_0_state			<= "11";
@@ -1337,8 +1337,8 @@ create_next_state: 	process (state, reset, input, busy, read_memory, memory_read
 				
 				if ((player_0_state = "11") and (player_1_state = "11")) then
 					-- normally it should go to the wait state however for testing reasons we skip that state for now since we know it works
-					-- new_state <= wait_state;
-					new_state <= read_inputs;
+					new_state <= wait_state;
+					-- new_state <= read_inputs;
 				elsif (player_0_state = "11") then 
 					new_state <= player_0_won;
 				elsif (player_1_state = "11") then
