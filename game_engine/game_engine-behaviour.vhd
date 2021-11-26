@@ -768,21 +768,21 @@ create_next_state: 	process (state, reset, input, busy, read_memory, memory_read
 					d_next_position_0(10)		  <= position_0(10);
 				elsif (next_direction_0 <= "00") then 	-- moves up, y is decreased with 1
 					d_next_position_0(4 downto 0) <= position_0(4 downto 0);
-					d_next_position_0(9 downto 5) <= std_logic_vector(to_unsigned(to_integer(unsigned(position_1(9 downto 5))) - 1, 5));
+					d_next_position_0(9 downto 5) <= std_logic_vector(to_unsigned(to_integer(unsigned(position_0(9 downto 5))) - 1, 5));
 					d_next_position_0(10)		  <= position_0(10);
 				else 					--moves down, y is increased with 1
 					d_next_position_0(4 downto 0) <= position_0(4 downto 0);
-					d_next_position_0(9 downto 5) <= std_logic_vector(to_unsigned(to_integer(unsigned(position_1(9 downto 5))) + 1, 5));
+					d_next_position_0(9 downto 5) <= std_logic_vector(to_unsigned(to_integer(unsigned(position_0(9 downto 5))) + 1, 5));
 					d_next_position_0(10)		  <= position_0(10)	;	
 				end if;
 
 				e_next_position_1 <= '1';
 				if (next_direction_1 = "01") then 		-- moves to the left, x is decreased with 1
-					d_next_position_1(4 downto 0)  <= std_logic_vector(to_unsigned(to_integer(unsigned(position_0(4 downto 0))) - 1, 5));
+					d_next_position_1(4 downto 0)  <= std_logic_vector(to_unsigned(to_integer(unsigned(position_1(4 downto 0))) - 1, 5));
 					d_next_position_1(9 downto 5) <= position_1(9 downto 5);
 					d_next_position_1(10)		  <= position_1(10)	;	
 				elsif (next_direction_1 = "11") then 	-- moves to the right, x is increased with 1
-					d_next_position_1(4 downto 0)  <= std_logic_vector(to_unsigned(to_integer(unsigned(position_0(4 downto 0))) + 1, 5));
+					d_next_position_1(4 downto 0)  <= std_logic_vector(to_unsigned(to_integer(unsigned(position_1(4 downto 0))) + 1, 5));
 					d_next_position_1(9 downto 5) <= position_1(9 downto 5);
 					d_next_position_1(10)		  <= position_1(10)	;	
 				elsif (next_direction_1 <= "00") then 	-- moves up, y is decreased with 1
