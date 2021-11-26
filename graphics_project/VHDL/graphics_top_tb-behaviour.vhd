@@ -1,5 +1,6 @@
 library IEEE;
 use IEEE.std_logic_1164.ALL;
+use IEEE.numeric_std.ALL;
 
 architecture behaviour of graphics_top_tb is
    component graphics_top
@@ -9,14 +10,11 @@ architecture behaviour of graphics_top_tb is
            h_sync : out std_logic;
            v_sync : out std_logic;
    	
-   	colorA0: out std_logic;
-   	colorA1: out std_logic;
-   	colorB0: out std_logic;
-   	colorB1: out std_logic;
+   	color	: out std_logic_vector(3 downto 0);
    
-   	incrx  : out std_logic;
-   	incry  : out std_logic;
-   	memrst : out std_logic;
+   	x_incr  : out std_logic;
+   	y_incr  : out std_logic;
+   	mem_rst : out std_logic;
    	data   : in  std_logic_vector(7 downto 0);
    
    	borders : in std_logic_vector(7 downto 0);
@@ -39,13 +37,10 @@ architecture behaviour of graphics_top_tb is
    signal reset  : std_logic;
    signal h_sync : std_logic;
    signal v_sync : std_logic;
-   signal colorA0: std_logic;
-   signal colorA1: std_logic;
-   signal colorB0: std_logic;
-   signal colorB1: std_logic;
-   signal incrx  : std_logic;
-   signal incry  : std_logic;
-   signal memrst : std_logic;
+   signal color	 : std_logic_vector(3 downto 0);
+   signal x_incr : std_logic;
+   signal y_incr : std_logic;
+   signal mem_rst : std_logic;
    signal data   : std_logic_vector(7 downto 0);
    signal borders : std_logic_vector(7 downto 0);
    signal jumps	: std_logic_vector(7 downto 0);
@@ -57,68 +52,66 @@ architecture behaviour of graphics_top_tb is
    signal player1_state : std_logic_vector(1 downto 0);
    signal busy   : std_logic;
    signal game_state : std_logic_vector(2 downto 0);
+   
+   signal x,y,next_x,next_y:unsigned(4 downto 0);
+   
 begin
-   test: graphics_top port map (clk, reset, h_sync, v_sync, colorA0, colorA1, colorB0, colorB1, incrx, incry, memrst, data, borders, jumps, player0_pos, player1_pos, player0_dir, player1_dir, player0_state, player1_state, busy, game_state);
+   test: graphics_top port map (clk, reset, h_sync, v_sync, color, x_incr, y_incr, mem_rst, data, borders, jumps, player0_pos, player1_pos, player0_dir, player1_dir, player0_state, player1_state, busy, game_state);
    clk <= '0' after 0 ns,
           '1' after 20 ns when clk /= '1' else '0' after 20 ns;
    reset <= '1' after 0 ns,
             '0' after 80 ns;
-   data(0) <= '0' after 0 ns;
-   data(1) <= '0' after 0 ns;
-   data(2) <= '0' after 0 ns;
-   data(3) <= '0' after 0 ns;
-   data(4) <= '0' after 0 ns;
-   data(5) <= '0' after 0 ns;
-   data(6) <= '0' after 0 ns;
-   data(7) <= '0' after 0 ns;
-   borders(0) <= '0' after 0 ns;
-   borders(1) <= '0' after 0 ns;
-   borders(2) <= '0' after 0 ns;
-   borders(3) <= '0' after 0 ns;
-   borders(4) <= '0' after 0 ns;
-   borders(5) <= '0' after 0 ns;
-   borders(6) <= '0' after 0 ns;
-   borders(7) <= '0' after 0 ns;
-   jumps(0) <= '0' after 0 ns;
-   jumps(1) <= '0' after 0 ns;
-   jumps(2) <= '0' after 0 ns;
-   jumps(3) <= '0' after 0 ns;
-   jumps(4) <= '0' after 0 ns;
-   jumps(5) <= '0' after 0 ns;
-   jumps(6) <= '0' after 0 ns;
-   jumps(7) <= '0' after 0 ns;
-   player0_pos(0) <= '0' after 0 ns;
-   player0_pos(1) <= '0' after 0 ns;
-   player0_pos(2) <= '0' after 0 ns;
-   player0_pos(3) <= '0' after 0 ns;
-   player0_pos(4) <= '0' after 0 ns;
-   player0_pos(5) <= '0' after 0 ns;
-   player0_pos(6) <= '0' after 0 ns;
-   player0_pos(7) <= '0' after 0 ns;
-   player0_pos(8) <= '0' after 0 ns;
-   player0_pos(9) <= '0' after 0 ns;
-   player0_pos(10) <= '0' after 0 ns;
-   player1_pos(0) <= '0' after 0 ns;
-   player1_pos(1) <= '0' after 0 ns;
-   player1_pos(2) <= '0' after 0 ns;
-   player1_pos(3) <= '0' after 0 ns;
-   player1_pos(4) <= '0' after 0 ns;
-   player1_pos(5) <= '0' after 0 ns;
-   player1_pos(6) <= '0' after 0 ns;
-   player1_pos(7) <= '0' after 0 ns;
-   player1_pos(8) <= '0' after 0 ns;
-   player1_pos(9) <= '0' after 0 ns;
-   player1_pos(10) <= '0' after 0 ns;
-   player0_dir(0) <= '0' after 0 ns;
-   player0_dir(1) <= '0' after 0 ns;
-   player1_dir(0) <= '0' after 0 ns;
-   player1_dir(1) <= '0' after 0 ns;
-   player0_state(0) <= '0' after 0 ns;
-   player0_state(1) <= '0' after 0 ns;
-   player1_state(0) <= '0' after 0 ns;
-   player1_state(1) <= '0' after 0 ns;
-   game_state(0) <= '0' after 0 ns;
-   game_state(1) <= '0' after 0 ns;
-   game_state(2) <= '0' after 0 ns;
+		
+--   data <= "00000000" after 0 ns;
+   borders <= "00000000" after 0 ns;
+   jumps <= "00000000" after 0 ns;
+   player0_pos <= "00000000000" after 0 ns;
+   player1_pos <= "00000000000" after 0 ns;
+   player0_dir <= "00" after 0 ns;
+   player1_dir <= "00" after 0 ns;
+   player0_state <= "00" after 0 ns;
+   player1_state <= "00" after 0 ns;
+   game_state <= "000"   after 0 ns;
+   
+   
+	process(clk)
+	begin
+		if(rising_edge(clk)) then
+			if (reset = '1' or mem_rst='1') then
+				x <= to_unsigned(0,5);
+				y <= to_unsigned(0,5);
+			else
+				x <= next_x;
+				y <= next_y;
+			end if;
+		end if;
+	end process;
+   
+   process(x_incr,x)
+   begin
+		if x_incr='1' then
+			next_x<=x+to_unsigned(1,5);
+		else
+			next_x<=x;
+		end if;
+	end process;
+	
+	process(y_incr,y)
+	begin
+		if y_incr='1' then
+			next_y<=y+to_unsigned(1,5);
+		else
+			next_y<=y;
+		end if;
+	end process;
+	
+	process(x,y)
+	begin
+		data(3 downto 0)<=std_logic_vector(x(3 downto 0)) after 400 ns; --"read" register
+		data(7 downto 4)<=std_logic_vector(y(3 downto 0)) after 400 ns;
+	end process;
+   
+   
+   
 end behaviour;
 
