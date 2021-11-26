@@ -900,7 +900,7 @@ create_next_state: 	process (state, reset, input, busy, read_memory, memory_read
 				e_position_1				<= '0';	
 				e_wallshape_0				<= '0';	
 				e_wallshape_1				<= '0';
-				e_read_memory_0				<= '1';
+				e_read_memory_0				<= '0';
 				e_read_memory_1				<= '0';
 				e_next_position_0			<= '0';
 				e_next_position_1			<= '0';
@@ -926,12 +926,14 @@ create_next_state: 	process (state, reset, input, busy, read_memory, memory_read
 
 				
 				if (memory_ready = '1') then
-					if (not read_memory = "00000000") then
-						e_player_0_state <= '1';
-						d_player_0_state <= "00";
-					else 
+					if (read_memory = "00000000") then
+						--no wall found
 						e_player_0_state <= '0';
 						d_player_0_state <= (others => '0');
+					else 
+						--boom
+						e_player_0_state <= '1';
+						d_player_0_state <= "00";
 					end if;
 					new_state <= want_to_read_1; 
 				else 
@@ -1020,12 +1022,14 @@ create_next_state: 	process (state, reset, input, busy, read_memory, memory_read
 
 				
 				if (memory_ready = '1') then
-					if (not read_memory = "00000000") then
-						e_player_1_state <= '1';
-						d_player_1_state <= "00";
-					else 
+					if (read_memory = "00000000") then
+						--next cell is empty
 						e_player_1_state <= '0';
 						d_player_1_state <= (others => '0');
+					else 
+						--boom
+						e_player_1_state <= '1';
+						d_player_1_state <= "00";
 					end if;
 					new_state <= check_collision; 
 				else 
