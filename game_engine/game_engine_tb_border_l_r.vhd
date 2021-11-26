@@ -128,7 +128,11 @@ memory_ready <= '1' after 0 ns,
 				'0' after 4400 ns,
 				'1' after 4500 ns,
 				'0' after 4540 ns,
-				'1' after 4640 ns;
+				'1' after 4640 ns, 
+				'0' after 4920 ns, -- cycle 6
+				'1' after 5020 ns,
+				'0' after 5060 ns,
+				'1' after 5160 ns;
 
 -- 
 
