@@ -33,7 +33,7 @@ signal bbox_wall: std_logic_vector(7 downto 0);--W,E,S,N,W,E,S,N last 4 are of t
 signal bbox_h, bbox_v: std_logic;
 
 begin
-LUT:	process(dx, dy)-- the needed conditions for making the bounding boxes
+LUT:	process-- the needed conditions for making the bounding boxes
 	begin
 		case dx is
 			when "0000"  => xe0<='1';
@@ -154,8 +154,7 @@ LUT:	process(dx, dy)-- the needed conditions for making the bounding boxes
 	end process;	
 	
 
-bounds:	process(xe0, xe1, xg1, xg3, xg4, xg5, xg6, xs9, xs10, xs11, xs12, xs14, xe14, xe15, ye0, ye1, yg1, yg3, yg4, yg5, yg6, ys9, ys10, ys11, ys12, ys14, ye14, ye15)
-	--using the conditions above make the bounding box signals
+bounds:	process--using the conditions above make the bounding box signals
 	begin
 		bbox_wall(0)<=xg4 and xs11 and ys11;
 		bbox_wall(1)<=yg4  and xg4 and xs11;

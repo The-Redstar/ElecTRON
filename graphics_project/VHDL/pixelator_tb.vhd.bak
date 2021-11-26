@@ -13,13 +13,13 @@ begin
 	lbl1: entity work.pixelator port map(dx,dy, s1,s2,s3,s4,s5,s6,s7,s8,s9,s10,s11,colour);
 	process	
 	begin
-		
+		wait for 10 ns;
 		ndx<=std_logic_vector(unsigned(dx)+1);
      		
 		if dx="1111" then
 			ndy<=std_logic_vector(unsigned(dy)+1);
 		end if;
-		wait for 10 ns;
+		
 	end process;
 	dx<=ndx;
 	dy<=ndy;
