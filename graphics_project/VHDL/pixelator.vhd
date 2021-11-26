@@ -15,7 +15,7 @@ entity pixelator is
         player0_mode  : in  std_logic_vector(1 downto 0);
         player1_mode  : in  std_logic_vector(1 downto 0);
 
-	walls	      : in  std_logic_vector(7 downto 0);
+		walls	      : in  std_logic_vector(7 downto 0);
         borders       : in  std_logic_vector(7 downto 0);
         jumps         : in  std_logic_vector(7 downto 0);
 
@@ -34,6 +34,8 @@ signal bbox_jump, bbox_border: std_logic_vector(3 downto 0);--W,E,S,N same order
 signal bbox_wall: std_logic_vector(7 downto 0);--W,E,S,N,W,E,S,N last 4 are of the first layer
 signal bbox_h, bbox_v: std_logic;
 signal bbox_explosion_inner, bbox_explosion_outer: std_logic;
+-------------------------------------------------------------
+signal layer: std_logic_vector(3 downto 0);
 
 begin
 LUT:	process(dx, dy)-- the needed conditions for making the bounding boxes
@@ -214,7 +216,24 @@ bounds:	process(xe0, xe1, xg1, xg3, xg4, xg5, xg6, xs9, xs10, xs11, xs12, xs14, 
 
 layering: process(bbox_wall, bbox_dot, bbox_v, bbox_h, bbox_border, bbox_jump, bbox_explosion_outer, bbox_explosion_inner)
 	begin
-		
+		if ((bbox_explosion_outer or bbox_explosion_inner) and (player1_mode(1) or player0_mode(1)) then
+			layer <= "1001";
+			--colouring stuff
+		elsif ((bbox_border(4) and borders(4)) or (bbox_border(5) and borders(5)) or (bbox_border(6) and borders(6)) or (bbox_border(7) and borders(7)) then
+			layer <= "1000";
+			--colouring stuff
+		elsif ((bbox_h and (player0_dir(0) or player1_dir(0))) or (bbox_v and (not(player0_dir(0) or not(player1_dir(0)))))) then 
+			layer <= "0111";
+			--colouring stuff
+		elsif (bbox_wall(4) or bbox_wall(5) or bbox_wall(6) or bbox_wall(7)) then
+			layer <= "0110";
+		elsif (bbox_jump(0) or bbox_jump(1) or bbox_jump(2) or bbox_jump(3)) then
+			layer <= "0101";
+		elsif (bbox_border(0) or bbox_border(1) or bbox_border(2) or bbox_border(3)) then
+			layer <= "0100";
+		elsif ((bbox_h and (player0_dir(0) or player1_dir(0))) or (bbox_v and (not(player0_dir(0) or not(player1_dir(0)))))) then
+			layer <= "0011";
+		end if;
 	end process;
 
 end behaviour;
