@@ -5,9 +5,9 @@ set_db use_scan_seqs_for_non_dft false
 
 include ../tcl/read_hdl.tcl
 
-elaborate readwrite_behaviour_cfg
+elaborate counter5b_behaviour_cfg
 
-include ../in/readwrite.sdc
+include ../in/counter5b.sdc
 
 synthesize -to_mapped
 #set_db syn_generic_effort medium
@@ -16,9 +16,9 @@ synthesize -to_mapped
 
 ungroup -all -flat
 insert_tiehilo_cells
-write_hdl -mapped > ../out/readwrite.v
-write_sdf > ../out/readwrite.sdf
-write_sdc > ../out/readwrite.sdc
+write_hdl -mapped > ../out/counter5b.v
+write_sdf > ../out/counter5b.sdf
+write_sdc > ../out/counter5b.sdc
 
 report timing
 report gates

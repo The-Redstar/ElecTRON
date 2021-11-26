@@ -1,5 +1,5 @@
 #*********************************************************
-# synthesize script for cell: readwrite
+# synthesize script for cell: counter5b
 # company: ontwerp_practicum
 # designer: mlmjanssen
 #*********************************************************
@@ -9,14 +9,14 @@ set_db library {tcb018gbwp7twc.lib}
 set_db use_scan_seqs_for_non_dft false
 
 #include backend/syn/tcl/read_hdl.tcl
-read_hdl -vhdl {readwrite.vhd}
-read_hdl -vhdl {readwrite-behaviour.vhd}
-read_hdl -vhdl {readwrite_behaviour_cfg.vhd}
+read_hdl -vhdl {counter5b.vhd}
+read_hdl -vhdl {counter5b-behaviour.vhd}
+read_hdl -vhdl {counter5b_behaviour_cfg.vhd}
 #endincl
 
-elaborate readwrite_behaviour_cfg
+elaborate counter5b_behaviour_cfg
 
-#include backend/syn/in/readwrite.sdc
+#include backend/syn/in/counter5b.sdc
 # We will use a 25 MHz clock, 
 # but use 33 MHz as constraint to be more sure it works.
 dc::create_clock -name clk -period 30 -waveform {0 15} [dc::get_ports clk]
@@ -33,9 +33,9 @@ synthesize -to_mapped
 
 ungroup -all -flat
 insert_tiehilo_cells
-write_hdl -mapped > ../out/readwrite.v
-write_sdf > ../out/readwrite.sdf
-write_sdc > ../out/readwrite.sdc
+write_hdl -mapped > ../out/counter5b.v
+write_sdf > ../out/counter5b.sdf
+write_sdc > ../out/counter5b.sdc
 
 report timing
 report gates
