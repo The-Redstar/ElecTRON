@@ -4,7 +4,6 @@ use IEEE.std_logic_1164.ALL;
 architecture behaviour of readwrite is
 	type MEM_state is (SLEEP, rstALL, wait1, Check, incrX1, incrX2, incrY1, incrY2, incrXY1, incrXY2, incrW1, incrW2, incrXW1, incrXW2, incrYW1, incrYW2, incrXYW1, incrXYW2, preCheck, wait2, wait3, wait4, wait5, wait6, fix1, fix2, fix3, fixback1, fixback2);
 	signal state, new_state: MEM_state;
-	signal delaycycle: std_logic;
 begin
 	MEM_process: process(clk)
 	begin
@@ -31,6 +30,8 @@ begin
 				
 				if GOTOIN = '1' then
 					new_state <= rstALL;
+				else
+					new_state <= SLEEP;
 				end if;
 				
 
@@ -64,7 +65,6 @@ begin
 				WincrMEM <= '0';
 				readyOUT <= '0';
 				rstMEM <= '0';
-				delaycycle <= '0';
 
 				if WEIN = '1' then
 					if curX = AddressIN(4 downto 0) then

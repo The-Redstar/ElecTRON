@@ -3,8 +3,8 @@ use IEEE.std_logic_1164.ALL;
 
 architecture behaviour of counter5b_tb is
    component counter5b
-      port(rst      : in  std_logic;
-           clk      : in  std_logic;
+      port(clk      : in  std_logic;
+           rst      : in  std_logic;
            countOUT : out std_logic_vector(4 downto 0));
    end component;
    signal incr     : std_logic;

@@ -14,19 +14,9 @@ architecture behaviour of counter5b_tb is
 begin
    test: counter5b port map (clk, rst, countOUT);
    clk <= '0' after 0 ns,
-	     '1' after 45 ns,
-	     '0' after 75 ns,
-	     '1' after 105 ns,
-	     '0' after 125 ns,
-	     '1' after 155 ns,
-	     '0' after 185 ns,
-	     '1' after 215 ns,
-	     '0' after 245 ns;
-
+          '1' after 20 ns when clk /= '1' else '0' after 20 ns;
    rst <= '1' after 0 ns,
-	    '0' after 25 ns,
-	    '1' after 265 ns,
-	    '0' after 290 ns;
+	  '0' after 15 ns;
 
 end behaviour;
 

@@ -11,61 +11,16 @@
 # //  is prohibited from disclosure under the Trade Secrets Act,
 # //  18 U.S.C. Section 1905.
 # //
-# vsim memory_cntrll_tb_behaviour_cfg -lib work -L TSMCLib -do "/data/public/common/software/opprog/do_files/init_simulator.do" 
-# Start time: 11:14:11 on Nov 26,2021
+# vsim counter5b_tb_behaviour_cfg -lib work -L TSMCLib -do "/data/public/common/software/opprog/do_files/init_simulator.do" 
+# Start time: 11:47:49 on Nov 29,2021
+# ** Error: (vsim-7) Failed to open info file "/tmp/.x2go-mlmjanssen/media/disk/_Users_martijn_ElecTRON/Memory/work/_info" in read mode.
+# No such file or directory. (errno = ENOENT)
 # ** Note: (vsim-3813) Design is being optimized due to module recompilation...
-# Loading std.standard
-# Loading std.textio(body)
-# Loading ieee.std_logic_1164(body)
-# Loading work.memory_cntrll_tb_behaviour_cfg#1
-# Loading work.memory_cntrll_tb(behaviour)#1
-# Loading work.memory_cntrll_behaviour_cfg#1
-# Loading work.memory_cntrll(behaviour)#1
-# Loading work.readwrite(behaviour)#1
-# Loading ieee.numeric_std(body)
-# Loading work.counter5b(behaviour)#1
-# Loading work.counter8b(behaviour)#1
-# Loading work.countextend(behaviour)#1
-# do /data/public/common/software/opprog/do_files/init_simulator.do
-run 50 us
-# End time: 11:22:39 on Nov 26,2021, Elapsed time: 0:08:28
-# Errors: 0, Warnings: 0
-# reading modelsim.ini
-# vsim memory_cntrll_tb_behaviour_cfg -lib work -L TSMCLib 
-# Start time: 11:22:44 on Nov 26,2021
-# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
-# Loading std.standard
-# Loading std.textio(body)
-# Loading ieee.std_logic_1164(body)
-# Loading work.memory_cntrll_tb_behaviour_cfg#1
-# Loading work.memory_cntrll_tb(behaviour)#1
-# Loading work.memory_cntrll_behaviour_cfg#1
-# Loading work.memory_cntrll(behaviour)#1
-# Loading work.readwrite(behaviour)#1
-# Loading ieee.numeric_std(body)
-# Loading work.counter5b(behaviour)#1
-# Loading work.counter8b(behaviour)#1
-# Loading work.countextend(behaviour)#1
-run 50100 ns
-run 200 ns
-# End time: 11:26:00 on Nov 26,2021, Elapsed time: 0:03:16
-# Errors: 0, Warnings: 0
-# reading modelsim.ini
-# vsim memory_cntrll_tb_behaviour_cfg -lib work -L TSMCLib 
-# Start time: 11:26:01 on Nov 26,2021
-# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
-# Loading std.standard
-# Loading std.textio(body)
-# Loading ieee.std_logic_1164(body)
-# Loading work.memory_cntrll_tb_behaviour_cfg#1
-# Loading work.memory_cntrll_tb(behaviour)#1
-# Loading work.memory_cntrll_behaviour_cfg#1
-# Loading work.memory_cntrll(behaviour)#1
-# Loading work.readwrite(behaviour)#1
-# Loading ieee.numeric_std(body)
-# Loading work.counter5b(behaviour)#1
-# Loading work.counter8b(behaviour)#1
-# Loading work.countextend(behaviour)#1
-run 51 us
-# End time: 11:27:24 on Nov 26,2021, Elapsed time: 0:01:23
-# Errors: 0, Warnings: 0
+# ** Error: (vopt-7) Failed to open info file "/tmp/.x2go-mlmjanssen/media/disk/_Users_martijn_ElecTRON/Memory/work/_info" in read mode.
+# No such file or directory. (errno = ENOENT)
+# Optimization failed
+# ** Error: (vopt-1933) Unable to create temporary directory /tmp/.x2go-mlmjanssen/media/disk/_Users_martijn_ElecTRON/Memory/work/_tempmsg
+# No such file or directory. (errno = ENOENT)
+# Error loading design
+# End time: 11:47:59 on Nov 29,2021, Elapsed time: 0:00:10
+# Errors: 1, Warnings: 0
