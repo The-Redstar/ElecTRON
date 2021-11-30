@@ -1,75 +1,5 @@
 library IEEE;
 use IEEE.std_logic_1164.ALL;
-
-entity busy_counter is
-   port(clk               : in  std_logic;
-        global_reset 			  : in  std_logic;
-		game_engine_reset : in  std_logic;
-        busy              : in  std_logic;
-        busy_count        : out std_logic_vector(4 downto 0));
-end busy_counter;
-
-library IEEE;
-use IEEE.std_logic_1164.ALL;
-use IEEE.numeric_std.all;
-
-architecture behaviour of busy_counter is
-
---implemeted as a FSM with the count increasing when busy changes from high to low
-	type busy_counter_state_type is (reset, busy_low, busy_high, busy_high_to_low);
-	signal busy_counter_state, next_busy_counter_state: busy_counter_state_type;
-	signal unsigned_busy_count, next_unsigned_busy_count: unsigned (4 downto 0);
-
-begin
-
-	process (clk)
-	begin
-		if (clk'event and clk = '1') then
-			if (global_reset = '1' or game_engine_reset = '1') then
-				busy_counter_state <= reset;
-				unsigned_busy_count <= (others => '0');
-			else
-				busy_counter_state <= next_busy_counter_state;
-				unsigned_busy_count <= next_unsigned_busy_count;
-			end if;
-		end if;
-	end process;
-	
-	process (busy, busy_counter_state)
-	begin
-		case busy_counter_state is
-		
-			when reset =>
-				next_busy_counter_state <= busy_low;
-				next_unsigned_busy_count <= (others => '0');
-				
-			when busy_low =>
-				next_unsigned_busy_count <= unsigned_busy_count;
-				if (busy = '1') then
-					next_busy_counter_state <= busy_high;
-				else
-					next_busy_counter_state <= busy_low;
-				end if;
-				
-			when busy_high =>
-				next_unsigned_busy_count <= unsigned_busy_count;
-				if (busy = '0') then 
-					next_busy_counter_state <= busy_high_to_low;
-				else
-					next_busy_counter_state <= busy_high;
-				end if;
-				
-			when busy_high_to_low =>
-				next_unsigned_busy_count <= unsigned_busy_count + 1;
-				next_busy_counter_state <= busy_low;
-		end case;
-	end process;
-	busy_count <= std_logic_vector(unsigned_busy_count);
-
-end behaviour;
-
-library IEEE;
-use IEEE.std_logic_1164.ALL;
 use ieee.numeric_std.all;
 
 entity game_engine is
@@ -319,6 +249,7 @@ create_next_state: 	process (state, reset, input, busy, read_memory, memory_read
 				d_position_1				<= "01110100100";
 				d_direction_0				<= "00";
 				d_direction_1				<= "00";
+				
 				d_player_0_state			<= "10";
 				d_player_1_state			<= "10";
 				
@@ -414,10 +345,10 @@ create_next_state: 	process (state, reset, input, busy, read_memory, memory_read
 				d_next_direction_1			<= (others => '0');
 			
 				
-				if (input = "0000") then
+				if ((input(3 downto 2) = direction_1) and (input(1 downto 0) = direction_0)) then
 					-- normally it should go to the wait state however for testing reasons we skip that state for now since we know it works
-					-- new_state <= wait_state;
-					new_state <= read_inputs;
+					new_state <= wait_state;
+					-- new_state <= read_inputs;
 					e_player_0_state			<= '1';
 					e_player_1_state			<= '1';
 					d_player_0_state			<= "11";
@@ -1218,7 +1149,7 @@ create_next_state: 	process (state, reset, input, busy, read_memory, memory_read
 					new_state 					<= change_data;
 				else 
 					write_enable 				<= '1';
-					write_memory(7 downto 3) 	<= "00000";
+					write_memory(7 downto 3) 	<= "00001";
 					write_memory(2 downto 0) 	<= wallshape_1;
 					address 					<= position_1(9 downto 0);
 					go_to 						<= '1';
@@ -1403,8 +1334,8 @@ create_next_state: 	process (state, reset, input, busy, read_memory, memory_read
 				
 				if ((player_0_state = "11") and (player_1_state = "11")) then
 					-- normally it should go to the wait state however for testing reasons we skip that state for now since we know it works
-					-- new_state <= wait_state;
-					new_state <= read_inputs;
+					new_state <= wait_state;
+					-- new_state <= read_inputs;
 				elsif (player_0_state = "11") then 
 					new_state <= player_0_won;
 				elsif (player_1_state = "11") then

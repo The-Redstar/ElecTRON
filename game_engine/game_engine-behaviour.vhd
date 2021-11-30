@@ -169,6 +169,43 @@ updates: 	process (clk)
 		if (clk'event and clk = '1') then
 			if (reset = '1') then
 				state <= reset_state;
+				state_vga 					<= "000";
+				write_enable 				<= '0';
+				write_memory 				<= "00000000";
+				address 					<= "0000000000";			  
+				go_to						<= '0';
+				busy_counter_reset			<= '0';
+				clear_memory				<= '0';
+			
+				e_position_0				<= '0';
+				e_position_1				<= '0';	
+				e_wallshape_0				<= '0';	
+				e_wallshape_1				<= '0';
+				e_read_memory_0				<= '0';
+				e_read_memory_1				<= '0';
+				e_next_position_0			<= '0';
+				e_next_position_1			<= '0';
+				e_direction_0				<= '0';
+				e_direction_1				<= '0';
+				e_next_direction_0			<= '0';	
+				e_next_direction_1			<= '0';
+				e_player_0_state			<= '0';
+				e_player_1_state			<= '0';
+				
+				d_position_0				<= (others => '0');
+				d_position_1				<= (others => '0');	
+				d_wallshape_0				<= (others => '0');	
+				d_wallshape_1				<= (others => '0');
+				d_read_memory_0				<= (others => '0');
+				d_read_memory_1				<= (others => '0');
+				d_next_position_0			<= (others => '0');
+				d_next_position_1			<= (others => '0');
+				d_direction_0				<= (others => '0');
+				d_direction_1				<= (others => '0');
+				d_next_direction_0			<= (others => '0');	
+				d_next_direction_1			<= (others => '0');
+				d_player_0_state			<= (others => '0');
+				d_player_1_state			<= (others => '0');
 			else
 				state <= new_state;
 			end if;
