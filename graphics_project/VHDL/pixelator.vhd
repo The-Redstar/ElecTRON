@@ -256,50 +256,50 @@ layering: process(bbox_wall, bbox_dot, bbox_v, bbox_h, bbox_border, bbox_jump, b
 						
 				
 		
-		if ((bbox_explosion_outer or bbox_explosion_inner) and (not(player1_mode(1)) or not(player0_mode(1)))) = '1' then
-			layer <= "1001"; --explosion layer
-			if (bbox_explosion_outer = '1') then -- could be expanded by making different explosion colours for different players
-				colour <= C_explosion_outer;
-			else
-				colour <= C_explosion_inner;
-			end if;
-		elsif ((bbox_border(0) and borders(4)) or (bbox_border(1) and borders(5)) or (bbox_border(2) and borders(6)) or (bbox_border(3) and borders(7))) = '1' then
-			layer <= "1000"; -- top level border
-			colour <= C_border1; 
-		elsif (((bbox_h and (player0_dir(0) or player1_dir(0))) or (bbox_v and (not(player0_dir(0) or not(player1_dir(0)))))) and (player0_layer or player1_layer) and (player0_en or player1_en)) = '1' then --this if condition can be made better i think
-			layer <= "0111"; -- top level player
-			if (player0_en = '1') then 
-				colour <= C_player0;
-			else
-				colour <= C_player1;
-			end if;
-		elsif ((bbox_wall(4) and wall_1_N) or (bbox_wall(5) and ((walls(6 downto 4) = "010") or (walls(6 downto 4) = "110") or (walls(6 downto 4) = "101"))) or (bbox_wall(6) and walls(6)) or (bbox_wall(7) and walls(7))) = '1' then
-			layer <= "0110"; -- top level walls
+		-- if ((bbox_explosion_outer or bbox_explosion_inner) and (not(player1_mode(1)) or not(player0_mode(1)))) = '1' then
+			-- layer <= "1001"; --explosion layer
+			-- if (bbox_explosion_outer = '1') then -- could be expanded by making different explosion colours for different players
+				-- colour <= C_explosion_outer;
+			-- else
+				-- colour <= C_explosion_inner;
+			-- end if;
+		-- elsif ((bbox_border(0) and borders(4)) or (bbox_border(1) and borders(5)) or (bbox_border(2) and borders(6)) or (bbox_border(3) and borders(7))) = '1' then
+			-- layer <= "1000"; -- top level border
+			-- colour <= C_border1; 
+		-- elsif (((bbox_h and (player0_dir(0) or player1_dir(0))) or (bbox_v and (not(player0_dir(0) or not(player1_dir(0)))))) and (player0_layer or player1_layer) and (player0_en or player1_en)) = '1' then --this if condition can be made better i think
+			-- layer <= "0111"; -- top level player
+			-- if (player0_en = '1') then 
+				-- colour <= C_player0;
+			-- else
+				-- colour <= C_player1;
+			-- end if;
+		-- elsif ((bbox_wall(4) and wall_1_N) or (bbox_wall(5) and ((walls(6 downto 4) = "010") or (walls(6 downto 4) = "110") or (walls(6 downto 4) = "101"))) or (bbox_wall(6) and walls(6)) or (bbox_wall(7) and walls(7))) = '1' then
+			-- layer <= "0110"; -- top level walls
 			--how to know which player made the wall?
-		elsif ((bbox_jump(0) and jumps(4)) or (bbox_jump(1) and jumps(5)) or (bbox_jump(2) and jumps(6)) or (bbox_jump(3) and jumps(7))) = '1' then
-			layer <= "0101"; -- top level jumps
-			colour <= C_jump1;
-		elsif ((bbox_border(0) and borders(0)) or (bbox_border(1) and borders(1)) or (bbox_border(2) and borders(2)) or (bbox_border(3) and borders(3))) = '1' then
-			layer <= "0100"; -- bottom level border
-			colour <= C_border0;
-		elsif (((bbox_h and (player0_dir(0) or player1_dir(0))) or (bbox_v and (not(player0_dir(0) or not(player1_dir(0)))))) and (not(player0_layer) or not(player1_layer))) = '1' then
-			layer <= "0011"; -- bottom level player
-			if (player0_en = '1') then
-				colour <= C_player0;
-			else
-				colour <= C_player1;
-			end if;
-		elsif ((bbox_wall(0) and walls(0)) or (bbox_wall(1) and walls(1)) or (bbox_wall(2) and walls(2)) or (bbox_wall(3) and walls(3))) = '1' then
-			layer <= "0010"; -- bottom level wall
-			-- how to know which player made the wall?
-		elsif ((bbox_jump(0) and jumps(0)) or (bbox_jump(1) and jumps(1)) or (bbox_jump(2) and jumps(2)) or (bbox_jump(3) and jumps(4))) = '1' then
-			layer <= "0001"; -- bottom level jumps
-			colour <= C_jump0;
-		elsif (bbox_dot) = '1' then
-			layer <= "0000"; -- dot
-			colour <= C_dot;
-		else
-			colour <= C_background;
-		end if;
+		-- elsif ((bbox_jump(0) and jumps(4)) or (bbox_jump(1) and jumps(5)) or (bbox_jump(2) and jumps(6)) or (bbox_jump(3) and jumps(7))) = '1' then
+			-- layer <= "0101"; -- top level jumps
+			-- colour <= C_jump1;
+		-- elsif ((bbox_border(0) and borders(0)) or (bbox_border(1) and borders(1)) or (bbox_border(2) and borders(2)) or (bbox_border(3) and borders(3))) = '1' then
+			-- layer <= "0100"; -- bottom level border
+			-- colour <= C_border0;
+		-- elsif (((bbox_h and (player0_dir(0) or player1_dir(0))) or (bbox_v and (not(player0_dir(0) or not(player1_dir(0)))))) and (not(player0_layer) or not(player1_layer))) = '1' then
+			-- layer <= "0011"; -- bottom level player
+			-- if (player0_en = '1') then
+				-- colour <= C_player0;
+			-- else
+				-- colour <= C_player1;
+			-- end if;
+		-- elsif ((bbox_wall(0) and walls(0)) or (bbox_wall(1) and walls(1)) or (bbox_wall(2) and walls(2)) or (bbox_wall(3) and walls(3))) = '1' then
+			-- layer <= "0010"; -- bottom level wall
+			--how to know which player made the wall?
+		-- elsif ((bbox_jump(0) and jumps(0)) or (bbox_jump(1) and jumps(1)) or (bbox_jump(2) and jumps(2)) or (bbox_jump(3) and jumps(4))) = '1' then
+			-- layer <= "0001"; -- bottom level jumps
+			-- colour <= C_jump0;
+		-- elsif (bbox_dot) = '1' then
+			-- layer <= "0000"; -- dot
+			-- colour <= C_dot;
+		-- else
+			-- colour <= C_background;
+		-- end if;
 	end process;
 end behaviour;
