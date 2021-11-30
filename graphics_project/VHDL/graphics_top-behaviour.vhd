@@ -4,6 +4,36 @@ use IEEE.numeric_std.ALL;
 
 architecture behaviour of graphics_top is
 
+	component pixelator is
+	port(dx				: in  std_logic_vector(3 downto 0);
+		dy				: in  std_logic_vector(3 downto 0);
+
+		player0_en		: in  std_logic;
+		player1_en		: in  std_logic;
+		player0_layer	: in  std_logic;
+		player1_layer	: in  std_logic;
+		player0_dir		: in  std_logic_vector(1 downto 0);
+		player1_dir		: in  std_logic_vector(1 downto 0);
+		player0_mode	: in  std_logic_vector(1 downto 0);
+		player1_mode	: in  std_logic_vector(1 downto 0);
+
+		walls			: in  std_logic_vector(7 downto 0);
+		borders			: in  std_logic_vector(7 downto 0);
+		jumps			: in  std_logic_vector(7 downto 0);
+
+		colour			: out std_logic_vector(3 downto 0));
+	end component;
+	
+	component wall_decoder is
+	port(encoded	: in  std_logic_vector(2 downto 0);
+		north		: out std_logic;
+		east		: out std_logic;
+		south		: out std_logic;
+		west		: out std_logic);
+	end component;
+
+
+
 
 	--VGA/timing signals
 	signal h_count, next_h_count, v_count, next_v_count:	unsigned(9 downto 0);
@@ -29,7 +59,7 @@ architecture behaviour of graphics_top is
 	signal data_synced, next_data_synced:					std_logic_vector(7 downto 0);--data from memory passed on
 	signal borders_synced, next_borders_synced:				std_logic_vector(7 downto 0);--data from grid manager
 	signal jumps_synced, next_jumps_synced:					std_logic_vector(7 downto 0);--data from grid manager
-	
+	signal walls:											std_logic_vector(7 downto 0);--walls; decoded data
 	
 	signal player0_en,player1_en:							std_logic;
 	
@@ -52,9 +82,46 @@ architecture behaviour of graphics_top is
 
 begin
 
+--decode walls on layer 0
+dec0: wall_decoder port map(
+		encoded=>data_synced(2 downto 0),
+		north=>walls(0),
+		east=>walls(3),
+		south=>walls(2),
+		west=>walls(1)
+	);
+	
+--decode walls on layer 1
+dec1: wall_decoder port map(
+		encoded=>data_synced(6 downto 4),
+		north=>walls(4),
+		east=>walls(7),
+		south=>walls(6),
+		west=>walls(5)
+	);
+	
+--calculate pixel from game data
+pxl: pixelator port map(
+		dx=>dx,
+		dy=>dy,
+		player0_en=>player0_en,
+		player1_en=>player1_en,
+		player0_layer=>player0_pos(10),
+		player1_layer=>player1_pos(10),
+		player0_dir=>player0_dir,
+		player1_dir=>player1_dir,
+		player0_mode=>player0_mode,
+		player1_mode=>player1_mode,
+		walls=>walls,
+		layer0_player=>data_synced(3);
+		layer1_player=>data_synced(7);
+		borders=>borders_synced,
+		jumps=>jumps_synced,
+		color=>,
+	);
 
-	--some useful values
 
+--some useful values for coordinates and counting
 	dx<=h_count(3 downto 0); --4 lsb
 	dy<=v_count(3 downto 0);
 	dx_vec<=std_logic_vector(dx);
@@ -67,7 +134,7 @@ begin
 	v_count_y_component<=h_count(9 downto 4);
 
 
-	--clocking process
+--clocking process
 	process(clk)
 	begin
 		if(rising_edge(clk)) then
@@ -91,6 +158,7 @@ begin
 		end if;
 	end process;
 
+--VGA timing
 	process(v_count, h_count) --vertical timing
 	begin
 		if h_count = A-1 then --go to next line when line is finished
@@ -125,7 +193,7 @@ begin
 		end if;
 	end process;
 
-
+--screen output
 	--visible section detection
 	process(h_count)
 	begin
@@ -146,10 +214,8 @@ begin
 	end process;
 	
 	busy <= in_visible_y;
-	
 
-	
-	
+--memory access
 	--x_incr, pass data
 	process(dx, x, in_visible_y, data_synced, borders_synced, jumps_synced, data, borders, jumps)
 	begin
@@ -196,7 +262,7 @@ begin
 		
 	end process;
 	
-	--output
+--output
 	--check player positions
 	process(player0_pos)
 	begin
