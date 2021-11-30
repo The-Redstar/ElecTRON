@@ -18,6 +18,9 @@ architecture behaviour of graphics_top is
 		player1_mode	: in  std_logic_vector(1 downto 0);
 
 		walls			: in  std_logic_vector(7 downto 0);
+		layer0_player	: in  std_logic;
+		layer1_player	: in  std_logic;
+		
 		borders			: in  std_logic_vector(7 downto 0);
 		jumps			: in  std_logic_vector(7 downto 0);
 
@@ -73,9 +76,9 @@ architecture behaviour of graphics_top is
 	constant A : natural := B + C + D + E;  -- line
 
 	constant P : natural := 2;   -- vertical sync
-	constant Q : natural := 32+1;  -- back porch + border, +1 for vsync correction
+	constant Q : natural := 33;  -- back porch + border
 	constant R : natural := 480; -- visible area
-	constant S : natural := 10-1;  -- border + front porch, -1 for vsync correction
+	constant S : natural := 10;  -- border + front porch
 	constant O : natural := P + Q + R + S;  -- all lines
 
 
