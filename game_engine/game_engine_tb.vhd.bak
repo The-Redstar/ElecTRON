@@ -76,8 +76,7 @@ clk <= '1' after 0 ns,
 reset <= '1' after 0 ns,
 	'0' after 60 ns; -- goes to loading state
 
-input <= "0010" after 0 ns,
-	"0000" after 230 ns, -- goes to wait state
+input <= "0000" after 230 ns, -- goes to wait state
 	"0001" after 4000 ns;
 
 

@@ -169,6 +169,14 @@ updates: 	process (clk)
 		if (clk'event and clk = '1') then
 			if (reset = '1') then
 				state <= reset_state;
+				state_vga 					<= "000";
+				write_enable 				<= '0';
+				write_memory 				<= "00000000";
+				address 					<= "0000000000";			  
+				go_to						<= '0';
+				busy_counter_reset			<= '0';
+				clear_memory				<= '0';
+				
 			else
 				state <= new_state;
 			end if;
