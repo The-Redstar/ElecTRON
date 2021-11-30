@@ -16,6 +16,9 @@ entity pixelator is
         player1_mode  : in  std_logic_vector(1 downto 0);
 
 		walls	      : in  std_logic_vector(7 downto 0);
+		layer0_player : in  std_logic;
+		layer1_player : in  std_logic;
+		
         borders       : in  std_logic_vector(7 downto 0);
         jumps         : in  std_logic_vector(7 downto 0);
 
@@ -35,13 +38,13 @@ signal bbox_wall: std_logic_vector(7 downto 0);--W,E,S,N,W,E,S,N last 4 are of t
 signal bbox_h, bbox_v: std_logic;
 signal bbox_explosion_inner, bbox_explosion_outer: std_logic;
 -------------------------------------------------------------
-signal layer: std_logic_vector(3 downto 0);
-signal wall_1_N, wall_1_S, wall_1_E, wall_1_W, wall_0_N, wall_0_S, wall_0_E, wall_0_W: std_logic;
 
 constant C_explosion_outer 			: std_logic_vector(3 downto 0):= "0000";
 constant C_explosion_inner 			: std_logic_vector(3 downto 0):= "0000";
-constant C_player0 				: std_logic_vector(3 downto 0):= "0000";
-constant C_player1 				: std_logic_vector(3 downto 0):= "0000";
+constant C_player0_L0 				: std_logic_vector(3 downto 0):= "0000";
+constant C_player0_L1 				: std_logic_vector(3 downto 0):= "0000";
+constant C_player1_L0 				: std_logic_vector(3 downto 0):= "0000";
+constant C_player1_L1 				: std_logic_vector(3 downto 0):= "0000";
 constant C_wall1 				: std_logic_vector(3 downto 0):= "0000";
 constant C_wall2 				: std_logic_vector(3 downto 0):= "0000";
 constant C_jump0 				: std_logic_vector(3 downto 0):= "0000";
@@ -230,11 +233,28 @@ bounds:	process(xe0, xe1, xg1, xg3, xg4, xg5, xg6, xs9, xs10, xs11, xs12, xs14, 
 
 layering: process(bbox_wall, bbox_dot, bbox_v, bbox_h, bbox_border, bbox_jump, bbox_explosion_outer, bbox_explosion_inner, walls, borders, jumps, player0_dir, player0_en, player0_layer, player0_mode, player1_dir, player1_en, player1_layer, player1_mode)
 	begin
-		if ((walls(6 downto 4) = "010") or (walls(6 downto 4) = "100") or (walls(6 downto 4) = "111")) then
-			wall_1_N <= '1';
-		else
-			wall_1_N <= '0';
-		end if; -- maybe make this into a LUT and maybe put all of this in a seperate process???
+		if (not(player1_mode(1)) or not(player0_mode(1))) = '1' then
+			if (bbox_explosion_outer = '1') then -- could be expanded by making different explosion colours for different players
+				colour <= C_explosion_outer;
+			elsif (bbox_explosion_inner = '1') then
+				colour <= C_explosion_inner;
+			else
+				colour <= C_background;
+			end if;
+		else 
+			if ((bbox_border(0) and borders(4)) or (bbox_border(1) and borders(5)) or (bbox_border(2) and borders(6)) or (bbox_border(3) and borders(7))) = '1' then
+				colour <= C_border1;
+			elsif (player0_en or player1_en) then
+				if (player0_en = '1') then
+					if ((bbox_h and player0_dir(0)) or (bbox_v and not(player0_dir(0)))) = '1' then
+						if player0_layer = '1' then
+							colour <= C_player0_L1;
+						else
+							colour <= C_player0_L0;
+						end if;
+					else
+						
+				
 		
 		if ((bbox_explosion_outer or bbox_explosion_inner) and (not(player1_mode(1)) or not(player0_mode(1)))) = '1' then
 			layer <= "1001"; --explosion layer
