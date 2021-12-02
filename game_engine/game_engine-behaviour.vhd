@@ -310,6 +310,8 @@ create_next_state: 	process (state, reset, input, busy, read_memory, memory_read
 				d_direction_1				<= (others => '0');
 				d_next_direction_0			<= (others => '0');	
 				d_next_direction_1			<= (others => '0');
+				d_player_0_state			<= (others => '0');
+				d_player_1_state			<= (others => '0');
 				
 				
 				if (memory_ready = '1') then 
