@@ -49,7 +49,7 @@ architecture structural of game_engine_tb is
 
 begin
 
-	lbl0: game_engine port map	(clk           => clk,
+lbl0: game_engine port map	(clk           => clk,
 							reset              => reset,
 							input              => input,
 							busy               => busy,
@@ -79,62 +79,14 @@ reset <= 	'1' after 0 ns,
 input <= 	"0000" after 340 ns, -- goes to wait state
 			"0111" after 1000 ns;
 
-
+-- in reality the busy signal is not always '0', however, since it is shown in another simulation that the code concerning the busy signal works, it is kept '0' for simplicity
+-- this means that in the behavioural code of the game_engine the wait_state is skipped
 busy <= 	'0' after 0 ns;
 
-
+-- in this simulation the players do not go over a cell that already has a wall, therefore the it will always be "00000000"
 read_memory <=	"00000000" after 0 ns;
 
+-- in reality the memory_ready signal is not always '1', however, since it is shown in another simulation that the code concerning the memory_ready signal works, it is kept '1' for simplicity
+memory_ready <= '1' after 0 ns;
 
-memory_ready <= '1' after 0 ns,
-				'0' after 120 ns,
-				'1' after 220 ns,
-				'0' after 520 ns, -- cycle 1
-				'1' after 620 ns,
-				'0' after 660 ns,
-				'1' after 760 ns,
-				'0' after 880 ns,
-				'1' after 980 ns,
-				'0' after 1020 ns,
-				'1' after 1120 ns,
-				'0' after 1400 ns, --  cycle 2
-				'1' after 1500 ns,
-				'0' after 1540 ns,
-				'1' after 1640 ns,
-				'0' after 1760 ns,
-				'1' after 1860 ns,
-				'0' after 1900 ns,
-				'1' after 2000 ns,
-				'0' after 2280 ns, --  cycle 3
-				'1' after 2380 ns,
-				'0' after 2420 ns,
-				'1' after 2520 ns,
-				'0' after 2640 ns,
-				'1' after 2740 ns,
-				'0' after 2780 ns,
-				'1' after 2880 ns, -- cycle 4
-				'0' after 3160 ns,
-				'1' after 3260 ns,
-				'0' after 3300 ns,
-				'1' after 3400 ns,
-				'0' after 3520 ns,
-				'1' after 3620 ns,
-				'0' after 3660 ns,
-				'1' after 3760 ns,
-				'0' after 4040 ns, -- cylce 5
-				'1' after 4140 ns,
-				'0' after 4180 ns,
-				'1' after 4280 ns,
-				'0' after 4400 ns,
-				'1' after 4500 ns,
-				'0' after 4540 ns,
-				'1' after 4640 ns, 
-				'0' after 4920 ns, -- cycle 6
-				'1' after 5020 ns,
-				'0' after 5060 ns,
-				'1' after 5160 ns;
-
--- 
-
-			
 end architecture structural;
