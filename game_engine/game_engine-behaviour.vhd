@@ -219,11 +219,11 @@ create_next_state: 	process (state, reset, input, busy, read_memory, memory_read
 				d_player_0_state			<= (others => '0');
 				d_player_1_state			<= (others => '0');
 			
-				-- go to the state want_to_load next
+				-- go to the state 'want_to_load' next
 				new_state <= want_to_load;
 			
 			when want_to_load =>
-				-- let the memory know that we want to clear the memory and load a new game
+				-- let the memory module know that the memory has to be cleared 
 				state_vga 					<= "000";
 				write_enable 				<= '0';
 				write_memory 				<= "00000000";
@@ -262,11 +262,16 @@ create_next_state: 	process (state, reset, input, busy, read_memory, memory_read
 				d_player_0_state			<= (others => '0');
 				d_player_1_state			<= (others => '0');
 
+<<<<<<< HEAD
+				-- go to the state 'loading_state' to check whem memory is ready
+=======
 				-- go to the state loading_state next to clear the memory
+				--memory_ready will still be 1, need to wait an extra clockcycle
+>>>>>>> 753c443e77bbbc0db800adf5cd01532cfe4e8176
 				new_state <= loading_state;
 			
 			when loading_state =>
-				-- let the memory know that we want to clear the memory and load a new game and wait for them to tell us they have finished
+				-- continue to let the memory module know  to clear the memory and check when the memory is done
 				state_vga 					<= "000";
 				write_enable 				<= '0';
 				write_memory 				<= "00000000";
@@ -364,6 +369,11 @@ create_next_state: 	process (state, reset, input, busy, read_memory, memory_read
 				else 
 					new_state				<= get_ready;
 				end if;
+<<<<<<< HEAD
+=======
+				
+				-- when both players are ready the game should begin by going to the wait state next, otherwise stay here untill they are ready
+>>>>>>> aabd63c92ad64b78d04f7400c53c55fbe59b3ad5
 
 			when player_0_ready =>
 				-- player 0 is ready to play
@@ -556,14 +566,14 @@ create_next_state: 	process (state, reset, input, busy, read_memory, memory_read
 				end if;
 
 			when busy_reset => 
-				busy_counter_reset <= '1';
-				new_state <= read_inputs;
+				--reset the counter
+				busy_counter_reset			<= '1';
 
-				state_vga 				<= "111";
+				state_vga 					<= "111";
 				write_enable 				<= '0';
 				write_memory 				<= "00000000";
-				address 				<= "0000000000";
-				go_to					<= '0';
+				address 					<= "0000000000";
+				go_to						<= '0';
 				clear_memory				<= '0';
 				
 				e_position_0				<= '0';
@@ -595,6 +605,8 @@ create_next_state: 	process (state, reset, input, busy, read_memory, memory_read
 				d_next_direction_1			<= (others => '0');
 				d_player_0_state			<= (others => '0');
 				d_player_1_state			<= (others => '0');
+				
+				new_state <= read_inputs;
 
 			when read_inputs =>
 				-- read the inputs from the players and remember them
@@ -1054,7 +1066,7 @@ create_next_state: 	process (state, reset, input, busy, read_memory, memory_read
 				end if;
 
 			when check_collision =>
-				-- check whether or not either one or both the players collide with a wall made by eiter one
+				-- check whether or not players collide with eachother
 				state_vga   				<= "111";
 				write_enable 				<= '0';
 				write_memory  				<= "00000000";
@@ -1326,7 +1338,7 @@ create_next_state: 	process (state, reset, input, busy, read_memory, memory_read
 				end if;
 		
 			when change_data =>
-				-- change the data that is going to the VGA
+				-- change the data that is going to the VGA and update data in the register
 				state_vga   				<= "111";
 				write_enable 				<= '0';
 				write_memory				<= "00000000";
