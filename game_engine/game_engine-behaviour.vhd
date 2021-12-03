@@ -262,12 +262,9 @@ create_next_state: 	process (state, reset, input, busy, read_memory, memory_read
 				d_player_0_state			<= (others => '0');
 				d_player_1_state			<= (others => '0');
 
-<<<<<<< HEAD
 				-- go to the state 'loading_state' to check whem memory is ready
-=======
 				-- go to the state loading_state next to clear the memory
-				--memory_ready will still be 1, need to wait an extra clockcycle
->>>>>>> 753c443e77bbbc0db800adf5cd01532cfe4e8176
+				-- memory_ready will still be 1, need to wait an extra clockcycle
 				new_state <= loading_state;
 			
 			when loading_state =>
@@ -369,11 +366,6 @@ create_next_state: 	process (state, reset, input, busy, read_memory, memory_read
 				else 
 					new_state				<= get_ready;
 				end if;
-<<<<<<< HEAD
-=======
-				
-				-- when both players are ready the game should begin by going to the wait state next, otherwise stay here untill they are ready
->>>>>>> aabd63c92ad64b78d04f7400c53c55fbe59b3ad5
 
 			when player_0_ready =>
 				-- player 0 is ready to play
