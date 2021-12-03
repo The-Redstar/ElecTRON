@@ -232,67 +232,22 @@ create_next_state: 	process (state, reset, input, busy, read_memory, memory_read
 				
 				clear_memory				<= '1';
 				
-				e_position_0				<= '1';
-				e_position_1				<= '1';
-				e_direction_0				<= '1';
-				e_direction_1				<= '1';
-				e_player_0_state			<= '1';
-				e_player_1_state			<= '1';
-				
+				e_position_0				<= '0';
+				e_position_1				<= '0';
 				e_wallshape_0				<= '0';	
 				e_wallshape_1				<= '0';
 				e_read_memory_0				<= '0';
 				e_read_memory_1				<= '0';
 				e_next_position_0			<= '0';
 				e_next_position_1			<= '0';
-				e_next_direction_0			<= '0';	
-				e_next_direction_1			<= '0';
-				
-				d_position_0				<= "01110111001";
-				d_position_1				<= "01110100100";
-				d_direction_0				<= "00";
-				d_direction_1				<= "00";
-				
-				d_player_0_state			<= "10";
-				d_player_1_state			<= "10";
-				
-				d_wallshape_0				<= (others => '0');	
-				d_wallshape_1				<= (others => '0');
-				d_read_memory_0				<= (others => '0');
-				d_read_memory_1				<= (others => '0');
-				d_next_position_0			<= (others => '0');
-				d_next_position_1			<= (others => '0');
-				d_next_direction_0			<= (others => '0');	
-				d_next_direction_1			<= (others => '0');
-				
-				new_state <= loading_state;
-			
-			when loading_state =>
-				state_vga 					<= "000";
-				write_enable 				<= '0';
-				write_memory 				<= "00000000";
-				address 					<= "0000000000";
-				busy_counter_reset			<= '0';
-				go_to						<= '0';
-				
-				clear_memory				<= '1';
-				
-				e_position_0				<= '0';
-				e_position_1				<= '0';
 				e_direction_0				<= '0';
 				e_direction_1				<= '0';
+				e_next_direction_0			<= '0';	
+				e_next_direction_1			<= '0';
 				e_player_0_state			<= '0';
 				e_player_1_state			<= '0';
 				
-				e_wallshape_0				<= '0';	
-				e_wallshape_1				<= '0';
-				e_read_memory_0				<= '0';
-				e_read_memory_1				<= '0';
-				e_next_position_0			<= '0';
-				e_next_position_1			<= '0';
-				e_next_direction_0			<= '0';	
-				e_next_direction_1			<= '0';
-
+				
 				d_position_0				<= (others => '0');
 				d_position_1				<= (others => '0');	
 				d_wallshape_0				<= (others => '0');	
@@ -308,6 +263,51 @@ create_next_state: 	process (state, reset, input, busy, read_memory, memory_read
 				d_player_0_state			<= (others => '0');
 				d_player_1_state			<= (others => '0');
 				
+				
+				
+				new_state <= loading_state;
+			
+			when loading_state =>
+				state_vga 					<= "000";
+				write_enable 				<= '0';
+				write_memory 				<= "00000000";
+				address 					<= "0000000000";
+				busy_counter_reset			<= '0';
+				go_to						<= '0';
+				
+				clear_memory				<= '1';
+				
+				e_position_0				<= '1';
+				e_position_1				<= '1';
+				e_direction_0				<= '1';
+				e_direction_1				<= '1';
+				e_player_0_state			<= '1';
+				e_player_1_state			<= '1';
+				
+				e_wallshape_0				<= '0';	
+				e_wallshape_1				<= '0';
+				e_read_memory_0				<= '0';
+				e_read_memory_1				<= '0';
+				e_next_position_0			<= '0';
+				e_next_position_1			<= '0';
+				e_next_direction_0			<= '0';	
+				e_next_direction_1			<= '0';
+
+				d_position_0				<= "01110111001";
+				d_position_1				<= "01110100100";
+				d_direction_0				<= "00";
+				d_direction_1				<= "00";
+				d_player_0_state			<= "10";
+				d_player_1_state			<= "10";
+				
+				d_wallshape_0				<= (others => '0');	
+				d_wallshape_1				<= (others => '0');
+				d_read_memory_0				<= (others => '0');
+				d_read_memory_1				<= (others => '0');
+				d_next_position_0			<= (others => '0');
+				d_next_position_1			<= (others => '0');
+				d_next_direction_0			<= (others => '0');	
+				d_next_direction_1			<= (others => '0');
 				
 				if (memory_ready = '1') then 
 					new_state <= get_ready;
@@ -350,22 +350,29 @@ create_next_state: 	process (state, reset, input, busy, read_memory, memory_read
 				d_next_direction_1			<= (others => '0');
 			
 				
-				if ((input(3 downto 2) = direction_1) and (input(1 downto 0) = direction_0)) then
+				if (input(1 downto 0) = direction_0) then
+					e_player_0_state			<= '1';
+					d_player_0_state			<= "11";
+				else 
+					e_player_0_state			<= '0';
+					d_player_0_state			<= (others => '0');
+				end if;
+				
+				if (input(3 downto 2) = direction_1) then 
+					e_player_1_state			<= '1';
+					d_player_1_state			<= "11";
+				else 
+					e_player_1_state			<= '0';
+					d_player_0_state			<= (others => '0');
+				end if;
+				
+				if (player_0_state = "11" and player_1_state = "11") then --both players are ready
 					-- normally it should go to the wait state however for testing reasons we skip that state for now since we know it works
 					new_state <= wait_state;
 					-- new_state <= read_inputs;
-					e_player_0_state			<= '1';
-					e_player_1_state			<= '1';
-					d_player_0_state			<= "11";
-					d_player_1_state			<= "11";
 				else 
 					new_state <= get_ready;
-					e_player_0_state			<= '0';
-					e_player_1_state			<= '0';
-					d_player_0_state			<= (others => '0');
-					d_player_1_state			<= (others => '0');
 				end if;
-				
 
 			when player_0_won =>
 				state_vga 					<= "010";
