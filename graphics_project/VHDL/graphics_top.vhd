@@ -26,6 +26,7 @@ entity graphics_top is
 		player1_state	: in  std_logic_vector(1 downto 0);
 
 		busy			: out std_logic;
+		audio_clock		: out std_logic;
 
 		game_state		: in  std_logic_vector(2 downto 0)
 
