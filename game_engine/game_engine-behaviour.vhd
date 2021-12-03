@@ -147,12 +147,11 @@ reg: ge_register port map (clk => clk,
 			q_p_state_0   => player_0_state,
 			q_p_state_1   => player_1_state);
 			
-counter: busy_counter 
-			port map (clk => clk,
-						global_reset => reset,
-						game_engine_reset => busy_counter_reset,
-						busy => busy,
-						busy_count => unsigned_busy_count);
+counter: busy_counter port map (clk => clk,
+			global_reset => reset,
+			game_engine_reset => busy_counter_reset,
+			busy => busy,
+			busy_count => unsigned_busy_count);
 				
 -- outputs from the register to the vga				
 position_0_vga  <= position_0;
@@ -167,16 +166,10 @@ player_state_1_vga <= player_1_state;
 updates: 	process (clk)
 	begin
 		if (clk'event and clk = '1') then
+			-- go to the reset state when the reset button is pressed
 			if (reset = '1') then
-				state <= reset_state;
---				state_vga 					<= "000";
---				write_enable 				<= '0';
---				write_memory 				<= "00000000";
---				address 					<= "0000000000";			  
---				go_to						<= '0';
---				busy_counter_reset			<= '0';
---				clear_memory				<= '0';
-				
+				state <= reset_state;	
+			-- go to the next state according to the FSM
 			else
 				state <= new_state;
 			end if;
@@ -187,6 +180,7 @@ create_next_state: 	process (state, reset, input, busy, read_memory, memory_read
 	begin
 		case state is
 			when reset_state =>
+				-- in the reset state all the values are set to zero to reset everything
 				state_vga 					<= "000";
 				write_enable 				<= '0';
 				write_memory 				<= "00000000";
@@ -228,6 +222,7 @@ create_next_state: 	process (state, reset, input, busy, read_memory, memory_read
 				new_state <= want_to_load;
 			
 			when want_to_load =>
+				
 				state_vga 					<= "000";
 				write_enable 				<= '0';
 				write_memory 				<= "00000000";
