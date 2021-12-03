@@ -24,7 +24,7 @@ architecture behaviour of graphics_top is
 		borders			: in  std_logic_vector(7 downto 0);
 		jumps			: in  std_logic_vector(7 downto 0);
 
-		colour			: out std_logic_vector(3 downto 0));
+		color			: out std_logic_vector(3 downto 0));
 	end component;
 	
 	component wall_decoder is
@@ -54,7 +54,7 @@ architecture behaviour of graphics_top is
 	signal in_visible_x:									std_logic;
 	
 	--output
-	signal next_color:										std_logic_vector(3 downto 0);
+	signal next_color,pixelator_color:						std_logic_vector(3 downto 0);
 	
 
 
@@ -105,22 +105,22 @@ dec1: wall_decoder port map(
 	
 --calculate pixel from game data
 pxl: pixelator port map(
-		dx=>dx,
-		dy=>dy,
+		dx=>dx_vec,
+		dy=>dy_vec,
 		player0_en=>player0_en,
 		player1_en=>player1_en,
 		player0_layer=>player0_pos(10),
 		player1_layer=>player1_pos(10),
 		player0_dir=>player0_dir,
 		player1_dir=>player1_dir,
-		player0_mode=>player0_mode,
-		player1_mode=>player1_mode,
+		player0_mode=>player0_state,
+		player1_mode=>player1_state,
 		walls=>walls,
-		layer0_player=>data_synced(3);
-		layer1_player=>data_synced(7);
+		layer0_player=>data_synced(3),
+		layer1_player=>data_synced(7),
 		borders=>borders_synced,
 		jumps=>jumps_synced,
-		color=>,
+		color=>pixelator_color
 	);
 
 
@@ -185,8 +185,10 @@ pxl: pixelator port map(
 	begin
 		if h_count = A-1 then
 			next_h_count <= to_unsigned(0,10);
+			audio_clock <= '1';
 		else
 			next_h_count <= h_count+1;
+			audio_clock <= '0';
 		end if;
 
 		if h_count<B then --clocking signals means they are delayed by one cycle
@@ -220,7 +222,7 @@ pxl: pixelator port map(
 
 --memory access
 	--x_incr, pass data
-	process(dx, x, in_visible_y, data_synced, borders_synced, jumps_synced, data, borders, jumps)
+	process(dx, x, in_visible_y, data_synced, borders_synced, jumps_synced, data, borders, jumps,h_count_x_component)
 	begin
 		if dx=unsigned(std_logic_vector(to_signed(-1,4))) then
 			--pass data
@@ -267,7 +269,7 @@ pxl: pixelator port map(
 	
 --output
 	--check player positions
-	process(player0_pos)
+	process(player0_pos,x_vec,y_vec)
 	begin
 		if player0_pos(9 downto 5)=y_vec and player0_pos(4 downto 0)=x_vec then
 			player0_en<='1';
@@ -275,7 +277,7 @@ pxl: pixelator port map(
 			player0_en<='0';
 		end if;
 	end process;
-	process(player1_pos)
+	process(player1_pos,x_vec,y_vec)
 	begin
 		if player1_pos(9 downto 5)=y_vec and player1_pos(4 downto 0)=x_vec then
 			player1_en<='1';
@@ -285,7 +287,7 @@ pxl: pixelator port map(
 	end process;
 	
 	--output calculations -- dummy, not actual data
-	process(h_count,v_count,in_visible_x,in_visible_y) --calculate output color (gridded pattern)
+	process(h_count,v_count,in_visible_x,in_visible_y,pixelator_color) --calculate output color (gridded pattern)
 		variable px,py	: unsigned(9 downto 0);
 	begin
 		if in_visible_x='1' and in_visible_y='1' then
@@ -293,8 +295,9 @@ pxl: pixelator port map(
 			py:=v_count;
 			
 			if px<R then
-				next_color(3) <= px(4) xor py(4);
-				next_color(2 downto 0) <= "000";
+				next_color<=pixelator_color;
+--				next_color(3) <= px(4) xor py(4);
+--				next_color(2 downto 0) <= "000";
 			else
 				next_color <= "0000";
 			end if;
