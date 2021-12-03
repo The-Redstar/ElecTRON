@@ -865,6 +865,7 @@ create_next_state: 	process (state, reset, input, busy, read_memory, memory_read
 				new_state <= want_to_read_0;
 
 			when want_to_read_0 =>
+				-- let the memory module know that we want to read information from the next position of player 0
 				state_vga   				<= "111";
 				write_enable 				<= '0';
 				write_memory  				<= "00000000";
@@ -903,9 +904,11 @@ create_next_state: 	process (state, reset, input, busy, read_memory, memory_read
 				d_player_0_state			<= (others => '0');
 				d_player_1_state			<= (others => '0');
 
+				-- the next state is 'read_memory_player_0'
 				new_state <= read_memory_player_0;	
 
 			when read_memory_player_0 =>
+				-- read the data from the address of the next position of player 0
 				state_vga   				<= "111";
 				write_enable 				<= '0';
 				write_memory  				<= "00000000";
@@ -942,14 +945,13 @@ create_next_state: 	process (state, reset, input, busy, read_memory, memory_read
 				d_next_direction_1			<= (others => '0');
 				d_player_1_state			<= (others => '0');
 
-				
+				-- wait till the memory module is done with processing the information to go to the next state: 'want_to_read_1'
 				if (memory_ready = '1') then
+					-- when there is already data on the next position of player 0, player 0 collides against wall
 					if (read_memory = "00000000") then
-						--no wall found
 						e_player_0_state <= '0';
 						d_player_0_state <= (others => '0');
 					else 
-						--boom
 						e_player_0_state <= '1';
 						d_player_0_state <= "00";
 					end if;
@@ -959,9 +961,9 @@ create_next_state: 	process (state, reset, input, busy, read_memory, memory_read
 					d_player_0_state <= (others => '0');
 					new_state <= read_memory_player_0;
 				end if;
-
-		
+	
 			when want_to_read_1 =>
+				-- let the memory module know that we want to read information from the next position of player 1
 				state_vga   				<= "111";
 				write_enable 				<= '0';
 				write_memory  				<= "00000000";
@@ -1000,9 +1002,11 @@ create_next_state: 	process (state, reset, input, busy, read_memory, memory_read
 				d_player_0_state			<= (others => '0');
 				d_player_1_state			<= (others => '0');
 
+				-- the next state is 'read_memory_player_1'
 				new_state <= read_memory_player_1;
 
 			when read_memory_player_1 =>
+				-- read the data from the address of the next position of player 1
 				state_vga   				<= "111";
 				write_enable 				<= '0';
 				write_memory  				<= "00000000";
@@ -1039,14 +1043,13 @@ create_next_state: 	process (state, reset, input, busy, read_memory, memory_read
 				d_next_direction_1			<= (others => '0');
 				d_player_0_state			<= (others => '0');
 
-				
+				-- wait till the memory module is done with processing the information to go to the next state: 'check_collision'
 				if (memory_ready = '1') then
+					-- when there is already data on the next position of player 1, player 1 collides against wall
 					if (read_memory = "00000000") then
-						--next cell is empty
 						e_player_1_state <= '0';
 						d_player_1_state <= (others => '0');
 					else 
-						--boom
 						e_player_1_state <= '1';
 						d_player_1_state <= "00";
 					end if;
