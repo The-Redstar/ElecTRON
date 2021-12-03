@@ -12,9 +12,8 @@ begin
 			lstcnt <= "00000000";
 		elsif rising_edge(clk) then
 			lstcnt <= new_count;
-		else
-			lstcnt <= lstcnt;
 		end if;
+	
 	end process;
 
 	new_count <= lstcnt + 1;

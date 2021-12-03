@@ -17,7 +17,7 @@ begin
 		end if;
 	end process;
 
-	new_count <= unsigned(countOUT) + 1;
+	new_count <= lstcnt + 1;
 	countOUT <= std_logic_vector(lstcnt);
 end behaviour;
 

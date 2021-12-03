@@ -1,0 +1,122 @@
+[12/03 11:49:45      0s] 
+[12/03 11:49:45      0s] Cadence Innovus(TM) Implementation System.
+[12/03 11:49:45      0s] Copyright 2017 Cadence Design Systems, Inc. All rights reserved worldwide.
+[12/03 11:49:45      0s] 
+[12/03 11:49:45      0s] Version:	v17.11-s080_1, built Fri Aug 4 11:13:11 PDT 2017
+[12/03 11:49:45      0s] Options:	-files ../tcl/par2.tcl 
+[12/03 11:49:45      0s] Date:		Fri Dec  3 11:49:45 2021
+[12/03 11:49:45      0s] Host:		ce-epo3-cad.ewi.tudelft.nl (x86_64 w/Linux 3.10.0-1160.42.2.el7.x86_64) (1core*8cpus*Intel(R) Xeon(R) Gold 6248 CPU @ 2.50GHz 28160KB)
+[12/03 11:49:45      0s] OS:		Red Hat Enterprise Linux Server release 7.9 (Maipo)
+[12/03 11:49:45      0s] 
+[12/03 11:49:45      0s] License:
+[12/03 11:49:45      0s] 		invs	Innovus Implementation System	17.1	checkout succeeded
+[12/03 11:49:45      0s] 		8 CPU jobs allowed with the current license(s). Use setMultiCpuUsage to set your required CPU count.
+[12/03 11:49:55     10s] @(#)CDS: Innovus v17.11-s080_1 (64bit) 08/04/2017 11:13 (Linux 2.6.18-194.el5)
+[12/03 11:49:55     10s] @(#)CDS: NanoRoute 17.11-s080_1 NR170721-2155/17_11-UB (database version 2.30, 390.7.1) {superthreading v1.44}
+[12/03 11:49:55     10s] @(#)CDS: AAE 17.11-s034 (64bit) 08/04/2017 (Linux 2.6.18-194.el5)
+[12/03 11:49:55     10s] @(#)CDS: CTE 17.11-s053_1 () Aug  1 2017 23:31:41 ( )
+[12/03 11:49:55     10s] @(#)CDS: SYNTECH 17.11-s012_1 () Jul 21 2017 02:29:12 ( )
+[12/03 11:49:55     10s] @(#)CDS: CPE v17.11-s095
+[12/03 11:49:55     10s] @(#)CDS: IQRC/TQRC 16.1.1-s215 (64bit) Thu Jul  6 20:18:10 PDT 2017 (Linux 2.6.18-194.el5)
+[12/03 11:49:55     10s] @(#)CDS: OA 22.50-p063 Fri Feb  3 19:45:13 2017
+[12/03 11:49:55     10s] @(#)CDS: SGN 10.10-p124 (19-Aug-2014) (64 bit executable)
+[12/03 11:49:55     10s] @(#)CDS: RCDB 11.10
+[12/03 11:49:55     10s] --- Running on ce-epo3-cad.ewi.tudelft.nl (x86_64 w/Linux 3.10.0-1160.42.2.el7.x86_64) (1core*8cpus*Intel(R) Xeon(R) Gold 6248 CPU @ 2.50GHz 28160KB) ---
+[12/03 11:49:55     10s] Create and set the environment variable TMPDIR to /tmp/innovus_temp_83813_ce-epo3-cad.ewi.tudelft.nl_mlmjanssen_Hl4OBp.
+
+[12/03 11:49:55     10s] Change the soft stacksize limit to 0.2%RAM (31 mbytes). Set global soft_stack_size_limit to change the value.
+[12/03 11:49:56     10s] 
+[12/03 11:49:56     10s] **INFO:  MMMC transition support version v31-84 
+[12/03 11:49:56     10s] 
+[12/03 11:49:56     10s] <CMD> set_global _enable_mmmc_by_default_flow      $CTE::mmmc_default
+[12/03 11:49:56     10s] <CMD> suppressMessage ENCEXT-2799
+[12/03 11:49:56     10s] <CMD> getDrawView
+[12/03 11:49:56     10s] <CMD> loadWorkspace -name Physical
+[12/03 11:49:56     10s] Sourcing file "../tcl/par2.tcl" ...
+[12/03 11:49:56     10s] <CMD> setPreference CmdLogMode 2
+[12/03 11:49:56     10s] <CMD> set init_lef_file /data/designkit/tsmc-180nm/lib/TSMCHOME/digital/Back_End/lef/tcb018gbwp7t_270a/lef/tcb018gbwp7t_6lm.lef
+[12/03 11:49:56     10s] <CMD> set init_mmmc_file ../in/mmmc.view
+[12/03 11:49:56     10s] <CMD> set init_verilog ../in/top.v
+[12/03 11:49:56     10s] <CMD> set init_top_cell memory_cntrll
+[12/03 11:49:56     10s] <CMD> set init_gnd_net dgnd
+[12/03 11:49:56     10s] <CMD> set init_pwr_net dvdd
+[12/03 11:49:56     10s] <CMD> suppressMessage TECHLIB IMPLF IMPVL IMPFP IMPCTE IMPRM IMPSP IMPCTE NRDB IMPEXT
+[12/03 11:49:56     10s] <CMD> encMessage info 0
+[12/03 11:49:56     10s] **WARN: (EMS-42):	Message (IMPLF-1) has been suppressed from output.
+[12/03 11:49:56     10s] **WARN: (EMS-42):	Message (IMPLF-99) has been suppressed from output.
+[12/03 11:49:57     10s] **WARN: (EMS-42):	Message (IMPLF-200) has been suppressed from output.
+[12/03 11:49:57     10s] Loading view definition file from ../in/mmmc.view
+[12/03 11:49:59     13s] *** End library_loading (cpu=0.04min, real=0.03min, mem=28.7M, fe_cpu=0.23min, fe_real=0.23min, fe_mem=520.0M) ***
+[12/03 11:49:59     13s] **WARN: (EMS-42):	Message (IMPVL-159) has been suppressed from output.
+[12/03 11:49:59     13s] **WARN: (EMS-42):	Message (IMPVL-148) has been suppressed from output.
+[12/03 11:49:59     13s] **WARN: (EMS-42):	Message (IMPVL-101) has been suppressed from output.
+[12/03 11:49:59     13s] **WARN: (EMS-42):	Message (IMPVL-106) has been suppressed from output.
+[12/03 11:50:00     14s] **WARN: (IMPECO-560):	The netlist is not unique, because the module 'countextend' is instantiated multiple times. Make the netlist unique by running 'set init_design_uniquify 1' before loading the design to avoid the problem.
+[12/03 11:50:00     14s] **WARN: (IMPECO-560):	The netlist is not unique, because the module 'counter5b' is instantiated multiple times. Make the netlist unique by running 'set init_design_uniquify 1' before loading the design to avoid the problem.
+[12/03 11:50:00     14s] *** Netlist is NOT unique.
+[12/03 11:50:00     14s] **WARN: (EMS-42):	Message (IMPFP-3961) has been suppressed from output.
+[12/03 11:50:00     14s] **WARN: (EMS-42):	Message (IMPRM-144) has been suppressed from output.
+[12/03 11:50:00     14s] **WARN: (TCLNL-330):	set_input_delay on clock root 'clk' is not supported. You should use the -source option to set_clock_latency to provide this offset. You can also use the global timing_allow_input_delay_on_clock_source to allow set_input_delay assertion to have an effect on clock source paths beginning at this clock root. (File ../in/top.sdc, Line 50).
+[12/03 11:50:00     14s] 
+[12/03 11:50:00     14s] **WARN: (EMS-42):	Message (IMPCTE-290) has been suppressed from output.
+[12/03 11:50:00     14s] **WARN: (EMS-42):	Message (IMPEXT-2658) has been suppressed from output.
+[12/03 11:50:00     14s] **WARN: (EMS-42):	Message (IMPEXT-2706) has been suppressed from output.
+[12/03 11:50:00     14s] **WARN: (EMS-42):	Message (IMPEXT-2663) has been suppressed from output.
+[12/03 11:50:00     14s] **WARN: (EMS-42):	Message (IMPEXT-2664) has been suppressed from output.
+[12/03 11:50:00     14s] **WARN: (EMS-42):	Message (IMPEXT-2606) has been suppressed from output.
+[12/03 11:50:00     14s] **WARN: (EMS-42):	Message (IMPEXT-2666) has been suppressed from output.
+[12/03 11:50:00     14s] **WARN: (EMS-42):	Message (IMPEXT-2667) has been suppressed from output.
+[12/03 11:50:00     14s] **WARN: (EMS-42):	Message (IMPEXT-2668) has been suppressed from output.
+[12/03 11:50:00     14s] **WARN: (EMS-42):	Message (IMPEXT-2669) has been suppressed from output.
+[12/03 11:50:00     14s] **WARN: (EMS-42):	Message (IMPEXT-2670) has been suppressed from output.
+[12/03 11:50:00     14s] **WARN: (EMS-42):	Message (IMPEXT-2671) has been suppressed from output.
+[12/03 11:50:00     14s] **WARN: (EMS-42):	Message (IMPEXT-2672) has been suppressed from output.
+[12/03 11:50:00     14s] **WARN: (EMS-42):	Message (IMPEXT-2673) has been suppressed from output.
+[12/03 11:50:00     14s] **WARN: (EMS-42):	Message (IMPEXT-2674) has been suppressed from output.
+[12/03 11:50:00     14s] **WARN: (EMS-42):	Message (IMPEXT-6162) has been suppressed from output.
+[12/03 11:50:00     14s] **WARN: (EMS-42):	Message (IMPEXT-3307) has been suppressed from output.
+[12/03 11:50:00     14s] **WARN: (EMS-42):	Message (IMPEXT-1001) has been suppressed from output.
+[12/03 11:50:00     14s] **WARN: (EMS-42):	Message (IMPEXT-6161) has been suppressed from output.
+[12/03 11:50:00     14s] **WARN: (EMS-42):	Message (IMPEXT-2675) has been suppressed from output.
+[12/03 11:50:00     14s] **WARN: (EMS-42):	Message (IMPEXT-1010) has been suppressed from output.
+[12/03 11:50:00     14s] **WARN: (EMS-42):	Message (IMPEXT-6163) has been suppressed from output.
+[12/03 11:50:00     14s] **WARN: (EMS-42):	Message (IMPEXT-3345) has been suppressed from output.
+[12/03 11:50:00     14s] **WARN: (EMS-42):	Message (IMPEXT-2828) has been suppressed from output.
+[12/03 11:50:00     14s] **WARN: (EMS-42):	Message (IMPEXT-2832) has been suppressed from output.
+[12/03 11:50:00     14s] **WARN: (EMS-42):	Message (IMPRM-148) has been suppressed from output.
+[12/03 11:50:00     14s] **WARN: (EMS-42):	Message (IMPRM-143) has been suppressed from output.
+[12/03 11:50:00     14s] **WARN: (EMS-42):	Message (IMPFP-325) has been suppressed from output.
+[12/03 11:50:00     14s] **WARN: (EMS-42):	Message (IMPSP-5134) has been suppressed from output.
+[12/03 11:50:01     15s] **WARN: (IMPPTN-1235):	Cannot find pin rst on partition memory_cntrll
+[12/03 11:50:01     15s] **ERROR: (IMPPTN-963):	Either specified pin name for the selected partition does not exist or has status 'cover'. Specify the pin or the list of pins correctly and run the command again.
+**ERROR: (IMPSYT-6692):	Invalid return code while executing '../tcl/par2.tcl' was returned and script processing was stopped. Review the following error in '../tcl/par2.tcl' then restart.
+[12/03 11:50:01     15s] Error info: ../tcl/par2.tcl: 
+[12/03 11:50:01     15s]     while executing
+[12/03 11:50:01     15s] "editPin -pin rst -layer 2 -fixedPin -assign {21.42 0} -side TOP"
+[12/03 11:50:01     15s]     (file "../in/pins.tcl" line 2)
+[12/03 11:50:01     15s]     invoked from within
+[12/03 11:50:01     15s] "::se_source_orig ../in/pins.tcl"
+[12/03 11:50:01     15s]     ("uplevel" body line 1)
+[12/03 11:50:01     15s]     invoked from within
+[12/03 11:50:01     15s] "uplevel [concat ::se_source_orig $args]"
+[12/03 11:50:01     15s]     (procedure "source" line 156)
+[12/03 11:50:01     15s]     invoked from within
+[12/03 11:50:01     15s] "source ../in/pins.tcl"
+[12/03 11:50:01     15s]     (file "../tcl/par2.tcl" line 22)
+[12/03 11:50:01     15s]     invoked from within
+[12/03 11:50:01     15s] "::se_source_orig ../tcl/par2.tcl"
+[12/03 11:50:01     15s]     ("uplevel" body line 1)
+[12/03 11:50:01     15s]     invoked from within
+[12/03 11:50:01     15s] "uplevel [concat ::se_source_orig $args]"
+[12/03 11:50:01     15s]     (procedure "source" line 156)
+[12/03 11:50:01     15s]     invoked from within
+[12/03 11:50:01     15s] "source ../tcl/par2.tcl"
+[12/03 11:50:01     15s]     ("uplevel" body line 1)
+[12/03 11:50:01     15s]     invoked from within
+[12/03 11:50:01     15s] "uplevel #0 source ../tcl/par2.tcl"
+[12/03 11:50:01     15s]     ("eval" body line 1)
+[12/03 11:50:01     15s]     invoked from within
+[12/03 11:50:01     15s] "eval {uplevel #0 source ../tcl/par2.tcl}"
+[12/03 11:50:01     15s]     (in namespace inscope "::" script line 1)
+[12/03 11:50:01     15s]     invoked from within
+[12/03 11:50:01     15s] "namespace inscope :: eval "uplevel #0 source $fileName"".

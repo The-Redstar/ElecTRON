@@ -1,7 +1,7 @@
 #*********************************************************
 # synthesize script for cell: memory_cntrll
 # company: ontwerp_practicum
-# designer: jwnijenhuis
+# designer: mlmjanssen
 #*********************************************************
 set_db lib_search_path /data/designkit/tsmc-180nm/lib/TSMCHOME/digital/Front_End/timing_power_noise/NLDM/tcb018gbwp7t_270a/
 set_db init_hdl_search_path ../../../VHDL/

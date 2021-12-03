@@ -84,6 +84,6 @@ begin
 	readOUT <= readMEM;
 	WEMEM <= WErw and WEclr;
 	MEMEM <= MErw or MEclr;
-	readyOUT <= readyrw or readyclr;
+	readyOUT <= readyrw and readyclr;
 end behaviour;
 

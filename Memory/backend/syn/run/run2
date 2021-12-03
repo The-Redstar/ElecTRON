@@ -1,1 +1,1 @@
-ssh -XY jwnijenhuis@ce-epo3-cad.ewi.tudelft.nl cd /home/jwnijenhuis/Documents/Memory/backend/syn/run\; genus -files ../tcl/syn2.tcl
+ssh -XY mlmjanssen@ce-epo3-cad.ewi.tudelft.nl cd /home/mlmjanssen/Documents/Memory/backend/syn/run\; genus -files ../tcl/syn2.tcl

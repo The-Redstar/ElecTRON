@@ -2,7 +2,7 @@ setPreference CmdLogMode 2
 set init_lef_file /data/designkit/tsmc-180nm/lib/TSMCHOME/digital/Back_End/lef/tcb018gbwp7t_270a/lef/tcb018gbwp7t_6lm.lef
 set init_mmmc_file ../in/mmmc.view
 set init_verilog ../in/top.v
-set init_top_cell top_top_entity
+set init_top_cell memory_cntrll
 set init_gnd_net dgnd
 set init_pwr_net dvdd
 
