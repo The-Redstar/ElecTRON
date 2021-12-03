@@ -640,6 +640,7 @@ create_next_state: 	process (state, reset, input, busy, read_memory, memory_read
 				d_next_direction_0			<= (others => '0');	
 				d_next_direction_1			<= (others => '0');
 				
+				-- determine the wall_shape on the cell of player 0
 				-- previous: left, next: left -- previous: right, next: right --> horizontal
 				if ((direction_0= "01") and (next_direction_0  ="01")) or  ((direction_0= "11") and (next_direction_0  ="11")) then 
 					e_wallshape_0 <= '1';	
@@ -652,65 +653,76 @@ create_next_state: 	process (state, reset, input, busy, read_memory, memory_read
 					d_wallshape_0 <= "010";
 					e_player_0_state <= '0';
 					d_player_0_state <= (others => '0');
-				-- previous: up, next: right -- previous: left, next: down --> 
+				-- previous: up, next: right -- previous: left, next: down --> corner in the lower right
 				elsif ((direction_0= "00") and (next_direction_0  ="11")) or  ((direction_0= "01") and (next_direction_0  ="10")) then 
 					e_wallshape_0 <= '1';	
 					d_wallshape_0 <= "110"; 
 					e_player_0_state <= '0';
 					d_player_0_state <= (others => '0');
+				-- previous: up, next: left -- previous: right, next: down --> corner in the lower left
 				elsif ((direction_0= "00") and (next_direction_0  ="01")) or  ((direction_0= "11") and (next_direction_0  ="10")) then 
 					e_wallshape_0 <= '1';	
-					d_wallshape_0 <= "101"; -- previous: up, next: left -- previous: right, next: down
+					d_wallshape_0 <= "101"; 
 					e_player_0_state <= '0';
 					d_player_0_state <= (others => '0');
+				-- previous: right, next: up -- previous: down, next: left --> corner in the upper left
 				elsif ((direction_0= "11") and (next_direction_0  ="00")) or  ((direction_0= "10") and (next_direction_0  ="01")) then 
 					e_wallshape_0 <= '1';	
-					d_wallshape_0 <= "100"; -- previous: right, next: up -- previous: down, next: left
+					d_wallshape_0 <= "100"; 
 					e_player_0_state <= '0';
 					d_player_0_state <= (others => '0');
+				-- previous: down, next: right -- previous: left, next: up --> corner in the upper right
 				elsif ((direction_0= "10") and (next_direction_0 ="11")) or  ((direction_0= "01") and (next_direction_0  ="00")) then 
 					e_wallshape_0 <= '1';	
-					d_wallshape_0 <= "111"; -- previous: down, next: right -- previous: left, next: up
+					d_wallshape_0 <= "111"; 
 					e_player_0_state <= '0';
 					d_player_0_state <= (others => '0');
+				-- the player went back to where it came from and it collided with itself in the middle of a cell
 				else
 					e_wallshape_0 <= '0';
 					d_wallshape_0 <= (others => '0');
 					e_player_0_state <= '1';
 					d_player_0_state <= "00";
 				end if;
-				-- player states moeten ook in de elsifs aangegeven worden!!!!!!
 
+				-- determine the wall_shape on the cell of player 1
+				-- previous: left, next: left -- previous: right, next: right --> horizontal
 				if ((direction_1= "01") and (next_direction_1 ="01")) or  ((direction_1= "11") and (next_direction_1 ="11")) then 	
 					e_wallshape_1 <= '1';
-					d_wallshape_1 <= "001"; -- previous: left, next: left -- previous: right, next: right 
+					d_wallshape_1 <= "001";
 					e_player_1_state <= '0';
 					d_player_1_state <= (others => '0');
+				-- previous: up, next: up -- previous: down, next: down --> vertical
 				elsif ((direction_1= "00") and (next_direction_1 ="00")) or  ((direction_1= "10") and (next_direction_1 ="10")) then 
 					e_wallshape_1 <= '1';
-					d_wallshape_1 <= "010"; -- previous: up, next: up -- previous: down, next: down
+					d_wallshape_1 <= "010"; 
 					e_player_1_state <= '0';
 					d_player_1_state <= (others => '0');
+				-- previous: up, next: right -- previous: left, next: down --> corner in the lower right
 				elsif ((direction_1= "00") and (next_direction_1 ="11")) or  ((direction_1= "01") and (next_direction_1 ="10")) then 
 					e_wallshape_1 <= '1';
-					d_wallshape_1 <= "110"; -- previous: up, next: right -- previous: left, next: down
+					d_wallshape_1 <= "110"; 
 					e_player_1_state <= '0';
 					d_player_1_state <= (others => '0');
+				-- previous: up, next: left -- previous: right, next: down --> corner in the lower left
 				elsif ((direction_1= "00") and (next_direction_1 ="01")) or  ((direction_1= "11") and (next_direction_1 ="10")) then 
 					e_wallshape_1 <= '1';
-					d_wallshape_1 <= "101"; -- previous: up, next: left -- previous: right, next: down
+					d_wallshape_1 <= "101"; 
 					e_player_1_state <= '0';
 					d_player_1_state <= (others => '0');
+				-- previous: right, next: up -- previous: down, next: left --> corner in the upper left
 				elsif ((direction_1= "11") and (next_direction_1 ="00")) or  ((direction_1= "10") and (next_direction_1 ="01")) then 
 					e_wallshape_1 <= '1';
-					d_wallshape_1 <= "100"; -- previous: right, next: up -- previous: down, next: left
+					d_wallshape_1 <= "100"; 
 					e_player_1_state <= '0';
 					d_player_1_state <= (others => '0');
+				-- previous: down, next: right -- previous: left, next: up --> corner in the upper right
 				elsif ((direction_1= "10") and (next_direction_1 ="11")) or  ((direction_1= "01") and (next_direction_1 ="00")) then 
 					e_wallshape_1 <= '1';
-					d_wallshape_1 <= "111"; -- previous: down, next: right -- previous: left, next: up
+					d_wallshape_1 <= "111"; 
 					e_player_1_state <= '0';
 					d_player_1_state <= (others => '0');
+				-- the player went back to where it came from and it collided with itself in the middle of a cell
 				else 
 					e_player_1_state <= '1';
 					d_player_1_state <= "00";	
@@ -718,6 +730,7 @@ create_next_state: 	process (state, reset, input, busy, read_memory, memory_read
 					d_wallshape_1 <= (others => '0');
 				end if;
 	
+				-- determine the next position of player 0
 				e_next_position_0 <= '1';
 				if (next_direction_0 = "01") then 		-- moves to the left, x is decreased with 1
 					d_next_position_0(4 downto 0)  <= std_logic_vector(to_unsigned(to_integer(unsigned(position_0(4 downto 0))) - 1, 5));
@@ -731,12 +744,13 @@ create_next_state: 	process (state, reset, input, busy, read_memory, memory_read
 					d_next_position_0(4 downto 0) <= position_0(4 downto 0);
 					d_next_position_0(9 downto 5) <= std_logic_vector(to_unsigned(to_integer(unsigned(position_0(9 downto 5))) - 1, 5));
 					d_next_position_0(10)		  <= position_0(10);
-				else 					--moves down, y is increased with 1
+				else 									--moves down, y is increased with 1
 					d_next_position_0(4 downto 0) <= position_0(4 downto 0);
 					d_next_position_0(9 downto 5) <= std_logic_vector(to_unsigned(to_integer(unsigned(position_0(9 downto 5))) + 1, 5));
 					d_next_position_0(10)		  <= position_0(10)	;	
 				end if;
 
+				-- determine the next position of player 1
 				e_next_position_1 <= '1';
 				if (next_direction_1 = "01") then 		-- moves to the left, x is decreased with 1
 					d_next_position_1(4 downto 0)  <= std_logic_vector(to_unsigned(to_integer(unsigned(position_1(4 downto 0))) - 1, 5));
@@ -750,15 +764,17 @@ create_next_state: 	process (state, reset, input, busy, read_memory, memory_read
 					d_next_position_1(4 downto 0) <= position_1(4 downto 0);
 					d_next_position_1(9 downto 5) <= std_logic_vector(to_unsigned(to_integer(unsigned(position_1(9 downto 5))) - 1, 5));
 					d_next_position_1(10)		  <= position_1(10)	;	
-				else 					--moves down, y is increased with 1
+				else 									--moves down, y is increased with 1
 					d_next_position_1(4 downto 0) <= position_1(4 downto 0);
 					d_next_position_1(9 downto 5) <= std_logic_vector(to_unsigned(to_integer(unsigned(position_1(9 downto 5))) + 1, 5));	
 					d_next_position_1(10)		  <= position_1(10)	;	
 				end if;
 				
+				-- go the state check_border next
 				new_state <= check_border;
 				
 			when check_border =>
+				-- check whether or not a player collided with the border of the playing field
 				state_vga   				<= "111";
 				write_enable 				<= '0';
 				write_memory  				<= "00000000";
@@ -793,6 +809,7 @@ create_next_state: 	process (state, reset, input, busy, read_memory, memory_read
 				d_next_direction_0			<= (others => '0');	
 				d_next_direction_1			<= (others => '0');
 			
+				-- check if player 0 collides with a border
 				if (((position_0(4 downto 0) = "00000") and (next_direction_0 = "01")) or (next_position_0(4 downto 0) = "11110")) or (((position_0(9 downto 5) = "00000") and (next_direction_0 = "00")) or (next_position_0(9 downto 5) = "11110"))then 
 					e_player_0_state <= '1';
 					d_player_0_state <= "01";
@@ -801,6 +818,7 @@ create_next_state: 	process (state, reset, input, busy, read_memory, memory_read
 					d_player_0_state <= (others => '0');
 				end if;
 
+				-- check if player 1 collides with a border
 				if (((position_1(4 downto 0) = "00000") and (next_direction_1 = "01")) or (next_position_1(4 downto 0) = "11110")) or (((position_1(9 downto 5) = "00000") and (next_direction_1 = "00")) or (next_position_1(9 downto 5) = "11110"))then 
 					e_player_1_state <= '1';
 					d_player_1_state <= "01";
@@ -809,6 +827,7 @@ create_next_state: 	process (state, reset, input, busy, read_memory, memory_read
 					d_player_1_state <= (others => '0');
 				end if;
 
+				-- the next state is want_to_read_0
 				new_state <= want_to_read_0;
 
 			when want_to_read_0 =>
@@ -1004,6 +1023,7 @@ create_next_state: 	process (state, reset, input, busy, read_memory, memory_read
 				end if;
 
 			when check_collision =>
+				-- check whether or not either one or both the players collide with a wall made by eiter one
 				state_vga   				<= "111";
 				write_enable 				<= '0';
 				write_memory  				<= "00000000";
@@ -1038,53 +1058,40 @@ create_next_state: 	process (state, reset, input, busy, read_memory, memory_read
 				d_next_direction_0			<= (others => '0');	
 				d_next_direction_1			<= (others => '0');
 				
-				if (next_position_0 = next_position_1) then
+				-- when a player collides change its player state accordingly
+				if (next_position_0 = next_position_1) then -- collide at eachother at middle of square
 					e_player_0_state <= '1';
 					e_player_1_state <= '1';
-					d_player_0_state <= "00"; --collide at eachother at middle of square
+					d_player_0_state <= "00"; 
 					d_player_1_state <= "00";
-				elsif (position_0 = next_position_1) and (position_1 = next_position_0) then
+				elsif (position_0 = next_position_1) and (position_1 = next_position_0) then -- collide at eachother at border
 					e_player_0_state <= '1';
 					e_player_1_state <= '1';
-					d_player_0_state <= "01"; --collide at eachother at border
+					d_player_0_state <= "01";
 					d_player_1_state <= "01";
-				elsif (position_0 = next_position_1) then
+				elsif (position_0 = next_position_1) then -- player 1 collides at the wall of player 0 made the previous time
 					e_player_0_state <= '0';
 					e_player_1_state <= '1';
 					d_player_0_state <= (others => '0');
-					d_player_1_state <= "00"; --collide at wall other player
-				elsif (position_1 = next_position_0) then
+					d_player_1_state <= "00"; 
+				elsif (position_1 = next_position_0) then -- player 0 collides at the wall of player 1 made the previous time
 					e_player_0_state <= '1';
 					e_player_1_state <= '0';
-					d_player_0_state <= "00"; --collide at wall other player
+					d_player_0_state <= "00"; 
 					d_player_1_state <= (others => '0');
-				else 
+				else 										-- otherwise do not change the state of the player
 					e_player_0_state <= '0';
 					e_player_1_state <= '0';
 					d_player_0_state <= (others => '0');
 					d_player_1_state <= (others => '0');
 				end if;
 				
+				-- go to want_to_write_0 state next
 				new_state<= want_to_write_0;
 
 			when want_to_write_0 =>
+				-- check if writing is needed for player 0 and let the memory know
 				state_vga   				<= "111";
-				
-				--if collide on border, there shall be no writing
-				if (player_0_state = "01") then 
-					write_enable 				<= '0';
-					write_memory			 	<= "00000000";
-					address 					<= "0000000000";
-					go_to 						<= '0';
-					new_state 					<= want_to_write_1;
-				else 
-					write_enable 				<= '1';
-					write_memory(7 downto 3) 	<= "00000";
-					write_memory(2 downto 0) 	<= wallshape_0;
-					address 					<= position_0(9 downto 0);
-					go_to 						<= '1';
-					new_state 					<= write_memory_player_0;
-				end if;
 				
 				busy_counter_reset			<= '0';
 				clear_memory				<= '0';
@@ -1119,9 +1126,25 @@ create_next_state: 	process (state, reset, input, busy, read_memory, memory_read
 				d_player_0_state			<= (others => '0');
 				d_player_1_state			<= (others => '0');
 				
-				--new_state is in if statement above
+				-- when player 0 collided on border, there shall be no writing and the next state is want_to_write_1
+				if (player_0_state = "01") then 
+					write_enable 				<= '0';
+					write_memory			 	<= "00000000";
+					address 					<= "0000000000";
+					go_to 						<= '0';
+					new_state 					<= want_to_write_1;
+				-- if player 0 did not collide the next state will be write_memory_player_0
+				else 
+					write_enable 				<= '1';
+					write_memory(7 downto 3) 	<= "00000";
+					write_memory(2 downto 0) 	<= wallshape_0;
+					address 					<= position_0(9 downto 0);
+					go_to 						<= '1';
+					new_state 					<= write_memory_player_0;
+				end if;
 
 			when write_memory_player_0 =>
+				-- write to the memory the wall shape of player 0 on the address of its position
 				state_vga   				<= "111";
 				write_enable 				<= '1';
 				write_memory(7 downto 3) 	<= "00000";
@@ -1161,6 +1184,7 @@ create_next_state: 	process (state, reset, input, busy, read_memory, memory_read
 				d_player_0_state			<= (others => '0');
 				d_player_1_state			<= (others => '0');
 				
+				-- wait untill the memory is ready to go to the next state: want_to_write_1
 				if (memory_ready = '1') then
 					new_state <= want_to_write_1;
 				else 
@@ -1168,6 +1192,7 @@ create_next_state: 	process (state, reset, input, busy, read_memory, memory_read
 				end if;
 
 			when want_to_write_1 =>
+				-- check if writing is needed for player 0 and let the memory know
 				state_vga   				<= "111";
 				
 				busy_counter_reset			<= '0';
@@ -1203,13 +1228,14 @@ create_next_state: 	process (state, reset, input, busy, read_memory, memory_read
 				d_player_0_state			<= (others => '0');
 				d_player_1_state			<= (others => '0');
 				
-				--if collide on border, there shall be no writing
+				-- when player 1 collided on border, there shall be no writing and the next state will be change_data
 				if (player_1_state = "01") then 
 					write_enable 				<= '0';
 					write_memory			 	<= "00000000";
 					address 					<= "0000000000";
 					go_to 						<= '0';
 					new_state 					<= change_data;
+				-- if player 1 did not collide, the next state will be write_memory_player_1
 				else 
 					write_enable 				<= '1';
 					write_memory(7 downto 3) 	<= "00001";
@@ -1220,6 +1246,7 @@ create_next_state: 	process (state, reset, input, busy, read_memory, memory_read
 				end if;
 
 			when write_memory_player_1 =>
+				-- write to the memory the wall shape of player 1 on the address of its position
 				state_vga   				<= "111";
 				
 				write_enable 				<= '1';
@@ -1260,14 +1287,15 @@ create_next_state: 	process (state, reset, input, busy, read_memory, memory_read
 				d_player_0_state			<= (others => '0');
 				d_player_1_state			<= (others => '0');
 		
+				-- wait till the memory is finished before going to the next state: change_data
 				if (memory_ready = '1') then
 					new_state <= change_data;
 				else
 					new_state <= write_memory_player_1;
 				end if;
-				
 		
 			when change_data =>
+				-- change the data that is going to the VGA
 				state_vga   				<= "111";
 				write_enable 				<= '0';
 				write_memory				<= "00000000";
@@ -1300,9 +1328,11 @@ create_next_state: 	process (state, reset, input, busy, read_memory, memory_read
 			
 				e_direction_0 <= '1';
 				e_direction_1 <= '1';
+				
 				d_direction_0 <= next_direction_0;
 				d_direction_1 <= next_direction_1;
 				
+				-- if player 0 collided against a border do not change its position, otherwise do
 				if (player_0_state = "01") then
 					e_position_0 <= '0';
 					d_position_0 <= (others => '0');					
@@ -1311,6 +1341,7 @@ create_next_state: 	process (state, reset, input, busy, read_memory, memory_read
 					d_position_0 <= next_position_0;
 				end if;
 					
+				-- if player 1 collided against a border do not change its position, otherwise do
 				if (player_1_state = "01") then
 					e_position_1 <= '0';
 					d_position_1 <= (others => '0');
@@ -1319,9 +1350,11 @@ create_next_state: 	process (state, reset, input, busy, read_memory, memory_read
 					d_position_1 <= next_position_1;
 				end if; 
 				
+				-- check_who_won is the next state
 				new_state <= check_who_won;		
 				
 			when check_who_won =>
+				-- check who won based on the player states
 				state_vga   				<= "111";
 				write_enable 				<= '0';
 				write_memory  				<= "00000000";
@@ -1360,14 +1393,16 @@ create_next_state: 	process (state, reset, input, busy, read_memory, memory_read
 				d_player_0_state			<= (others => '0');
 				d_player_1_state			<= (others => '0');
 				
+				-- if both players are still playing, go back to the wait state
 				if ((player_0_state = "11") and (player_1_state = "11")) then
-					-- normally it should go to the wait state however for testing reasons we skip that state for now since we know it works
 					new_state <= wait_state;
-					-- new_state <= read_inputs;
-				elsif (player_0_state = "11") then 
+				-- if only player 0 is still playing, player 0 won
+				elsif (player_0_state = "11") then			
 					new_state <= player_0_won;
+				-- if only player 1 is still playing, player 1 won
 				elsif (player_1_state = "11") then
 					new_state <= player_1_won;
+				-- when both players collided, nobody won and it is a tie
 				else 
 					new_state <= tie;
 				end if;			
