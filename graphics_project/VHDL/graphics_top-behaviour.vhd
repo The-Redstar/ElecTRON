@@ -222,7 +222,7 @@ pxl: pixelator port map(
 
 --memory access
 	--x_incr, pass data
-	process(dx, x, in_visible_y, data_synced, borders_synced, jumps_synced, data, borders, jumps)
+	process(dx, x, in_visible_y, data_synced, borders_synced, jumps_synced, data, borders, jumps,h_count_x_component)
 	begin
 		if dx=unsigned(std_logic_vector(to_signed(-1,4))) then
 			--pass data
@@ -269,7 +269,7 @@ pxl: pixelator port map(
 	
 --output
 	--check player positions
-	process(player0_pos)
+	process(player0_pos,x_vec,y_vec)
 	begin
 		if player0_pos(9 downto 5)=y_vec and player0_pos(4 downto 0)=x_vec then
 			player0_en<='1';
@@ -277,7 +277,7 @@ pxl: pixelator port map(
 			player0_en<='0';
 		end if;
 	end process;
-	process(player1_pos)
+	process(player1_pos,x_vec,y_vec)
 	begin
 		if player1_pos(9 downto 5)=y_vec and player1_pos(4 downto 0)=x_vec then
 			player1_en<='1';
@@ -287,7 +287,7 @@ pxl: pixelator port map(
 	end process;
 	
 	--output calculations -- dummy, not actual data
-	process(h_count,v_count,in_visible_x,in_visible_y) --calculate output color (gridded pattern)
+	process(h_count,v_count,in_visible_x,in_visible_y,pixelator_color) --calculate output color (gridded pattern)
 		variable px,py	: unsigned(9 downto 0);
 	begin
 		if in_visible_x='1' and in_visible_y='1' then

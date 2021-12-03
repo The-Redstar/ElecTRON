@@ -28,6 +28,7 @@ architecture behaviour of graphics_top_tb is
    	player1_state : in std_logic_vector(1 downto 0);
    
    	busy   : out std_logic;
+	audio_clock : out std_logic;
    
    	game_state : in std_logic_vector(2 downto 0)
    
@@ -51,12 +52,13 @@ architecture behaviour of graphics_top_tb is
    signal player0_state : std_logic_vector(1 downto 0);
    signal player1_state : std_logic_vector(1 downto 0);
    signal busy   : std_logic;
+   signal audio_clock	: std_logic;
    signal game_state : std_logic_vector(2 downto 0);
    
    signal x,y,next_x,next_y:unsigned(4 downto 0);
    
 begin
-   test: graphics_top port map (clk, reset, h_sync, v_sync, color, x_incr, y_incr, mem_rst, data, borders, jumps, player0_pos, player1_pos, player0_dir, player1_dir, player0_state, player1_state, busy, game_state);
+   test: graphics_top port map (clk, reset, h_sync, v_sync, color, x_incr, y_incr, mem_rst, data, borders, jumps, player0_pos, player1_pos, player0_dir, player1_dir, player0_state, player1_state, busy, audio_clock, game_state);
    clk <= '0' after 0 ns,
           '1' after 20 ns when clk /= '1' else '0' after 20 ns;
    reset <= '1' after 0 ns,

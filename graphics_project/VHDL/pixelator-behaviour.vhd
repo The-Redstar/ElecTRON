@@ -11,7 +11,7 @@ signal bbox_wall: std_logic_vector(7 downto 0);--W,E,S,N,W,E,S,N last 4 are of t
 signal bbox_h, bbox_v: std_logic;
 signal bbox_explosion_inner, bbox_explosion_outer: std_logic;
 -------------------------------------------------------------
-signal player0_wall,player1_wall	: std_logic_vector(3 downto 0);
+signal player0_wall,player1_wall: std_logic_vector(3 downto 0);
 -------------------------------------------------------------
 
 constant C_player0_explosion_outer 			: std_logic_vector(3 downto 0):= "1101";
@@ -117,7 +117,7 @@ rounding_process: process(rel_x, rel_y)
 
 
 
-bounds:	process(xe0, xe1, xg1, xg3, xg4, xg5, xg6, xs9, xs10, xs11, xs12, xs14, xe14, xe15, ye0, ye1, yg1, yg3, yg4, yg5, yg6, ys9, ys10, ys11, ys12, ys14, ye14, ye15, dx, dy)
+bounds:	process(xe0, xe1, xg1, xg3, xg4, xg5, xg6, xs9, xs10, xs11, xs12, xs14, xe14, xe15, ye0, ye1, yg1, yg3, yg4, yg5, yg6, ys9, ys10, ys11, ys12, ys14, ye14, ye15, dx, dy,rounding)
 	--using the conditions above make the bounding box signals
 	begin
 		--the bounds of the first layer
@@ -178,9 +178,8 @@ bounds:	process(xe0, xe1, xg1, xg3, xg4, xg5, xg6, xs9, xs10, xs11, xs12, xs14, 
 
 --combine bboxes and data and stack the layers
 
-layering: process(bbox_wall, bbox_dot, bbox_v, bbox_h, bbox_border, bbox_jump, bbox_explosion_outer, bbox_explosion_inner, walls, borders, jumps, player0_dir, player0_en, player0_layer, player0_mode, player1_dir, player1_en, player1_layer, player1_mode)
+layering: process(bbox_wall, bbox_dot, bbox_v, bbox_h, bbox_border, bbox_jump, bbox_explosion_outer, bbox_explosion_inner, walls, borders, jumps, player0_dir, player0_en, player0_layer, player0_mode, player1_dir, player1_en, player1_layer, player1_mode, layer0_player, layer1_player,player0_wall,player1_wall)
 
-	variable player0_wall,player1_wall : std_logic_vector(3 downto 0);
 	variable player0_cycle_pixel,player1_cycle_pixel: boolean;
 	variable player0_inner_explosion_pixel,player1_inner_explosion_pixel,player0_outer_explosion_pixel,player1_outer_explosion_pixel : boolean;
 	variable border0_pixel: boolean;
@@ -192,18 +191,6 @@ layering: process(bbox_wall, bbox_dot, bbox_v, bbox_h, bbox_border, bbox_jump, b
 		player1_inner_explosion_pixel:=player1_en='1' and player1_mode(1)='0' and bbox_explosion_inner='1';
 		player0_outer_explosion_pixel:=player0_en='1' and player0_mode(1)='0' and bbox_explosion_outer='1';
 		player1_outer_explosion_pixel:=player1_en='1' and player1_mode(1)='0' and bbox_explosion_outer='1';
-		case player0_dir is --decode to wall in opposite direction
-			when "00" => player0_wall:="0010";
-			when "01" => player0_wall:="0001";
-			when "10" => player0_wall:="1000";
-			when others=>player0_wall:="0100";
-		end case;
-		case player1_dir is
-			when "00" => player1_wall:="0010";
-			when "01" => player1_wall:="0001";
-			when "10" => player1_wall:="1000";
-			when others=>player1_wall:="0100";
-		end case;
 	
 		border0_pixel:=(borders(3 downto 0) and bbox_border) /= "0000";
 	
