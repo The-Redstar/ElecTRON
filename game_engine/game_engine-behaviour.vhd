@@ -219,11 +219,11 @@ create_next_state: 	process (state, reset, input, busy, read_memory, memory_read
 				d_player_0_state			<= (others => '0');
 				d_player_1_state			<= (others => '0');
 			
-				-- go to the state want_to_load next
+				-- go to the state 'want_to_load' next
 				new_state <= want_to_load;
 			
 			when want_to_load =>
-				-- let the memory know that we want to clear the memory and load a new game
+				-- let the memory module know that the memory has to be cleared 
 				state_vga 					<= "000";
 				write_enable 				<= '0';
 				write_memory 				<= "00000000";
@@ -262,11 +262,11 @@ create_next_state: 	process (state, reset, input, busy, read_memory, memory_read
 				d_player_0_state			<= (others => '0');
 				d_player_1_state			<= (others => '0');
 
-				-- go to the state loading_state next to clear the memory
+				-- go to the state 'loading_state' to check whem memory is ready
 				new_state <= loading_state;
 			
 			when loading_state =>
-				-- let the memory know that we want to clear the memory and load a new game and wait for them to tell us they have finished
+				-- continue to let the memory module know  to clear the memory and check when the memory is done
 				state_vga 					<= "000";
 				write_enable 				<= '0';
 				write_memory 				<= "00000000";
