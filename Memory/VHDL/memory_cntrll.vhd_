@@ -4,7 +4,7 @@ use IEEE.std_logic_1164.ALL;
 entity memory_cntrll is
    port(readMEM   : in  std_logic_vector(7 downto 0);
         clk  	    : in std_logic;
-	XincrMEM  : out std_logic;
+	  XincrMEM  : out std_logic;
         YincrMEM  : out std_logic;
         WincrMEM  : out std_logic;
         rstMEM    : out std_logic;
@@ -21,6 +21,8 @@ entity memory_cntrll is
         YincrIN   : in  std_logic;
         readyOUT  : out std_logic;
         curXOUT   : out std_logic_vector(4 downto 0);
-        curYOUT   : out std_logic_vector(4 downto 0));
+        curYOUT   : out std_logic_vector(4 downto 0);
+	  clrMEM		: in  std_logic;
+	  rstVGA		: in  std_logic);
 end memory_cntrll;
 

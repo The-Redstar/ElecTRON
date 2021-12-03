@@ -1,7 +1,7 @@
 #*********************************************************
-# synthesize script for cell: counter5b
+# synthesize script for cell: memory_cntrll
 # company: ontwerp_practicum
-# designer: mlmjanssen
+# designer: jwnijenhuis
 #*********************************************************
 set_db lib_search_path /data/designkit/tsmc-180nm/lib/TSMCHOME/digital/Front_End/timing_power_noise/NLDM/tcb018gbwp7t_270a/
 set_db init_hdl_search_path ../../../VHDL/
@@ -9,14 +9,14 @@ set_db library {tcb018gbwp7twc.lib}
 set_db use_scan_seqs_for_non_dft false
 
 #include backend/syn/tcl/read_hdl.tcl
-read_hdl -vhdl {counter5b.vhd}
-read_hdl -vhdl {counter5b-behaviour.vhd}
-read_hdl -vhdl {counter5b_behaviour_cfg.vhd}
+read_hdl -vhdl {memory_cntrll.vhd}
+read_hdl -vhdl {memory_cntrll-behaviour.vhd}
+read_hdl -vhdl {memory_cntrll_behaviour_cfg.vhd}
 #endincl
 
-elaborate counter5b_behaviour_cfg
+elaborate memory_cntrll_behaviour_cfg
 
-#include backend/syn/in/counter5b.sdc
+#include backend/syn/in/memory_cntrll.sdc
 # We will use a 25 MHz clock, 
 # but use 33 MHz as constraint to be more sure it works.
 dc::create_clock -name clk -period 30 -waveform {0 15} [dc::get_ports clk]
@@ -33,9 +33,9 @@ synthesize -to_mapped
 
 ungroup -all -flat
 insert_tiehilo_cells
-write_hdl -mapped > ../out/counter5b.v
-write_sdf > ../out/counter5b.sdf
-write_sdc > ../out/counter5b.sdc
+write_hdl -mapped > ../out/memory_cntrll.v
+write_sdf > ../out/memory_cntrll.sdf
+write_sdc > ../out/memory_cntrll.sdc
 
 report timing
 report gates

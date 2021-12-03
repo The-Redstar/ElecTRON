@@ -1,3 +1,3 @@
-read_hdl -vhdl {counter5b.vhd}
-read_hdl -vhdl {counter5b-behaviour.vhd}
-read_hdl -vhdl {counter5b_behaviour_cfg.vhd}
+read_hdl -vhdl {memory_cntrll.vhd}
+read_hdl -vhdl {memory_cntrll-behaviour.vhd}
+read_hdl -vhdl {memory_cntrll_behaviour_cfg.vhd}

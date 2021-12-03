@@ -22,16 +22,14 @@ architecture behaviour of memory_cntrll is
    end component;
 
    component counter8b
-      port(incr     : in  std_logic;
+      port(clk      : in  std_logic;
            rst      : in  std_logic;
-           clk      : in  std_logic;
            countOUT : out std_logic_vector(7 downto 0));
    end component;
 
    component counter5b
-      port(incr     : in  std_logic;
+      port(clk      : in  std_logic;
            rst      : in  std_logic;
-           clk      : in  std_logic;
            countOUT : out std_logic_vector(4 downto 0));
    end component;
 

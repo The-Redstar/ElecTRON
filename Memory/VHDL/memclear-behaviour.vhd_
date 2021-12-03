@@ -150,7 +150,7 @@ begin
 				readyOUT <= '0';
 				XincrMEM <= '1';
 
-				if curX = "11111" then
+				if new_state = incr and curX = "11111" then
 					YincrMEM <= '1';
 					if curY = "11111" then
 						new_state <= rstcnt;

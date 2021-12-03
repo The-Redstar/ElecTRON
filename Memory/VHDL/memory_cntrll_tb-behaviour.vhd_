@@ -107,14 +107,14 @@ begin
 		'0' after 30 ns;
    clrIN <= '0' after 0 ns;
    XincrIN <= '0' after 0 ns,
-		  '1' after 50050 ns,
-		  '0' after 50070 ns;
+		  '1' after 50090 ns,
+		  '0' after 50130 ns;
    YincrIN <= '0' after 0 ns,
-		  '1' after 50030 ns,
-		  '0' after 50050 ns;
+		  '1' after 50050 ns,
+		  '0' after 50090 ns;
    rstVGA <= '0' after 0 ns,
 		 '1' after 50010 ns,
-		 '0' after 50030 ns;
+		 '0' after 50050 ns;
    clrMEM <= '0' after 0 ns;
 end behaviour;
 

@@ -1,4 +1,4 @@
-# //  ModelSim SE-64 10.5b May 20 2016Linux 5.4.0-77-generic
+# //  ModelSim SE-64 10.5b May 20 2016Linux 3.10.0-1160.42.2.el7.x86_64
 # //
 # //  Copyright 1991-2016 Mentor Graphics Corporation
 # //  All Rights Reserved.
@@ -11,20 +11,16 @@
 # //  is prohibited from disclosure under the Trade Secrets Act,
 # //  18 U.S.C. Section 1905.
 # //
-# vsim counter5b_tb_behaviour_cfg -lib work -L TSMCLib -do "/data/public/common/software/opprog/do_files/init_simulator.do" 
-# Start time: 10:51:01 on Nov 30,2021
-# ** Note: (vsim-3812) Design is being optimized...
-# ** Warning: (vopt-13) Recompile work.counter5b_behaviour_cfg because work.counter5b(behaviour) has changed.
-# ** Warning: (vopt-12) Recompile work.counter5b_tb_behaviour_cfg after work.counter5b_behaviour_cfg is recompiled.
-# Loading std.standard
-# Loading std.textio(body)
-# Loading ieee.std_logic_1164(body)
-# Loading ieee.numeric_std(body)
-# Loading work.counter5b_tb_behaviour_cfg#1
-# Loading work.counter5b_tb(behaviour)#1
-# Loading work.counter5b_behaviour_cfg#1
-# Loading work.counter5b(behaviour)#1
-# do /data/public/common/software/opprog/do_files/init_simulator.do
-run 300 ns
-# End time: 10:52:16 on Nov 30,2021, Elapsed time: 0:01:15
-# Errors: 0, Warnings: 2
+# vsim memory_cntrll_tb_behaviour_cfg -lib work -L TSMCLib -do "/data/public/common/software/opprog/do_files/init_simulator.do" 
+# Start time: 10:53:23 on Dec 03,2021
+# ** Error: (vsim-7) Failed to open info file "/tmp/.x2go-mlmjanssen/media/disk/_Users_martijn_ElecTRON/Memory/work/_info" in read mode.
+# No such file or directory. (errno = ENOENT)
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# ** Error: (vopt-7) Failed to open info file "/tmp/.x2go-mlmjanssen/media/disk/_Users_martijn_ElecTRON/Memory/work/_info" in read mode.
+# No such file or directory. (errno = ENOENT)
+# Optimization failed
+# ** Error: (vopt-1933) Unable to create temporary directory /tmp/.x2go-mlmjanssen/media/disk/_Users_martijn_ElecTRON/Memory/work/_tempmsg
+# No such file or directory. (errno = ENOENT)
+# Error loading design
+# End time: 10:53:26 on Dec 03,2021, Elapsed time: 0:00:03
+# Errors: 1, Warnings: 0

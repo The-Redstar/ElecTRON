@@ -23,7 +23,6 @@ architecture behaviour of memory_cntrll_tb is
            readyOUT  : out std_logic;
            curXOUT   : out std_logic_vector(4 downto 0);
            curYOUT   : out std_logic_vector(4 downto 0);
-   	  clrMEM		: in  std_logic;
    	  rstVGA		: in  std_logic);
    end component;
    signal readMEM   : std_logic_vector(7 downto 0);
@@ -46,10 +45,9 @@ architecture behaviour of memory_cntrll_tb is
    signal readyOUT  : std_logic;
    signal curXOUT   : std_logic_vector(4 downto 0);
    signal curYOUT   : std_logic_vector(4 downto 0);
-   signal clrMEM		: std_logic;
    signal rstVGA		: std_logic;
 begin
-   test: memory_cntrll port map (readMEM, clk, XincrMEM, YincrMEM, WincrMEM, rstMEM, WEMEM, MEMEM, readOUT, writeIN, WEIN, AddressIN, GOTOIN, rstIN, clrIN, XincrIN, YincrIN, readyOUT, curXOUT, curYOUT, clrMEM, rstVGA);
+   test: memory_cntrll port map (readMEM, clk, XincrMEM, YincrMEM, WincrMEM, rstMEM, WEMEM, MEMEM, readOUT, writeIN, WEIN, AddressIN, GOTOIN, rstIN, clrIN, XincrIN, YincrIN, readyOUT, curXOUT, curYOUT, rstVGA);
    readMEM(0) <= '0' after 0 ns;
    readMEM(1) <= '0' after 0 ns;
    readMEM(2) <= '0' after 0 ns;
@@ -115,6 +113,5 @@ begin
    rstVGA <= '0' after 0 ns,
 		 '1' after 50010 ns,
 		 '0' after 50050 ns;
-   clrMEM <= '0' after 0 ns;
 end behaviour;
 
