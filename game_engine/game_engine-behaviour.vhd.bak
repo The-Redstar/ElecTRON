@@ -28,7 +28,7 @@ use IEEE.std_logic_1164.ALL;
 use ieee.numeric_std.all;
 
 architecture behaviour of game_engine is
-	type game_state is (reset_state, want_to_load, loading_state, get_ready, read_inputs, wall_shape, check_border, want_to_read_0, want_to_read_1, read_memory_player_0, read_memory_player_1, check_collision, check_who_won, wait_state, want_to_write_0, want_to_write_1, write_memory_player_0, write_memory_player_1, change_data, player_0_won, player_1_won, tie);
+	type game_state is (reset_state, want_to_load, loading_state, get_ready, read_inputs, wall_shape, check_border, want_to_read_0, want_to_read_1, read_memory_player_0, read_memory_player_1, check_collision, check_who_won, wait_state, want_to_write_0, want_to_write_1, write_memory_player_0, write_memory_player_1, change_data, player_0_won, player_1_won, tie, player_0_ready, player_1_ready, both_ready, busy_reset);
 
 	signal state, new_state: game_state;
 	signal direction_0, direction_1, next_direction_0, next_direction_1 : std_logic_vector(1 downto 0);
@@ -147,12 +147,11 @@ reg: ge_register port map (clk => clk,
 			q_p_state_0   => player_0_state,
 			q_p_state_1   => player_1_state);
 			
-counter: busy_counter 
-			port map (clk => clk,
-						global_reset => reset,
-						game_engine_reset => busy_counter_reset,
-						busy => busy,
-						busy_count => unsigned_busy_count);
+counter: busy_counter port map (clk => clk,
+			global_reset => reset,
+			game_engine_reset => busy_counter_reset,
+			busy => busy,
+			busy_count => unsigned_busy_count);
 				
 -- outputs from the register to the vga				
 position_0_vga  <= position_0;
@@ -167,16 +166,10 @@ player_state_1_vga <= player_1_state;
 updates: 	process (clk)
 	begin
 		if (clk'event and clk = '1') then
+			-- go to the reset state when the reset button is pressed
 			if (reset = '1') then
-				state <= reset_state;
-				state_vga 					<= "000";
-				write_enable 				<= '0';
-				write_memory 				<= "00000000";
-				address 					<= "0000000000";			  
-				go_to						<= '0';
-				busy_counter_reset			<= '0';
-				clear_memory				<= '0';
-				
+				state <= reset_state;	
+			-- go to the next state according to the FSM
 			else
 				state <= new_state;
 			end if;
@@ -187,6 +180,7 @@ create_next_state: 	process (state, reset, input, busy, read_memory, memory_read
 	begin
 		case state is
 			when reset_state =>
+				-- in the reset state all the values are set to zero to reset everything
 				state_vga 					<= "000";
 				write_enable 				<= '0';
 				write_memory 				<= "00000000";
@@ -225,79 +219,34 @@ create_next_state: 	process (state, reset, input, busy, read_memory, memory_read
 				d_player_0_state			<= (others => '0');
 				d_player_1_state			<= (others => '0');
 			
+				-- go to the state want_to_load next
 				new_state <= want_to_load;
 			
 			when want_to_load =>
+				-- let the memory know that we want to clear the memory and load a new game
 				state_vga 					<= "000";
 				write_enable 				<= '0';
 				write_memory 				<= "00000000";
 				address 					<= "0000000000";
 				busy_counter_reset			<= '0';
 				go_to						<= '0';
-				
-				clear_memory				<= '1';
-				
-				e_position_0				<= '1';
-				e_position_1				<= '1';
-				e_direction_0				<= '1';
-				e_direction_1				<= '1';
-				e_player_0_state			<= '1';
-				e_player_1_state			<= '1';
-				
-				e_wallshape_0				<= '0';	
-				e_wallshape_1				<= '0';
-				e_read_memory_0				<= '0';
-				e_read_memory_1				<= '0';
-				e_next_position_0			<= '0';
-				e_next_position_1			<= '0';
-				e_next_direction_0			<= '0';	
-				e_next_direction_1			<= '0';
-				
-				d_position_0				<= "01110111001";
-				d_position_1				<= "01110100100";
-				d_direction_0				<= "00";
-				d_direction_1				<= "00";
-				
-				d_player_0_state			<= "10";
-				d_player_1_state			<= "10";
-				
-				d_wallshape_0				<= (others => '0');	
-				d_wallshape_1				<= (others => '0');
-				d_read_memory_0				<= (others => '0');
-				d_read_memory_1				<= (others => '0');
-				d_next_position_0			<= (others => '0');
-				d_next_position_1			<= (others => '0');
-				d_next_direction_0			<= (others => '0');	
-				d_next_direction_1			<= (others => '0');
-				
-				new_state <= loading_state;
-			
-			when loading_state =>
-				state_vga 					<= "000";
-				write_enable 				<= '0';
-				write_memory 				<= "00000000";
-				address 					<= "0000000000";
-				busy_counter_reset			<= '0';
-				go_to						<= '0';
-				
 				clear_memory				<= '1';
 				
 				e_position_0				<= '0';
 				e_position_1				<= '0';
-				e_direction_0				<= '0';
-				e_direction_1				<= '0';
-				e_player_0_state			<= '0';
-				e_player_1_state			<= '0';
-				
 				e_wallshape_0				<= '0';	
 				e_wallshape_1				<= '0';
 				e_read_memory_0				<= '0';
 				e_read_memory_1				<= '0';
 				e_next_position_0			<= '0';
 				e_next_position_1			<= '0';
+				e_direction_0				<= '0';
+				e_direction_1				<= '0';
 				e_next_direction_0			<= '0';	
 				e_next_direction_1			<= '0';
-
+				e_player_0_state			<= '0';
+				e_player_1_state			<= '0';
+				
 				d_position_0				<= (others => '0');
 				d_position_1				<= (others => '0');	
 				d_wallshape_0				<= (others => '0');	
@@ -310,8 +259,56 @@ create_next_state: 	process (state, reset, input, busy, read_memory, memory_read
 				d_direction_1				<= (others => '0');
 				d_next_direction_0			<= (others => '0');	
 				d_next_direction_1			<= (others => '0');
+				d_player_0_state			<= (others => '0');
+				d_player_1_state			<= (others => '0');
+
+				-- go to the state loading_state next to clear the memory
+				new_state <= loading_state;
+			
+			when loading_state =>
+				-- let the memory know that we want to clear the memory and load a new game and wait for them to tell us they have finished
+				state_vga 					<= "000";
+				write_enable 				<= '0';
+				write_memory 				<= "00000000";
+				address 					<= "0000000000";
+				busy_counter_reset			<= '0';
+				go_to						<= '0';
+				clear_memory				<= '1';
 				
+				-- initialize the position, direction and state of the players
+				e_position_0				<= '1';
+				e_position_1				<= '1';
+				e_direction_0				<= '1';
+				e_direction_1				<= '1';
+				e_player_0_state			<= '1';
+				e_player_1_state			<= '1';
 				
+				d_position_0				<= "01110111001";
+				d_position_1				<= "01110100100";
+				d_direction_0				<= "00";
+				d_direction_1				<= "00";
+				d_player_0_state			<= "10";
+				d_player_1_state			<= "10";
+				
+				e_wallshape_0				<= '0';	
+				e_wallshape_1				<= '0';
+				e_read_memory_0				<= '0';
+				e_read_memory_1				<= '0';
+				e_next_position_0			<= '0';
+				e_next_position_1			<= '0';
+				e_next_direction_0			<= '0';	
+				e_next_direction_1			<= '0';
+				
+				d_wallshape_0				<= (others => '0');	
+				d_wallshape_1				<= (others => '0');
+				d_read_memory_0				<= (others => '0');
+				d_read_memory_1				<= (others => '0');
+				d_next_position_0			<= (others => '0');
+				d_next_position_1			<= (others => '0');
+				d_next_direction_0			<= (others => '0');	
+				d_next_direction_1			<= (others => '0');
+				
+				-- when the memory is finished go to the next state: get_ready otherwise stay in this state
 				if (memory_ready = '1') then 
 					new_state <= get_ready;
 				else 
@@ -319,6 +316,7 @@ create_next_state: 	process (state, reset, input, busy, read_memory, memory_read
 				end if;
 				
 			when get_ready =>
+				-- wait for the player to let us know they are ready to play the game
 				state_vga 					<= "000";
 				write_enable 				<= '0';
 				write_memory 				<= "00000000";
@@ -326,6 +324,156 @@ create_next_state: 	process (state, reset, input, busy, read_memory, memory_read
 				go_to						<= '0';
 				clear_memory				<= '0';
 				
+				e_position_0				<= '0';
+				e_position_1				<= '0';	
+				e_wallshape_0				<= '0';	
+				e_wallshape_1				<= '0';
+				e_read_memory_0				<= '0';
+				e_read_memory_1				<= '0';
+				e_next_position_0			<= '0';
+				e_next_position_1			<= '0';
+				e_direction_0				<= '0';
+				e_direction_1				<= '0';
+				e_next_direction_0			<= '0';	
+				e_next_direction_1			<= '0';
+				e_player_0_state			<= '0';
+				e_player_1_state			<= '0';
+				
+				d_position_0				<= (others => '0');
+				d_position_1				<= (others => '0');	
+				d_wallshape_0				<= (others => '0');	
+				d_wallshape_1				<= (others => '0');
+				d_read_memory_0				<= (others => '0');
+				d_read_memory_1				<= (others => '0');
+				d_next_position_0			<= (others => '0');
+				d_next_position_1			<= (others => '0');
+				d_direction_0				<= (others => '0');
+				d_direction_1				<= (others => '0');
+				d_next_direction_0			<= (others => '0');	
+				d_next_direction_1			<= (others => '0');
+				d_player_0_state			<= (others => '0');
+				d_player_1_state			<= (others => '0');
+			
+				-- the players let us know they are ready by pressing the button in the direction of the player
+				-- when the player pressed the button its player state goes to 'playing_the_game'
+				if (input(1 downto 0) = direction_0) then
+					new_state 				<= player_0_ready;
+				elsif (input(3 downto 2) = direction_1) then
+					new_state				<= player_1_ready;
+				else 
+					new_state				<= get_ready;
+				end if;
+				
+								-- when both players are ready the game should begin by going to the wait state next, otherwise stay here untill they are ready
+
+			when player_0_ready =>
+				e_player_0_state			<= '1';
+				d_player_0_state			<= "11";
+
+				if (input(3 downto 2) = direction_1) then
+					new_state <= both_ready;
+				else 
+					new_state <= player_0_ready;
+				end if;
+
+				state_vga 					<= "000";
+				write_enable 				<= '0';
+				write_memory 				<= "00000000";
+				address 					<= "0000000000";			  
+				go_to						<= '0';
+				busy_counter_reset			<= '0';
+				clear_memory				<= '0';
+			
+				e_position_0				<= '0';
+				e_position_1				<= '0';	
+				e_wallshape_0				<= '0';	
+				e_wallshape_1				<= '0';
+				e_read_memory_0				<= '0';
+				e_read_memory_1				<= '0';
+				e_next_position_0			<= '0';
+				e_next_position_1			<= '0';
+				e_direction_0				<= '0';
+				e_direction_1				<= '0';
+				e_next_direction_0			<= '0';	
+				e_next_direction_1			<= '0';
+				e_player_1_state			<= '0';
+				
+				d_position_0				<= (others => '0');
+				d_position_1				<= (others => '0');	
+				d_wallshape_0				<= (others => '0');	
+				d_wallshape_1				<= (others => '0');
+				d_read_memory_0				<= (others => '0');
+				d_read_memory_1				<= (others => '0');
+				d_next_position_0			<= (others => '0');
+				d_next_position_1			<= (others => '0');
+				d_direction_0				<= (others => '0');
+				d_direction_1				<= (others => '0');
+				d_next_direction_0			<= (others => '0');	
+				d_next_direction_1			<= (others => '0');
+				d_player_1_state			<= (others => '0');
+			
+
+			when player_1_ready =>
+				e_player_1_state			<= '1';
+				d_player_1_state			<= "11";
+
+				if (input(1 downto 0) = direction_0) then
+					new_state <= both_ready;
+				else 
+					new_state <= player_1_ready;
+				end if;
+	
+				state_vga 					<= "000";
+				write_enable 				<= '0';
+				write_memory 				<= "00000000";
+				address 					<= "0000000000";			  
+				go_to						<= '0';
+				busy_counter_reset			<= '0';
+				clear_memory				<= '0';
+			
+				e_position_0				<= '0';
+				e_position_1				<= '0';	
+				e_wallshape_0				<= '0';	
+				e_wallshape_1				<= '0';
+				e_read_memory_0				<= '0';
+				e_read_memory_1				<= '0';
+				e_next_position_0			<= '0';
+				e_next_position_1			<= '0';
+				e_direction_0				<= '0';
+				e_direction_1				<= '0';
+				e_next_direction_0			<= '0';	
+				e_next_direction_1			<= '0';
+				e_player_0_state			<= '0';
+				
+				d_position_0				<= (others => '0');
+				d_position_1				<= (others => '0');	
+				d_wallshape_0				<= (others => '0');	
+				d_wallshape_1				<= (others => '0');
+				d_read_memory_0				<= (others => '0');
+				d_read_memory_1				<= (others => '0');
+				d_next_position_0			<= (others => '0');
+				d_next_position_1			<= (others => '0');
+				d_direction_0				<= (others => '0');
+				d_direction_1				<= (others => '0');
+				d_next_direction_0			<= (others => '0');	
+				d_next_direction_1			<= (others => '0');
+				d_player_0_state			<= (others => '0');
+							
+			when both_ready =>
+				e_player_0_state			<= '1';
+				d_player_0_state			<= "11";
+				e_player_1_state			<= '1';
+				d_player_1_state			<= "11";
+				new_state <= wait_state;
+
+				state_vga 					<= "000";
+				write_enable 				<= '0';
+				write_memory 				<= "00000000";
+				address 					<= "0000000000";			  
+				go_to						<= '0';
+				busy_counter_reset			<= '0';
+				clear_memory				<= '0';
+			
 				e_position_0				<= '0';
 				e_position_1				<= '0';	
 				e_wallshape_0				<= '0';	
@@ -351,26 +499,9 @@ create_next_state: 	process (state, reset, input, busy, read_memory, memory_read
 				d_direction_1				<= (others => '0');
 				d_next_direction_0			<= (others => '0');	
 				d_next_direction_1			<= (others => '0');
-			
-				
-				if ((input(3 downto 2) = direction_1) and (input(1 downto 0) = direction_0)) then
-					-- normally it should go to the wait state however for testing reasons we skip that state for now since we know it works
-					new_state <= wait_state;
-					-- new_state <= read_inputs;
-					e_player_0_state			<= '1';
-					e_player_1_state			<= '1';
-					d_player_0_state			<= "11";
-					d_player_1_state			<= "11";
-				else 
-					new_state <= get_ready;
-					e_player_0_state			<= '0';
-					e_player_1_state			<= '0';
-					d_player_0_state			<= (others => '0');
-					d_player_1_state			<= (others => '0');
-				end if;
-				
 
 			when player_0_won =>
+				-- player 0 won and tell that to the VGA
 				state_vga 					<= "010";
 				write_enable 				<= '0';
 				write_memory 				<= "00000000";
@@ -409,6 +540,7 @@ create_next_state: 	process (state, reset, input, busy, read_memory, memory_read
 				d_player_0_state			<= (others => '0');
 				d_player_1_state			<= (others => '0');
 				
+				-- stay in this state untill reset is pressed
 				if (reset = '1') then
 					new_state <= reset_state;
 				else 
@@ -416,6 +548,7 @@ create_next_state: 	process (state, reset, input, busy, read_memory, memory_read
 				end if;
 
 			when player_1_won =>
+				-- player 1 won and tell that to the VGA
 				state_vga 					<= "011";
 				write_enable 				<= '0';
 				write_memory 				<= "00000000";
@@ -454,6 +587,7 @@ create_next_state: 	process (state, reset, input, busy, read_memory, memory_read
 				d_player_0_state			<= (others => '0');
 				d_player_1_state			<= (others => '0');
 				
+				-- stay in this state untill reset is pressed
 				if (reset = '1') then
 					new_state <= reset_state;
 				else 
@@ -461,6 +595,7 @@ create_next_state: 	process (state, reset, input, busy, read_memory, memory_read
 				end if;	
 				
 			when tie =>
+				-- both players lost and tell that to the VGA
 				state_vga 					<= "001";
 				write_enable 				<= '0';
 				write_memory 				<= "00000000";
@@ -499,6 +634,7 @@ create_next_state: 	process (state, reset, input, busy, read_memory, memory_read
 				d_player_0_state			<= (others => '0');
 				d_player_1_state			<= (others => '0');
 				
+				-- stay in this state untill reset is pressed
 				if (reset = '1') then
 					new_state <= reset_state;
 				else 
@@ -506,6 +642,8 @@ create_next_state: 	process (state, reset, input, busy, read_memory, memory_read
 				end if;
 				
 			when wait_state =>
+				-- wait for a certain amount of busy signal cycles before going on
+				-- this is to make sure that the player does not cross the entire field within the second
 				state_vga 					<= "111";
 				write_enable 				<= '0';
 				write_memory 				<= "00000000";
@@ -543,16 +681,57 @@ create_next_state: 	process (state, reset, input, busy, read_memory, memory_read
 				d_next_direction_1			<= (others => '0');
 				d_player_0_state			<= (others => '0');
 				d_player_1_state			<= (others => '0');
-			
+
+				-- when waited long enough go the next state: read_inputs, otherwise keep waiting
 				if (unsigned( unsigned_busy_count) >= 16) then
-					busy_counter_reset <= '1';
-					new_state <= read_inputs;
+					new_state <= busy_reset;
 				else
 					new_state <= wait_state;
-					busy_counter_reset <= '0';
 				end if;
+
+			when busy_reset => 
+				busy_counter_reset <= '1';
+				new_state <= read_inputs;
+
+				state_vga 				<= "111";
+				write_enable 				<= '0';
+				write_memory 				<= "00000000";
+				address 				<= "0000000000";
+				go_to					<= '0';
+				clear_memory				<= '0';
 				
+				e_position_0				<= '0';
+				e_position_1				<= '0';	
+				e_wallshape_0				<= '0';	
+				e_wallshape_1				<= '0';
+				e_read_memory_0				<= '0';
+				e_read_memory_1				<= '0';
+				e_next_position_0			<= '0';
+				e_next_position_1			<= '0';
+				e_direction_0				<= '0';
+				e_direction_1				<= '0';
+				e_next_direction_0			<= '0';	
+				e_next_direction_1			<= '0';
+				e_player_0_state			<= '0';
+				e_player_1_state			<= '0';
+				
+				d_position_0				<= (others => '0');
+				d_position_1				<= (others => '0');	
+				d_wallshape_0				<= (others => '0');	
+				d_wallshape_1				<= (others => '0');
+				d_read_memory_0				<= (others => '0');
+				d_read_memory_1				<= (others => '0');
+				d_next_position_0			<= (others => '0');
+				d_next_position_1			<= (others => '0');
+				d_direction_0				<= (others => '0');
+				d_direction_1				<= (others => '0');
+				d_next_direction_0			<= (others => '0');	
+				d_next_direction_1			<= (others => '0');
+				d_player_0_state			<= (others => '0');
+				d_player_1_state			<= (others => '0');
+
 			when read_inputs =>
+				-- read the inputs from the players and remember them
 				state_vga 					<= "111";
 				write_enable 				<= '0';
 				write_memory 				<= "00000000";
@@ -561,8 +740,10 @@ create_next_state: 	process (state, reset, input, busy, read_memory, memory_read
 				busy_counter_reset			<= '0';
 				clear_memory				<= '0';
 				
+				-- remember the values of the input of the players: direction
 				e_next_direction_0			<= '1';	
 				e_next_direction_1			<= '1';
+				
 				d_next_direction_0			<= input(1 downto 0);
 				d_next_direction_1			<= input(3 downto 2);										
 	
@@ -592,9 +773,11 @@ create_next_state: 	process (state, reset, input, busy, read_memory, memory_read
 				d_player_0_state			<= (others => '0');
 				d_player_1_state			<= (others => '0');
 				
+				-- go to the state wall_shape next
 				new_state <= wall_shape;
 
 			when wall_shape => 
+				-- determine how the player went over a cell
 				state_vga   				<= "111";
 				write_enable 				<= '0';
 				write_memory  				<= "00000000";
@@ -621,19 +804,22 @@ create_next_state: 	process (state, reset, input, busy, read_memory, memory_read
 				d_next_direction_0			<= (others => '0');	
 				d_next_direction_1			<= (others => '0');
 				
+				-- previous: left, next: left -- previous: right, next: right --> horizontal
 				if ((direction_0= "01") and (next_direction_0  ="01")) or  ((direction_0= "11") and (next_direction_0  ="11")) then 
 					e_wallshape_0 <= '1';	
-					d_wallshape_0 <= "001"; -- previous: left, next: left -- previous: right, next: right 
+					d_wallshape_0 <= "001"; 
 					e_player_0_state <= '0';
 					d_player_0_state <= (others => '0');
+				-- previous: up, next: up -- previous: down, next: down --> vertical
 				elsif ((direction_0= "00") and (next_direction_0  ="00")) or  ((direction_0= "10") and (next_direction_0  ="10")) then 
 					e_wallshape_0 <= '1';	
-					d_wallshape_0 <= "010"; -- previous: up, next: up -- previous: down, next: down
+					d_wallshape_0 <= "010";
 					e_player_0_state <= '0';
 					d_player_0_state <= (others => '0');
+				-- previous: up, next: right -- previous: left, next: down --> 
 				elsif ((direction_0= "00") and (next_direction_0  ="11")) or  ((direction_0= "01") and (next_direction_0  ="10")) then 
 					e_wallshape_0 <= '1';	
-					d_wallshape_0 <= "110"; -- previous: up, next: right -- previous: left, next: down
+					d_wallshape_0 <= "110"; 
 					e_player_0_state <= '0';
 					d_player_0_state <= (others => '0');
 				elsif ((direction_0= "00") and (next_direction_0  ="01")) or  ((direction_0= "11") and (next_direction_0  ="10")) then 
@@ -1148,22 +1334,6 @@ create_next_state: 	process (state, reset, input, busy, read_memory, memory_read
 			when want_to_write_1 =>
 				state_vga   				<= "111";
 				
-				--if collide on border, there shall be no writing
-				if (player_1_state = "01") then 
-					write_enable 				<= '0';
-					write_memory			 	<= "00000000";
-					address 					<= "0000000000";
-					go_to 						<= '0';
-					new_state 					<= change_data;
-				else 
-					write_enable 				<= '1';
-					write_memory(7 downto 3) 	<= "00001";
-					write_memory(2 downto 0) 	<= wallshape_1;
-					address 					<= position_1(9 downto 0);
-					go_to 						<= '1';
-					new_state 					<= write_memory_player_1;
-				end if;
-				
 				busy_counter_reset			<= '0';
 				clear_memory				<= '0';
 				
@@ -1197,7 +1367,21 @@ create_next_state: 	process (state, reset, input, busy, read_memory, memory_read
 				d_player_0_state			<= (others => '0');
 				d_player_1_state			<= (others => '0');
 				
-				--new_state is in if statement above
+				--if collide on border, there shall be no writing
+				if (player_1_state = "01") then 
+					write_enable 				<= '0';
+					write_memory			 	<= "00000000";
+					address 					<= "0000000000";
+					go_to 						<= '0';
+					new_state 					<= change_data;
+				else 
+					write_enable 				<= '1';
+					write_memory(7 downto 3) 	<= "00001";
+					write_memory(2 downto 0) 	<= wallshape_1;
+					address 					<= position_1(9 downto 0);
+					go_to 						<= '1';
+					new_state 					<= write_memory_player_1;
+				end if;
 
 			when write_memory_player_1 =>
 				state_vga   				<= "111";
@@ -1350,9 +1534,7 @@ create_next_state: 	process (state, reset, input, busy, read_memory, memory_read
 					new_state <= player_1_won;
 				else 
 					new_state <= tie;
-				end if;
-		
-				
+				end if;			
 		end case;
 	end process;
 end behaviour;
