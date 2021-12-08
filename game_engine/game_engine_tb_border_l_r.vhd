@@ -89,4 +89,10 @@ read_memory <=	"00000000" after 0 ns;
 -- in reality the memory_ready signal is not always '1', however, since it is shown in another simulation that the code concerning the memory_ready signal works, it is kept '1' for simplicity
 memory_ready <= '1' after 0 ns;
 
+-- the starting positions used to test this test bench
+-- d_position_0				<= "01110111001";
+-- d_position_1				<= "01110100100";
+-- d_direction_0			<= "00";
+-- d_direction_1			<= "00";
+
 end architecture structural;
