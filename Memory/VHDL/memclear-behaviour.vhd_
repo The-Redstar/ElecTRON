@@ -2,7 +2,7 @@ library IEEE;
 use IEEE.std_logic_1164.ALL;
 
 architecture behaviour of memclear is
-	type memclr_state is (SLEEP, rstALL, fix1, fix2, fix3, wait1, wait2, wait3, wait4, wait5, fixback1, fixback2, incr, rstcnt);
+	type memclr_state is (SLEEP, rstALL, fix1, fix2, fix3, wait1, wait2, wait3, wait4, wait5, fixback1, fixback2, incrX1, incrX2, incrXY1, incrXY2, rstcnt);
 	signal state, new_state: memclr_state;
 begin
 	memclr_process: process(clk)
@@ -71,7 +71,7 @@ begin
 				readyOUT <= '0';
 				rstMEM <= '0';
 
-				new_state <= wait2;
+				new_state <= wait1;
 
 			when wait1 =>
 				WEMEM <= '0';
@@ -141,26 +141,55 @@ begin
 				readyOUT <= '0';
 				rstMEM <= '0';
 
-				new_state <= incr;
-
-			when incr =>
-				WEMEM <= '1';
-				MEMEM <= '0';
-				rstMEM <= '0';
-				readyOUT <= '0';
-				XincrMEM <= '1';
-
-				if new_state = incr and curX = "11111" then
-					YincrMEM <= '1';
+				if curX = "11111" then
 					if curY = "11111" then
 						new_state <= rstcnt;
 					else
-						new_state <= fix1;
+						new_state <= incrXY1;
 					end if;
 				else
-					YincrMEM <= '0';
-					new_state <= fix1;
+					new_state <= incrX1;
 				end if;
+
+			when incrX1 =>
+				WEMEM <= '1';
+				MEMEM <= '0';
+				XincrMEM <= '1';
+				YincrMEM <= '0';
+				rstMEM <= '0';
+				readyOUT <= '0';
+
+				new_state <= incrX2;
+
+			when incrX2 =>
+				WEMEM <= '1';
+				MEMEM <= '0';
+				XincrMEM <= '1';
+				YincrMEM <= '0';
+				rstMEM <= '0';
+				readyOUT <= '0';
+
+				new_state <= fix1;
+
+			when incrXY1 =>
+				WEMEM <= '1';
+				MEMEM <= '0';
+				XincrMEM <= '1';
+				YincrMEM <= '1';
+				rstMEM <= '0';
+				readyOUT <= '0';
+
+				new_state <= incrXY2;
+
+			when incrXY2 =>
+				WEMEM <= '1';
+				MEMEM <= '0';
+				XincrMEM <= '1';
+				YincrMEM <= '1';
+				rstMEM <= '0';
+				readyOUT <= '0';
+
+				new_state <= fix1;
 
 			when rstcnt =>
 				WEMEM <= '1';

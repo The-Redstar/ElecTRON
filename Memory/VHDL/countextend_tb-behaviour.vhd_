@@ -21,7 +21,7 @@ begin
    incrIN <= '0' after 0 ns,
 		 '1' after 45 ns,
 		 '0' after 65 ns,
-		 '1' after 155 ns,
-		 '0' after 175 ns;
+		 '1' after 205 ns,
+		 '0' after 225 ns;
 end behaviour;
 

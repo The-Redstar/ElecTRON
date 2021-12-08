@@ -366,7 +366,7 @@ begin
 
 				new_state <= SLEEP;
 
-			when wait2 =>
+			when wait2W =>
 				WEMEM <= '0';
 				MEMEM <= '0';
 				XincrMEM <= '0';
@@ -377,7 +377,7 @@ begin
 
 				new_state <= wait3;
 
-			when wait3 =>
+			when wait3W =>
 				WEMEM <= '0';
 				MEMEM <= '0';
 				XincrMEM <= '0';
@@ -388,7 +388,7 @@ begin
 
 				new_state <= wait4;
 
-			when wait4 =>
+			when wait4W =>
 				WEMEM <= '0';
 				MEMEM <= '0';
 				XincrMEM <= '0';
@@ -399,7 +399,7 @@ begin
 
 				new_state <= wait5;
 
-			when wait5 =>
+			when wait5W =>
 				WEMEM <= '0';
 				MEMEM <= '0';
 				XincrMEM <= '0';
@@ -410,7 +410,7 @@ begin
 
 				new_state <= wait6;
 
-			when wait6 =>
+			when wait6W =>
 				WEMEM <= '0';
 				MEMEM <= '0';
 				XincrMEM <= '0';

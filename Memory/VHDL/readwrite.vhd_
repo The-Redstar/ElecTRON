@@ -15,6 +15,7 @@ entity readwrite is
         readyOUT  : out std_logic;
         rstIN     : in  std_logic;
         rstMEM    : out std_logic;
+	curW	  : in std_logic_vector(7 downto 0);
 	curX	  : in std_logic_vector(4 downto 0);
 	curY	  : in std_logic_vector(4 downto 0));
 end readwrite;

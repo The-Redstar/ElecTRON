@@ -22,7 +22,6 @@ entity memory_cntrll is
         readyOUT  : out std_logic;
         curXOUT   : out std_logic_vector(4 downto 0);
         curYOUT   : out std_logic_vector(4 downto 0);
-	  clrMEM		: in  std_logic;
 	  rstVGA		: in  std_logic);
 end memory_cntrll;
 

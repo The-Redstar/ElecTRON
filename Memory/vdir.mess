@@ -28,56 +28,56 @@ OPTIMIZED DESIGN _opt2
     Opcode format: 10.5b; VCOM/VLOG SE-64 Object version 63
     Source directory: /tmp/.x2go-mlmjanssen/media/disk/_Users_martijn_ElecTRON/Memory
 ENTITY counter5b
-    Source modified time: Mon Nov 29 10:51:02 2021
+    Source modified time: Wed Dec  8 20:09:42 2021
     Depends on: P std textio zE1`LPoLg^DX3Oz^4Fj1K3
     Depends on: P ieee std_logic_1164 eNV`TJ_GofJTzYa?f<@Oe1
     Source directory: /tmp/.x2go-jwnijenhuis/media/disk/_cygdrive_C_Users_jonat_OneDrive_DOCUME1_Studie_EE2L11_ElecTRON/Memory
     HDL source file: VHDL/counter5b.vhd
     Source file: VHDL/counter5b.vhd
     Start location: VHDL/counter5b.vhd:4
-    Version string: UfXk^9M:O2f;XfY0:JiCa0
+    Version string: 5F]bngR78R:c]S:;SM:QV1
     Opcode format: 10.5b; VCOM SE-64 Object version 63
     VHDL language standard: 3 (VHDL-2008)
-    Compile time: Fri Dec  3 10:03:41 2021
+    Compile time: Wed Dec  8 20:12:14 2021
     Debug Symbol file exists
     Compiled in vopt flow
     Compile options: -quiet -nologo -2008 -lower -explicit -work work
     Compile defaults: Explicit=1 CvgOpt=0
   ARCHITECTURE BODY behaviour
-    Source modified time: Fri Dec  3 11:43:31 2021
-    Depends on: E work counter5b UfXk^9M:O2f;XfY0:JiCa0
+    Source modified time: Wed Dec  8 20:10:36 2021
+    Depends on: E work counter5b 5F]bngR78R:c]S:;SM:QV1
     Depends on: P ieee numeric_std :ASDNFgHXf_ih3J@9F3Ze1
     Depends on: P std textio zE1`LPoLg^DX3Oz^4Fj1K3
     Depends on: P ieee std_logic_1164 eNV`TJ_GofJTzYa?f<@Oe1
-    Source directory: /home/mlmjanssen/Documents/Memory
     HDL source file: VHDL/counter5b-behaviour.vhd
     Source file: VHDL/counter5b-behaviour.vhd
     Start location: VHDL/counter5b-behaviour.vhd:5
-    Version string: UW6;P:>;b4>bR2<9f9OV=0
+    Version string: U_J6`>OYA:ic9o5IgVMGQ0
     Opcode format: 10.5b; VCOM SE-64 Object version 63
     VHDL language standard: 3 (VHDL-2008)
-    Compile time: Fri Dec  3 11:43:33 2021
+    Compile time: Wed Dec  8 20:12:20 2021
     Debug Symbol file exists
     Compiled in vopt flow
     Compile options: -quiet -nologo -2008 -lower -explicit -work work
     Compile defaults: Explicit=1 CvgOpt=0
+    Source directory: /tmp/.x2go-jwnijenhuis/media/disk/_cygdrive_C_Users_jonat_OneDrive_DOCUME1_Studie_EE2L11_ElecTRON/Memory
 VHDL CONFIGURATION counter5b_behaviour_cfg
     Configuration applies to entity: counter5b
     Block configuration applies to architecture: behaviour
     Depends on: P ieee numeric_std :ASDNFgHXf_ih3J@9F3Ze1
-    Depends on: A work counter5b behaviour UW6;P:>;b4>bR2<9f9OV=0
+    Depends on: A work counter5b behaviour U_J6`>OYA:ic9o5IgVMGQ0
     Depends on: P std textio zE1`LPoLg^DX3Oz^4Fj1K3
     Depends on: P ieee std_logic_1164 eNV`TJ_GofJTzYa?f<@Oe1
-    Depends on: E work counter5b UfXk^9M:O2f;XfY0:JiCa0
-    Source modified time: Thu Nov 25 11:48:34 2021
-    Source directory: /home/mlmjanssen/Documents/Memory
+    Depends on: E work counter5b 5F]bngR78R:c]S:;SM:QV1
+    Source modified time: Fri Nov 26 08:50:05 2021
+    Source directory: /tmp/.x2go-jwnijenhuis/media/disk/_cygdrive_C_Users_jonat_OneDrive_DOCUME1_Studie_EE2L11_ElecTRON/Memory
     HDL source file: VHDL/counter5b_behaviour_cfg.vhd
     Source file: VHDL/counter5b_behaviour_cfg.vhd
     Start location: VHDL/counter5b_behaviour_cfg.vhd:1
     Version string: >FQQ2ES26QQ]S>nM1Kn?<3
     Opcode format: 10.5b; VCOM SE-64 Object version 63
     VHDL language standard: 3 (VHDL-2008)
-    Compile time: Fri Dec  3 11:43:37 2021
+    Compile time: Wed Dec  8 20:12:25 2021
     Compiled in vopt flow
     Compile options: -quiet -nologo -2008 -lower -explicit -work work
     Compile defaults: Explicit=1 CvgOpt=0
@@ -98,7 +98,7 @@ ENTITY counter5b_tb
     Compile options: -quiet -nologo -2008 -lower -explicit -work work
     Compile defaults: Explicit=1 CvgOpt=0
   ARCHITECTURE BODY behaviour
-    Source modified time: Mon Nov 29 11:46:37 2021
+    Source modified time: Wed Dec  8 20:11:44 2021
     Depends on: E work counter5b_tb D7DnOOT]bNhR:M5`IF9bY2
     Depends on: P std textio zE1`LPoLg^DX3Oz^4Fj1K3
     Depends on: P ieee std_logic_1164 eNV`TJ_GofJTzYa?f<@Oe1
@@ -106,10 +106,10 @@ ENTITY counter5b_tb
     HDL source file: VHDL/counter5b_tb-behaviour.vhd
     Source file: VHDL/counter5b_tb-behaviour.vhd
     Start location: VHDL/counter5b_tb-behaviour.vhd:4
-    Version string: gYUEbY:AeDOFRWmhRRZkF2
+    Version string: TcCnlca4Yd?QYGPzRn3gS1
     Opcode format: 10.5b; VCOM SE-64 Object version 63
     VHDL language standard: 3 (VHDL-2008)
-    Compile time: Fri Dec  3 10:03:55 2021
+    Compile time: Wed Dec  8 20:12:31 2021
     Debug Symbol file exists
     Compiled in vopt flow
     Compile options: -quiet -nologo -2008 -lower -explicit -work work
@@ -117,75 +117,75 @@ ENTITY counter5b_tb
 VHDL CONFIGURATION counter5b_tb_behaviour_cfg
     Configuration applies to entity: counter5b_tb
     Block configuration applies to architecture: behaviour
-    Depends on: E work counter5b UfXk^9M:O2f;XfY0:JiCa0
+    Depends on: E work counter5b 5F]bngR78R:c]S:;SM:QV1
     Depends on: C work counter5b_behaviour_cfg >FQQ2ES26QQ]S>nM1Kn?<3
-    Depends on: A work counter5b_tb behaviour gYUEbY:AeDOFRWmhRRZkF2
+    Depends on: A work counter5b_tb behaviour TcCnlca4Yd?QYGPzRn3gS1
     Depends on: P std textio zE1`LPoLg^DX3Oz^4Fj1K3
     Depends on: P ieee std_logic_1164 eNV`TJ_GofJTzYa?f<@Oe1
     Depends on: E work counter5b_tb D7DnOOT]bNhR:M5`IF9bY2
-    Source modified time: Thu Nov 25 11:53:35 2021
-    Source directory: /home/mlmjanssen/Documents/Memory
+    Source modified time: Fri Nov 26 08:50:05 2021
+    Source directory: /tmp/.x2go-jwnijenhuis/media/disk/_cygdrive_C_Users_jonat_OneDrive_DOCUME1_Studie_EE2L11_ElecTRON/Memory
     HDL source file: VHDL/counter5b_tb_behaviour_cfg.vhd
     Source file: VHDL/counter5b_tb_behaviour_cfg.vhd
     Start location: VHDL/counter5b_tb_behaviour_cfg.vhd:1
     Version string: 0cUBUkT7g35nM>NUK``@>3
     Opcode format: 10.5b; VCOM SE-64 Object version 63
     VHDL language standard: 3 (VHDL-2008)
-    Compile time: Fri Dec  3 11:43:37 2021
+    Compile time: Wed Dec  8 20:12:37 2021
     Compiled in vopt flow
     Compile options: -quiet -nologo -2008 -lower -explicit -work work
     Compile defaults: Explicit=1 CvgOpt=0
 ENTITY counter8b
-    Source modified time: Fri Nov 26 11:08:26 2021
+    Source modified time: Wed Dec  8 20:14:05 2021
     Depends on: P std textio zE1`LPoLg^DX3Oz^4Fj1K3
     Depends on: P ieee std_logic_1164 eNV`TJ_GofJTzYa?f<@Oe1
-    Source directory: /tmp/.x2go-mlmjanssen/media/disk/_Users_martijn_ElecTRON/Memory
+    Source directory: /tmp/.x2go-jwnijenhuis/media/disk/_cygdrive_C_Users_jonat_OneDrive_DOCUME1_Studie_EE2L11_ElecTRON/Memory
     HDL source file: VHDL/counter8b.vhd
     Source file: VHDL/counter8b.vhd
     Start location: VHDL/counter8b.vhd:4
-    Version string: gg@WZOA>6Zka>aHAh^9411
+    Version string: >[FmLQ_Ig=:LSA5UHeK;Z0
     Opcode format: 10.5b; VCOM SE-64 Object version 63
     VHDL language standard: 3 (VHDL-2008)
-    Compile time: Fri Nov 26 11:10:14 2021
+    Compile time: Wed Dec  8 20:16:20 2021
     Debug Symbol file exists
     Compiled in vopt flow
     Compile options: -quiet -nologo -2008 -lower -explicit -work work
     Compile defaults: Explicit=1 CvgOpt=0
   ARCHITECTURE BODY behaviour
-    Source modified time: Fri Dec  3 11:41:47 2021
-    Depends on: E work counter8b gg@WZOA>6Zka>aHAh^9411
+    Source modified time: Wed Dec  8 20:15:05 2021
+    Depends on: E work counter8b >[FmLQ_Ig=:LSA5UHeK;Z0
     Depends on: P ieee numeric_std :ASDNFgHXf_ih3J@9F3Ze1
     Depends on: P std textio zE1`LPoLg^DX3Oz^4Fj1K3
     Depends on: P ieee std_logic_1164 eNV`TJ_GofJTzYa?f<@Oe1
-    Source directory: /home/mlmjanssen/Documents/Memory
     HDL source file: VHDL/counter8b-behaviour.vhd
     Source file: VHDL/counter8b-behaviour.vhd
     Start location: VHDL/counter8b-behaviour.vhd:5
-    Version string: zbO93hMW;5jYaeUACKYPV2
+    Version string: =oiH`ch98mQi9NiDOIdNT0
     Opcode format: 10.5b; VCOM SE-64 Object version 63
     VHDL language standard: 3 (VHDL-2008)
-    Compile time: Fri Dec  3 11:41:47 2021
+    Compile time: Wed Dec  8 20:16:25 2021
     Debug Symbol file exists
     Compiled in vopt flow
     Compile options: -quiet -nologo -2008 -lower -explicit -work work
     Compile defaults: Explicit=1 CvgOpt=0
+    Source directory: /tmp/.x2go-jwnijenhuis/media/disk/_cygdrive_C_Users_jonat_OneDrive_DOCUME1_Studie_EE2L11_ElecTRON/Memory
 VHDL CONFIGURATION counter8b_behaviour_cfg
     Configuration applies to entity: counter8b
     Block configuration applies to architecture: behaviour
     Depends on: P ieee numeric_std :ASDNFgHXf_ih3J@9F3Ze1
-    Depends on: A work counter8b behaviour zbO93hMW;5jYaeUACKYPV2
+    Depends on: A work counter8b behaviour =oiH`ch98mQi9NiDOIdNT0
     Depends on: P std textio zE1`LPoLg^DX3Oz^4Fj1K3
     Depends on: P ieee std_logic_1164 eNV`TJ_GofJTzYa?f<@Oe1
-    Depends on: E work counter8b gg@WZOA>6Zka>aHAh^9411
-    Source modified time: Fri Nov 26 09:14:28 2021
-    Source directory: /home/mlmjanssen/Documents/Memory
+    Depends on: E work counter8b >[FmLQ_Ig=:LSA5UHeK;Z0
+    Source modified time: Mon Nov 29 10:51:02 2021
+    Source directory: /tmp/.x2go-jwnijenhuis/media/disk/_cygdrive_C_Users_jonat_OneDrive_DOCUME1_Studie_EE2L11_ElecTRON/Memory
     HDL source file: VHDL/counter8b_behaviour_cfg.vhd
     Source file: VHDL/counter8b_behaviour_cfg.vhd
     Start location: VHDL/counter8b_behaviour_cfg.vhd:1
     Version string: Sl55lR4i`FU_U^lN5SZI?0
     Opcode format: 10.5b; VCOM SE-64 Object version 63
     VHDL language standard: 3 (VHDL-2008)
-    Compile time: Fri Dec  3 11:41:54 2021
+    Compile time: Wed Dec  8 20:16:31 2021
     Compiled in vopt flow
     Compile options: -quiet -nologo -2008 -lower -explicit -work work
     Compile defaults: Explicit=1 CvgOpt=0
@@ -206,92 +206,92 @@ ENTITY counter8b_tb
     Compile options: -quiet -nologo -2008 -lower -explicit -work work
     Compile defaults: Explicit=1 CvgOpt=0
   ARCHITECTURE BODY behaviour
-    Source modified time: Fri Nov 26 11:10:05 2021
+    Source modified time: Wed Dec  8 20:15:50 2021
     Depends on: E work counter8b_tb A_IIVSDQikE46z<AScZJY3
     Depends on: P std textio zE1`LPoLg^DX3Oz^4Fj1K3
     Depends on: P ieee std_logic_1164 eNV`TJ_GofJTzYa?f<@Oe1
+    Source directory: /tmp/.x2go-jwnijenhuis/media/disk/_cygdrive_C_Users_jonat_OneDrive_DOCUME1_Studie_EE2L11_ElecTRON/Memory
     HDL source file: VHDL/counter8b_tb-behaviour.vhd
     Source file: VHDL/counter8b_tb-behaviour.vhd
     Start location: VHDL/counter8b_tb-behaviour.vhd:4
-    Version string: m13Dz?F8Q6e;Xzl2CO7HI1
+    Version string: 3E?XUP_M1Gc1SA][8zPLP2
     Opcode format: 10.5b; VCOM SE-64 Object version 63
     VHDL language standard: 3 (VHDL-2008)
-    Compile time: Fri Nov 26 11:10:29 2021
+    Compile time: Wed Dec  8 20:16:36 2021
     Debug Symbol file exists
     Compiled in vopt flow
     Compile options: -quiet -nologo -2008 -lower -explicit -work work
     Compile defaults: Explicit=1 CvgOpt=0
-    Source directory: /tmp/.x2go-mlmjanssen/media/disk/_Users_martijn_ElecTRON/Memory
 VHDL CONFIGURATION counter8b_tb_behaviour_cfg
     Configuration applies to entity: counter8b_tb
     Block configuration applies to architecture: behaviour
-    Depends on: E work counter8b gg@WZOA>6Zka>aHAh^9411
+    Depends on: E work counter8b >[FmLQ_Ig=:LSA5UHeK;Z0
     Depends on: C work counter8b_behaviour_cfg Sl55lR4i`FU_U^lN5SZI?0
-    Depends on: A work counter8b_tb behaviour m13Dz?F8Q6e;Xzl2CO7HI1
+    Depends on: A work counter8b_tb behaviour 3E?XUP_M1Gc1SA][8zPLP2
     Depends on: P std textio zE1`LPoLg^DX3Oz^4Fj1K3
     Depends on: P ieee std_logic_1164 eNV`TJ_GofJTzYa?f<@Oe1
     Depends on: E work counter8b_tb A_IIVSDQikE46z<AScZJY3
-    Source modified time: Fri Nov 26 09:15:22 2021
-    Source directory: /home/mlmjanssen/Documents/Memory
+    Source modified time: Mon Nov 29 10:51:02 2021
+    Source directory: /tmp/.x2go-jwnijenhuis/media/disk/_cygdrive_C_Users_jonat_OneDrive_DOCUME1_Studie_EE2L11_ElecTRON/Memory
     HDL source file: VHDL/counter8b_tb_behaviour_cfg.vhd
     Source file: VHDL/counter8b_tb_behaviour_cfg.vhd
     Start location: VHDL/counter8b_tb_behaviour_cfg.vhd:1
     Version string: 1o5TQMHHBGfIe1<2Go`dT0
     Opcode format: 10.5b; VCOM SE-64 Object version 63
     VHDL language standard: 3 (VHDL-2008)
-    Compile time: Fri Dec  3 11:41:54 2021
+    Compile time: Wed Dec  8 20:16:42 2021
     Compiled in vopt flow
     Compile options: -quiet -nologo -2008 -lower -explicit -work work
     Compile defaults: Explicit=1 CvgOpt=0
 ENTITY countextend
-    Source modified time: Fri Nov 26 10:00:34 2021
+    Source modified time: Wed Dec  8 20:22:36 2021
     Depends on: P std textio zE1`LPoLg^DX3Oz^4Fj1K3
     Depends on: P ieee std_logic_1164 eNV`TJ_GofJTzYa?f<@Oe1
-    Source directory: /tmp/.x2go-mlmjanssen/media/disk/_Users_martijn_ElecTRON/Memory
+    Source directory: /tmp/.x2go-jwnijenhuis/media/disk/_cygdrive_C_Users_jonat_OneDrive_DOCUME1_Studie_EE2L11_ElecTRON/Memory
     HDL source file: VHDL/countextend.vhd
     Source file: VHDL/countextend.vhd
     Start location: VHDL/countextend.vhd:4
-    Version string: Z6nMT=bG_bPnGMfRU3fkH1
+    Version string: VJ?fffDV7V<O;PG2^VJLl3
     Opcode format: 10.5b; VCOM SE-64 Object version 63
     VHDL language standard: 3 (VHDL-2008)
-    Compile time: Fri Nov 26 10:05:52 2021
+    Compile time: Wed Dec  8 20:34:37 2021
     Debug Symbol file exists
     Compiled in vopt flow
     Compile options: -quiet -nologo -2008 -lower -explicit -work work
     Compile defaults: Explicit=1 CvgOpt=0
   ARCHITECTURE BODY behaviour
-    Source modified time: Fri Nov 26 10:05:38 2021
-    Depends on: E work countextend Z6nMT=bG_bPnGMfRU3fkH1
+    Source modified time: Wed Dec  8 20:32:47 2021
+    Depends on: E work countextend VJ?fffDV7V<O;PG2^VJLl3
     Depends on: P std textio zE1`LPoLg^DX3Oz^4Fj1K3
     Depends on: P ieee std_logic_1164 eNV`TJ_GofJTzYa?f<@Oe1
     HDL source file: VHDL/countextend-behaviour.vhd
     Source file: VHDL/countextend-behaviour.vhd
     Start location: VHDL/countextend-behaviour.vhd:4
-    Version string: GHmzkdKU^zczeYKD;4MZb1
+    Version string: m9kZ]8oa96jG_Uch5XhOk2
     Opcode format: 10.5b; VCOM SE-64 Object version 63
     VHDL language standard: 3 (VHDL-2008)
-    Compile time: Fri Nov 26 10:06:00 2021
+    Compile time: Wed Dec  8 20:34:43 2021
     Debug Symbol file exists
     Compiled in vopt flow
     Compile options: -quiet -nologo -2008 -lower -explicit -work work
     Compile defaults: Explicit=1 CvgOpt=0
-    Source directory: /tmp/.x2go-mlmjanssen/media/disk/_Users_martijn_ElecTRON/Memory
+    Source directory: /tmp/.x2go-jwnijenhuis/media/disk/_cygdrive_C_Users_jonat_OneDrive_DOCUME1_Studie_EE2L11_ElecTRON/Memory
 VHDL CONFIGURATION countextend_behaviour_cfg
     Configuration applies to entity: countextend
     Block configuration applies to architecture: behaviour
-    Depends on: A work countextend behaviour GHmzkdKU^zczeYKD;4MZb1
+    Depends on: A work countextend behaviour m9kZ]8oa96jG_Uch5XhOk2
     Depends on: P std textio zE1`LPoLg^DX3Oz^4Fj1K3
     Depends on: P ieee std_logic_1164 eNV`TJ_GofJTzYa?f<@Oe1
-    Depends on: E work countextend Z6nMT=bG_bPnGMfRU3fkH1
-    Source modified time: Fri Nov 26 10:06:07 2021
-    Source directory: /tmp/.x2go-mlmjanssen/media/disk/_Users_martijn_ElecTRON/Memory
+    Depends on: E work countextend VJ?fffDV7V<O;PG2^VJLl3
+    Source modified time: Mon Nov 29 10:51:02 2021
+    Source directory: /tmp/.x2go-jwnijenhuis/media/disk/_cygdrive_C_Users_jonat_OneDrive_DOCUME1_Studie_EE2L11_ElecTRON/Memory
     HDL source file: VHDL/countextend_behaviour_cfg.vhd
     Source file: VHDL/countextend_behaviour_cfg.vhd
     Start location: VHDL/countextend_behaviour_cfg.vhd:1
     Version string: LU_gQOKgzV^`CQ0[2Lb9E2
     Opcode format: 10.5b; VCOM SE-64 Object version 63
     VHDL language standard: 3 (VHDL-2008)
-    Compile time: Fri Nov 26 10:06:10 2021
+    Compile time: Wed Dec  8 20:34:48 2021
     Compiled in vopt flow
     Compile options: -quiet -nologo -2008 -lower -explicit -work work
     Compile defaults: Explicit=1 CvgOpt=0
@@ -312,71 +312,71 @@ ENTITY countextend_tb
     Compile options: -quiet -nologo -2008 -lower -explicit -work work
     Compile defaults: Explicit=1 CvgOpt=0
   ARCHITECTURE BODY behaviour
-    Source modified time: Fri Nov 26 10:09:20 2021
+    Source modified time: Wed Dec  8 20:33:59 2021
     Depends on: E work countextend_tb Sn2E]cYndVVeh2MREKj0O1
     Depends on: P std textio zE1`LPoLg^DX3Oz^4Fj1K3
     Depends on: P ieee std_logic_1164 eNV`TJ_GofJTzYa?f<@Oe1
+    Source directory: /tmp/.x2go-jwnijenhuis/media/disk/_cygdrive_C_Users_jonat_OneDrive_DOCUME1_Studie_EE2L11_ElecTRON/Memory
     HDL source file: VHDL/countextend_tb-behaviour.vhd
     Source file: VHDL/countextend_tb-behaviour.vhd
     Start location: VHDL/countextend_tb-behaviour.vhd:4
-    Version string: T0DT41cedM;RS?0:fzY_j2
+    Version string: JloU?>B:oE;L?KGOdl1N91
     Opcode format: 10.5b; VCOM SE-64 Object version 63
     VHDL language standard: 3 (VHDL-2008)
-    Compile time: Fri Nov 26 10:09:21 2021
+    Compile time: Wed Dec  8 20:35:02 2021
     Debug Symbol file exists
     Compiled in vopt flow
     Compile options: -quiet -nologo -2008 -lower -explicit -work work
     Compile defaults: Explicit=1 CvgOpt=0
-    Source directory: /tmp/.x2go-mlmjanssen/media/disk/_Users_martijn_ElecTRON/Memory
 VHDL CONFIGURATION countextend_tb_behaviour_cfg
     Configuration applies to entity: countextend_tb
     Block configuration applies to architecture: behaviour
-    Depends on: E work countextend Z6nMT=bG_bPnGMfRU3fkH1
+    Depends on: E work countextend VJ?fffDV7V<O;PG2^VJLl3
     Depends on: C work countextend_behaviour_cfg LU_gQOKgzV^`CQ0[2Lb9E2
-    Depends on: A work countextend_tb behaviour T0DT41cedM;RS?0:fzY_j2
+    Depends on: A work countextend_tb behaviour JloU?>B:oE;L?KGOdl1N91
     Depends on: P std textio zE1`LPoLg^DX3Oz^4Fj1K3
     Depends on: P ieee std_logic_1164 eNV`TJ_GofJTzYa?f<@Oe1
     Depends on: E work countextend_tb Sn2E]cYndVVeh2MREKj0O1
-    Source modified time: Fri Nov 26 10:08:01 2021
-    Source directory: /tmp/.x2go-mlmjanssen/media/disk/_Users_martijn_ElecTRON/Memory
+    Source modified time: Mon Nov 29 10:51:02 2021
+    Source directory: /tmp/.x2go-jwnijenhuis/media/disk/_cygdrive_C_Users_jonat_OneDrive_DOCUME1_Studie_EE2L11_ElecTRON/Memory
     HDL source file: VHDL/countextend_tb_behaviour_cfg.vhd
     Source file: VHDL/countextend_tb_behaviour_cfg.vhd
     Start location: VHDL/countextend_tb_behaviour_cfg.vhd:1
     Version string: @YOhH0>=hb@kWVCX4oQM_3
     Opcode format: 10.5b; VCOM SE-64 Object version 63
     VHDL language standard: 3 (VHDL-2008)
-    Compile time: Fri Nov 26 10:09:24 2021
+    Compile time: Wed Dec  8 20:35:08 2021
     Compiled in vopt flow
     Compile options: -quiet -nologo -2008 -lower -explicit -work work
     Compile defaults: Explicit=1 CvgOpt=0
 ENTITY memclear
-    Source modified time: Mon Nov 29 11:35:36 2021
+    Source modified time: Wed Dec  8 20:36:45 2021
     Depends on: P std textio zE1`LPoLg^DX3Oz^4Fj1K3
     Depends on: P ieee std_logic_1164 eNV`TJ_GofJTzYa?f<@Oe1
     Source directory: /tmp/.x2go-jwnijenhuis/media/disk/_cygdrive_C_Users_jonat_OneDrive_DOCUME1_Studie_EE2L11_ElecTRON/Memory
     HDL source file: VHDL/memclear.vhd
     Source file: VHDL/memclear.vhd
     Start location: VHDL/memclear.vhd:4
-    Version string: ]h?3h9F@7Z[TJ[J]KmlDM3
+    Version string: >DoIUn>DbADWkUQVQ@Eik3
     Opcode format: 10.5b; VCOM SE-64 Object version 63
     VHDL language standard: 3 (VHDL-2008)
-    Compile time: Fri Dec  3 10:02:33 2021
+    Compile time: Wed Dec  8 20:45:59 2021
     Debug Symbol file exists
     Compiled in vopt flow
     Compile options: -quiet -nologo -2008 -lower -explicit -work work
     Compile defaults: Explicit=1 CvgOpt=0
   ARCHITECTURE BODY behaviour
-    Source modified time: Fri Dec  3 10:01:54 2021
-    Depends on: E work memclear ]h?3h9F@7Z[TJ[J]KmlDM3
+    Source modified time: Wed Dec  8 20:41:19 2021
+    Depends on: E work memclear >DoIUn>DbADWkUQVQ@Eik3
     Depends on: P std textio zE1`LPoLg^DX3Oz^4Fj1K3
     Depends on: P ieee std_logic_1164 eNV`TJ_GofJTzYa?f<@Oe1
     HDL source file: VHDL/memclear-behaviour.vhd
     Source file: VHDL/memclear-behaviour.vhd
     Start location: VHDL/memclear-behaviour.vhd:4
-    Version string: =3]FShLR=6EnFdf[;>@n33
+    Version string: BS5_mi7P0V`>Q1^CamYQY3
     Opcode format: 10.5b; VCOM SE-64 Object version 63
     VHDL language standard: 3 (VHDL-2008)
-    Compile time: Fri Dec  3 10:02:37 2021
+    Compile time: Wed Dec  8 20:46:05 2021
     Debug Symbol file exists
     Compiled in vopt flow
     Compile options: -quiet -nologo -2008 -lower -explicit -work work
@@ -385,10 +385,10 @@ ENTITY memclear
 VHDL CONFIGURATION memclear_behaviour_cfg
     Configuration applies to entity: memclear
     Block configuration applies to architecture: behaviour
-    Depends on: A work memclear behaviour =3]FShLR=6EnFdf[;>@n33
+    Depends on: A work memclear behaviour BS5_mi7P0V`>Q1^CamYQY3
     Depends on: P std textio zE1`LPoLg^DX3Oz^4Fj1K3
     Depends on: P ieee std_logic_1164 eNV`TJ_GofJTzYa?f<@Oe1
-    Depends on: E work memclear ]h?3h9F@7Z[TJ[J]KmlDM3
+    Depends on: E work memclear >DoIUn>DbADWkUQVQ@Eik3
     Source modified time: Mon Nov 29 11:44:56 2021
     Source directory: /tmp/.x2go-jwnijenhuis/media/disk/_cygdrive_C_Users_jonat_OneDrive_DOCUME1_Studie_EE2L11_ElecTRON/Memory
     HDL source file: VHDL/memclear_behaviour_cfg.vhd
@@ -397,7 +397,7 @@ VHDL CONFIGURATION memclear_behaviour_cfg
     Version string: ETOl3NZll46Ahz`WbS=OW1
     Opcode format: 10.5b; VCOM SE-64 Object version 63
     VHDL language standard: 3 (VHDL-2008)
-    Compile time: Fri Dec  3 10:02:42 2021
+    Compile time: Wed Dec  8 20:46:10 2021
     Compiled in vopt flow
     Compile options: -quiet -nologo -2008 -lower -explicit -work work
     Compile defaults: Explicit=1 CvgOpt=0
@@ -418,7 +418,7 @@ ENTITY memclear_tb
     Compile options: -quiet -nologo -2008 -lower -explicit -work work
     Compile defaults: Explicit=1 CvgOpt=0
   ARCHITECTURE BODY behaviour
-    Source modified time: Mon Nov 29 12:18:49 2021
+    Source modified time: Wed Dec  8 20:45:25 2021
     Depends on: E work memclear_tb Dm:JzoAX>26@XoOeJZFS31
     Depends on: P ieee numeric_std :ASDNFgHXf_ih3J@9F3Ze1
     Depends on: P std textio zE1`LPoLg^DX3Oz^4Fj1K3
@@ -426,10 +426,10 @@ ENTITY memclear_tb
     HDL source file: VHDL/memclear_tb-behaviour.vhd
     Source file: VHDL/memclear_tb-behaviour.vhd
     Start location: VHDL/memclear_tb-behaviour.vhd:5
-    Version string: lli42IGD@[?LOn<@SbPWN3
+    Version string: @aJbC^UB<niT`Y=h1TX:j0
     Opcode format: 10.5b; VCOM SE-64 Object version 63
     VHDL language standard: 3 (VHDL-2008)
-    Compile time: Fri Dec  3 10:04:04 2021
+    Compile time: Wed Dec  8 20:46:16 2021
     Debug Symbol file exists
     Compiled in vopt flow
     Compile options: -quiet -nologo -2008 -lower -explicit -work work
@@ -438,11 +438,11 @@ ENTITY memclear_tb
 VHDL CONFIGURATION memclear_tb_behaviour_cfg
     Configuration applies to entity: memclear_tb
     Block configuration applies to architecture: behaviour
-    Depends on: E work counter5b UfXk^9M:O2f;XfY0:JiCa0
-    Depends on: E work memclear ]h?3h9F@7Z[TJ[J]KmlDM3
+    Depends on: E work counter5b 5F]bngR78R:c]S:;SM:QV1
+    Depends on: E work memclear >DoIUn>DbADWkUQVQ@Eik3
     Depends on: C work memclear_behaviour_cfg ETOl3NZll46Ahz`WbS=OW1
     Depends on: P ieee numeric_std :ASDNFgHXf_ih3J@9F3Ze1
-    Depends on: A work memclear_tb behaviour lli42IGD@[?LOn<@SbPWN3
+    Depends on: A work memclear_tb behaviour @aJbC^UB<niT`Y=h1TX:j0
     Depends on: P std textio zE1`LPoLg^DX3Oz^4Fj1K3
     Depends on: P ieee std_logic_1164 eNV`TJ_GofJTzYa?f<@Oe1
     Depends on: E work memclear_tb Dm:JzoAX>26@XoOeJZFS31
@@ -454,195 +454,149 @@ VHDL CONFIGURATION memclear_tb_behaviour_cfg
     Version string: `<e3JeiPU3IhIYd2LZ>G62
     Opcode format: 10.5b; VCOM SE-64 Object version 63
     VHDL language standard: 3 (VHDL-2008)
-    Compile time: Fri Dec  3 10:09:08 2021
+    Compile time: Wed Dec  8 20:46:23 2021
     Compiled in vopt flow
     Compile options: -quiet -nologo -2008 -lower -explicit -work work
     Compile defaults: Explicit=1 CvgOpt=0
 ENTITY memory_cntrll
-    Source modified time: Fri Dec  3 10:42:25 2021
+    Source modified time: Wed Dec  8 21:04:50 2021
     Depends on: P std textio zE1`LPoLg^DX3Oz^4Fj1K3
     Depends on: P ieee std_logic_1164 eNV`TJ_GofJTzYa?f<@Oe1
-    Source directory: /home/jwnijenhuis/Documents/Memory
+    Source directory: /tmp/.x2go-jwnijenhuis/media/disk/_cygdrive_C_Users_jonat_OneDrive_DOCUME1_Studie_EE2L11_ElecTRON/Memory
     HDL source file: VHDL/memory_cntrll.vhd
     Source file: VHDL/memory_cntrll.vhd
     Start location: VHDL/memory_cntrll.vhd:4
-    Version string: hPNCN;SEm`1^_g7GY@l^c1
+    Version string: 9YGXO@5M_SOE@IaF0@c=Z2
     Opcode format: 10.5b; VCOM SE-64 Object version 63
     VHDL language standard: 3 (VHDL-2008)
-    Compile time: Fri Dec  3 10:53:00 2021
-    Debug Symbol file exists
-    Compiled in vopt flow
-    Compile options: -quiet -nologo -2008 -lower -explicit -work work
-    Compile defaults: Explicit=1 CvgOpt=0
-  ARCHITECTURE BODY synthesised
-    Source modified time: Fri Dec  3 11:46:43 2021
-    Depends on: E work memory_cntrll hPNCN;SEm`1^_g7GY@l^c1
-    Depends on: P std textio zE1`LPoLg^DX3Oz^4Fj1K3
-    Depends on: P ieee std_logic_1164 eNV`TJ_GofJTzYa?f<@Oe1
-    Source directory: /home/mlmjanssen/Documents/Memory
-    HDL source file: VHDL/memory_cntrll_SYN.vhd
-    Source file: VHDL/memory_cntrll_SYN.vhd
-    Start location: VHDL/memory_cntrll_SYN.vhd:7
-    Version string: Xn_W?zBccRm]aQzaUz`k@2
-    Opcode format: 10.5b; VCOM SE-64 Object version 63
-    VHDL language standard: 3 (VHDL-2008)
-    Compile time: Fri Dec  3 11:49:17 2021
+    Compile time: Wed Dec  8 21:05:10 2021
     Debug Symbol file exists
     Compiled in vopt flow
     Compile options: -quiet -nologo -2008 -lower -explicit -work work
     Compile defaults: Explicit=1 CvgOpt=0
   ARCHITECTURE BODY behaviour
-    Source modified time: Fri Dec  3 11:05:39 2021
-    Depends on: E work memory_cntrll hPNCN;SEm`1^_g7GY@l^c1
+    Source modified time: Wed Dec  8 21:20:56 2021
+    Depends on: E work memory_cntrll 9YGXO@5M_SOE@IaF0@c=Z2
     Depends on: P std textio zE1`LPoLg^DX3Oz^4Fj1K3
     Depends on: P ieee std_logic_1164 eNV`TJ_GofJTzYa?f<@Oe1
-    Source directory: /home/mlmjanssen/Documents/Memory
     HDL source file: VHDL/memory_cntrll-behaviour.vhd
     Source file: VHDL/memory_cntrll-behaviour.vhd
     Start location: VHDL/memory_cntrll-behaviour.vhd:4
-    Version string: BnJ8zQ[c7zG3@XU=`Z=BO1
+    Version string: 8nNAzX@NTXbQ9<>Vj2?SG2
     Opcode format: 10.5b; VCOM SE-64 Object version 63
     VHDL language standard: 3 (VHDL-2008)
-    Compile time: Fri Dec  3 11:05:39 2021
+    Compile time: Wed Dec  8 21:31:56 2021
     Debug Symbol file exists
     Compiled in vopt flow
     Compile options: -quiet -nologo -2008 -lower -explicit -work work
     Compile defaults: Explicit=1 CvgOpt=0
+    Source directory: /tmp/.x2go-jwnijenhuis/media/disk/_cygdrive_C_Users_jonat_OneDrive_DOCUME1_Studie_EE2L11_ElecTRON/Memory
 VHDL CONFIGURATION memory_cntrll_behaviour_cfg
     Configuration applies to entity: memory_cntrll
     Block configuration applies to architecture: behaviour
-    Depends on: E work memclear ]h?3h9F@7Z[TJ[J]KmlDM3
-    Depends on: E work countextend Z6nMT=bG_bPnGMfRU3fkH1
-    Depends on: E work counter8b gg@WZOA>6Zka>aHAh^9411
-    Depends on: E work counter5b UfXk^9M:O2f;XfY0:JiCa0
-    Depends on: E work readwrite `KhWJk10nljbZ8lPk;JXO1
-    Depends on: A work memory_cntrll behaviour BnJ8zQ[c7zG3@XU=`Z=BO1
+    Depends on: E work memclear >DoIUn>DbADWkUQVQ@Eik3
+    Depends on: E work countextend VJ?fffDV7V<O;PG2^VJLl3
+    Depends on: E work counter8b >[FmLQ_Ig=:LSA5UHeK;Z0
+    Depends on: E work counter5b 5F]bngR78R:c]S:;SM:QV1
+    Depends on: E work readwrite `ZGObT43_cI9^6kdYamA21
+    Depends on: A work memory_cntrll behaviour 8nNAzX@NTXbQ9<>Vj2?SG2
     Depends on: P std textio zE1`LPoLg^DX3Oz^4Fj1K3
     Depends on: P ieee std_logic_1164 eNV`TJ_GofJTzYa?f<@Oe1
-    Depends on: E work memory_cntrll hPNCN;SEm`1^_g7GY@l^c1
-    Source modified time: Fri Nov 26 09:17:06 2021
-    Source directory: /home/mlmjanssen/Documents/Memory
+    Depends on: E work memory_cntrll 9YGXO@5M_SOE@IaF0@c=Z2
+    Source modified time: Mon Nov 29 10:51:02 2021
+    Source directory: /tmp/.x2go-jwnijenhuis/media/disk/_cygdrive_C_Users_jonat_OneDrive_DOCUME1_Studie_EE2L11_ElecTRON/Memory
     HDL source file: VHDL/memory_cntrll_behaviour_cfg.vhd
     Source file: VHDL/memory_cntrll_behaviour_cfg.vhd
     Start location: VHDL/memory_cntrll_behaviour_cfg.vhd:1
     Version string: R`2@E[Oo:m`Ge9YdIHISz0
     Opcode format: 10.5b; VCOM SE-64 Object version 63
     VHDL language standard: 3 (VHDL-2008)
-    Compile time: Fri Dec  3 11:12:36 2021
-    Compiled in vopt flow
-    Compile options: -quiet -nologo -2008 -lower -explicit -work work
-    Compile defaults: Explicit=1 CvgOpt=0
-VHDL CONFIGURATION memory_cntrll_synthesised_cfg
-    Configuration applies to entity: memory_cntrll
-    Block configuration applies to architecture: synthesised
-    Depends on: E work readwrite `KhWJk10nljbZ8lPk;JXO1
-    Depends on: E work counter5b UfXk^9M:O2f;XfY0:JiCa0
-    Depends on: E work counter8b gg@WZOA>6Zka>aHAh^9411
-    Depends on: E work memclear ]h?3h9F@7Z[TJ[J]KmlDM3
-    Depends on: E work countextend Z6nMT=bG_bPnGMfRU3fkH1
-    Depends on: C work readwrite_behaviour_cfg GLh0^jT4d5a]^iZ]OI7[11
-    Depends on: C work counter5b_behaviour_cfg >FQQ2ES26QQ]S>nM1Kn?<3
-    Depends on: C work counter8b_behaviour_cfg Sl55lR4i`FU_U^lN5SZI?0
-    Depends on: C work memclear_behaviour_cfg ETOl3NZll46Ahz`WbS=OW1
-    Depends on: C work countextend_behaviour_cfg LU_gQOKgzV^`CQ0[2Lb9E2
-    Depends on: A work memory_cntrll synthesised Xn_W?zBccRm]aQzaUz`k@2
-    Depends on: P std textio zE1`LPoLg^DX3Oz^4Fj1K3
-    Depends on: P ieee std_logic_1164 eNV`TJ_GofJTzYa?f<@Oe1
-    Depends on: E work memory_cntrll hPNCN;SEm`1^_g7GY@l^c1
-    Source modified time: Fri Dec  3 11:49:22 2021
-    Source directory: /home/mlmjanssen/Documents/Memory
-    HDL source file: VHDL/memory_cntrll_synthesised_cfg.vhd
-    Source file: VHDL/memory_cntrll_synthesised_cfg.vhd
-    Start location: VHDL/memory_cntrll_synthesised_cfg.vhd:1
-    Version string: hM^51aYBMZK]a>1kYz2MW1
-    Opcode format: 10.5b; VCOM SE-64 Object version 63
-    VHDL language standard: 3 (VHDL-2008)
-    Compile time: Fri Dec  3 11:49:22 2021
+    Compile time: Wed Dec  8 21:32:03 2021
     Compiled in vopt flow
     Compile options: -quiet -nologo -2008 -lower -explicit -work work
     Compile defaults: Explicit=1 CvgOpt=0
 ENTITY memory_cntrll_tb
-    Source modified time: Fri Nov 26 10:42:10 2021
+    Source modified time: Mon Nov 29 10:51:02 2021
     Depends on: P std textio zE1`LPoLg^DX3Oz^4Fj1K3
     Depends on: P ieee std_logic_1164 eNV`TJ_GofJTzYa?f<@Oe1
-    Source directory: /tmp/.x2go-mlmjanssen/media/disk/_Users_martijn_ElecTRON/Memory
+    Source directory: /tmp/.x2go-jwnijenhuis/media/disk/_cygdrive_C_Users_jonat_OneDrive_DOCUME1_Studie_EE2L11_ElecTRON/Memory
     HDL source file: VHDL/memory_cntrll_tb.vhd
     Source file: VHDL/memory_cntrll_tb.vhd
     Start location: VHDL/memory_cntrll_tb.vhd:4
     Version string: hHV[Vm`o6EAob9LnCXo4d0
     Opcode format: 10.5b; VCOM SE-64 Object version 63
     VHDL language standard: 3 (VHDL-2008)
-    Compile time: Fri Nov 26 11:13:55 2021
+    Compile time: Wed Dec  8 21:32:30 2021
     Debug Symbol file exists
     Compiled in vopt flow
     Compile options: -quiet -nologo -2008 -lower -explicit -work work
     Compile defaults: Explicit=1 CvgOpt=0
   ARCHITECTURE BODY behaviour
-    Source modified time: Fri Dec  3 11:12:16 2021
+    Source modified time: Wed Dec  8 21:31:16 2021
     Depends on: E work memory_cntrll_tb hHV[Vm`o6EAob9LnCXo4d0
     Depends on: P std textio zE1`LPoLg^DX3Oz^4Fj1K3
     Depends on: P ieee std_logic_1164 eNV`TJ_GofJTzYa?f<@Oe1
-    Source directory: /home/mlmjanssen/Documents/Memory
     HDL source file: VHDL/memory_cntrll_tb-behaviour.vhd
     Source file: VHDL/memory_cntrll_tb-behaviour.vhd
     Start location: VHDL/memory_cntrll_tb-behaviour.vhd:4
-    Version string: EkdhmNPC`zXg6L^==[3h60
+    Version string: We[N:d^>C[ihom7c8^E:50
     Opcode format: 10.5b; VCOM SE-64 Object version 63
     VHDL language standard: 3 (VHDL-2008)
-    Compile time: Fri Dec  3 11:12:16 2021
+    Compile time: Wed Dec  8 21:32:36 2021
     Debug Symbol file exists
     Compiled in vopt flow
     Compile options: -quiet -nologo -2008 -lower -explicit -work work
     Compile defaults: Explicit=1 CvgOpt=0
+    Source directory: /tmp/.x2go-jwnijenhuis/media/disk/_cygdrive_C_Users_jonat_OneDrive_DOCUME1_Studie_EE2L11_ElecTRON/Memory
 VHDL CONFIGURATION memory_cntrll_tb_behaviour_cfg
     Configuration applies to entity: memory_cntrll_tb
     Block configuration applies to architecture: behaviour
-    Depends on: E work memory_cntrll hPNCN;SEm`1^_g7GY@l^c1
+    Depends on: E work memory_cntrll 9YGXO@5M_SOE@IaF0@c=Z2
     Depends on: C work memory_cntrll_behaviour_cfg R`2@E[Oo:m`Ge9YdIHISz0
-    Depends on: A work memory_cntrll_tb behaviour EkdhmNPC`zXg6L^==[3h60
+    Depends on: A work memory_cntrll_tb behaviour We[N:d^>C[ihom7c8^E:50
     Depends on: P std textio zE1`LPoLg^DX3Oz^4Fj1K3
     Depends on: P ieee std_logic_1164 eNV`TJ_GofJTzYa?f<@Oe1
     Depends on: E work memory_cntrll_tb hHV[Vm`o6EAob9LnCXo4d0
-    Source modified time: Fri Nov 26 10:45:33 2021
-    Source directory: /home/mlmjanssen/Documents/Memory
+    Source modified time: Mon Nov 29 10:51:02 2021
+    Source directory: /tmp/.x2go-jwnijenhuis/media/disk/_cygdrive_C_Users_jonat_OneDrive_DOCUME1_Studie_EE2L11_ElecTRON/Memory
     HDL source file: VHDL/memory_cntrll_tb_behaviour_cfg.vhd
     Source file: VHDL/memory_cntrll_tb_behaviour_cfg.vhd
     Start location: VHDL/memory_cntrll_tb_behaviour_cfg.vhd:1
     Version string: o[]>@CXffIJzZ>0Hd^[Uo1
     Opcode format: 10.5b; VCOM SE-64 Object version 63
     VHDL language standard: 3 (VHDL-2008)
-    Compile time: Fri Dec  3 11:12:36 2021
+    Compile time: Wed Dec  8 21:32:41 2021
     Compiled in vopt flow
     Compile options: -quiet -nologo -2008 -lower -explicit -work work
     Compile defaults: Explicit=1 CvgOpt=0
 ENTITY readwrite
-    Source modified time: Mon Nov 22 12:29:46 2021
+    Source modified time: Wed Dec  8 20:49:01 2021
     Depends on: P std textio zE1`LPoLg^DX3Oz^4Fj1K3
     Depends on: P ieee std_logic_1164 eNV`TJ_GofJTzYa?f<@Oe1
     Source directory: /tmp/.x2go-jwnijenhuis/media/disk/_cygdrive_C_Users_jonat_OneDrive_DOCUME1_Studie_EE2L11_ElecTRON/Memory
     HDL source file: VHDL/readwrite.vhd
     Source file: VHDL/readwrite.vhd
     Start location: VHDL/readwrite.vhd:4
-    Version string: `KhWJk10nljbZ8lPk;JXO1
+    Version string: `ZGObT43_cI9^6kdYamA21
     Opcode format: 10.5b; VCOM SE-64 Object version 63
     VHDL language standard: 3 (VHDL-2008)
-    Compile time: Mon Nov 29 11:44:39 2021
+    Compile time: Wed Dec  8 21:01:37 2021
     Debug Symbol file exists
     Compiled in vopt flow
     Compile options: -quiet -nologo -2008 -lower -explicit -work work
     Compile defaults: Explicit=1 CvgOpt=0
   ARCHITECTURE BODY behaviour
-    Source modified time: Fri Dec  3 09:39:18 2021
-    Depends on: E work readwrite `KhWJk10nljbZ8lPk;JXO1
+    Source modified time: Wed Dec  8 20:57:23 2021
+    Depends on: E work readwrite `ZGObT43_cI9^6kdYamA21
     Depends on: P std textio zE1`LPoLg^DX3Oz^4Fj1K3
     Depends on: P ieee std_logic_1164 eNV`TJ_GofJTzYa?f<@Oe1
     HDL source file: VHDL/readwrite-behaviour.vhd
     Source file: VHDL/readwrite-behaviour.vhd
     Start location: VHDL/readwrite-behaviour.vhd:4
-    Version string: adC[Rc0=h0PDU1G1GYWo`0
+    Version string: bK[PQWUZeG113BUM4<koL1
     Opcode format: 10.5b; VCOM SE-64 Object version 63
     VHDL language standard: 3 (VHDL-2008)
-    Compile time: Fri Dec  3 09:39:36 2021
+    Compile time: Wed Dec  8 21:01:43 2021
     Debug Symbol file exists
     Compiled in vopt flow
     Compile options: -quiet -nologo -2008 -lower -explicit -work work
@@ -651,10 +605,10 @@ ENTITY readwrite
 VHDL CONFIGURATION readwrite_behaviour_cfg
     Configuration applies to entity: readwrite
     Block configuration applies to architecture: behaviour
-    Depends on: A work readwrite behaviour adC[Rc0=h0PDU1G1GYWo`0
+    Depends on: A work readwrite behaviour bK[PQWUZeG113BUM4<koL1
     Depends on: P std textio zE1`LPoLg^DX3Oz^4Fj1K3
     Depends on: P ieee std_logic_1164 eNV`TJ_GofJTzYa?f<@Oe1
-    Depends on: E work readwrite `KhWJk10nljbZ8lPk;JXO1
+    Depends on: E work readwrite `ZGObT43_cI9^6kdYamA21
     Source modified time: Thu Nov 25 10:53:27 2021
     Source directory: /tmp/.x2go-jwnijenhuis/media/disk/_cygdrive_C_Users_jonat_OneDrive_DOCUME1_Studie_EE2L11_ElecTRON/Memory
     HDL source file: VHDL/readwrite_behaviour_cfg.vhd
@@ -663,7 +617,7 @@ VHDL CONFIGURATION readwrite_behaviour_cfg
     Version string: GLh0^jT4d5a]^iZ]OI7[11
     Opcode format: 10.5b; VCOM SE-64 Object version 63
     VHDL language standard: 3 (VHDL-2008)
-    Compile time: Fri Dec  3 09:39:46 2021
+    Compile time: Wed Dec  8 21:01:49 2021
     Compiled in vopt flow
     Compile options: -quiet -nologo -2008 -lower -explicit -work work
     Compile defaults: Explicit=1 CvgOpt=0
@@ -684,7 +638,7 @@ ENTITY readwrite_tb
     Compile options: -quiet -nologo -2008 -lower -explicit -work work
     Compile defaults: Explicit=1 CvgOpt=0
   ARCHITECTURE BODY behaviour
-    Source modified time: Thu Nov 25 10:53:27 2021
+    Source modified time: Wed Dec  8 21:01:04 2021
     Depends on: E work readwrite_tb EhdS;kLc_JJ2C[eG9DC[H2
     Depends on: P ieee numeric_std :ASDNFgHXf_ih3J@9F3Ze1
     Depends on: P std textio zE1`LPoLg^DX3Oz^4Fj1K3
@@ -693,10 +647,10 @@ ENTITY readwrite_tb
     HDL source file: VHDL/readwrite_tb-behaviour.vhd
     Source file: VHDL/readwrite_tb-behaviour.vhd
     Start location: VHDL/readwrite_tb-behaviour.vhd:5
-    Version string: X_ij7=0Phh1=J2WAW]9fl3
+    Version string: gQDBg==8lYF:R2PXfAE1`3
     Opcode format: 10.5b; VCOM SE-64 Object version 63
     VHDL language standard: 3 (VHDL-2008)
-    Compile time: Mon Nov 29 11:44:56 2021
+    Compile time: Wed Dec  8 21:01:25 2021
     Debug Symbol file exists
     Compiled in vopt flow
     Compile options: -quiet -nologo -2008 -lower -explicit -work work

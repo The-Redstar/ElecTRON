@@ -103,7 +103,9 @@ begin
 		     '1' after 2040 ns;
    rstIN <= '1' after 0 ns,
 		'0' after 30 ns;
-   clrIN <= '0' after 0 ns;
+   clrIN <= '0' after 0 ns,
+		'1' after 51010 ns,
+		'0' after 51050 ns;
    XincrIN <= '0' after 0 ns,
 		  '1' after 50090 ns,
 		  '0' after 50130 ns;

@@ -70,15 +70,20 @@ begin
 			 '1' after 2040 ns;
    WriteIN(0) <= '0' after 0 ns,
 		     '1' after 2040 ns;
-   WriteIN(1) <= '0' after 0 ns;
-   WriteIN(2) <= '0' after 0 ns;
-   WriteIN(3) <= '0' after 0 ns;
-   WriteIN(4) <= '0' after 0 ns;
+   WriteIN(1) <= '0' after 0 ns,
+		     '1' after 2040 ns;
+   WriteIN(2) <= '0' after 0 ns,
+		     '1' after 2040 ns;
+   WriteIN(3) <= '0' after 0 ns,
+		     '1' after 2040 ns;
+   WriteIN(4) <= '0' after 0 ns,
+		     '1' after 2040 ns;
    WriteIN(5) <= '0' after 0 ns,
-			 '1' after 2040 ns;
+		     '1' after 2040 ns;
    WriteIN(6) <= '0' after 0 ns,
-			 '1' after 2040 ns;
-   WriteIN(7) <= '0' after 0 ns;
+		     '1' after 2040 ns;
+   WriteIN(7) <= '0' after 0 ns,
+		     '1' after 2040 ns;
    rstIN <= '1' after 0 ns,
 		'0' after 15 ns;
 
