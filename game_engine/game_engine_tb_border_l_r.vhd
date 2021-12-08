@@ -74,16 +74,16 @@ clk <= 		'1' after 0 ns,
 			'0' after 20 ns when clk /= '0' else '1'  after 20 ns;
 
 reset <= 	'1' after 0 ns,
-			'0' after 60 ns; -- goes to loading state
+			'0' after 60 ns; 
 
-input <= 	"0000" after 340 ns, -- goes to wait state
+input <= 	"0000" after 0 ns, 
 			"0111" after 1000 ns;
 
 -- in reality the busy signal is not always '0', however, since it is shown in another simulation that the code concerning the busy signal works, it is kept '0' for simplicity
 -- this means that in the behavioural code of the game_engine the wait_state is skipped
 busy <= 	'0' after 0 ns;
 
--- in this simulation the players do not go over a cell that already has a wall, therefore the it will always be "00000000"
+-- in this simulation the players do not go over a cell that already has a wall, therefore the read_memory will always be "00000000"
 read_memory <=	"00000000" after 0 ns;
 
 -- in reality the memory_ready signal is not always '1', however, since it is shown in another simulation that the code concerning the memory_ready signal works, it is kept '1' for simplicity

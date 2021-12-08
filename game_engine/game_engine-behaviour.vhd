@@ -507,7 +507,8 @@ create_next_state: 	process (state, reset, input, busy, read_memory, memory_read
 				d_next_direction_1			<= (others => '0');
 				
 				-- the next state is 'wait_state'
-				new_state <= wait_state;
+				-- new_state <= wait_state;
+				new_state <= busy_reset;
 				
 			when wait_state =>
 				-- wait for a certain amount of busy signal cycles before going on
@@ -967,7 +968,7 @@ create_next_state: 	process (state, reset, input, busy, read_memory, memory_read
 				state_vga   				<= "111";
 				write_enable 				<= '0';
 				write_memory  				<= "00000000";
-				address 					<= position_1(9 downto 0);
+				address 					<= next_position_1(9 downto 0);
 				go_to		   				<= '1';
 				busy_counter_reset			<= '0';
 				clear_memory				<= '0';
@@ -1432,7 +1433,8 @@ create_next_state: 	process (state, reset, input, busy, read_memory, memory_read
 				
 				-- if both players are still playing, go back to the 'wait_state'
 				if ((player_0_state = "11") and (player_1_state = "11")) then
-					new_state <= wait_state;
+					-- new_state <= wait_state;
+					new_state <= busy_reset;
 				-- if only player 0 is still playing, player 0 won
 				elsif (player_0_state = "11") then			
 					new_state <= player_0_won;
