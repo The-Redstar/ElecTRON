@@ -1,7 +1,7 @@
 library IEEE;
 use IEEE.std_logic_1164.ALL;
 
-architecture behavioural of wall_decoder is
+architecture behaviour of wall_decoder is
 	signal en0, en1, en2: std_logic;
 begin
 	en0<=encoded(0);--C
@@ -12,5 +12,5 @@ begin
 	east<=(en2 and en1) or (not(en2) and en0);--right
 	south<=(en1 and not(en0)) or (not(en2) and en1) or (en2 and not(en1) and en0);--down
 	west<=(en2 and not(en1)) or (not(en2) and en0);--left
-end behavioural; 
+end behaviour; 
 

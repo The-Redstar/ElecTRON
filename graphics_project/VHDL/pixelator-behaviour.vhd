@@ -14,8 +14,8 @@ signal bbox_explosion_inner, bbox_explosion_outer: std_logic;
 signal player0_wall,player1_wall: std_logic_vector(3 downto 0);
 -------------------------------------------------------------
 
-constant C_player0_explosion_outer 			: std_logic_vector(3 downto 0):= "1101";
-constant C_player1_explosion_outer 			: std_logic_vector(3 downto 0):= "0111";
+constant C_player0_explosion_outer 			: std_logic_vector(3 downto 0):= "1011";
+constant C_player1_explosion_outer 			: std_logic_vector(3 downto 0):= "1110";
 constant C_player0_explosion_inner 			: std_logic_vector(3 downto 0):= "1111";
 constant C_player1_explosion_inner 			: std_logic_vector(3 downto 0):= "1111";
 
@@ -122,16 +122,16 @@ bounds:	process(xe0, xe1, xg1, xg3, xg4, xg5, xg6, xs9, xs10, xs11, xs12, xs14, 
 	begin
 		--the bounds of the first layer
 		bbox_wall(0)<=xg4 and xs11 and ys11;
-		bbox_wall(1)<=yg4  and xg4 and xs11;
+		bbox_wall(1)<=yg4 and xg4  and xs11;
 		bbox_wall(2)<=yg4 and ys11 and xg4 ;
 		bbox_wall(3)<=yg4 and ys11 and xs11;
 		-------------------------------------
 		--the bounds of the second layer 
 		--(the walls are thinner on the second layer)
-		bbox_wall(4)<=xg5 and xs10 and ys11;
-		bbox_wall(5)<=xg5 and xs10 and yg4;
-		bbox_wall(6)<=yg5 and ys10 and xg4;
-		bbox_wall(7)<=yg5 and ys10 and xs11; 
+		bbox_wall(4)<=xg5 and xs10 and ys10;
+		bbox_wall(5)<=xg5 and xs10 and yg5;
+		bbox_wall(6)<=yg5 and ys10 and xg5;
+		bbox_wall(7)<=yg5 and ys10 and xs10; 
 		-------------------------------------
 		--the bounds of the dot
 		bbox_dot<=xg6 and xs9 and yg6 and ys9;
@@ -163,16 +163,16 @@ bounds:	process(xe0, xe1, xg1, xg3, xg4, xg5, xg6, xs9, xs10, xs11, xs12, xs14, 
 	process(player0_dir,player1_dir)
 	begin
 		case player0_dir is
-			when "00" => player0_wall<="0100";
-			when "01" => player0_wall<="1000";
-			when "10" => player0_wall<="0001";
-			when others => player0_wall<="0010";
+			when "00" => player0_wall<="0010"; --up
+			when "01" => player0_wall<="0100"; --left
+			when "10" => player0_wall<="0001"; --down
+			when others => player0_wall<="1000"; --right
 		end case;
 		case player1_dir is
-			when "00" => player1_wall<="0100";
-			when "01" => player1_wall<="1000";
+			when "00" => player1_wall<="0010";
+			when "01" => player1_wall<="0100";
 			when "10" => player1_wall<="0001";
-			when others => player1_wall<="0010";
+			when others => player1_wall<="1000";
 		end case;
 	end process;
 
@@ -214,14 +214,15 @@ layering: process(bbox_wall, bbox_dot, bbox_v, bbox_h, bbox_border, bbox_jump, b
 			else
 				color<=c_player1_inactive;
 			end if;
-		elsif player0_layer='1' and player0_inner_explosion_pixel then
+			
+		elsif player0_layer='1' and player0_inner_explosion_pixel then --explosions
 			color<=C_player0_explosion_inner;
 		elsif player1_layer='1' and player1_inner_explosion_pixel then
-			color<=C_player0_explosion_inner;
+			color<=C_player1_explosion_inner;
 		elsif player0_layer='1' and player0_outer_explosion_pixel then
 			color<=C_player0_explosion_outer;
 		elsif player1_layer='1' and player1_outer_explosion_pixel then
-			color<=C_player0_explosion_outer;
+			color<=C_player1_explosion_outer;
 			
 		elsif player0_en='1' and player0_layer='1' and player0_mode(1)='1' and ((player0_wall and bbox_wall(7 downto 4)) /= "0000") then --player0 wall
 			color<=c_player0_wall1;
@@ -253,14 +254,15 @@ layering: process(bbox_wall, bbox_dot, bbox_v, bbox_h, bbox_border, bbox_jump, b
 			else
 				color<=c_player1_inactive;
 			end if;
-		elsif player0_inner_explosion_pixel then
+			
+		elsif player0_inner_explosion_pixel then --explosions
 			color<=C_player0_explosion_inner;
 		elsif player1_inner_explosion_pixel then
-			color<=C_player0_explosion_inner;
+			color<=C_player1_explosion_inner;
 		elsif player0_outer_explosion_pixel then
 			color<=C_player0_explosion_outer;
 		elsif player1_outer_explosion_pixel then
-			color<=C_player0_explosion_outer;
+			color<=C_player1_explosion_outer;
 			
 		elsif player0_en='1' and player0_mode(1)='1' and ((player0_wall and bbox_wall(3 downto 0)) /= "0000") then --player0 wall
 			color<=c_player0_wall0;

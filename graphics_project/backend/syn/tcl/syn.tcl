@@ -5,9 +5,9 @@ set_db use_scan_seqs_for_non_dft false
 
 include ../tcl/read_hdl.tcl
 
-elaborate
+elaborate graphics_top_behaviour_cfg
 
-include ../in/top.sdc
+include ../in/graphics_top.sdc
 
 synthesize -to_mapped
 #set_db syn_generic_effort medium
@@ -16,9 +16,9 @@ synthesize -to_mapped
 
 ungroup -all -flat
 insert_tiehilo_cells
-write_hdl -mapped > ../out/top.v
-write_sdf > ../out/top.sdf
-write_sdc > ../out/top.sdc
+write_hdl -mapped > ../out/graphics_top.v
+write_sdf > ../out/graphics_top.sdf
+write_sdc > ../out/graphics_top.sdc
 
 report timing
 report gates
