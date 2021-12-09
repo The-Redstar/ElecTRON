@@ -469,51 +469,6 @@ create_next_state: 	process (state, reset, input, busy, read_memory, memory_read
 					new_state <= player_1_ready;
 				end if;
 		
-			when both_ready =>
-				-- both players are ready to play the game
-				state_vga 					<= "000";
-				write_enable 				<= '0';
-				write_memory 				<= "00000000";
-				address 					<= "0000000000";			  
-				go_to						<= '0';
-				busy_counter_reset			<= '0';
-				clear_memory				<= '0';
-				
-				-- change both player states to let the VGA know that both players are ready to play
-				e_player_0_state			<= '1';
-				d_player_0_state			<= "11";
-				e_player_1_state			<= '1';
-				d_player_1_state			<= "11";
-			
-				e_position_0				<= '0';
-				e_position_1				<= '0';	
-				e_wallshape_0				<= '0';	
-				e_wallshape_1				<= '0';
-				e_read_memory_0				<= '0';
-				e_read_memory_1				<= '0';
-				e_next_position_0			<= '0';
-				e_next_position_1			<= '0';
-				e_direction_0				<= '0';
-				e_direction_1				<= '0';
-				e_next_direction_0			<= '0';	
-				e_next_direction_1			<= '0';
-				
-				d_position_0				<= (others => '0');
-				d_position_1				<= (others => '0');	
-				d_wallshape_0				<= (others => '0');	
-				d_wallshape_1				<= (others => '0');
-				d_read_memory_0				<= (others => '0');
-				d_read_memory_1				<= (others => '0');
-				d_next_position_0			<= (others => '0');
-				d_next_position_1			<= (others => '0');
-				d_direction_0				<= (others => '0');
-				d_direction_1				<= (others => '0');
-				d_next_direction_0			<= (others => '0');	
-				d_next_direction_1			<= (others => '0');
-				
-				-- the next state is 'wait_state'
-				-- new_state <= wait_state;
-				new_state <= busy_reset;
 				
 			when wait_state =>
 				-- wait for a certain amount of busy signal cycles before going on
@@ -538,8 +493,7 @@ create_next_state: 	process (state, reset, input, busy, read_memory, memory_read
 				e_direction_1				<= '0';
 				e_next_direction_0			<= '0';	
 				e_next_direction_1			<= '0';
-				e_player_0_state			<= '0';
-				e_player_1_state			<= '0';
+				
 				
 				d_position_0				<= (others => '0');
 				d_position_1				<= (others => '0');	
@@ -553,8 +507,11 @@ create_next_state: 	process (state, reset, input, busy, read_memory, memory_read
 				d_direction_1				<= (others => '0');
 				d_next_direction_0			<= (others => '0');	
 				d_next_direction_1			<= (others => '0');
-				d_player_0_state			<= (others => '0');
-				d_player_1_state			<= (others => '0');
+				
+				e_player_0_state			<= '1';
+				d_player_0_state			<= "11";
+				e_player_1_state			<= '1';
+				d_player_1_state			<= "11";
 
 				-- when waited long enough go the next state: read_inputs, otherwise keep waiting
 				if (unsigned( unsigned_busy_count) >= 16) then

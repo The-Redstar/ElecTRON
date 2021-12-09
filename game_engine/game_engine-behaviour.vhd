@@ -28,7 +28,7 @@ use IEEE.std_logic_1164.ALL;
 use ieee.numeric_std.all;
 
 architecture behaviour of game_engine is
-	type game_state is (reset_state, want_to_load, loading_state, get_ready, read_inputs, wall_shape, check_border, want_to_read_0, want_to_read_1, read_memory_player_0, read_memory_player_1, check_collision, check_who_won, wait_state, want_to_write_0, want_to_write_1, write_memory_player_0, write_memory_player_1, change_data, player_0_won, player_1_won, tie, player_0_ready, player_1_ready, both_ready, busy_reset);
+	type game_state is (reset_state, want_to_load, loading_state, get_ready, read_inputs, wall_shape, check_border, want_to_read_0, want_to_read_1, read_memory_player_0, read_memory_player_1, check_collision, check_who_won, wait_state, want_to_write_0, want_to_write_1, write_memory_player_0, write_memory_player_1, change_data, player_0_won, player_1_won, tie, player_0_ready, player_1_ready busy_reset);
 
 	signal state, new_state: game_state;
 	signal direction_0, direction_1, next_direction_0, next_direction_1 : std_logic_vector(1 downto 0);
@@ -413,9 +413,9 @@ create_next_state: 	process (state, reset, input, busy, read_memory, memory_read
 				d_next_direction_1			<= (others => '0');
 				d_player_1_state			<= (others => '0');	
 
-				-- when player 1 is ready go the the state 'both_ready' if player 1 is not ready the next state is this state
+				-- when player 1 is ready go the the state 'wait_state' if player 1 is not ready the next state is this state
 				if (input(3 downto 2) = direction_1) then
-					new_state <= both_ready;
+					new_state <= wait_state;
 				else 
 					new_state <= player_0_ready;
 				end if;
@@ -462,13 +462,14 @@ create_next_state: 	process (state, reset, input, busy, read_memory, memory_read
 				d_next_direction_1			<= (others => '0');
 				d_player_0_state			<= (others => '0');
 				
-				-- if player 0 is ready the next state is 'both_ready', if player 0 is not ready the next state is this state
+				-- if player 0 is ready the next state is 'wait_state', if player 0 is not ready the next state is this state
 				if (input(1 downto 0) = direction_0) then
-					new_state <= both_ready;
+					new_state <= wait_state;
 				else 
 					new_state <= player_1_ready;
 				end if;
 		
+
 				
 			when wait_state =>
 				-- wait for a certain amount of busy signal cycles before going on
