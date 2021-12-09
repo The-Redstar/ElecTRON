@@ -10,8 +10,8 @@ entity memclear is
         rst_mem    : out std_logic;
         we_mem     : out std_logic;
         me_mem     : out std_logic;
-	ready_out  : out std_logic;
-	cur_x	   : in std_logic_vector(4 downto 0);
-	cur_y	   : in std_logic_vector(4 downto 0));
+        ready_out  : out std_logic;
+        cur_x      : in std_logic_vector(4 downto 0);
+        cur_y      : in std_logic_vector(4 downto 0));
 end memclear;
 

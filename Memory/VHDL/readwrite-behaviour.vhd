@@ -375,7 +375,7 @@ begin
 				ready_out <= '0';
 				rst_mem <= '0';
 
-				new_state <= wait3;
+				new_state <= wait3w;
 
 			when wait3w =>
 				we_mem <= '0';
@@ -386,7 +386,7 @@ begin
 				ready_out <= '0';
 				rst_mem <= '0';
 
-				new_state <= wait4;
+				new_state <= wait4w;
 
 			when wait4w =>
 				we_mem <= '0';
@@ -397,7 +397,7 @@ begin
 				ready_out <= '0';
 				rst_mem <= '0';
 
-				new_state <= wait5;
+				new_state <= wait5w;
 
 			when wait5w =>
 				we_mem <= '0';
@@ -408,7 +408,7 @@ begin
 				ready_out <= '0';
 				rst_mem <= '0';
 
-				new_state <= wait6;
+				new_state <= wait6w;
 
 			when wait6w =>
 				we_mem <= '0';

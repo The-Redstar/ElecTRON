@@ -3,7 +3,7 @@ use IEEE.std_logic_1164.ALL;
 
 entity memory_cntrll is
    port(read_mem    : in  std_logic_vector(7 downto 0);
-        clk  	      : in std_logic;
+        clk         : in std_logic;
         x_incr_mem  : out std_logic;
         y_incr_mem  : out std_logic;
         w_incr_mem  : out std_logic;

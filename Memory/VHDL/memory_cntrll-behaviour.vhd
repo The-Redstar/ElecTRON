@@ -3,8 +3,8 @@ use IEEE.std_logic_1164.ALL;
 
 architecture behaviour of memory_cntrll is
    component readwrite
-      port(clk	        : in  std_logic;
-	   we_in       : in  std_logic;
+      port(clk         : in  std_logic;
+           we_in       : in  std_logic;
            we_mem      : out std_logic;
            goto_in     : in  std_logic;
            me_mem      : out std_logic;
@@ -16,26 +16,26 @@ architecture behaviour of memory_cntrll is
            ready_out   : out std_logic;
            rst_in      : in  std_logic;
            rst_mem     : out std_logic;
-           cur_w	      : in std_logic_vector(7 downto 0);
-           cur_x	      : in std_logic_vector(4 downto 0);
-           cur_y	      : in std_logic_vector(4 downto 0));
+           cur_w       : in std_logic_vector(7 downto 0);
+           cur_x       : in std_logic_vector(4 downto 0);
+           cur_y       : in std_logic_vector(4 downto 0));
    end component;
 
    component counter8b
-      port(clk      : in  std_logic;
-           rst      : in  std_logic;
+      port(clk       : in  std_logic;
+           rst       : in  std_logic;
            count_out : out std_logic_vector(7 downto 0));
    end component;
 
    component counter5b
-      port(clk      : in  std_logic;
-           rst      : in  std_logic;
+      port(clk       : in  std_logic;
+           rst       : in  std_logic;
            count_out : out std_logic_vector(4 downto 0));
    end component;
 
    component countextend
-      port(clk     : in  std_logic;
-   	   rst     : in  std_logic;
+      port(clk      : in  std_logic;
+           rst      : in  std_logic;
            incr_in  : in  std_logic;
            incr_out : out std_logic);
    end component;
@@ -50,8 +50,8 @@ architecture behaviour of memory_cntrll is
            we_mem     : out std_logic;
            me_mem     : out std_logic;
            ready_out  : out std_logic;
-           cur_x	     : in std_logic_vector(4 downto 0);
-           cur_y	     : in std_logic_vector(4 downto 0));
+           cur_x      : in std_logic_vector(4 downto 0);
+           cur_y      : in std_logic_vector(4 downto 0));
    end component;
 
    signal x_incr1, y_incr1, x_incr2, y_incr2, x_incr3, y_incr3: std_logic;
