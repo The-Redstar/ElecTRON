@@ -464,7 +464,12 @@ create_next_state: 	process (state, reset, input, busy, read_memory, memory_read
 				
 				-- if player 0 is ready the next state is 'wait_state', if player 0 is not ready the next state is this state
 				if (input(1 downto 0) = direction_0) then
+<<<<<<< HEAD
 					new_state <= wait_state;
+=======
+					-- new_state <= wait_state;
+					new_state <= busy_reset;
+>>>>>>> b647a052b21f3f592c9b806fdcc2fd55ac212bb9
 				else 
 					new_state <= player_1_ready;
 				end if;
