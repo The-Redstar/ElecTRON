@@ -283,11 +283,24 @@ create_next_state: 	process (state, reset, input, busy, read_memory, memory_read
 				e_direction_1				<= '1';
 				e_player_0_state			<= '1';
 				e_player_1_state			<= '1';
+<<<<<<< HEAD
 
 				d_position_0				<= "00010000000";
 				d_position_1				<= "01100000000";
 				d_direction_0				<= "11";
 				d_direction_1				<= "11";
+=======
+				
+				d_position_0				<= "01110111001";
+				d_position_1				<= "01110100100";
+				d_direction_0				<= "00";
+				d_direction_1				<= "00";
+				
+				-- d_position_0				<= "00010000000";
+				-- d_position_1				<= "01100000000";
+				-- d_direction_0			<= "11";
+				-- d_direction_1			<= "11";
+>>>>>>> 60c0207bf01c7e65e97ccc1bdc14756352f6d97a
 				d_player_0_state			<= "10";
 				d_player_1_state			<= "10";
 				

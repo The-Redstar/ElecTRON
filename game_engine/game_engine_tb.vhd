@@ -8,7 +8,7 @@ end entity game_engine_tb;
 architecture structural of game_engine_tb is
 
 	component game_engine is
-		port (clk                : in  std_logic;
+		port (clk          : in  std_logic;
         reset              : in  std_logic;
         input              : in  std_logic_vector(3 downto 0);
         busy               : in  std_logic;
@@ -49,7 +49,7 @@ architecture structural of game_engine_tb is
 
 begin
 
-	lbl0: game_engine port map	(clk               => clk,
+lbl0: game_engine port map	(clk           => clk,
 							reset              => reset,
 							input              => input,
 							busy               => busy,
@@ -70,128 +70,29 @@ begin
 				);
 
 
-clk <= '1' after 0 ns,
-	'0' after 20 ns when clk /= '0' else '1'  after 20 ns;
+clk <= 		'1' after 0 ns,
+			'0' after 20 ns when clk /= '0' else '1'  after 20 ns;
 
-reset <= '1' after 0 ns,
-	'0' after 60 ns; -- goes to loading state
+reset <= 	'1' after 0 ns,
+			'0' after 60 ns; 
 
-input <= "0010" after 0 ns,
-	"0000" after 230 ns, -- goes to wait state
-	"0001" after 4000 ns;
+input <= 	"0000" after 0 ns, 
+			"0111" after 1000 ns;
 
+-- in reality the busy signal is not always '0', however, since it is shown in another simulation that the code concerning the busy signal works, it is kept '0' for simplicity
+-- this means that in the behavioural code of the game_engine the wait_state is skipped
+busy <= 	'0' after 0 ns;
 
-busy <= '1' after 0 ns,
-	'0' after 280 ns, -- unsigned_busy_count: 1
-	'1' after 380 ns,
-	'0' after 480 ns, -- unsigned_busy_count: 2
-	'1' after 580 ns,
-	'0' after 680 ns, -- unsigned_busy_count: 3
-	'1' after 780 ns,
-	'0' after 880 ns, -- unsigned_busy_count: 4
-	'1' after 980 ns,
-	'0' after 1080 ns, -- unsigned_busy_count: 5
-	'1' after 1180 ns,
-	'0' after 1280 ns, -- unsigned_busy_count: 6
-	'1' after 1380 ns,
-	'0' after 1480 ns, -- unsigned_busy_count: 7
-	'1' after 1580 ns,
-	'0' after 1680 ns, -- unsigned_busy_count: 8
-	'1' after 1780 ns,
-	'0' after 1880 ns, -- unsigned_busy_count: 9
-	'1' after 1980 ns,
-	'0' after 2080 ns, -- unsigned_busy_count: 10
-	'1' after 2180 ns,
-	'0' after 2280 ns, -- unsigned_busy_count: 11
-	'1' after 2380 ns,
-	'0' after 2480 ns, -- unsigned_busy_count: 12
-	'1' after 2580 ns,
-	'0' after 2680 ns, -- unsigned_busy_count: 13
-	'1' after 2780 ns,
-	'0' after 2880 ns, -- unsigned_busy_count: 14
-	'1' after 2980 ns,
-	'0' after 3080 ns, -- unsigned_busy_count: 15
-	'1' after 3180 ns,
-	'0' after 3280 ns, -- unsigned_busy_count: 16
-	'1' after 4680 ns,
-	'0' after 4780 ns, 
-	'1' after 4880 ns,
-	'0' after 4980 ns,
-	'1' after 5080 ns,
-	'0' after 5180 ns, 
-	'1' after 5280 ns,
-	'0' after 5380 ns,
-	'1' after 5480 ns,
-	'0' after 5580 ns, 
-	'1' after 5680 ns,
-	'0' after 5780 ns,
-	'1' after 5880 ns,
-	'0' after 5980 ns, 
-	'1' after 6080 ns,
-	'0' after 6180 ns,
-	'1' after 6280 ns,
-	'0' after 6380 ns,
-	'1' after 6480 ns,
-	'0' after 6580 ns, 
-	'1' after 6680 ns,
-	'0' after 6780 ns,
-	'1' after 6880 ns,
-	'0' after 6980 ns, 
-	'1' after 7080 ns,
-	'0' after 7180 ns,
-	'1' after 7280 ns,
-	'0' after 7380 ns, 
-	'1' after 7480 ns,
-	'0' after 7580 ns,
-	'1' after 7680 ns,
-	'0' after 7780 ns;
+-- in this simulation the players do not go over a cell that already has a wall, therefore the read_memory will always be "00000000"
+read_memory <=	"00000000" after 0 ns;
 
+-- in reality the memory_ready signal is not always '1', however, since it is shown in another simulation that the code concerning the memory_ready signal works, it is kept '1' for simplicity
+memory_ready <= '1' after 0 ns;
 
+-- the starting positions used to test this test bench
+-- d_position_0				<= "01110111001";
+-- d_position_1				<= "01110100100";
+-- d_direction_0			<= "00";
+-- d_direction_1			<= "00";
 
-
-read_memory <= "00000000" after 0 ns;
-
-
-memory_ready <= '0' after 0 ns,
-		'1' after 140 ns, --goes to get ready state
-		'0' after 3560 ns,
-		'1' after 3760 ns, --goes to want_to_read_1
-		'0' after 3800 ns,
-		'1' after 4000 ns, -- goes to check_collision
-		'0' after 4120 ns,
-		'1' after 4280 ns,
-		'0' after 4320 ns,
-		'1' after 4480 ns,
-		'0' after 8040 ns,
-		'1' after 8240 ns,
-		'0' after 8280 ns,
-		'1' after 8480 ns,
-		'0' after 8600 ns,
-		'1' after 8740 ns,
-		'0' after 8780 ns,
-		'1' after 8920 ns;
-
--- 60 ns: loading state
--- 140 ns: ready state
--- 230 ns: wait_state
--- 3400 ns: read inputs
---3440 ns: wallshape
---3480 ns: check border
---3520 ns: want_to_read_0
---3560: read_memory_player_0
---3760: want_to_read_1
---3800: read_memory_player_1
---4040: check_collision
---4080: want_to_write_0
---4120: write_memory_player_0
---4320: want_to_write_1
---4360: write_memory_player_1
---4520: change_data
---4560: check_who_won
---4600: wait_state
-
-
---4880: read inputs
-
-			
 end architecture structural;
