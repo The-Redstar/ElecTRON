@@ -2,31 +2,6 @@ library IEEE;
 use IEEE.std_logic_1164.ALL;
 use ieee.numeric_std.all;
 
-entity game_engine is
-   port(clk                : in  std_logic;
-        reset              : in  std_logic;
-        input              : in  std_logic_vector(3 downto 0);
-        busy               : in  std_logic;
-        read_memory        : in  std_logic_vector(7 downto 0);
-        memory_ready       : in  std_logic;
-        state_vga          : out std_logic_vector(2 downto 0);
-        write_enable       : out std_logic;
-        write_memory       : out std_logic_vector(7 downto 0);
-        address            : out std_logic_vector(9 downto 0);
-        position_0_vga     : out std_logic_vector(10 downto 0);
-        position_1_vga     : out std_logic_vector(10 downto 0);
-        direction_0_vga    : out std_logic_vector(1 downto 0);
-        direction_1_vga    : out std_logic_vector(1 downto 0);
-        player_state_0_vga : out std_logic_vector(1 downto 0);
-        player_state_1_vga : out std_logic_vector(1 downto 0);
-		go_to	           : out std_logic;
-		clear_memory       : out std_logic);
-end game_engine;
-
-library IEEE;
-use IEEE.std_logic_1164.ALL;
-use ieee.numeric_std.all;
-
 architecture behaviour of game_engine is
 	type game_state is (reset_state, want_to_load, loading_state, get_ready, read_inputs, wall_shape, check_border, want_to_read_0, want_to_read_1, read_memory_player_0, read_memory_player_1, check_collision, check_who_won, wait_state, want_to_write_0, want_to_write_1, write_memory_player_0, write_memory_player_1, change_data, player_0_won, player_1_won, tie, player_0_ready, player_1_ready, busy_reset);
 
