@@ -288,11 +288,6 @@ create_next_state: 	process (state, new_state, reset, input, busy, read_memory, 
 				d_position_1				<= "01110100100";
 				d_direction_0				<= "00";
 				d_direction_1				<= "00";
-				
-<<<<<<< HEAD
-=======
-
->>>>>>> 167cd325debe06a3010a7a10bc2a19fc651642cb
 				d_player_0_state			<= "10";
 				d_player_1_state			<= "10";
 				
