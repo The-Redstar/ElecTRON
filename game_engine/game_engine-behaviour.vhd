@@ -176,7 +176,7 @@ updates: 	process (clk)
 		end if;
 	end process;
 
-create_next_state: 	process (state, reset, input, busy, read_memory, memory_ready, clk, unsigned_busy_count)
+create_next_state: 	process (state, new_state, reset, input, busy, read_memory, memory_ready, clk, unsigned_busy_count, direction_0, direction_1, next_direction_0, next_direction_1, position_0, position_1, next_position_0, next_position_1, wallshape_0, wallshape_1, read_memory_0, read_memory_1, player_0_state, player_1_state, e_position_0, e_position_1, e_wallshape_0, e_wallshape_1, e_read_memory_0, e_read_memory_1, e_next_position_0, e_next_position_1, e_direction_0, e_direction_1, e_next_direction_0, e_next_direction_1, e_player_0_state, e_player_1_state )
 	begin
 		case state is
 			when reset_state =>
