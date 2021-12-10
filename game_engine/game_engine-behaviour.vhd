@@ -488,8 +488,7 @@ create_next_state: 	process (state, new_state, reset, input, busy, read_memory, 
 				if (unsigned( unsigned_busy_count) >= 16) then
 					new_state <= busy_reset;
 				else
-					-- new_state <= wait_state;
-					new_state <= busy_reset;
+					new_state <= wait_state;
 				end if;
 
 			when busy_reset => 
