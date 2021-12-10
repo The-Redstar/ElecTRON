@@ -2,10 +2,10 @@ library IEEE;
 use IEEE.std_logic_1164.all;
 use ieee.numeric_std.all;
 
-entity game_engine_tb_head is
-end entity game_engine_tb_head;
+entity game_engine_tb is
+end entity game_engine_tb;
 
-architecture structural of game_engine_tb_head is
+architecture structural of game_engine_tb is
 
 	component game_engine is
 		port (clk          : in  std_logic;
@@ -74,11 +74,10 @@ clk <= 		'1' after 0 ns,
 			'0' after 20 ns when clk /= '0' else '1'  after 20 ns;
 
 reset <= 	'1' after 0 ns,
-		'0' after 60 ns; -- goes to loading state
+			'0' after 60 ns; -- goes to loading state
 
-input <= 	"0000" after 340 ns, -- goes to wait state	
-		"1101" after 1000 ns;
-
+input <= 	"0000" after 0 ns, -- goes to wait state	
+			"1101" after 800 ns;
 
 busy <= 	'0' after 0 ns;
 
@@ -87,10 +86,6 @@ read_memory <=	"00000000" after 0 ns;
 
 
 memory_ready <= '1' after 0 ns;
-				
-				
 
--- 
-
-			
+	
 end architecture structural;

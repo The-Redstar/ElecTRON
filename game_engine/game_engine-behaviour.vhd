@@ -28,7 +28,7 @@ use IEEE.std_logic_1164.ALL;
 use ieee.numeric_std.all;
 
 architecture behaviour of game_engine is
-	type game_state is (reset_state, want_to_load, loading_state, get_ready, read_inputs, wall_shape, check_border, want_to_read_0, want_to_read_1, read_memory_player_0, read_memory_player_1, check_collision, check_who_won, wait_state, want_to_write_0, want_to_write_1, write_memory_player_0, write_memory_player_1, change_data, player_0_won, player_1_won, tie, player_0_ready, player_1_ready busy_reset);
+	type game_state is (reset_state, want_to_load, loading_state, get_ready, read_inputs, wall_shape, check_border, want_to_read_0, want_to_read_1, read_memory_player_0, read_memory_player_1, check_collision, check_who_won, wait_state, want_to_write_0, want_to_write_1, write_memory_player_0, write_memory_player_1, change_data, player_0_won, player_1_won, tie, player_0_ready, player_1_ready, busy_reset);
 
 	signal state, new_state: game_state;
 	signal direction_0, direction_1, next_direction_0, next_direction_1 : std_logic_vector(1 downto 0);
@@ -289,10 +289,6 @@ create_next_state: 	process (state, reset, input, busy, read_memory, memory_read
 				d_direction_0				<= "00";
 				d_direction_1				<= "00";
 				
-				-- d_position_0				<= "00010000000";
-				-- d_position_1				<= "01100000000";
-				-- d_direction_0			<= "11";
-				-- d_direction_1			<= "11";
 				d_player_0_state			<= "10";
 				d_player_1_state			<= "10";
 				
@@ -465,7 +461,6 @@ create_next_state: 	process (state, reset, input, busy, read_memory, memory_read
 				-- if player 0 is ready the next state is 'wait_state', if player 0 is not ready the next state is this state
 				if (input(1 downto 0) = direction_0) then
 					new_state <= wait_state;
-
 				else 
 					new_state <= player_1_ready;
 				end if;
@@ -519,7 +514,8 @@ create_next_state: 	process (state, reset, input, busy, read_memory, memory_read
 				if (unsigned( unsigned_busy_count) >= 16) then
 					new_state <= busy_reset;
 				else
-					new_state <= wait_state;
+					-- new_state <= wait_state;
+					new_state <= busy_reset;
 				end if;
 
 			when busy_reset => 
@@ -532,6 +528,7 @@ create_next_state: 	process (state, reset, input, busy, read_memory, memory_read
 				address 					<= "0000000000";
 				go_to						<= '0';
 				clear_memory				<= '0';
+				
 				
 				e_position_0				<= '0';
 				e_position_1				<= '0';	
@@ -1397,8 +1394,7 @@ create_next_state: 	process (state, reset, input, busy, read_memory, memory_read
 				
 				-- if both players are still playing, go back to the 'wait_state'
 				if ((player_0_state = "11") and (player_1_state = "11")) then
-					-- new_state <= wait_state;
-					new_state <= busy_reset;
+					new_state <= wait_state;
 				-- if only player 0 is still playing, player 0 won
 				elsif (player_0_state = "11") then			
 					new_state <= player_0_won;

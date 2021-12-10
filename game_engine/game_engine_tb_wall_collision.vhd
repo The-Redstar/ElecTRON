@@ -81,7 +81,7 @@ reset <= 	'1' after 0 ns,
 		'0' after 2160 ns;
 
 input <= 	"0000" after 340 ns, -- goes to wait state
-		"0111" after 1000 ns,
+		"0111" after 800 ns,
 		"0000" after 1440 ns;
 
 
@@ -96,23 +96,8 @@ read_memory <=	"00000000" after 0 ns,
 		"00000001" after 2160 ns;
 
 
-memory_ready <= '1' after 0 ns,
-				'0' after 120 ns,
-				'1' after 220 ns,
-				'0' after 520 ns, -- cycle 1
-				'1' after 620 ns,
-				'0' after 660 ns,
-				'1' after 760 ns,
-				'0' after 880 ns,
-				'1' after 980 ns,
-				'0' after 1020 ns,
-				'1' after 1120 ns,
-				'0' after 1600 ns,
-				'1' after 1700 ns;
+memory_ready <= '1' after 0 ns;
 				
-
--- 
-
 			
 end architecture structural;
 

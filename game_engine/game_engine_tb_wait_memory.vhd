@@ -80,7 +80,8 @@ input <= "0010" after 0 ns,
 	"0000" after 230 ns, -- goes to wait state
 	"0001" after 4000 ns;
 
-
+-- normally the busy signal has a lower frequency, however for simulating the game_engine that takes to long
+-- therefore a higher frequency was used during the wait_state, once out of the wait_state the busy signal remains 0 for a while like with the real busy signal to go through all the other states
 busy <= '1' after 0 ns,
 	'0' after 280 ns, -- unsigned_busy_count: 1
 	'1' after 380 ns,
@@ -113,7 +114,7 @@ busy <= '1' after 0 ns,
 	'0' after 3080 ns, -- unsigned_busy_count: 15
 	'1' after 3180 ns,
 	'0' after 3280 ns, -- unsigned_busy_count: 16
-	'1' after 4680 ns,
+	'1' after 4680 ns, 
 	'0' after 4780 ns, 
 	'1' after 4880 ns,
 	'0' after 4980 ns,
@@ -146,52 +147,28 @@ busy <= '1' after 0 ns,
 	'1' after 7680 ns,
 	'0' after 7780 ns;
 
-
-
-
 read_memory <= "00000000" after 0 ns;
 
 
-memory_ready <= '0' after 0 ns,
-		'1' after 140 ns, --goes to get ready state
-		'0' after 3560 ns,
-		'1' after 3760 ns, --goes to want_to_read_1
-		'0' after 3800 ns,
-		'1' after 4000 ns, -- goes to check_collision
-		'0' after 4120 ns,
-		'1' after 4280 ns,
-		'0' after 4320 ns,
-		'1' after 4480 ns,
-		'0' after 8040 ns,
-		'1' after 8240 ns,
-		'0' after 8280 ns,
-		'1' after 8480 ns,
-		'0' after 8600 ns,
-		'1' after 8740 ns,
-		'0' after 8780 ns,
-		'1' after 8920 ns;
-
--- 60 ns: loading state
--- 140 ns: ready state
--- 230 ns: wait_state
--- 3400 ns: read inputs
---3440 ns: wallshape
---3480 ns: check border
---3520 ns: want_to_read_0
---3560: read_memory_player_0
---3760: want_to_read_1
---3800: read_memory_player_1
---4040: check_collision
---4080: want_to_write_0
---4120: write_memory_player_0
---4320: want_to_write_1
---4360: write_memory_player_1
---4520: change_data
---4560: check_who_won
---4600: wait_state
-
-
---4880: read inputs
+memory_ready <= '1' after 0 ns,
+	'0' after 120 ns,
+	'1' after 220 ns,
+	'0' after 3600 ns,
+	'1' after 3700 ns,
+	'0' after 3760 ns,
+	'1' after 3860 ns,
+	'0' after 3960 ns,
+	'1' after 4060 ns,
+	'0' after 4120 ns,
+	'1' after 4220 ns,
+	'0' after 8080 ns,
+	'1' after 8180 ns,
+	'0' after 8240 ns,
+	'1' after 8340 ns,
+	'0' after 8440 ns,
+	'1' after 8540 ns,
+	'0' after 8600 ns,
+	'1' after 8700 ns;
 
 			
 end architecture structural;
