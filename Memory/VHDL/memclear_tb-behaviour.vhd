@@ -14,7 +14,8 @@ architecture behaviour of memclear_tb is
            me_mem     : out std_logic;
            ready_out  : out std_logic;
            cur_x	     : in std_logic_vector(4 downto 0);
-           cur_y	     : in std_logic_vector(4 downto 0));
+           cur_y	     : in std_logic_vector(4 downto 0);
+           busy_in    : in std_logic);
    end component;
 
    component counter5b
@@ -34,8 +35,9 @@ architecture behaviour of memclear_tb is
    signal ready_out  : std_logic;
    signal cur_x	     : std_logic_vector(4 downto 0);
    signal cur_y	     : std_logic_vector(4 downto 0);
+   signal busy_in    : std_logic;
 begin
-   test: memclear port map (clk, rst, clear_mem, x_incr_mem, y_incr_mem, rst_mem, we_mem, me_mem, ready_out, cur_x, cur_y);
+   test: memclear port map (clk, rst, clear_mem, x_incr_mem, y_incr_mem, rst_mem, we_mem, me_mem, ready_out, cur_x, cur_y, busy_in);
    clk <= '0' after 0 ns,
           '1' after 20 ns when clk /= '1' else '0' after 20 ns;
    rst <= '1' after 0 ns,

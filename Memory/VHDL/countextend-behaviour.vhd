@@ -21,7 +21,7 @@ begin
 		case state is
 			when sleep =>
 				incr_out <= '0';
-				if incr_in = '1' then
+				if busy_in = '0' and incr_in = '1' then
 					new_state <= high_1;
 				else
 					new_state <= sleep;

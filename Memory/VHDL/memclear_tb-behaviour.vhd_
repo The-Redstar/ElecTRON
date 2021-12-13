@@ -31,9 +31,9 @@ architecture behaviour of memclear_tb is
    signal rst_mem    : std_logic;
    signal we_mem     : std_logic;
    signal me_mem     : std_logic;
-   signal ready_out   : std_logic;
-   signal cur_x	      : std_logic_vector(4 downto 0);
-   signal cur_y	      : std_logic_vector(4 downto 0);
+   signal ready_out  : std_logic;
+   signal cur_x	     : std_logic_vector(4 downto 0);
+   signal cur_y	     : std_logic_vector(4 downto 0);
 begin
    test: memclear port map (clk, rst, clear_mem, x_incr_mem, y_incr_mem, rst_mem, we_mem, me_mem, ready_out, cur_x, cur_y);
    clk <= '0' after 0 ns,

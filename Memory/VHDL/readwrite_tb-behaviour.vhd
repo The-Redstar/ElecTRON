@@ -19,7 +19,8 @@ architecture behaviour of readwrite_tb is
            rst_mem     : out std_logic;
            cur_w	      : in std_logic_vector(7 downto 0);
            cur_x	      : in std_logic_vector(4 downto 0);
-           cur_y	      : in std_logic_vector(4 downto 0));
+           cur_y	      : in std_logic_vector(4 downto 0);
+           busy_in     : in std_logic);
    end component;
    signal clk	      : std_logic;
    signal we_in      : std_logic;
@@ -37,8 +38,9 @@ architecture behaviour of readwrite_tb is
    signal cur_w	  : std_logic_vector(7 downto 0);
    signal cur_x	  : std_logic_vector(4 downto 0);
    signal cur_y	  : std_logic_vector(4 downto 0);
+   signal busy_in : std_logic;
 begin
-   test: readwrite port map (clk, we_in, we_mem, goto_in, me_mem, x_incr_mem, y_incr_mem, w_incr_mem, address_in, write_in, ready_out, rst_in, rst_mem, cur_w, cur_x, cur_y);
+   test: readwrite port map (clk, we_in, we_mem, goto_in, me_mem, x_incr_mem, y_incr_mem, w_incr_mem, address_in, write_in, ready_out, rst_in, rst_mem, cur_w, cur_x, cur_y, busy_in);
    clk <= '0' after 0 ns,
           '1' after 20 ns when clk /= '1' else '0' after 20 ns;
    we_in <= '0' after 0 ns,

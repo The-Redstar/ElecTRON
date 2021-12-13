@@ -6,14 +6,16 @@ architecture behaviour of countextend_tb is
       port(clk      : in  std_logic;
    	   rst	    : in  std_logic;
            incr_in  : in  std_logic;
-           incr_out : out std_logic);
+           incr_out : out std_logic;
+           busy_in  : in std_logic);
    end component;
    signal clk      : std_logic;
    signal rst	     : std_logic;
    signal incr_in  : std_logic;
    signal incr_out : std_logic;
+   signal busy_in  : std_logic;
 begin
-   test: countextend port map (clk, rst, incr_in, incr_out);
+   test: countextend port map (clk, rst, incr_in, incr_out, busy_in);
    clk <= '0' after 0 ns,
           '1' after 20 ns when clk /= '1' else '0' after 20 ns;
    rst <= '1' after 0 ns,

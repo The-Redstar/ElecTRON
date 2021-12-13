@@ -12,67 +12,15 @@
 # //  18 U.S.C. Section 1905.
 # //
 # vsim memory_cntrll_tb_behaviour_cfg -lib work -L TSMCLib -do "/data/public/common/software/opprog/do_files/init_simulator.do" 
-# Start time: 11:03:07 on Dec 03,2021
-# ** Note: (vsim-3812) Design is being optimized...
-# Loading std.standard
-# Loading std.textio(body)
-# Loading ieee.std_logic_1164(body)
-# Loading work.memory_cntrll_tb_behaviour_cfg#1
-# Loading work.memory_cntrll_tb(behaviour)#1
-# Loading work.memory_cntrll_behaviour_cfg#1
-# Loading work.memory_cntrll(behaviour)#1
-# Loading work.readwrite(behaviour)#1
-# Loading ieee.numeric_std(body)
-# Loading work.counter5b(behaviour)#1
-# Loading work.counter8b(behaviour)#1
-# Loading work.countextend(behaviour)#1
-# Loading work.memclear(behaviour)#1
-# do /data/public/common/software/opprog/do_files/init_simulator.do
-run 50 us
-# Causality operation skipped due to absence of debug database file
-# End time: 11:05:52 on Dec 03,2021, Elapsed time: 0:02:45
-# Errors: 0, Warnings: 1
-# reading modelsim.ini
-# vsim memory_cntrll_tb_behaviour_cfg -lib work -L TSMCLib 
-# Start time: 11:05:52 on Dec 03,2021
+# Start time: 11:51:51 on Dec 13,2021
+# ** Error: (vsim-7) Failed to open info file "/home/mlmjanssen/Documents/Memory/work/_info" in read mode.
+# Permission denied. (errno = EACCES)
 # ** Note: (vsim-3813) Design is being optimized due to module recompilation...
-# ** Warning: (vopt-13) Recompile work.memory_cntrll_behaviour_cfg because work.memory_cntrll(behaviour) has changed.
-# ** Warning: (vopt-12) Recompile work.memory_cntrll_tb_behaviour_cfg after work.memory_cntrll_behaviour_cfg is recompiled.
-# Loading std.standard
-# Loading std.textio(body)
-# Loading ieee.std_logic_1164(body)
-# Loading work.memory_cntrll_tb_behaviour_cfg#1
-# Loading work.memory_cntrll_tb(behaviour)#1
-# Loading work.memory_cntrll_behaviour_cfg#1
-# Loading work.memory_cntrll(behaviour)#1
-# Loading work.readwrite(behaviour)#1
-# Loading ieee.numeric_std(body)
-# Loading work.counter5b(behaviour)#1
-# Loading work.counter8b(behaviour)#1
-# Loading work.countextend(behaviour)#1
-# Loading work.memclear(behaviour)#1
-run 50 us
-run 10 us
-# End time: 11:12:39 on Dec 03,2021, Elapsed time: 0:06:47
-# Errors: 0, Warnings: 2
-# reading modelsim.ini
-# vsim memory_cntrll_tb_behaviour_cfg -lib work -L TSMCLib 
-# Start time: 11:12:40 on Dec 03,2021
-# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
-# Loading std.standard
-# Loading std.textio(body)
-# Loading ieee.std_logic_1164(body)
-# Loading work.memory_cntrll_tb_behaviour_cfg#1
-# Loading work.memory_cntrll_tb(behaviour)#1
-# Loading work.memory_cntrll_behaviour_cfg#1
-# Loading work.memory_cntrll(behaviour)#1
-# Loading work.readwrite(behaviour)#1
-# Loading ieee.numeric_std(body)
-# Loading work.counter5b(behaviour)#1
-# Loading work.counter8b(behaviour)#1
-# Loading work.countextend(behaviour)#1
-# Loading work.memclear(behaviour)#1
-run 61 us
-run 500 us
-# End time: 11:14:52 on Dec 03,2021, Elapsed time: 0:02:12
-# Errors: 0, Warnings: 0
+# ** Error: (vopt-7) Failed to open info file "/home/mlmjanssen/Documents/Memory/work/_info" in read mode.
+# Permission denied. (errno = EACCES)
+# Optimization failed
+# ** Error: (vopt-1933) Unable to create temporary directory /home/mlmjanssen/Documents/Memory/work/_tempmsg
+# Permission denied. (errno = EACCES)
+# Error loading design
+# End time: 11:52:02 on Dec 13,2021, Elapsed time: 0:00:11
+# Errors: 1, Warnings: 0

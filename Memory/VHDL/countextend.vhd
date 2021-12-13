@@ -5,6 +5,7 @@ entity countextend is
    port(clk      : in  std_logic;
         rst      : in  std_logic;
         incr_in  : in  std_logic;
-        incr_out : out std_logic);
+        incr_out : out std_logic;
+        busy_in  : in std_logic);
 end countextend;
 
