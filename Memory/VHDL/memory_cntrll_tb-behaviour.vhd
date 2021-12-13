@@ -104,6 +104,8 @@ begin
    rst_in <= '1' after 0 ns,
 		'0' after 30 ns;
    clr_in <= '0' after 0 ns,
+		'1' after 3000 ns,
+		'0' after 3100 ns,
 		'1' after 51010 ns,
 		'0' after 51050 ns;
    x_incr_in <= '0' after 0 ns,
