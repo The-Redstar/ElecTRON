@@ -883,12 +883,22 @@ create_next_state: 	process (state, new_state, reset, input, busy, read_memory, 
 				-- wait till the memory module is done with processing the information to go to the next state: 'want_to_read_1'
 				if (memory_ready = '1') then
 					-- when there is already data on the next position of player 0, player 0 collides against wall
-					if (read_memory = "00000000") then
-						e_player_0_state <= '0';
-						d_player_0_state <= (others => '0');
-					else 
-						e_player_0_state <= '1';
-						d_player_0_state <= "00";
+					if (next_position_0 (10) = 0) then
+						if (read_memory (3 donwto 0) = "0000") then
+							e_player_0_state <= '0';
+							d_player_0_state <= (others => '0');
+						else 
+							e_player_0_state <= '1';
+							d_player_0_state <= "00";
+						end if;
+					else if (next_position_0 (10) = 1) then
+						if (read_memory (7 donwto 4) = "0000") then
+							e_player_0_state <= '0';
+							d_player_0_state <= (others => '0');
+						else 
+							e_player_0_state <= '1';
+							d_player_0_state <= "00";
+						end if;
 					end if;
 					new_state <= want_to_read_1; 
 				else 
@@ -980,14 +990,24 @@ create_next_state: 	process (state, new_state, reset, input, busy, read_memory, 
 
 				-- wait till the memory module is done with processing the information to go to the next state: 'check_collision'
 				if (memory_ready = '1') then
-					-- when there is already data on the next position of player 1, player 1 collides against wall
-					if (read_memory = "00000000") then
-						e_player_1_state <= '0';
-						d_player_1_state <= (others => '0');
-					else 
-						e_player_1_state <= '1';
-						d_player_1_state <= "00";
-					end if;
+					-- when there is already data on the next position of player 1, player 1 collides against wall					
+					if (next_position_1 (10) = 0) then
+						if (read_memory (3 donwto 0) = "0000") then
+							e_player_1_state <= '0';
+							d_player_1_state <= (others => '0');
+						else 
+							e_player_1_state <= '1';
+							d_player_1_state <= "00";
+						end if;
+					else if (next_position_1 (10) = 1) then
+						if (read_memory (7 donwto 4) = "0000") then
+							e_player_1_state <= '0';
+							d_player_1_state <= (others => '0');
+						else 
+							e_player_1_state <= '1';
+							d_player_1_state <= "00";
+						end if;
+					end if;					
 					new_state <= check_collision; 
 				else 
 					e_player_1_state <= '0';
