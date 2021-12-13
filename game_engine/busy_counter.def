@@ -1,9 +1,0 @@
-/busy_counter_tb/test/clk	  1	I
-/busy_counter_tb/test/global_reset	  2	I
-/busy_counter_tb/test/game_engine_reset	  3	I
-/busy_counter_tb/test/busy	  4	I
-/busy_counter_tb/test/busy_count(4)	  5	O
-/busy_counter_tb/test/busy_count(3)	  6	O
-/busy_counter_tb/test/busy_count(2)	  7	O
-/busy_counter_tb/test/busy_count(1)	  8	O
-/busy_counter_tb/test/busy_count(0)	  9	O
