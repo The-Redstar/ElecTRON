@@ -856,7 +856,6 @@ create_next_state: 	process (state, new_state, reset, input, busy, read_memory, 
 				e_position_1				<= '0';	
 				e_wallshape_0				<= '0';	
 				e_wallshape_1				<= '0';
-				e_read_memory_0				<= '0';
 				e_read_memory_1				<= '0';
 				e_next_position_0			<= '0';
 				e_next_position_1			<= '0';
@@ -866,11 +865,13 @@ create_next_state: 	process (state, new_state, reset, input, busy, read_memory, 
 				e_next_direction_1			<= '0';
 				e_player_1_state			<= '0';
 				
+				e_read_memory_0				<= '1';
+				d_read_memory_0				<= read_memory;
+				
 				d_position_0				<= (others => '0');
 				d_position_1				<= (others => '0');	
 				d_wallshape_0				<= (others => '0');	
 				d_wallshape_1				<= (others => '0');
-				d_read_memory_0				<= (others => '0');
 				d_read_memory_1				<= (others => '0');
 				d_next_position_0			<= (others => '0');
 				d_next_position_1			<= (others => '0');
@@ -966,7 +967,6 @@ create_next_state: 	process (state, new_state, reset, input, busy, read_memory, 
 				e_wallshape_0				<= '0';	
 				e_wallshape_1				<= '0';
 				e_read_memory_0				<= '0';
-				e_read_memory_1				<= '1';
 				e_next_position_0			<= '0';
 				e_next_position_1			<= '0';
 				e_direction_0				<= '0';
@@ -975,12 +975,14 @@ create_next_state: 	process (state, new_state, reset, input, busy, read_memory, 
 				e_next_direction_1			<= '0';
 				e_player_0_state			<= '0';
 				
+				e_read_memory_1				<= '1';
+				d_read_memory_1				<= read_memory;
+				
 				d_position_0				<= (others => '0');
 				d_position_1				<= (others => '0');	
 				d_wallshape_0				<= (others => '0');	
 				d_wallshape_1				<= (others => '0');
 				d_read_memory_0				<= (others => '0');
-				d_read_memory_1				<= (others => '0');
 				d_next_position_0			<= (others => '0');
 				d_next_position_1			<= (others => '0');
 				d_direction_0				<= (others => '0');
