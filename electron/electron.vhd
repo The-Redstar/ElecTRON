@@ -5,7 +5,7 @@ entity electron is
    port(clk           : in  std_logic;
         rst           : in  std_logic;
         direction     : in  std_logic_vector(3 downto 0);
-        read          : in  std_logic_vector(7 downto 0);
+        read_memory   : in  std_logic_vector(7 downto 0);
         vga           : out std_logic_vector(5 downto 0);
         memory_enable : out std_logic;
         write_enable  : out std_logic;
