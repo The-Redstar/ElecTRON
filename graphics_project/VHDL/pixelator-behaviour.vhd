@@ -9,7 +9,8 @@ signal bbox_dot: std_logic;
 signal bbox_jump, bbox_border: std_logic_vector(3 downto 0);--W,E,S,N same order as the walls
 signal bbox_wall: std_logic_vector(7 downto 0);--W,E,S,N,W,E,S,N last 4 are of the first layer
 signal bbox_h, bbox_v: std_logic;
-signal bbox_explosion_inner, bbox_explosion_outer: std_logic;
+signal bbox_centre_explosion_inner, bbox_centre_explosion_outer: std_logic;
+signal bbox_left_explosion, bbox_right_explosion, bbox_top_explosion, bbox_bottom_explosion: std_logic;
 -------------------------------------------------------------
 signal player0_wall,player1_wall: std_logic_vector(3 downto 0);
 -------------------------------------------------------------
@@ -113,10 +114,6 @@ rounding_process: process(rel_x, rel_y)
 	end process;
 	
 
-
-
-
-
 bounds:	process(xe0, xe1, xg1, xg3, xg4, xg5, xg6, xs9, xs10, xs11, xs12, xs14, xe14, xe15, ye0, ye1, yg1, yg3, yg4, yg5, yg6, ys9, ys10, ys11, ys12, ys14, ye14, ye15, dx, dy,rounding)
 	--using the conditions above make the bounding box signals
 	begin
@@ -153,8 +150,12 @@ bounds:	process(xe0, xe1, xg1, xg3, xg4, xg5, xg6, xs9, xs10, xs11, xs12, xs14, 
 		bbox_jump(3)<=xe0 or (xe1 and dy(1));
 		-------------------------------------
 		--the bounds of the explosions
-		bbox_explosion_outer<= (xg3 and xs12) or (yg3 and ys12) or rounding;
-		bbox_explosion_inner<= (xg3 and xs12) and (yg3 and ys12) and rounding;
+		bbox_centre_explosion_outer<= (xg3 and xs12) or (yg3 and ys12) or rounding;
+		bbox_centre_explosion_inner<= (xg3 and xs12) and (yg3 and ys12) and rounding;
+		bbox_right_explosion <= (not(xs12) or (yg3 and ys12 and dx(3)) or (rounding and dx(3)));
+		bbox_left_explosion <= (not(xg3) or (yg3 and ys12 and not(dx(3))) or (rounding and not(dx(3))));
+		bbox_top_explosion <= (not(yg3) or (xg3 and xs12 and not(dy(3))) or (rounding and not(dy(3))));
+		bbox_bottom_explosion <= (not(ys12) or (xg3 and xs12 and dy(3)) or (rounding and dy(3)));
 	end process;
 
 
@@ -178,7 +179,7 @@ bounds:	process(xe0, xe1, xg1, xg3, xg4, xg5, xg6, xs9, xs10, xs11, xs12, xs14, 
 
 --combine bboxes and data and stack the layers
 
-layering: process(bbox_wall, bbox_dot, bbox_v, bbox_h, bbox_border, bbox_jump, bbox_explosion_outer, bbox_explosion_inner, walls, borders, jumps, player0_dir, player0_en, player0_layer, player0_mode, player1_dir, player1_en, player1_layer, player1_mode, layer0_player, layer1_player,player0_wall,player1_wall)
+layering: process(bbox_wall, bbox_dot, bbox_v, bbox_h, bbox_border, bbox_jump, bbox_centre_explosion_outer, bbox_centre_explosion_inner, walls, borders, jumps, player0_dir, player0_en, player0_layer, player0_mode, player1_dir, player1_en, player1_layer, player1_mode, layer0_player, layer1_player,player0_wall,player1_wall,bbox_left_explosion, bbox_right_explosion, bbox_top_explosion, bbox_bottom_explosion)
 
 	variable player0_cycle_pixel,player1_cycle_pixel: boolean;
 	variable player0_inner_explosion_pixel,player1_inner_explosion_pixel,player0_outer_explosion_pixel,player1_outer_explosion_pixel : boolean;
@@ -187,10 +188,10 @@ layering: process(bbox_wall, bbox_dot, bbox_v, bbox_h, bbox_border, bbox_jump, b
 	
 		player0_cycle_pixel:=player0_en='1' and player0_mode(1)='1' and ((player0_dir(0)='0' and bbox_v='1') or (player0_dir(0)='1' and bbox_h='1'));
 		player1_cycle_pixel:=player1_en='1' and player1_mode(1)='1' and ((player1_dir(0)='0' and bbox_v='1') or (player1_dir(0)='1' and bbox_h='1'));
-		player0_inner_explosion_pixel:=player0_en='1' and player0_mode(1)='0' and bbox_explosion_inner='1';
-		player1_inner_explosion_pixel:=player1_en='1' and player1_mode(1)='0' and bbox_explosion_inner='1';
-		player0_outer_explosion_pixel:=player0_en='1' and player0_mode(1)='0' and bbox_explosion_outer='1';
-		player1_outer_explosion_pixel:=player1_en='1' and player1_mode(1)='0' and bbox_explosion_outer='1';
+		player0_inner_explosion_pixel:=player0_en='1' and player0_mode(1)='0' and bbox_centre_explosion_inner='1';
+		player1_inner_explosion_pixel:=player1_en='1' and player1_mode(1)='0' and bbox_centre_explosion_inner='1';
+		player0_outer_explosion_pixel:=player0_en='1' and player0_mode(1)='0' and bbox_centre_explosion_outer='1';
+		player1_outer_explosion_pixel:=player1_en='1' and player1_mode(1)='0' and bbox_centre_explosion_outer='1';
 	
 		border0_pixel:=(borders(3 downto 0) and bbox_border) /= "0000";
 	
@@ -201,7 +202,6 @@ layering: process(bbox_wall, bbox_dot, bbox_v, bbox_h, bbox_border, bbox_jump, b
 			else
 				color<=c_border1;
 			end if;
-			
 		elsif player0_layer='1' and player0_cycle_pixel then --player0 cycle
 			if player0_mode(0)='1' then --check if player is ready
 				color<=c_player0;
