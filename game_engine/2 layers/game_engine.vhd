@@ -21,6 +21,6 @@ entity game_engine is
         direction_1_vga    : out std_logic_vector(1 downto 0);
         player_state_0_vga : out std_logic_vector(1 downto 0);
         player_state_1_vga : out std_logic_vector(1 downto 0);
-		go_to	           : out std_logic;
-		clear_memory       : out std_logic);
+	go_to	           : out std_logic;
+	clear_memory       : out std_logic);
 end game_engine;

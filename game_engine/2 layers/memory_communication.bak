@@ -14,4 +14,4 @@ entity memory_communication is
         read_enable        : in  std_logic;
         memory_ready       : out  std_logic;
 	read_data_out	   : out std_logic_vector(7 downto 0));
-end memory_communication;
+end memory_communication; 
