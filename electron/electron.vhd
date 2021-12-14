@@ -6,7 +6,9 @@ entity electron is
         rst               : in  std_logic;
         direction_in      : in  std_logic_vector(3 downto 0);
         read_memory_in    : in  std_logic_vector(7 downto 0);
-        vga_out           : out std_logic_vector(5 downto 0);
+        color_out         : out std_logic_vector (3 downto 0);
+		h_sync_out		  : out std_logic;
+		v_sync_out		  : out std_logic;
         memory_enable_out : out std_logic;
         write_enable_out  : out std_logic;
         memory_reset_out  : out std_logic;
