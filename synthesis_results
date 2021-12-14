@@ -1,5 +1,4 @@
-toplevel entity:
-
+graphics_top:
      Type      Instances   Area   Area % 
 -----------------------------------------
 sequential            50 2465.210   59.2 
@@ -21,7 +20,7 @@ physical_cells         0    0.000    0.0
 total                151 1903.238  100.0 
 
 
-wall decoder (2x):
+wall_decoder (2x):
      Type      Instances   Area  Area % 
 ----------------------------------------
 inverter               1   6.586    3.5 

@@ -6,8 +6,8 @@ signal rounding: std_logic;
 signal rel_x, rel_y: std_logic_vector(1 downto 0);
 -------------------------------------------------------------
 signal bbox_dot: std_logic;
-signal bbox_jump, bbox_border: std_logic_vector(3 downto 0);--W,E,S,N same order as the walls
-signal bbox_wall: std_logic_vector(7 downto 0);--W,E,S,N,W,E,S,N last 4 are of the first layer
+signal bbox_jump, bbox_border: std_logic_vector(3 downto 0);--E,S,W,N same order as the walls
+signal bbox_wall: std_logic_vector(7 downto 0);--E,S,W,N,E,S,W,N last 4 are of the bottom layer
 signal bbox_h, bbox_v: std_logic;
 signal bbox_explosion_inner, bbox_explosion_outer: std_logic;
 -------------------------------------------------------------
@@ -88,18 +88,14 @@ LUT:	process(dx, dy)-- the needed conditions for making the bounding boxes
 		
 		--determining relative position to the axis
 		if (dx(3) = '0') then
-			rel_x(1) <= not(dx(1));
-			rel_x(0) <= not(dx(0));
+			rel_x <= not(dx(1 downto 0));
 		else
-			rel_x(1) <= dx(1);
-			rel_x(0) <= dx(0);
+			rel_x <= dx(1 downto 0);
 		end if;
 		if (dy(3) = '1') then
-			rel_y(1) <= not(dy(1));
-			rel_y(0) <= not(dy(0));
+			rel_y <= not(dy(1 downto 0));
 		else
-			rel_y(1) <= dy(1);
-			rel_y(0) <= dy(0);
+			rel_y <= dy(1 downto 0);
 		end if;
 	end process;
 	
@@ -121,17 +117,17 @@ bounds:	process(xe0, xe1, xg1, xg3, xg4, xg5, xg6, xs9, xs10, xs11, xs12, xs14, 
 	--using the conditions above make the bounding box signals
 	begin
 		--the bounds of the first layer
-		bbox_wall(0)<=xg4 and xs11 and ys11;
-		bbox_wall(1)<=yg4 and xg4  and xs11;
-		bbox_wall(2)<=yg4 and ys11 and xg4 ;
-		bbox_wall(3)<=yg4 and ys11 and xs11;
+		bbox_wall(0)<=xg4 and xs11 and ys11; --N
+		bbox_wall(2)<=xg4 and xs11 and yg4;  --S
+		bbox_wall(3)<=yg4 and ys11 and xg4;  --E
+		bbox_wall(1)<=yg4 and ys11 and xs11; --W
 		-------------------------------------
 		--the bounds of the second layer 
 		--(the walls are thinner on the second layer)
-		bbox_wall(4)<=xg5 and xs10 and ys10;
-		bbox_wall(5)<=xg5 and xs10 and yg5;
-		bbox_wall(6)<=yg5 and ys10 and xg5;
-		bbox_wall(7)<=yg5 and ys10 and xs10; 
+		bbox_wall(4)<=xg5 and xs10 and ys10; --N
+		bbox_wall(6)<=xg5 and xs10 and yg5;  --S
+		bbox_wall(7)<=yg5 and ys10 and xg5;  --E
+		bbox_wall(5)<=yg5 and ys10 and xs10; --W
 		-------------------------------------
 		--the bounds of the dot
 		bbox_dot<=xg6 and xs9 and yg6 and ys9;
@@ -141,16 +137,16 @@ bounds:	process(xe0, xe1, xg1, xg3, xg4, xg5, xg6, xs9, xs10, xs11, xs12, xs14, 
 		bbox_h<=xg1 and xs14 and yg3 and ys12;
 		-------------------------------------
 		--the bounds of the borders
-		bbox_border(0)<=ye0;
-		bbox_border(1)<=ye15;
-		bbox_border(2)<=xe15;
-		bbox_border(3)<=xe0;
+		bbox_border(0)<=ye0;  --N
+		bbox_border(2)<=ye15; --S
+		bbox_border(3)<=xe15; --E
+		bbox_border(1)<=xe0;  --W
 		-------------------------------------
 		--the bounds of the jumps
-		bbox_jump(0)<=ye0 or (ye1 and dx(1));
-		bbox_jump(1)<=ye15 or (ye14 and dx(1));
-		bbox_jump(2)<=xe15 or (xe14 and dy(1));
-		bbox_jump(3)<=xe0 or (xe1 and dy(1));
+		bbox_jump(0)<=ye0  or (ye1  and dx(1)); --N
+		bbox_jump(2)<=ye15 or (ye14 and dx(1)); --S
+		bbox_jump(3)<=xe15 or (xe14 and dy(1)); --E
+		bbox_jump(1)<=xe0  or (xe1  and dy(1)); --W
 		-------------------------------------
 		--the bounds of the explosions
 		bbox_explosion_outer<= (xg3 and xs12) or (yg3 and ys12) or rounding;
@@ -160,19 +156,19 @@ bounds:	process(xe0, xe1, xg1, xg3, xg4, xg5, xg6, xs9, xs10, xs11, xs12, xs14, 
 
 
 --small decoding for later
-	process(player0_dir,player1_dir)
+	process(player0_dir,player1_dir) --convert player direction into opposite wall segment selection
 	begin
 		case player0_dir is
-			when "00" => player0_wall<="0010"; --up
-			when "01" => player0_wall<="0100"; --left
-			when "10" => player0_wall<="0001"; --down
-			when others => player0_wall<="1000"; --right
+			when "00"	=> player0_wall<="0100"; --up/N
+			when "01"	=> player0_wall<="1000"; --left/W
+			when "10"	=> player0_wall<="0001"; --down/S
+			when others	=> player0_wall<="0010"; --right/E
 		end case;
 		case player1_dir is
-			when "00" => player1_wall<="0010";
-			when "01" => player1_wall<="0100";
-			when "10" => player1_wall<="0001";
-			when others => player1_wall<="1000";
+			when "00"	=> player1_wall<="0100";
+			when "01"	=> player1_wall<="1000";
+			when "10"	=> player1_wall<="0001";
+			when others	=> player1_wall<="0010";
 		end case;
 	end process;
 
