@@ -25,6 +25,6 @@ entity memory_communication is
 		go_to	           : out std_logic;
 		clear_mem	       : out std_logic;
         write_enable_mem   : out std_logic;
-        write_data_mem     : out std_logic_vector(9 downto 0);
+        write_data_mem     : out std_logic_vector(7 downto 0);
         address_mem        : out std_logic_vector(9 downto 0));
 end memory_communication; 
