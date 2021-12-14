@@ -17,6 +17,8 @@ architecture behaviour of game_engine is
 	signal player_0_state, player_1_state: std_logic_vector (1 downto 0);
 	signal d_player_0_state, d_player_1_state: std_logic_vector (1 downto 0);
 	signal e_position_0, e_position_1, e_wallshape_0, e_wallshape_1, e_read_memory_0, e_read_memory_1, e_next_position_0, e_next_position_1, e_direction_0, e_direction_1, e_next_direction_0, e_next_direction_1, e_player_0_state, e_player_1_state: std_logic;
+	signal read_data_in, read_data_out : in std_logic_vector(7 downto 0);
+        signal write_data, write_enable, clear, read_enable, memory_ready : in  std_logic;	
 	signal busy_counter_reset: std_logic;
 	signal unsigned_busy_count: std_logic_vector(4 downto 0);
 	
@@ -140,7 +142,20 @@ counter: busy_counter port map (clk => clk,
 			game_engine_reset => busy_counter_reset,
 			busy => busy,
 			busy_count => unsigned_busy_count);
-				
+
+mem_com: memory_communication port map ( clk => clk,
+					reset => reset,
+					address => address,
+					read_data_in => read_data_in, 
+					write_data => write_data,
+					write_enable => write_enable,
+					clear => clear,
+					read_enable => read_enable,
+					memory_ready => memory_ready,
+					read_data_out => read_data_out);
+						
+	
+			
 -- outputs from the register to the graphics engine			
 position_0_vga  <= position_0;
 position_1_vga  <= position_1;
