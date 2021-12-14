@@ -6,25 +6,25 @@ entity memory_communication is
    port(clk                : in  std_logic;
         reset              : in  std_logic;
 		
-		--from the FSM
-		address		   	   : in  std_logic_vector(7 downto 0);
-		write_enable       : in  std_logic;
-        read_enable        : in  std_logic;
-		clear		       : in  std_logic;
-        write_data         : in  std_logic;
+		--from the fsm
+		address_fsm	   	   : in  std_logic_vector(7 downto 0);
+		write_enable_fsm   : in  std_logic;
+        read_enable_fsm    : in  std_logic;
+		clear_fsm          : in  std_logic;
+        write_data_fsm     : in  std_logic;
 		
 		--from the memory
 		memory_ready	   : in  std_logic;
-		read_data_in	   : in  std_logic_vector(7 downto 0);
+		read_data_mem	   : in  std_logic_vector(7 downto 0);
 		
-		--to the FSM
+		--to the fsm
         memory_com_ready   : out std_logic;
-		read_data_out	   : out std_logic_vector(7 downto 0);
+		read_data_fsm	   : out std_logic_vector(7 downto 0);
 		
 		--to the memory	
 		go_to	           : out std_logic;
-		clear_memory       : out std_logic;
-        write_enable       : out std_logic;
-        write_memory       : out std_logic_vector(7 downto 0);
-        address            : out std_logic_vector(9 downto 0));
+		clear_mem	       : out std_logic;
+        write_enable_mem   : out std_logic;
+        write_data_mem     : out std_logic_vector(7 downto 0);
+        address_mem        : out std_logic_vector(9 downto 0));
 end memory_communication; 
