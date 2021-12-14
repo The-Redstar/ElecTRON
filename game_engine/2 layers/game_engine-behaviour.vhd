@@ -3,7 +3,7 @@ use IEEE.std_logic_1164.ALL;
 use ieee.numeric_std.all;
 
 architecture behaviour of game_engine is
-	type game_state is (reset_state, loading_state, get_ready, read_inputs, check_border, want_to_read_0, want_to_read_1, read_memory_player_0, read_memory_player_1, check_collision, check_who_won, wait_state, want_to_write_0, want_to_write_1, write_memory_player_0, write_memory_player_1, change_data, player_0_won, player_1_won, tie, player_0_ready, player_1_ready, busy_reset);
+	type game_state is (reset_state, loading_state, get_ready, read_inputs, read1_memory_player_0, read1_memory_player_1, read2_memory_player_0, read2_memory_player_1, check_who_won, wait_state, write_memory_player_0, write_memory_player_1, change_data, player_0_won, player_1_won, tie, player_0_ready, player_1_ready, busy_reset);
 
 	signal state, new_state: game_state;
 	--signals for registers
@@ -18,7 +18,7 @@ architecture behaviour of game_engine is
 	signal e_position_0, e_position_1, e_read_memory_0, e_read_memory_1, e_direction_0, e_direction_1, e_next_direction_0, e_next_direction_1, e_player_0_state, e_player_1_state: std_logic;
 	--signals for memory communication
 	signal read_data_mem, read_data_fsm, read_data_out, write_data_mem : std_logic_vector(7 downto 0);
-        signal write_data_fsm, write_enable_fsm, clear_fsm, read_enable_fsm, memory_com_ready, clear_mem, write_enable_mem   : std_logic;	
+        signal write_data_fsm, write_enable_fsm, clear_fsm, read_enable_fsm, mem_com_ready, clear_mem, write_enable_mem   : std_logic;	
 	signal address_fsm, address_mem   	   : std_logic_vector(9 downto 0);
 	--signals for busy counter
 	signal busy_counter_reset: std_logic;
@@ -46,7 +46,7 @@ architecture behaviour of game_engine is
         	write_data_fsm     : in  std_logic;
 		memory_ready	   : in  std_logic;
 		read_data_mem	   : in  std_logic_vector(7 downto 0);
-        	memory_com_ready   : out std_logic;
+        	mem_com_ready   : out std_logic;
 		read_data_fsm	   : out std_logic_vector(7 downto 0);
 		go_to	           : out std_logic;
 		clear_mem	       : out std_logic;
@@ -136,7 +136,7 @@ mem_com: memory_communication port map ( clk => clk,
 					write_enable_fsm => write_enable_fsm,
 					clear_fsm => clear_fsm,
 					read_enable_fsm => read_enable_fsm,
-					memory_com_ready => memory_com_ready,
+					mem_com_ready => mem_com_ready,
 					read_data_mem => read_data_mem,
 					go_to => go_to,
 					clear_mem => clear_mem,
@@ -260,6 +260,40 @@ position: 	process (clk)
 				end if;
 	end process;
 
+check_border: 	process (clk)
+	begin
+		-- check if player 1 collides with a border
+		if (((position_0(4 downto 0) = "00000") and (next_direction_0 = "01")) or (next_position_0(4 downto 0) = "11110")) or (((position_0(9 downto 5) = "00000") and (next_direction_0 = "00")) or (next_position_0(9 downto 5) = "11110"))then 
+				e_player_0_state <= '1';
+				d_player_0_state <= "01";
+		end if;
+
+		-- check if player 1 collides with a border
+		if (((position_1(4 downto 0) = "00000") and (next_direction_1 = "01")) or (next_position_1(4 downto 0) = "11110")) or (((position_1(9 downto 5) = "00000") and (next_direction_1 = "00")) or (next_position_1(9 downto 5) = "11110"))then 
+				e_player_1_state <= '1';
+				d_player_1_state <= "01";
+		end if;
+
+	end process;
+
+collision: process (clk)
+	begin
+		if (next_position_0 = next_position_1) then -- collide at eachother at middle of square
+					e_player_0_state <= '1';
+					e_player_1_state <= '1';
+				elsif (position_0 = next_position_1) and (position_1 = next_position_0) then -- collide at eachother at border
+					e_player_0_state <= '1';
+					e_player_1_state <= '1';
+					d_player_0_state <= "01";
+					d_player_1_state <= "01";
+				elsif (position_0 = next_position_1) then -- player 1 collides at the wall of player 0 made the previous time
+					e_player_0_state <= '0';
+					e_player_1_state <= '1';
+				elsif (position_1 = next_position_0) then -- player 0 collides at the wall of player 1 made the previous time
+					e_player_0_state <= '1';
+				end if;
+	end process;
+
 
 create_next_state: 	process (state, new_state, reset, input, busy, read_memory, memory_ready, clk, unsigned_busy_count, direction_0, direction_1, next_direction_0, next_direction_1, position_0, position_1, next_position_0, next_position_1, read_memory_0, read_memory_1, player_0_state, player_1_state, e_position_0, e_position_1, e_read_memory_0, e_read_memory_1, e_direction_0, e_direction_1, e_next_direction_0, e_next_direction_1, e_player_0_state, e_player_1_state )
 	begin
@@ -292,7 +326,7 @@ create_next_state: 	process (state, new_state, reset, input, busy, read_memory, 
 		d_player_0_state			<= (others => '0');
 		d_player_1_state			<= (others => '0');
 		read_data_fsm				<= (others => '0');
-		memory_com_ready   			<= '0';
+		mem_com_ready   			<= '0';
 		read_data_fsm	   			<= (others => '0');
 		go_to	           			<= '0';
 		clear_mem	     			<= '0';
@@ -415,188 +449,141 @@ create_next_state: 	process (state, new_state, reset, input, busy, read_memory, 
 				d_next_direction_1			<= input(3 downto 2);										
 	
 				-- go to the state 'wall_shape' next
-				new_state <= check_border;
+				new_state <= read1_memory_player_0;
 
-		
-				
-			when check_border =>
-				-- check whether or not a player collided with the border of the playing field
-				state_vga   				<= "111";
-								-- check if player 0 collides with a border
-				if (((position_0(4 downto 0) = "00000") and (next_direction_0 = "01")) or (next_position_0(4 downto 0) = "11110")) or (((position_0(9 downto 5) = "00000") and (next_direction_0 = "00")) or (next_position_0(9 downto 5) = "11110"))then 
-					e_player_0_state <= '1';
-					d_player_0_state <= "01";
-				end if;
-
-				-- check if player 1 collides with a border
-				if (((position_1(4 downto 0) = "00000") and (next_direction_1 = "01")) or (next_position_1(4 downto 0) = "11110")) or (((position_1(9 downto 5) = "00000") and (next_direction_1 = "00")) or (next_position_1(9 downto 5) = "11110"))then 
-					e_player_1_state <= '1';
-					d_player_1_state <= "01";
-				end if;
-
-				-- the next state is 'want_to_read_0'
-				new_state <= want_to_read_0;
-
-			when want_to_read_0 =>
-				-- let the memory module know that we want to read information from the next position of player 0
-				state_vga   				<= "111";
-				address						<= next_position_0 (9 downto 0);
-				go_to		   				<= '1';	
-				
-				-- the next state is 'read_memory_player_0'
-				new_state <= read_memory_player_0;	
-
-			when read_memory_player_0 =>
+			when read1_memory_player_0 =>
 				-- read the data from the address of the next position of player 0
 				state_vga   				<= "111";
-				address 				<= next_position_0(9 downto 0);
+				address_fsm 				<= next_position_0(9 downto 0);
 				e_read_memory_0				<= '1';
-				d_read_memory_0				<= read_memory;
+				d_read_memory_0				<= read_data_fsm;
+				d_read_memory_0				<= (others => '0');
+				d_read_memory_1				<= (others => '0');
 
 				-- wait till the memory module is done with processing the information to go to the next state: 'want_to_read_1'
 				if (memory_ready = '1') then
-					-- first check which layer player 0 is on, then check if there is already data on that layer at that address
-					-- when there is already data on the next position of player 0, player 0 collides against wall
-					if (next_position_0 (10) = '0') then
-						if (read_memory (3 downto 0) = "0000") then
-							e_player_0_state <= '0';
-							d_player_0_state <= (others => '0');
-						else 
-							e_player_0_state <= '1';
-						end if;
-					elsif (next_position_0 (10) = '1') then
-						if (not read_memory (7 downto 4) = "0000") then
-							e_player_0_state <= '1';
-							d_player_0_state <= "00";
-						end if;
-					end if;
-					new_state <= want_to_read_1; 
+					new_state <= read1_memory_player_1; 
 				else 
-					new_state <= read_memory_player_0;
+					new_state <= read1_memory_player_0;
 				end if;
 	
-			when want_to_read_1 =>
-				-- let the memory module know information needs to be read from the next position of player 1
-				state_vga   				<= "111";
-				address 					<= next_position_1(9 downto 0);
-				go_to		   				<= '1';
-								-- the next state is 'read_memory_player_1'
-				new_state <= read_memory_player_1;
 
-			when read_memory_player_1 =>
+			when read1_memory_player_1 =>
 				-- read the data from the address of the next position of player 1
 				state_vga   				<= "111";
-				address 					<= next_position_1(9 downto 0);
+				address_fsm 					<= next_position_1(9 downto 0);
 				e_read_memory_1				<= '1';
-				d_read_memory_1				<= read_memory;
+				d_read_memory_1				<= read_data_fsm;
 
 				-- wait till the memory module is done with processing the information to go to the next state: 'check_collision'
-				if (memory_ready = '1') then
-					-- first check which layer player 1 is on, then check if there is already data on that layer at that address
-					-- when there is already data on the next position of player 1, player 1 collides against wall					
-					if (next_position_1 (10) = '0') then
-						if (not read_memory (3 downto 0) = "0000") then
-							e_player_1_state <= '1';
-						end if;
-					elsif (next_position_1 (10) = '1') then
-						if (not read_memory (7 downto 4) = "0000") then
-							e_player_1_state <= '1';
-						end if;
-					end if;					
-					new_state <= check_collision; 
+				if (memory_ready = '1') then					
+					new_state <= change_data; 
 				else 
-					new_state <= read_memory_player_1;
+					new_state <= read1_memory_player_1;
 				end if;
-
-			when check_collision =>
-				-- check whether or not players collide with eachother
-				state_vga   				<= "111";
-				
-				-- when a player collides change its player state accordingly
-				if (next_position_0 = next_position_1) then -- collide at eachother at middle of square
-					e_player_0_state <= '1';
-					e_player_1_state <= '1';
-				elsif (position_0 = next_position_1) and (position_1 = next_position_0) then -- collide at eachother at border
-					e_player_0_state <= '1';
-					e_player_1_state <= '1';
-					d_player_0_state <= "01";
-					d_player_1_state <= "01";
-				elsif (position_0 = next_position_1) then -- player 1 collides at the wall of player 0 made the previous time
-					e_player_0_state <= '0';
-					e_player_1_state <= '1';
-				elsif (position_1 = next_position_0) then -- player 0 collides at the wall of player 1 made the previous time
-					e_player_0_state <= '1';
-				end if;
-				
-				-- go to 'want_to_write_0' state next
-				new_state<= want_to_write_0;
-
-			when want_to_write_0 =>
-				-- check if writing is needed for player 0 and let the memory know
-				state_vga   				<= "111";
-				
-				-- when player 0 collided on border, there shall be no writing and the next state is 'want_to_write_1'
-				if (player_0_state = "01") then 
-					new_state 					<= want_to_write_1;
-				-- if player 0 did not collide the next state will be 'write_memory_player_0'
-				else 
-					write_enable 				<= '1';
-					write_memory(2 downto 0) 	<= wallshape_0;
-					address 					<= position_0(9 downto 0);
-					go_to 						<= '1';
-					new_state 					<= write_memory_player_0;
-				end if;
+		
 
 			when write_memory_player_0 =>
 				-- send to the memory module the wall shape of player 0 on the address of its position
 				state_vga   				<= "111";
 				write_enable 				<= '1';
-				write_memory(2 downto 0) 	<= wallshape_0;
-				address 					<= position_0(9 downto 0);
+				write_memory(2 downto 0) 		<= wallshape_0;
+				address_fsm 				<= position_0(9 downto 0);
+
+				if (position_0 (9) = '0') then
+					write_memory(7 downto 4) 		<= read_memory_1(7 downto 4);
+					write_memory(3) 			<= '0';
+					write_memory(2 downto 0) 		<= wallshape_1;
+				else 
+					write_memory(7) 			<= '0';
+					write_memory(6 downto 4) 		<= wallshape_1;
+					write_memory(3 downto 0) 		<= read_memory_1(3 downto 0);
+				end if;
 				
 				-- wait until the memory is ready to go to the next state 'want_to_write_1'
 				if (memory_ready = '1') then
-					new_state <= want_to_write_1;
+					new_state <= write_memory_player_1;
 				else 
 					new_state <= write_memory_player_0;
-				end if;
-
-			when want_to_write_1 =>
-				-- check if writing is needed for player 0 and let the memory know
-				state_vga   				<= "111";
-				
-				-- when player 1 collided on a border, there shall be no writing and the next state will be 'change_data'
-				if (player_1_state = "01") then 
-					write_enable 				<= '0';
-					write_memory			 	<= "00000000";
-					address 					<= "0000000000";
-					go_to 						<= '0';
-					new_state 					<= change_data;
-				-- if player 1 did not collide, the next state will be 'write_memory_player_1'
-				else 
-					write_enable 				<= '1';
-					write_memory(7 downto 3) 	<= "00001";
-					write_memory(2 downto 0) 	<= wallshape_1;
-					address 					<= position_1(9 downto 0);
-					go_to 						<= '1';
-					new_state 					<= write_memory_player_1;
 				end if;
 
 			when write_memory_player_1 =>
 				-- send to the memory module the wall shape of player 1 on the address of its position
 				state_vga   				<= "111";
 				write_enable 				<= '1';
-				write_memory(7 downto 3) 	<= "00001" ;
-				write_memory(2 downto 0) 	<= wallshape_1;
-				address 					<= position_1(9 downto 0);
+				address_fsm				<= position_1(9 downto 0);
+
+				if (position_1 (9) = '0') then
+					write_memory(7 downto 4) 		<= read_memory_1(7 downto 4);
+					write_memory(3) 			<= '1';
+					write_memory(2 downto 0) 		<= wallshape_1;
+				else 
+					write_memory(7) 			<= '1';
+					write_memory(6 downto 4) 		<= wallshape_1;
+					write_memory(3 downto 0) 		<= read_memory_1(3 downto 0);
+				end if;
 				
 				-- wait till the memory is finished before going to the next state 'change_data'
 				if (memory_ready = '1') then
-					new_state <= change_data;
+					new_state <= read2_memory_player_0;
 				else
 					new_state <= write_memory_player_1;
 				end if;
 		
+			when read2_memory_player_0 =>
+				-- read the data from the address of the next position of player 0
+				state_vga   				<= "111";
+				address_fsm 				<= next_position_0(9 downto 0);
+				read_enable_fsm				<= '1';
+
+				-- wait till the memory module is done with processing the information to go to the next state: 'want_to_read_1'
+				if (mem_com_ready = '1') then
+					-- first check which layer player 0 is on, then check if there is already data on that layer at that address
+					-- when there is already data on the next position of player 0, player 0 collides against wall
+					if (next_position_0 (10) = '0') then
+						if (read_data_fsm (3 downto 0) = "0000") then
+							e_player_0_state <= '0';
+							d_player_0_state <= (others => '0');
+						else 
+							e_player_0_state <= '1';
+						end if;
+					elsif (next_position_0 (10) = '1') then
+						if (not read_data_fsm (7 downto 4) = "0000") then
+							e_player_0_state <= '1';
+							d_player_0_state <= "00";
+						end if;
+					end if;
+					new_state <= read2_memory_player_1; 
+				else 
+					new_state <= read2_memory_player_0;
+				end if;
+	
+
+			when read2_memory_player_1 =>
+				-- read the data from the address of the next position of player 1
+				state_vga   				<= "111";
+				address_fsm				<= next_position_1(9 downto 0);
+				read_enable_fsm				<= '1';
+
+				-- wait till the memory module is done with processing the information to go to the next state: 'check_collision'
+				if (memory_ready = '1') then
+					-- first check which layer player 1 is on, then check if there is already data on that layer at that address
+					-- when there is already data on the next position of player 1, player 1 collides against wall					
+					if (next_position_1 (10) = '0') then
+						if (not read_data_fsm (3 downto 0) = "0000") then
+							e_player_1_state <= '1';
+						end if;
+					elsif (next_position_1 (10) = '1') then
+						if (not read_data_fsm (7 downto 4) = "0000") then
+							e_player_1_state <= '1';
+						end if;
+					end if;					
+					new_state <= change_data; 
+				else 
+					new_state <= read2_memory_player_1;
+				end if;
+
+
 			when change_data =>
 				-- change the data that is going to the graphics engine and update data in the register
 				state_vga   				<= "111";
