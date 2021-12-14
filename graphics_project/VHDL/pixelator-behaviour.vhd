@@ -182,16 +182,32 @@ bounds:	process(xe0, xe1, xg1, xg3, xg4, xg5, xg6, xs9, xs10, xs11, xs12, xs14, 
 layering: process(bbox_wall, bbox_dot, bbox_v, bbox_h, bbox_border, bbox_jump, bbox_centre_explosion_outer, bbox_centre_explosion_inner, walls, borders, jumps, player0_dir, player0_en, player0_layer, player0_mode, player1_dir, player1_en, player1_layer, player1_mode, layer0_player, layer1_player,player0_wall,player1_wall,bbox_left_explosion, bbox_right_explosion, bbox_top_explosion, bbox_bottom_explosion)
 
 	variable player0_cycle_pixel,player1_cycle_pixel: boolean;
-	variable player0_inner_explosion_pixel,player1_inner_explosion_pixel,player0_outer_explosion_pixel,player1_outer_explosion_pixel : boolean;
+	variable player0_inner_explosion_pixel,player1_inner_explosion_pixel,player0_outer_explosion_pixel,player1_outer_explosion_pixel, 
+	player0_right_explosion_pixel, player1_right_explosion_pixel, player0_left_explosion_pixel, player1_left_explosion_pixel, player0_top_explosion_pixel, player1_top_explosion_pixel, 
+	player0_bottom_explosion_pixel, player1_bottom_explosion_pixel: boolean;
 	variable border0_pixel: boolean;
 	begin
-	
+		
 		player0_cycle_pixel:=player0_en='1' and player0_mode(1)='1' and ((player0_dir(0)='0' and bbox_v='1') or (player0_dir(0)='1' and bbox_h='1'));
 		player1_cycle_pixel:=player1_en='1' and player1_mode(1)='1' and ((player1_dir(0)='0' and bbox_v='1') or (player1_dir(0)='1' and bbox_h='1'));
-		player0_inner_explosion_pixel:=player0_en='1' and player0_mode(1)='0' and bbox_centre_explosion_inner='1';
-		player1_inner_explosion_pixel:=player1_en='1' and player1_mode(1)='0' and bbox_centre_explosion_inner='1';
-		player0_outer_explosion_pixel:=player0_en='1' and player0_mode(1)='0' and bbox_centre_explosion_outer='1';
-		player1_outer_explosion_pixel:=player1_en='1' and player1_mode(1)='0' and bbox_centre_explosion_outer='1';
+
+		player0_inner_explosion_pixel:=player0_en='1' and player0_mode="00" and bbox_centre_explosion_inner='1';
+		player1_inner_explosion_pixel:=player1_en='1' and player1_mode="00" and bbox_centre_explosion_inner='1';
+
+		player0_outer_explosion_pixel:=player0_en='1' and player0_mode="00" and bbox_centre_explosion_outer='1';
+		player1_outer_explosion_pixel:=player1_en='1' and player1_mode="00" and bbox_centre_explosion_outer='1';
+
+		player0_right_explosion_pixel:=player0_en='1' and player0_mode="01" and bbox_right_explosion='1' and player0_dir="11";
+		player1_right_explosion_pixel:=player1_en='1' and player1_mode="01" and bbox_right_explosion='1' and player1_dir="11";
+
+		player0_left_explosion_pixel:=player0_en='1' and player0_mode="01" and bbox_left_explosion='1' and player0_dir="01";
+		player1_left_explosion_pixel:=player1_en='1' and player1_mode="01" and bbox_left_explosion='1' and player1_dir="01";
+
+		player0_top_explosion_pixel:=player0_en='1' and player0_mode="01" and bbox_top_explosion='1' and player0_dir="00";
+		player1_top_explosion_pixel:=player1_en='1' and player1_mode="01" and bbox_top_explosion='1' and player1_dir="00";
+
+		player0_bottom_explosion_pixel:=player0_en='1' and player0_mode="01" and bbox_bottom_explosion='1' and player0_dir="10";
+		player1_bottom_explosion_pixel:=player1_en='1' and player1_mode="01" and bbox_bottom_explosion='1' and player1_dir="10";
 	
 		border0_pixel:=(borders(3 downto 0) and bbox_border) /= "0000";
 	
