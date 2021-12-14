@@ -9,8 +9,6 @@ entity game_engine is
         busy               : in  std_logic;
         read_memory        : in  std_logic_vector(7 downto 0);
         memory_ready       : in  std_logic;
-	border		   : in  std_logic_vector(7 downto 0);
-	ramp		   : in  std_logic_vector(7 downto 0);
         state_vga          : out std_logic_vector(2 downto 0);
         write_enable       : out std_logic;
         write_memory       : out std_logic_vector(7 downto 0);
