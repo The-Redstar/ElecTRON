@@ -7,18 +7,18 @@ entity memory_communication is
         reset              : in  std_logic;
 		
 		--from the fsm
-		address_fsm	   	   : in  std_logic_vector(7 downto 0);
+		address_fsm	   	   : in  std_logic_vector(9 downto 0);
 		write_enable_fsm   : in  std_logic;
         read_enable_fsm    : in  std_logic;
 		clear_fsm          : in  std_logic;
-        write_data_fsm     : in  std_logic;
+        write_data_fsm     : in  std_logic_vector(7 downto 0);
 		
 		--from the memory
 		memory_ready	   : in  std_logic;
 		read_data_mem	   : in  std_logic_vector(7 downto 0);
 		
 		--to the fsm
-        memory_com_ready   : out std_logic;
+        mem_com_ready      : out std_logic;
 		read_data_fsm	   : out std_logic_vector(7 downto 0);
 		
 		--to the memory	
