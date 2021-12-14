@@ -22,8 +22,8 @@ entity game_engine is
         player_state_1_vga : out std_logic_vector(1 downto 0);
 		--memory signals
 		go_to	           : out std_logic;
-		clear_memory       : out std_logic);
+		clear_memory       : out std_logic;
         write_enable       : out std_logic;
         write_memory       : out std_logic_vector(7 downto 0);
-        address            : out std_logic_vector(9 downto 0);
+        address            : out std_logic_vector(9 downto 0));
 end game_engine;
