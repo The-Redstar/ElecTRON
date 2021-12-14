@@ -856,7 +856,6 @@ create_next_state: 	process (state, new_state, reset, input, busy, read_memory, 
 				e_position_1				<= '0';	
 				e_wallshape_0				<= '0';	
 				e_wallshape_1				<= '0';
-				e_read_memory_0				<= '0';
 				e_read_memory_1				<= '0';
 				e_next_position_0			<= '0';
 				e_next_position_1			<= '0';
@@ -866,11 +865,13 @@ create_next_state: 	process (state, new_state, reset, input, busy, read_memory, 
 				e_next_direction_1			<= '0';
 				e_player_1_state			<= '0';
 				
+				e_read_memory_0				<= '1';
+				d_read_memory_0				<= read_memory;
+				
 				d_position_0				<= (others => '0');
 				d_position_1				<= (others => '0');	
 				d_wallshape_0				<= (others => '0');	
 				d_wallshape_1				<= (others => '0');
-				d_read_memory_0				<= (others => '0');
 				d_read_memory_1				<= (others => '0');
 				d_next_position_0			<= (others => '0');
 				d_next_position_1			<= (others => '0');
@@ -882,8 +883,9 @@ create_next_state: 	process (state, new_state, reset, input, busy, read_memory, 
 
 				-- wait till the memory module is done with processing the information to go to the next state: 'want_to_read_1'
 				if (memory_ready = '1') then
+					-- first check which layer player 0 is on, then check if there is already data on that layer at that address
 					-- when there is already data on the next position of player 0, player 0 collides against wall
-					if (next_position_0 (10) = 0) then
+					if (next_position_0 (10) = '0') then
 						if (read_memory (3 donwto 0) = "0000") then
 							e_player_0_state <= '0';
 							d_player_0_state <= (others => '0');
@@ -891,7 +893,7 @@ create_next_state: 	process (state, new_state, reset, input, busy, read_memory, 
 							e_player_0_state <= '1';
 							d_player_0_state <= "00";
 						end if;
-					else if (next_position_0 (10) = 1) then
+					else if (next_position_0 (10) = '1') then
 						if (read_memory (7 donwto 4) = "0000") then
 							e_player_0_state <= '0';
 							d_player_0_state <= (others => '0');
@@ -965,7 +967,6 @@ create_next_state: 	process (state, new_state, reset, input, busy, read_memory, 
 				e_wallshape_0				<= '0';	
 				e_wallshape_1				<= '0';
 				e_read_memory_0				<= '0';
-				e_read_memory_1				<= '1';
 				e_next_position_0			<= '0';
 				e_next_position_1			<= '0';
 				e_direction_0				<= '0';
@@ -974,12 +975,14 @@ create_next_state: 	process (state, new_state, reset, input, busy, read_memory, 
 				e_next_direction_1			<= '0';
 				e_player_0_state			<= '0';
 				
+				e_read_memory_1				<= '1';
+				d_read_memory_1				<= read_memory;
+				
 				d_position_0				<= (others => '0');
 				d_position_1				<= (others => '0');	
 				d_wallshape_0				<= (others => '0');	
 				d_wallshape_1				<= (others => '0');
 				d_read_memory_0				<= (others => '0');
-				d_read_memory_1				<= (others => '0');
 				d_next_position_0			<= (others => '0');
 				d_next_position_1			<= (others => '0');
 				d_direction_0				<= (others => '0');
@@ -990,8 +993,9 @@ create_next_state: 	process (state, new_state, reset, input, busy, read_memory, 
 
 				-- wait till the memory module is done with processing the information to go to the next state: 'check_collision'
 				if (memory_ready = '1') then
+					-- first check which layer player 1 is on, then check if there is already data on that layer at that address
 					-- when there is already data on the next position of player 1, player 1 collides against wall					
-					if (next_position_1 (10) = 0) then
+					if (next_position_1 (10) = '0') then
 						if (read_memory (3 donwto 0) = "0000") then
 							e_player_1_state <= '0';
 							d_player_1_state <= (others => '0');
@@ -999,7 +1003,7 @@ create_next_state: 	process (state, new_state, reset, input, busy, read_memory, 
 							e_player_1_state <= '1';
 							d_player_1_state <= "00";
 						end if;
-					else if (next_position_1 (10) = 1) then
+					else if (next_position_1 (10) = '1') then
 						if (read_memory (7 donwto 4) = "0000") then
 							e_player_1_state <= '0';
 							d_player_1_state <= (others => '0');
