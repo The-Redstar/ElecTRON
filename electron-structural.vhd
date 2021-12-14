@@ -49,19 +49,16 @@ architecture structural of electron is
            rst_vga	   : in  std_logic);
    end component;
 
-	signal busy: std_logic;
 	signal state_vga : std_logic_vector(2 downto 0);
-	signal read_memory (7 downto 0);
-	signal memory_ready: std_logic;
 
 begin
 	lbl0:game_engine port map ( 
 					clk  				=> clk,
 					reset				=> rst,
 					input    			=> direction_in,
-					busy    			=> busy,
-					read_memory    		=> read_memory,
-					memory_ready		=> memory_ready,
+					busy    			=> ,
+					read_memory    		=> ,
+					memory_ready		=> ,
 					border				=> ,
 					ramp				=> ,
 					state_vga			=> state_vga,
