@@ -291,7 +291,7 @@ position: 	process (clk)
 				end if;
 	end process;
 
-check_border: 	process (clk)
+check_border: 	process (clk, border, next_direction_0, next_position_0, next_position_1)
 	begin
 		address_grid_border_0  <= next_position_0;
 		address_grid_border_1  <= next_position_1;

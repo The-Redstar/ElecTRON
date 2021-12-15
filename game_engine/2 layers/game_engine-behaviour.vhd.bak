@@ -291,10 +291,10 @@ position: 	process (clk)
 				end if;
 	end process;
 
-check_border: 	process (clk)
+check_border: 	process (clk, boder, next_direction_0, next_position_0, next_position_1)
 	begin
 		address_grid_border_0  <= next_position_0;
-		address_grid_boder_1  <= next_position_1;
+		address_grid_border_1  <= next_position_1;
 		-- check if player 1 collides with a border
 		if (((border(3) = '1') and (next_direction_0 = "01")) or ((border(2) = '1') and (next_direction_0 = "00")) or ((border(1) = '1') and (next_direction_0 = "11")) or ((border(0) = '1') and (next_direction_0 = "10"))) then 
 				e_player_0_state <= '1';

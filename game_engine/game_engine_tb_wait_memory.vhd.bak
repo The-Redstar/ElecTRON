@@ -40,8 +40,6 @@ architecture structural of game_engine_tb is
     signal busy               : std_logic;
     signal read_memory        : std_logic_vector(7 downto 0);
     signal memory_ready       : std_logic;
-signal border		   	   : std_logic_vector(7 downto 0);
-	signal ramp			   : std_logic_vector(7 downto 0);
     signal state_vga          : std_logic_vector(2 downto 0);
     signal write_enable       : std_logic;
     signal write_memory       : std_logic_vector(7 downto 0);
@@ -52,10 +50,6 @@ signal border		   	   : std_logic_vector(7 downto 0);
     signal direction_1_vga    : std_logic_vector(1 downto 0);
     signal player_state_0_vga : std_logic_vector(1 downto 0);
     signal player_state_1_vga : std_logic_vector(1 downto 0);
-signal address_grid_border_0: std_logic_vector(10 downto 0);
-	signal address_grid_border_1 : std_logic_vector(10 downto 0);
-	signal address_grid_ramp_0  : std_logic_vector(10 downto 0);
-	signal address_grid_ramp_1  :  std_logic_vector(10 downto 0);
 	signal go_to	          : std_logic;
 	signal clear_memory       : std_logic;
 
