@@ -78,7 +78,6 @@ architecture behaviour of game_engine is
 			q_position_0  : out std_logic_vector(10 downto 0);
 			q_position_1  : out std_logic_vector(10 downto 0);
 			q_read_mem_0  : out std_logic_vector(7 downto 0);
-			q_read_mem_1  : out std_logic_vector(7 downto 0);
 			q_direction_0 : out std_logic_vector(1 downto 0);
 			q_direction_1 : out std_logic_vector(1 downto 0);
 			q_next_dir_0  : out std_logic_vector(1 downto 0);
@@ -219,19 +218,36 @@ position: 	process (clk)
 				if (next_direction_0 = "01") then 		-- moves to the left, x is decreased with 1
 					next_position_0(4 downto 0)  <= std_logic_vector(to_unsigned(to_integer(unsigned(position_0(4 downto 0))) - 1, 5));
 					next_position_0(9 downto 5) <= position_0(9 downto 5);
-					next_position_0(10)		  <= position_0(10);
+					if (ramp(3) = '1') then
+						next_position_0(10)		  <= not position_0(10);
+					else 
+						next_position_0(10)		  <= position_0(10);
+					end if;
 				elsif (next_direction_0 = "11") then 	-- moves to the right, x is increased with 1
 					next_position_0(4 downto 0)  <= std_logic_vector(to_unsigned(to_integer(unsigned(position_0(4 downto 0))) + 1, 5));
 					next_position_0(9 downto 5) <= position_0(9 downto 5);
 					next_position_0(10)		  <= position_0(10);
+					if (ramp(1) = '1') then
+						next_position_0(10)		  <= not position_0(10);
+					else 
+						next_position_0(10)		  <= position_0(10);
+					end if;
 				elsif (next_direction_0 <= "00") then 	-- moves up, y is decreased with 1
 					next_position_0(4 downto 0) <= position_0(4 downto 0);
 					next_position_0(9 downto 5) <= std_logic_vector(to_unsigned(to_integer(unsigned(position_0(9 downto 5))) - 1, 5));
-					next_position_0(10)		  <= position_0(10);
+					if (ramp(2) = '1') then
+						next_position_0(10)		  <= not position_0(10);
+					else 
+						next_position_0(10)		  <= position_0(10);
+					end if;
 				else 									--moves down, y is increased with 1
 					next_position_0(4 downto 0) <= position_0(4 downto 0);
 					next_position_0(9 downto 5) <= std_logic_vector(to_unsigned(to_integer(unsigned(position_0(9 downto 5))) + 1, 5));
-					next_position_0(10)		  <= position_0(10);	
+					if (ramp(0) = '1') then
+						next_position_0(10)		  <= not position_0(10);
+					else 
+						next_position_0(10)		  <= position_0(10);
+					end if;
 				end if;
 
 				-- determine the next position of player 1
@@ -303,7 +319,6 @@ create_next_state: 	process (state, new_state, reset, input, busy, read_memory, 
 		e_position_0				<= '0';
 		e_position_1				<= '0';	
 		e_read_memory_0				<= '0';
-		e_read_memory_1				<= '0';
 		e_direction_0				<= '0';
 		e_direction_1				<= '0';
 		e_next_direction_0			<= '0';	

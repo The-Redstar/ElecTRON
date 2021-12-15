@@ -78,7 +78,6 @@ architecture behaviour of game_engine is
 			q_position_0  : out std_logic_vector(10 downto 0);
 			q_position_1  : out std_logic_vector(10 downto 0);
 			q_read_mem_0  : out std_logic_vector(7 downto 0);
-			q_read_mem_1  : out std_logic_vector(7 downto 0);
 			q_direction_0 : out std_logic_vector(1 downto 0);
 			q_direction_1 : out std_logic_vector(1 downto 0);
 			q_next_dir_0  : out std_logic_vector(1 downto 0);
@@ -219,19 +218,36 @@ position: 	process (clk)
 				if (next_direction_0 = "01") then 		-- moves to the left, x is decreased with 1
 					next_position_0(4 downto 0)  <= std_logic_vector(to_unsigned(to_integer(unsigned(position_0(4 downto 0))) - 1, 5));
 					next_position_0(9 downto 5) <= position_0(9 downto 5);
-					next_position_0(10)		  <= position_0(10);
+					if (ramp(3) = '1') then
+						next_position_0(10)		  <= not position_0(10);
+					else 
+						next_position_0(10)		  <= position_0(10);
+					end if;
 				elsif (next_direction_0 = "11") then 	-- moves to the right, x is increased with 1
 					next_position_0(4 downto 0)  <= std_logic_vector(to_unsigned(to_integer(unsigned(position_0(4 downto 0))) + 1, 5));
 					next_position_0(9 downto 5) <= position_0(9 downto 5);
 					next_position_0(10)		  <= position_0(10);
+					if (ramp(1) = '1') then
+						next_position_0(10)		  <= not position_0(10);
+					else 
+						next_position_0(10)		  <= position_0(10);
+					end if;
 				elsif (next_direction_0 <= "00") then 	-- moves up, y is decreased with 1
 					next_position_0(4 downto 0) <= position_0(4 downto 0);
 					next_position_0(9 downto 5) <= std_logic_vector(to_unsigned(to_integer(unsigned(position_0(9 downto 5))) - 1, 5));
-					next_position_0(10)		  <= position_0(10);
+					if (ramp(2) = '1') then
+						next_position_0(10)		  <= not position_0(10);
+					else 
+						next_position_0(10)		  <= position_0(10);
+					end if;
 				else 									--moves down, y is increased with 1
 					next_position_0(4 downto 0) <= position_0(4 downto 0);
 					next_position_0(9 downto 5) <= std_logic_vector(to_unsigned(to_integer(unsigned(position_0(9 downto 5))) + 1, 5));
-					next_position_0(10)		  <= position_0(10);	
+					if (ramp(0) = '1') then
+						next_position_0(10)		  <= not position_0(10);
+					else 
+						next_position_0(10)		  <= position_0(10);
+					end if;
 				end if;
 
 				-- determine the next position of player 1
@@ -239,19 +255,35 @@ position: 	process (clk)
 				if (next_direction_1 = "01") then 		-- moves to the left, x is decreased with 1
 					next_position_1(4 downto 0)  <= std_logic_vector(to_unsigned(to_integer(unsigned(position_1(4 downto 0))) - 1, 5));
 					next_position_1(9 downto 5) <= position_1(9 downto 5);
-					next_position_1(10)		  <= position_1(10);	
+					if (ramp(7) = '1') then
+						next_position_1(10)		  <= not position_1(10);
+					else 
+						next_position_1(10)		  <= position_1(10);
+					end if;
 				elsif (next_direction_1 = "11") then 	-- moves to the right, x is increased with 1
 					next_position_1(4 downto 0)  <= std_logic_vector(to_unsigned(to_integer(unsigned(position_1(4 downto 0))) + 1, 5));
 					next_position_1(9 downto 5) <= position_1(9 downto 5);
-					next_position_1(10)		  <= position_1(10);	
+					if (ramp(5) = '1') then
+						next_position_1(10)		  <= not position_1(10);
+					else 
+						next_position_1(10)		  <= position_1(10);
+					end if;	
 				elsif (next_direction_1 <= "00") then 	-- moves up, y is decreased with 1
 					next_position_1(4 downto 0) <= position_1(4 downto 0);
 					next_position_1(9 downto 5) <= std_logic_vector(to_unsigned(to_integer(unsigned(position_1(9 downto 5))) - 1, 5));
-					next_position_1(10)		  <= position_1(10);	
+					if (ramp(6) = '1') then
+						next_position_1(10)		  <= not position_1(10);
+					else 
+						next_position_1(10)		  <= position_1(10);
+					end if;	
 				else 									--moves down, y is increased with 1
 					next_position_1(4 downto 0) <= position_1(4 downto 0);
 					next_position_1(9 downto 5) <= std_logic_vector(to_unsigned(to_integer(unsigned(position_1(9 downto 5))) + 1, 5));	
-					next_position_1(10)		  <= position_1(10);	
+					if (ramp(5) = '1') then
+						next_position_1(10)		  <= not position_1(10);
+					else 
+						next_position_1(10)		  <= position_1(10);
+					end if;
 				end if;
 	end process;
 
