@@ -11,11 +11,11 @@ architecture behaviour of game_engine is
 	signal d_direction_0, d_direction_1, d_next_direction_0, d_next_direction_1 : std_logic_vector(1 downto 0);
 	signal position_0, position_1, next_position_0, next_position_1 : std_logic_vector (10 downto 0);
 	signal d_position_0, d_position_1 : std_logic_vector (10 downto 0);
-	signal read_memory_0, read_memory_1 : std_logic_vector (7 downto 0);
-	signal d_read_memory_0, d_read_memory_1 : std_logic_vector (7 downto 0);
+	signal read_memory_0 : std_logic_vector (7 downto 0);
+	signal d_read_memory_0 : std_logic_vector (7 downto 0);
 	signal player_0_state, player_1_state: std_logic_vector (1 downto 0);
 	signal d_player_0_state, d_player_1_state: std_logic_vector (1 downto 0);
-	signal e_position_0, e_position_1, e_read_memory_0, e_read_memory_1, e_direction_0, e_direction_1, e_next_direction_0, e_next_direction_1, e_player_0_state, e_player_1_state: std_logic;
+	signal e_position_0, e_position_1, e_read_memory_0, e_direction_0, e_direction_1, e_next_direction_0, e_next_direction_1, e_player_0_state, e_player_1_state: std_logic;
 	--signals for memory communication
 	signal read_data_mem, read_data_fsm, read_data_out, write_data_mem : std_logic_vector(7 downto 0);
         signal write_data_fsm, write_enable_fsm, clear_fsm, read_enable_fsm, mem_com_ready, clear_mem, write_enable_mem   : std_logic;	
@@ -62,9 +62,7 @@ architecture behaviour of game_engine is
 			d_position_0  : in  std_logic_vector(10 downto 0);
 			d_position_1  : in  std_logic_vector(10 downto 0);
 			e_read_mem_0  : in  std_logic;
-			e_read_mem_1  : in  std_logic;
 			d_read_mem_0  : in  std_logic_vector(7 downto 0);
-			d_read_mem_1  : in  std_logic_vector(7 downto 0);
 			e_direction_0 : in  std_logic;
 			e_direction_1 : in  std_logic;
 			d_direction_0 : in  std_logic_vector(1 downto 0);
@@ -98,9 +96,7 @@ reg: ge_register port map (clk => clk,
 			d_position_0  => d_position_0,
 			d_position_1  => d_position_1,
 			e_read_mem_0  => e_read_memory_0,
-			e_read_mem_1  => e_read_memory_1,
 			d_read_mem_0  => d_read_memory_0,
-			d_read_mem_1  => d_read_memory_1,
 			e_direction_0 => e_direction_0,
 			e_direction_1 => e_direction_1,
 			d_direction_0 => d_direction_0,
@@ -114,7 +110,6 @@ reg: ge_register port map (clk => clk,
 			d_p_state_0   => d_player_0_state,
 			d_p_state_1   => d_player_1_state,
 			q_read_mem_0  => read_memory_0,
-			q_read_mem_1  => read_memory_1,
 			q_direction_0 => direction_0,
 			q_direction_1 => direction_1,
 			q_next_dir_0  => next_direction_0,
@@ -295,7 +290,7 @@ collision: process (clk)
 	end process;
 
 
-create_next_state: 	process (state, new_state, reset, input, busy, read_memory, memory_ready, clk, unsigned_busy_count, direction_0, direction_1, next_direction_0, next_direction_1, position_0, position_1, next_position_0, next_position_1, read_memory_0, read_memory_1, player_0_state, player_1_state, e_position_0, e_position_1, e_read_memory_0, e_read_memory_1, e_direction_0, e_direction_1, e_next_direction_0, e_next_direction_1, e_player_0_state, e_player_1_state )
+create_next_state: 	process (state, new_state, reset, input, busy, read_memory, memory_ready, clk, unsigned_busy_count, direction_0, direction_1, next_direction_0, next_direction_1, position_0, position_1, next_position_0, next_position_1, read_memory_0, player_0_state, player_1_state, e_position_0, e_position_1, e_read_memory_0, e_direction_0, e_direction_1, e_next_direction_0, e_next_direction_1, e_player_0_state, e_player_1_state )
 	begin
 
 		state_vga 				<= "000";
@@ -308,7 +303,6 @@ create_next_state: 	process (state, new_state, reset, input, busy, read_memory, 
 		e_position_0				<= '0';
 		e_position_1				<= '0';	
 		e_read_memory_0				<= '0';
-		e_read_memory_1				<= '0';
 		e_direction_0				<= '0';
 		e_direction_1				<= '0';
 		e_next_direction_0			<= '0';	
@@ -318,7 +312,6 @@ create_next_state: 	process (state, new_state, reset, input, busy, read_memory, 
 		d_position_0				<= (others => '0');
 		d_position_1				<= (others => '0');	
 		d_read_memory_0				<= (others => '0');
-		d_read_memory_1				<= (others => '0');
 		d_direction_0				<= (others => '0');
 		d_direction_1				<= (others => '0');
 		d_next_direction_0			<= (others => '0');	
@@ -457,32 +450,16 @@ create_next_state: 	process (state, new_state, reset, input, busy, read_memory, 
 				address_fsm 				<= next_position_0(9 downto 0);
 				e_read_memory_0				<= '1';
 				d_read_memory_0				<= read_data_fsm;
-				d_read_memory_0				<= (others => '0');
-				d_read_memory_1				<= (others => '0');
+				read_enable_fsm				<= '1';
+
 
 				-- wait till the memory module is done with processing the information to go to the next state: 'want_to_read_1'
 				if (memory_ready = '1') then
-					new_state <= read1_memory_player_1; 
+					new_state <= write_memory_player_0; 
 				else 
 					new_state <= read1_memory_player_0;
 				end if;
 	
-
-			when read1_memory_player_1 =>
-				-- read the data from the address of the next position of player 1
-				state_vga   				<= "111";
-				address_fsm 					<= next_position_1(9 downto 0);
-				e_read_memory_1				<= '1';
-				d_read_memory_1				<= read_data_fsm;
-
-				-- wait till the memory module is done with processing the information to go to the next state: 'check_collision'
-				if (memory_ready = '1') then					
-					new_state <= change_data; 
-				else 
-					new_state <= read1_memory_player_1;
-				end if;
-		
-
 			when write_memory_player_0 =>
 				-- send to the memory module the wall shape of player 0 on the address of its position
 				state_vga   				<= "111";
@@ -491,21 +468,37 @@ create_next_state: 	process (state, new_state, reset, input, busy, read_memory, 
 				address_fsm 				<= position_0(9 downto 0);
 
 				if (position_0 (9) = '0') then
-					write_memory(7 downto 4) 		<= read_memory_1(7 downto 4);
+					write_memory(7 downto 4) 		<= read_memory_0(7 downto 4);
 					write_memory(3) 			<= '0';
 					write_memory(2 downto 0) 		<= wallshape_1;
 				else 
 					write_memory(7) 			<= '0';
 					write_memory(6 downto 4) 		<= wallshape_1;
-					write_memory(3 downto 0) 		<= read_memory_1(3 downto 0);
+					write_memory(3 downto 0) 		<= read_memory_0(3 downto 0);
 				end if;
 				
 				-- wait until the memory is ready to go to the next state 'want_to_write_1'
 				if (memory_ready = '1') then
-					new_state <= write_memory_player_1;
+					new_state <= read1_memory_player_1;
 				else 
 					new_state <= write_memory_player_0;
 				end if;
+
+			when read1_memory_player_1 =>
+				-- read the data from the address of the next position of player 1
+				state_vga   				<= "111";
+				address_fsm 					<= next_position_1(9 downto 0);
+				e_read_memory_0				<= '1';
+				d_read_memory_0				<= read_data_fsm;
+				read_enable_fsm				<= '1';
+
+				-- wait till the memory module is done with processing the information to go to the next state: 'check_collision'
+				if (memory_ready = '1') then					
+					new_state <= write_memory_player_1; 
+				else 
+					new_state <= read1_memory_player_1;
+				end if;
+		
 
 			when write_memory_player_1 =>
 				-- send to the memory module the wall shape of player 1 on the address of its position
@@ -514,13 +507,13 @@ create_next_state: 	process (state, new_state, reset, input, busy, read_memory, 
 				address_fsm				<= position_1(9 downto 0);
 
 				if (position_1 (9) = '0') then
-					write_memory(7 downto 4) 		<= read_memory_1(7 downto 4);
+					write_memory(7 downto 4) 		<= read_memory_0(7 downto 4);
 					write_memory(3) 			<= '1';
 					write_memory(2 downto 0) 		<= wallshape_1;
 				else 
 					write_memory(7) 			<= '1';
 					write_memory(6 downto 4) 		<= wallshape_1;
-					write_memory(3 downto 0) 		<= read_memory_1(3 downto 0);
+					write_memory(3 downto 0) 		<= read_memory_0(3 downto 0);
 				end if;
 				
 				-- wait till the memory is finished before going to the next state 'change_data'
