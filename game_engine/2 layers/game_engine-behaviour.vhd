@@ -165,6 +165,9 @@ updates: 	process (clk)
 
 wallshape: 	process (clk, direction_0, direction_1, next_direction_0, next_direction_1)
 	begin
+		crash_itself_0 <= '0';
+		crash_itself_1 <= '1';
+
 		if ((direction_0= "01") and (next_direction_0  ="01")) or  ((direction_0= "11") and (next_direction_0  ="11")) then 
 					wallshape_0 <= "001"; 
 				-- previous: up, next: up or previous: down, next: down --> vertical
@@ -214,7 +217,8 @@ wallshape: 	process (clk, direction_0, direction_1, next_direction_0, next_direc
 
 position: 	process (clk)
 	begin
-		
+		address_grid_ramp_0 <= position_0;
+		address_grid_ramp_1 <= position_1;
 				if (next_direction_0 = "01") then 		-- moves to the left, x is decreased with 1
 					next_position_0(4 downto 0)  <= std_logic_vector(to_unsigned(to_integer(unsigned(position_0(4 downto 0))) - 1, 5));
 					next_position_0(9 downto 5) <= position_0(9 downto 5);
@@ -289,14 +293,16 @@ position: 	process (clk)
 
 check_border: 	process (clk)
 	begin
+		address_grid_border_0  <= next_position_0;
+		address_grid_border_1  <= next_position_1;
 		-- check if player 1 collides with a border
-		if (((position_0(4 downto 0) = "00000") and (next_direction_0 = "01")) or (next_position_0(4 downto 0) = "11110")) or (((position_0(9 downto 5) = "00000") and (next_direction_0 = "00")) or (next_position_0(9 downto 5) = "11110"))then 
+		if (((border(3) = '1') and (next_direction_0 = "01")) or ((border(2) = '1') and (next_direction_0 = "00")) or ((border(1) = '1') and (next_direction_0 = "11")) or ((border(0) = '1') and (next_direction_0 = "10"))) then 
 				e_player_0_state <= '1';
 				d_player_0_state <= "01";
 		end if;
 
 		-- check if player 1 collides with a border
-		if (((position_1(4 downto 0) = "00000") and (next_direction_1 = "01")) or (next_position_1(4 downto 0) = "11110")) or (((position_1(9 downto 5) = "00000") and (next_direction_1 = "00")) or (next_position_1(9 downto 5) = "11110"))then 
+		if (((border(7) = '1') and (next_direction_0 = "01")) or ((border(6) = '1') and (next_direction_0 = "00")) or ((border(5) = '1') and (next_direction_0 = "11")) or ((border(4) = '1') and (next_direction_0 = "10"))) then 
 				e_player_1_state <= '1';
 				d_player_1_state <= "01";
 		end if;

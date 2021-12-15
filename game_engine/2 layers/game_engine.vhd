@@ -17,6 +17,10 @@ entity game_engine is
         address            : out std_logic_vector(9 downto 0);
         position_0_vga     : out std_logic_vector(10 downto 0);
         position_1_vga     : out std_logic_vector(10 downto 0);
+	address_grid_border_0: out std_logic_vector(10 downto 0);
+	address_grid_border_1: out std_logic_vector(10 downto 0);
+	address_grid_ramp_0  : out std_logic_vector(10 downto 0);
+	address_grid_ramp_1  : out std_logic_vector(10 downto 0);
         direction_0_vga    : out std_logic_vector(1 downto 0);
         direction_1_vga    : out std_logic_vector(1 downto 0);
         player_state_0_vga : out std_logic_vector(1 downto 0);
