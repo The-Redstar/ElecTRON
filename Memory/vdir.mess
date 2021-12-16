@@ -9,6 +9,15 @@ OPTIMIZED DESIGN _opt
     Short name: @_opt
     Opcode format: 10.5b; VCOM/VLOG SE-64 Object version 63
     Source directory: /tmp/.x2go-mlmjanssen/media/disk/_Users_martijn_ElecTRON/Memory
+OPTIMIZED DESIGN _opt1
+    Compile time: Mon Dec 13 12:14:00 2021
+    Version string: RVBMNThm6JBiSmY]HXDk>3
+    Top-level model: work memory_cntrll_tb_behaviour_cfg 1
+    Compile options: -quiet -auto_acc_if_foreign -work work -L TSMCLib
+    Compile defaults: CvgOpt=0
+    Short name: @_opt1
+    Opcode format: 10.5b; VCOM/VLOG SE-64 Object version 63
+    Source directory: /tmp/.x2go-mlmjanssen/media/disk/_Users_martijn_ElecTRON/Memory
 OPTIMIZED DESIGN _opt2
     Compile time: Tue Nov 30 10:51:04 2021
     Version string: @Hz;n0]YOCINeR^N[XbhH1
@@ -466,22 +475,22 @@ ENTITY memory_cntrll
     Compile options: -quiet -nologo -2008 -lower -explicit -work work
     Compile defaults: Explicit=1 CvgOpt=0
   ARCHITECTURE BODY behaviour
-    Source modified time: Mon Dec 13 11:44:45 2021
+    Source modified time: Mon Dec 13 12:10:09 2021
     Depends on: E work memory_cntrll 9YGXO@5M_SOE@IaF0@c=Z2
     Depends on: P std textio zE1`LPoLg^DX3Oz^4Fj1K3
     Depends on: P ieee std_logic_1164 eNV`TJ_GofJTzYa?f<@Oe1
+    Source directory: /home/mlmjanssen/Documents/Memory
     HDL source file: VHDL/memory_cntrll-behaviour.vhd
     Source file: VHDL/memory_cntrll-behaviour.vhd
     Start location: VHDL/memory_cntrll-behaviour.vhd:4
-    Version string: F1MmlToJlJF`H?Q7=TeF?1
+    Version string: 2U1]AYMAm`JFL_f=zk=@R0
     Opcode format: 10.5b; VCOM SE-64 Object version 63
     VHDL language standard: 3 (VHDL-2008)
-    Compile time: Mon Dec 13 11:51:04 2021
+    Compile time: Mon Dec 13 12:10:20 2021
     Debug Symbol file exists
     Compiled in vopt flow
     Compile options: -quiet -nologo -2008 -lower -explicit -work work
     Compile defaults: Explicit=1 CvgOpt=0
-    Source directory: /tmp/.x2go-jwnijenhuis/media/disk/_cygdrive_C_Users_jonat_OneDrive_DOCUME1_Studie_EE2L11_ElecTRON/Memory
 VHDL CONFIGURATION memory_cntrll_behaviour_cfg
     Configuration applies to entity: memory_cntrll
     Block configuration applies to architecture: behaviour
@@ -523,22 +532,22 @@ ENTITY memory_cntrll_tb
     Compile options: -quiet -nologo -2008 -lower -explicit -work work
     Compile defaults: Explicit=1 CvgOpt=0
   ARCHITECTURE BODY behaviour
-    Source modified time: Wed Dec  8 21:31:16 2021
+    Source modified time: Mon Dec 13 12:13:43 2021
     Depends on: E work memory_cntrll_tb hHV[Vm`o6EAob9LnCXo4d0
     Depends on: P std textio zE1`LPoLg^DX3Oz^4Fj1K3
     Depends on: P ieee std_logic_1164 eNV`TJ_GofJTzYa?f<@Oe1
+    Source directory: /home/mlmjanssen/Documents/Memory
     HDL source file: VHDL/memory_cntrll_tb-behaviour.vhd
     Source file: VHDL/memory_cntrll_tb-behaviour.vhd
     Start location: VHDL/memory_cntrll_tb-behaviour.vhd:4
-    Version string: We[N:d^>C[ihom7c8^E:50
+    Version string: 4Eob76JOSjV[EcVdin2f=1
     Opcode format: 10.5b; VCOM SE-64 Object version 63
     VHDL language standard: 3 (VHDL-2008)
-    Compile time: Mon Dec 13 11:51:16 2021
+    Compile time: Mon Dec 13 12:13:45 2021
     Debug Symbol file exists
     Compiled in vopt flow
     Compile options: -quiet -nologo -2008 -lower -explicit -work work
     Compile defaults: Explicit=1 CvgOpt=0
-    Source directory: /tmp/.x2go-jwnijenhuis/media/disk/_cygdrive_C_Users_jonat_OneDrive_DOCUME1_Studie_EE2L11_ElecTRON/Memory
 VHDL CONFIGURATION memory_cntrll_tb_behaviour_cfg
     Configuration applies to entity: memory_cntrll_tb
     Block configuration applies to architecture: behaviour

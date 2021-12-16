@@ -1,6 +1,6 @@
 Analysis & Synthesis report for top_de1
-Tue Nov 30 11:25:51 2021
-Quartus II 64-Bit Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Full Version
+Thu Dec 16 11:34:06 2021
+Quartus II 32-bit Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Full Version
 
 
 ---------------------
@@ -10,16 +10,7 @@ Quartus II 64-Bit Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Full Ver
   2. Analysis & Synthesis Summary
   3. Analysis & Synthesis Settings
   4. Parallel Compilation
-  5. Analysis & Synthesis Source Files Read
-  6. Analysis & Synthesis Resource Usage Summary
-  7. Analysis & Synthesis Resource Utilization by Entity
-  8. State Machine - |top_de1|memory_cntrll:inst3|countextend:cey|state
-  9. State Machine - |top_de1|memory_cntrll:inst3|countextend:cex|state
- 10. State Machine - |top_de1|memory_cntrll:inst3|readwrite:rw|state
- 11. General Register Statistics
- 12. Multiplexer Restructuring Statistics (Restructuring Performed)
- 13. Elapsed Time Per Partition
- 14. Analysis & Synthesis Messages
+  5. Analysis & Synthesis Messages
 
 
 
@@ -45,20 +36,20 @@ applicable agreement for further details.
 +---------------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                          ;
 +------------------------------------+--------------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Tue Nov 30 11:25:51 2021            ;
-; Quartus II 64-Bit Version          ; 13.0.1 Build 232 06/12/2013 SP 1 SJ Full Version ;
+; Analysis & Synthesis Status        ; Failed - Thu Dec 16 11:34:05 2021                ;
+; Quartus II 32-bit Version          ; 13.0.1 Build 232 06/12/2013 SP 1 SJ Full Version ;
 ; Revision Name                      ; top_de1                                          ;
 ; Top-level Entity Name              ; top_de1                                          ;
 ; Family                             ; Cyclone II                                       ;
-; Total logic elements               ; 87                                               ;
-;     Total combinational functions  ; 87                                               ;
-;     Dedicated logic registers      ; 56                                               ;
-; Total registers                    ; 56                                               ;
-; Total pins                         ; 60                                               ;
-; Total virtual pins                 ; 0                                                ;
-; Total memory bits                  ; 0                                                ;
-; Embedded Multiplier 9-bit elements ; 0                                                ;
-; Total PLLs                         ; 0                                                ;
+; Total logic elements               ; N/A until Partition Merge                        ;
+;     Total combinational functions  ; N/A until Partition Merge                        ;
+;     Dedicated logic registers      ; N/A until Partition Merge                        ;
+; Total registers                    ; N/A until Partition Merge                        ;
+; Total pins                         ; N/A until Partition Merge                        ;
+; Total virtual pins                 ; N/A until Partition Merge                        ;
+; Total memory bits                  ; N/A until Partition Merge                        ;
+; Embedded Multiplier 9-bit elements ; N/A until Partition Merge                        ;
+; Total PLLs                         ; N/A until Partition Merge                        ;
 +------------------------------------+--------------------------------------------------+
 
 
@@ -152,212 +143,46 @@ applicable agreement for further details.
 +----------------------------+-------------+
 ; Processors                 ; Number      ;
 +----------------------------+-------------+
-; Number detected on machine ; 6           ;
-; Maximum allowed            ; 6           ;
+; Number detected on machine ; 16          ;
+; Maximum allowed            ; 16          ;
 ;                            ;             ;
 ; Average used               ; 1.00        ;
 ; Maximum used               ; 1           ;
 ;                            ;             ;
 ; Usage by Processor         ; % Time Used ;
 ;     Processor 1            ; 100.0%      ;
-;     Processors 2-6         ;   0.0%      ;
+;     Processors 2-16        ;   0.0%      ;
 +----------------------------+-------------+
-
-
-+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Source Files Read                                                                                                                                    ;
-+-------------------------------------+-----------------+------------------------------------+--------------------------------------------------------------------+---------+
-; File Name with User-Entered Path    ; Used in Netlist ; File Type                          ; File Name with Absolute Path                                       ; Library ;
-+-------------------------------------+-----------------+------------------------------------+--------------------------------------------------------------------+---------+
-; ../VHDL/counter8b-behaviour.vhd     ; yes             ; User VHDL File                     ; /home/mlmjanssen/Documents/Memory/VHDL/counter8b-behaviour.vhd     ;         ;
-; ../VHDL/counter5b-behaviour.vhd     ; yes             ; User VHDL File                     ; /home/mlmjanssen/Documents/Memory/VHDL/counter5b-behaviour.vhd     ;         ;
-; ../VHDL/readwrite.vhd               ; yes             ; User VHDL File                     ; /home/mlmjanssen/Documents/Memory/VHDL/readwrite.vhd               ;         ;
-; ../VHDL/readwrite-behaviour.vhd     ; yes             ; User VHDL File                     ; /home/mlmjanssen/Documents/Memory/VHDL/readwrite-behaviour.vhd     ;         ;
-; ../VHDL/memory_cntrll.vhd           ; yes             ; User VHDL File                     ; /home/mlmjanssen/Documents/Memory/VHDL/memory_cntrll.vhd           ;         ;
-; ../VHDL/memory_cntrll-behaviour.vhd ; yes             ; User VHDL File                     ; /home/mlmjanssen/Documents/Memory/VHDL/memory_cntrll-behaviour.vhd ;         ;
-; ../VHDL/countextend.vhd             ; yes             ; User VHDL File                     ; /home/mlmjanssen/Documents/Memory/VHDL/countextend.vhd             ;         ;
-; ../VHDL/countextend-behaviour.vhd   ; yes             ; User VHDL File                     ; /home/mlmjanssen/Documents/Memory/VHDL/countextend-behaviour.vhd   ;         ;
-; ../VHDL/counter8b.vhd               ; yes             ; User VHDL File                     ; /home/mlmjanssen/Documents/Memory/VHDL/counter8b.vhd               ;         ;
-; ../VHDL/counter5b.vhd               ; yes             ; User VHDL File                     ; /home/mlmjanssen/Documents/Memory/VHDL/counter5b.vhd               ;         ;
-; top_de1.bdf                         ; yes             ; User Block Diagram/Schematic File  ; /home/mlmjanssen/Documents/Memory/quartus_DE1/top_de1.bdf          ;         ;
-; gen25mhz.vhd                        ; yes             ; User VHDL File                     ; /home/mlmjanssen/Documents/Memory/quartus_DE1/gen25mhz.vhd         ;         ;
-+-------------------------------------+-----------------+------------------------------------+--------------------------------------------------------------------+---------+
-
-
-+-----------------------------------------------------------------------+
-; Analysis & Synthesis Resource Usage Summary                           ;
-+---------------------------------------------+-------------------------+
-; Resource                                    ; Usage                   ;
-+---------------------------------------------+-------------------------+
-; Estimated Total logic elements              ; 87                      ;
-;                                             ;                         ;
-; Total combinational functions               ; 87                      ;
-; Logic element usage by number of LUT inputs ;                         ;
-;     -- 4 input functions                    ; 36                      ;
-;     -- 3 input functions                    ; 13                      ;
-;     -- <=2 input functions                  ; 38                      ;
-;                                             ;                         ;
-; Logic elements by mode                      ;                         ;
-;     -- normal mode                          ; 75                      ;
-;     -- arithmetic mode                      ; 12                      ;
-;                                             ;                         ;
-; Total registers                             ; 56                      ;
-;     -- Dedicated logic registers            ; 56                      ;
-;     -- I/O registers                        ; 0                       ;
-;                                             ;                         ;
-; I/O pins                                    ; 60                      ;
-; Embedded Multiplier 9-bit elements          ; 0                       ;
-; Maximum fan-out node                        ; gen25mhz:inst1|count[0] ;
-; Maximum fan-out                             ; 38                      ;
-; Total fan-out                               ; 412                     ;
-; Average fan-out                             ; 2.03                    ;
-+---------------------------------------------+-------------------------+
-
-
-+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                  ;
-+----------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+----------------------------------------------+--------------+
-; Compilation Hierarchy Node ; LC Combinationals ; LC Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name                          ; Library Name ;
-+----------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+----------------------------------------------+--------------+
-; |top_de1                   ; 87 (0)            ; 56 (0)       ; 0           ; 0            ; 0       ; 0         ; 60   ; 0            ; |top_de1                                     ; work         ;
-;    |gen25mhz:inst1|        ; 1 (1)             ; 1 (1)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top_de1|gen25mhz:inst1                      ; work         ;
-;    |memory_cntrll:inst3|   ; 86 (5)            ; 55 (0)       ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top_de1|memory_cntrll:inst3                 ; work         ;
-;       |counter5b:cx|       ; 5 (5)             ; 5 (5)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top_de1|memory_cntrll:inst3|counter5b:cx    ; work         ;
-;       |counter5b:cy|       ; 5 (5)             ; 5 (5)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top_de1|memory_cntrll:inst3|counter5b:cy    ; work         ;
-;       |counter8b:cw|       ; 8 (8)             ; 8 (8)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top_de1|memory_cntrll:inst3|counter8b:cw    ; work         ;
-;       |countextend:cex|    ; 4 (4)             ; 4 (4)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top_de1|memory_cntrll:inst3|countextend:cex ; work         ;
-;       |countextend:cey|    ; 4 (4)             ; 4 (4)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top_de1|memory_cntrll:inst3|countextend:cey ; work         ;
-;       |readwrite:rw|       ; 55 (55)           ; 29 (29)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top_de1|memory_cntrll:inst3|readwrite:rw    ; work         ;
-+----------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+----------------------------------------------+--------------+
-Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
-
-
-Encoding Type:  One-Hot
-+---------------------------------------------------------------------+
-; State Machine - |top_de1|memory_cntrll:inst3|countextend:cey|state  ;
-+-------------+-------------+-------------+-------------+-------------+
-; Name        ; state.WAIT1 ; state.HIGH2 ; state.HIGH1 ; state.SLEEP ;
-+-------------+-------------+-------------+-------------+-------------+
-; state.SLEEP ; 0           ; 0           ; 0           ; 0           ;
-; state.HIGH1 ; 0           ; 0           ; 1           ; 1           ;
-; state.HIGH2 ; 0           ; 1           ; 0           ; 1           ;
-; state.WAIT1 ; 1           ; 0           ; 0           ; 1           ;
-+-------------+-------------+-------------+-------------+-------------+
-
-
-Encoding Type:  One-Hot
-+---------------------------------------------------------------------+
-; State Machine - |top_de1|memory_cntrll:inst3|countextend:cex|state  ;
-+-------------+-------------+-------------+-------------+-------------+
-; Name        ; state.WAIT1 ; state.HIGH2 ; state.HIGH1 ; state.SLEEP ;
-+-------------+-------------+-------------+-------------+-------------+
-; state.SLEEP ; 0           ; 0           ; 0           ; 0           ;
-; state.HIGH1 ; 0           ; 0           ; 1           ; 1           ;
-; state.HIGH2 ; 0           ; 1           ; 0           ; 1           ;
-; state.WAIT1 ; 1           ; 0           ; 0           ; 1           ;
-+-------------+-------------+-------------+-------------+-------------+
-
-
-Encoding Type:  One-Hot
-+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; State Machine - |top_de1|memory_cntrll:inst3|readwrite:rw|state                                                                                                                                                                                                                                                                                                                                                                                                     ;
-+----------------+----------------+----------------+------------+------------+------------+-------------+-------------+-------------+-------------+-------------+----------------+----------------+----------------+---------------+---------------+---------------+---------------+--------------+--------------+---------------+---------------+--------------+--------------+--------------+--------------+-------------+-------------+--------------+-------------+
-; Name           ; state.fixback2 ; state.fixback1 ; state.fix3 ; state.fix2 ; state.fix1 ; state.wait6 ; state.wait5 ; state.wait4 ; state.wait3 ; state.wait2 ; state.preCheck ; state.incrXYW2 ; state.incrXYW1 ; state.incrYW2 ; state.incrYW1 ; state.incrXW2 ; state.incrXW1 ; state.incrW2 ; state.incrW1 ; state.incrXY2 ; state.incrXY1 ; state.incrY2 ; state.incrY1 ; state.incrX2 ; state.incrX1 ; state.Check ; state.wait1 ; state.rstALL ; state.SLEEP ;
-+----------------+----------------+----------------+------------+------------+------------+-------------+-------------+-------------+-------------+-------------+----------------+----------------+----------------+---------------+---------------+---------------+---------------+--------------+--------------+---------------+---------------+--------------+--------------+--------------+--------------+-------------+-------------+--------------+-------------+
-; state.SLEEP    ; 0              ; 0              ; 0          ; 0          ; 0          ; 0           ; 0           ; 0           ; 0           ; 0           ; 0              ; 0              ; 0              ; 0             ; 0             ; 0             ; 0             ; 0            ; 0            ; 0             ; 0             ; 0            ; 0            ; 0            ; 0            ; 0           ; 0           ; 0            ; 0           ;
-; state.rstALL   ; 0              ; 0              ; 0          ; 0          ; 0          ; 0           ; 0           ; 0           ; 0           ; 0           ; 0              ; 0              ; 0              ; 0             ; 0             ; 0             ; 0             ; 0            ; 0            ; 0             ; 0             ; 0            ; 0            ; 0            ; 0            ; 0           ; 0           ; 1            ; 1           ;
-; state.wait1    ; 0              ; 0              ; 0          ; 0          ; 0          ; 0           ; 0           ; 0           ; 0           ; 0           ; 0              ; 0              ; 0              ; 0             ; 0             ; 0             ; 0             ; 0            ; 0            ; 0             ; 0             ; 0            ; 0            ; 0            ; 0            ; 0           ; 1           ; 0            ; 1           ;
-; state.Check    ; 0              ; 0              ; 0          ; 0          ; 0          ; 0           ; 0           ; 0           ; 0           ; 0           ; 0              ; 0              ; 0              ; 0             ; 0             ; 0             ; 0             ; 0            ; 0            ; 0             ; 0             ; 0            ; 0            ; 0            ; 0            ; 1           ; 0           ; 0            ; 1           ;
-; state.incrX1   ; 0              ; 0              ; 0          ; 0          ; 0          ; 0           ; 0           ; 0           ; 0           ; 0           ; 0              ; 0              ; 0              ; 0             ; 0             ; 0             ; 0             ; 0            ; 0            ; 0             ; 0             ; 0            ; 0            ; 0            ; 1            ; 0           ; 0           ; 0            ; 1           ;
-; state.incrX2   ; 0              ; 0              ; 0          ; 0          ; 0          ; 0           ; 0           ; 0           ; 0           ; 0           ; 0              ; 0              ; 0              ; 0             ; 0             ; 0             ; 0             ; 0            ; 0            ; 0             ; 0             ; 0            ; 0            ; 1            ; 0            ; 0           ; 0           ; 0            ; 1           ;
-; state.incrY1   ; 0              ; 0              ; 0          ; 0          ; 0          ; 0           ; 0           ; 0           ; 0           ; 0           ; 0              ; 0              ; 0              ; 0             ; 0             ; 0             ; 0             ; 0            ; 0            ; 0             ; 0             ; 0            ; 1            ; 0            ; 0            ; 0           ; 0           ; 0            ; 1           ;
-; state.incrY2   ; 0              ; 0              ; 0          ; 0          ; 0          ; 0           ; 0           ; 0           ; 0           ; 0           ; 0              ; 0              ; 0              ; 0             ; 0             ; 0             ; 0             ; 0            ; 0            ; 0             ; 0             ; 1            ; 0            ; 0            ; 0            ; 0           ; 0           ; 0            ; 1           ;
-; state.incrXY1  ; 0              ; 0              ; 0          ; 0          ; 0          ; 0           ; 0           ; 0           ; 0           ; 0           ; 0              ; 0              ; 0              ; 0             ; 0             ; 0             ; 0             ; 0            ; 0            ; 0             ; 1             ; 0            ; 0            ; 0            ; 0            ; 0           ; 0           ; 0            ; 1           ;
-; state.incrXY2  ; 0              ; 0              ; 0          ; 0          ; 0          ; 0           ; 0           ; 0           ; 0           ; 0           ; 0              ; 0              ; 0              ; 0             ; 0             ; 0             ; 0             ; 0            ; 0            ; 1             ; 0             ; 0            ; 0            ; 0            ; 0            ; 0           ; 0           ; 0            ; 1           ;
-; state.incrW1   ; 0              ; 0              ; 0          ; 0          ; 0          ; 0           ; 0           ; 0           ; 0           ; 0           ; 0              ; 0              ; 0              ; 0             ; 0             ; 0             ; 0             ; 0            ; 1            ; 0             ; 0             ; 0            ; 0            ; 0            ; 0            ; 0           ; 0           ; 0            ; 1           ;
-; state.incrW2   ; 0              ; 0              ; 0          ; 0          ; 0          ; 0           ; 0           ; 0           ; 0           ; 0           ; 0              ; 0              ; 0              ; 0             ; 0             ; 0             ; 0             ; 1            ; 0            ; 0             ; 0             ; 0            ; 0            ; 0            ; 0            ; 0           ; 0           ; 0            ; 1           ;
-; state.incrXW1  ; 0              ; 0              ; 0          ; 0          ; 0          ; 0           ; 0           ; 0           ; 0           ; 0           ; 0              ; 0              ; 0              ; 0             ; 0             ; 0             ; 1             ; 0            ; 0            ; 0             ; 0             ; 0            ; 0            ; 0            ; 0            ; 0           ; 0           ; 0            ; 1           ;
-; state.incrXW2  ; 0              ; 0              ; 0          ; 0          ; 0          ; 0           ; 0           ; 0           ; 0           ; 0           ; 0              ; 0              ; 0              ; 0             ; 0             ; 1             ; 0             ; 0            ; 0            ; 0             ; 0             ; 0            ; 0            ; 0            ; 0            ; 0           ; 0           ; 0            ; 1           ;
-; state.incrYW1  ; 0              ; 0              ; 0          ; 0          ; 0          ; 0           ; 0           ; 0           ; 0           ; 0           ; 0              ; 0              ; 0              ; 0             ; 1             ; 0             ; 0             ; 0            ; 0            ; 0             ; 0             ; 0            ; 0            ; 0            ; 0            ; 0           ; 0           ; 0            ; 1           ;
-; state.incrYW2  ; 0              ; 0              ; 0          ; 0          ; 0          ; 0           ; 0           ; 0           ; 0           ; 0           ; 0              ; 0              ; 0              ; 1             ; 0             ; 0             ; 0             ; 0            ; 0            ; 0             ; 0             ; 0            ; 0            ; 0            ; 0            ; 0           ; 0           ; 0            ; 1           ;
-; state.incrXYW1 ; 0              ; 0              ; 0          ; 0          ; 0          ; 0           ; 0           ; 0           ; 0           ; 0           ; 0              ; 0              ; 1              ; 0             ; 0             ; 0             ; 0             ; 0            ; 0            ; 0             ; 0             ; 0            ; 0            ; 0            ; 0            ; 0           ; 0           ; 0            ; 1           ;
-; state.incrXYW2 ; 0              ; 0              ; 0          ; 0          ; 0          ; 0           ; 0           ; 0           ; 0           ; 0           ; 0              ; 1              ; 0              ; 0             ; 0             ; 0             ; 0             ; 0            ; 0            ; 0             ; 0             ; 0            ; 0            ; 0            ; 0            ; 0           ; 0           ; 0            ; 1           ;
-; state.preCheck ; 0              ; 0              ; 0          ; 0          ; 0          ; 0           ; 0           ; 0           ; 0           ; 0           ; 1              ; 0              ; 0              ; 0             ; 0             ; 0             ; 0             ; 0            ; 0            ; 0             ; 0             ; 0            ; 0            ; 0            ; 0            ; 0           ; 0           ; 0            ; 1           ;
-; state.wait2    ; 0              ; 0              ; 0          ; 0          ; 0          ; 0           ; 0           ; 0           ; 0           ; 1           ; 0              ; 0              ; 0              ; 0             ; 0             ; 0             ; 0             ; 0            ; 0            ; 0             ; 0             ; 0            ; 0            ; 0            ; 0            ; 0           ; 0           ; 0            ; 1           ;
-; state.wait3    ; 0              ; 0              ; 0          ; 0          ; 0          ; 0           ; 0           ; 0           ; 1           ; 0           ; 0              ; 0              ; 0              ; 0             ; 0             ; 0             ; 0             ; 0            ; 0            ; 0             ; 0             ; 0            ; 0            ; 0            ; 0            ; 0           ; 0           ; 0            ; 1           ;
-; state.wait4    ; 0              ; 0              ; 0          ; 0          ; 0          ; 0           ; 0           ; 1           ; 0           ; 0           ; 0              ; 0              ; 0              ; 0             ; 0             ; 0             ; 0             ; 0            ; 0            ; 0             ; 0             ; 0            ; 0            ; 0            ; 0            ; 0           ; 0           ; 0            ; 1           ;
-; state.wait5    ; 0              ; 0              ; 0          ; 0          ; 0          ; 0           ; 1           ; 0           ; 0           ; 0           ; 0              ; 0              ; 0              ; 0             ; 0             ; 0             ; 0             ; 0            ; 0            ; 0             ; 0             ; 0            ; 0            ; 0            ; 0            ; 0           ; 0           ; 0            ; 1           ;
-; state.wait6    ; 0              ; 0              ; 0          ; 0          ; 0          ; 1           ; 0           ; 0           ; 0           ; 0           ; 0              ; 0              ; 0              ; 0             ; 0             ; 0             ; 0             ; 0            ; 0            ; 0             ; 0             ; 0            ; 0            ; 0            ; 0            ; 0           ; 0           ; 0            ; 1           ;
-; state.fix1     ; 0              ; 0              ; 0          ; 0          ; 1          ; 0           ; 0           ; 0           ; 0           ; 0           ; 0              ; 0              ; 0              ; 0             ; 0             ; 0             ; 0             ; 0            ; 0            ; 0             ; 0             ; 0            ; 0            ; 0            ; 0            ; 0           ; 0           ; 0            ; 1           ;
-; state.fix2     ; 0              ; 0              ; 0          ; 1          ; 0          ; 0           ; 0           ; 0           ; 0           ; 0           ; 0              ; 0              ; 0              ; 0             ; 0             ; 0             ; 0             ; 0            ; 0            ; 0             ; 0             ; 0            ; 0            ; 0            ; 0            ; 0           ; 0           ; 0            ; 1           ;
-; state.fix3     ; 0              ; 0              ; 1          ; 0          ; 0          ; 0           ; 0           ; 0           ; 0           ; 0           ; 0              ; 0              ; 0              ; 0             ; 0             ; 0             ; 0             ; 0            ; 0            ; 0             ; 0             ; 0            ; 0            ; 0            ; 0            ; 0           ; 0           ; 0            ; 1           ;
-; state.fixback1 ; 0              ; 1              ; 0          ; 0          ; 0          ; 0           ; 0           ; 0           ; 0           ; 0           ; 0              ; 0              ; 0              ; 0             ; 0             ; 0             ; 0             ; 0            ; 0            ; 0             ; 0             ; 0            ; 0            ; 0            ; 0            ; 0           ; 0           ; 0            ; 1           ;
-; state.fixback2 ; 1              ; 0              ; 0          ; 0          ; 0          ; 0           ; 0           ; 0           ; 0           ; 0           ; 0              ; 0              ; 0              ; 0             ; 0             ; 0             ; 0             ; 0            ; 0            ; 0             ; 0             ; 0            ; 0            ; 0            ; 0            ; 0           ; 0           ; 0            ; 1           ;
-+----------------+----------------+----------------+------------+------------+------------+-------------+-------------+-------------+-------------+-------------+----------------+----------------+----------------+---------------+---------------+---------------+---------------+--------------+--------------+---------------+---------------+--------------+--------------+--------------+--------------+-------------+-------------+--------------+-------------+
-
-
-+------------------------------------------------------+
-; General Register Statistics                          ;
-+----------------------------------------------+-------+
-; Statistic                                    ; Value ;
-+----------------------------------------------+-------+
-; Total registers                              ; 56    ;
-; Number of registers using Synchronous Clear  ; 5     ;
-; Number of registers using Synchronous Load   ; 0     ;
-; Number of registers using Asynchronous Clear ; 18    ;
-; Number of registers using Asynchronous Load  ; 0     ;
-; Number of registers using Clock Enable       ; 0     ;
-; Number of registers using Preset             ; 0     ;
-+----------------------------------------------+-------+
-
-
-+---------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                                ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+-------------------------------------------------+
-; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                      ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+-------------------------------------------------+
-; 5:1                ; 3 bits    ; 9 LEs         ; 3 LEs                ; 6 LEs                  ; No         ; |top_de1|memory_cntrll:inst3|readwrite:rw|state ;
-; 5:1                ; 2 bits    ; 6 LEs         ; 2 LEs                ; 4 LEs                  ; No         ; |top_de1|memory_cntrll:inst3|readwrite:rw|state ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+-------------------------------------------------+
-
-
-+-------------------------------+
-; Elapsed Time Per Partition    ;
-+----------------+--------------+
-; Partition Name ; Elapsed Time ;
-+----------------+--------------+
-; Top            ; 00:00:01     ;
-+----------------+--------------+
 
 
 +-------------------------------+
 ; Analysis & Synthesis Messages ;
 +-------------------------------+
 Info: *******************************************************************
-Info: Running Quartus II 64-Bit Analysis & Synthesis
+Info: Running Quartus II 32-bit Analysis & Synthesis
     Info: Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Full Version
-    Info: Processing started: Tue Nov 30 11:25:38 2021
+    Info: Processing started: Thu Dec 16 11:33:40 2021
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off de1 -c top_de1
-Info (20030): Parallel compilation is enabled and will use 6 of the 6 processors detected
-Info (12021): Found 1 design units, including 0 entities, in source file /home/mlmjanssen/Documents/Memory/VHDL/counter8b-behaviour.vhd
+Info (20030): Parallel compilation is enabled and will use 16 of the 16 processors detected
+Info (12021): Found 1 design units, including 0 entities, in source file /tmp/.x2go-mlmjanssen/media/disk/_Users_martijn_ElecTRON/Memory/VHDL/counter8b-behaviour.vhd
     Info (12022): Found design unit 1: counter8b-behaviour
-Info (12021): Found 1 design units, including 0 entities, in source file /home/mlmjanssen/Documents/Memory/VHDL/counter5b-behaviour.vhd
+Info (12021): Found 1 design units, including 0 entities, in source file /tmp/.x2go-mlmjanssen/media/disk/_Users_martijn_ElecTRON/Memory/VHDL/counter5b-behaviour.vhd
     Info (12022): Found design unit 1: counter5b-behaviour
-Info (12021): Found 1 design units, including 1 entities, in source file /home/mlmjanssen/Documents/Memory/VHDL/readwrite.vhd
+Info (12021): Found 1 design units, including 1 entities, in source file /tmp/.x2go-mlmjanssen/media/disk/_Users_martijn_ElecTRON/Memory/VHDL/readwrite.vhd
     Info (12023): Found entity 1: readwrite
-Info (12021): Found 1 design units, including 0 entities, in source file /home/mlmjanssen/Documents/Memory/VHDL/readwrite-behaviour.vhd
+Info (12021): Found 1 design units, including 0 entities, in source file /tmp/.x2go-mlmjanssen/media/disk/_Users_martijn_ElecTRON/Memory/VHDL/readwrite-behaviour.vhd
     Info (12022): Found design unit 1: readwrite-behaviour
-Info (12021): Found 1 design units, including 1 entities, in source file /home/mlmjanssen/Documents/Memory/VHDL/memory_cntrll.vhd
+Info (12021): Found 1 design units, including 1 entities, in source file /tmp/.x2go-mlmjanssen/media/disk/_Users_martijn_ElecTRON/Memory/VHDL/memory_cntrll.vhd
     Info (12023): Found entity 1: memory_cntrll
-Info (12021): Found 1 design units, including 0 entities, in source file /home/mlmjanssen/Documents/Memory/VHDL/memory_cntrll-behaviour.vhd
+Info (12021): Found 1 design units, including 0 entities, in source file /tmp/.x2go-mlmjanssen/media/disk/_Users_martijn_ElecTRON/Memory/VHDL/memory_cntrll-behaviour.vhd
     Info (12022): Found design unit 1: memory_cntrll-behaviour
-Info (12021): Found 1 design units, including 1 entities, in source file /home/mlmjanssen/Documents/Memory/VHDL/countextend.vhd
+Info (12021): Found 1 design units, including 1 entities, in source file /tmp/.x2go-mlmjanssen/media/disk/_Users_martijn_ElecTRON/Memory/VHDL/countextend.vhd
     Info (12023): Found entity 1: countextend
-Info (12021): Found 1 design units, including 0 entities, in source file /home/mlmjanssen/Documents/Memory/VHDL/countextend-behaviour.vhd
+Info (12021): Found 1 design units, including 0 entities, in source file /tmp/.x2go-mlmjanssen/media/disk/_Users_martijn_ElecTRON/Memory/VHDL/countextend-behaviour.vhd
     Info (12022): Found design unit 1: countextend-behaviour
-Info (12021): Found 1 design units, including 1 entities, in source file /home/mlmjanssen/Documents/Memory/VHDL/counter8b.vhd
+Info (12021): Found 1 design units, including 1 entities, in source file /tmp/.x2go-mlmjanssen/media/disk/_Users_martijn_ElecTRON/Memory/VHDL/counter8b.vhd
     Info (12023): Found entity 1: counter8b
-Info (12021): Found 1 design units, including 1 entities, in source file /home/mlmjanssen/Documents/Memory/VHDL/counter5b.vhd
+Info (12021): Found 1 design units, including 1 entities, in source file /tmp/.x2go-mlmjanssen/media/disk/_Users_martijn_ElecTRON/Memory/VHDL/counter5b.vhd
     Info (12023): Found entity 1: counter5b
 Info (12021): Found 1 design units, including 1 entities, in source file top_de1.bdf
     Info (12023): Found entity 1: top_de1
@@ -370,35 +195,17 @@ Info (12021): Found 2 design units, including 1 entities, in source file gen25mh
 Info (12127): Elaborating entity "top_de1" for the top level hierarchy
 Info (12128): Elaborating entity "memory_cntrll" for hierarchy "memory_cntrll:inst3"
 Info (12128): Elaborating entity "readwrite" for hierarchy "memory_cntrll:inst3|readwrite:rw"
-Warning (10492): VHDL Process Statement warning at readwrite-behaviour.vhd(70): signal "curX" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
-Warning (10492): VHDL Process Statement warning at readwrite-behaviour.vhd(71): signal "curY" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
-Warning (10492): VHDL Process Statement warning at readwrite-behaviour.vhd(72): signal "curW" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
-Warning (10492): VHDL Process Statement warning at readwrite-behaviour.vhd(78): signal "curW" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
-Warning (10492): VHDL Process Statement warning at readwrite-behaviour.vhd(85): signal "curY" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
-Warning (10492): VHDL Process Statement warning at readwrite-behaviour.vhd(86): signal "curW" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
-Warning (10492): VHDL Process Statement warning at readwrite-behaviour.vhd(92): signal "curW" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
-Warning (10492): VHDL Process Statement warning at readwrite-behaviour.vhd(100): signal "curX" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
-Warning (10492): VHDL Process Statement warning at readwrite-behaviour.vhd(101): signal "curY" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
-Warning (10492): VHDL Process Statement warning at readwrite-behaviour.vhd(107): signal "curY" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at readwrite-behaviour.vhd(31): signal "busy_in" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
 Info (12128): Elaborating entity "counter5b" for hierarchy "memory_cntrll:inst3|counter5b:cx"
-Warning (10492): VHDL Process Statement warning at counter5b-behaviour.vhd(16): signal "lstcnt" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
 Info (12128): Elaborating entity "counter8b" for hierarchy "memory_cntrll:inst3|counter8b:cw"
-Warning (10492): VHDL Process Statement warning at counter8b-behaviour.vhd(16): signal "lstcnt" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
 Info (12128): Elaborating entity "countextend" for hierarchy "memory_cntrll:inst3|countextend:cex"
+Warning (10492): VHDL Process Statement warning at countextend-behaviour.vhd(24): signal "busy_in" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
 Info (12128): Elaborating entity "gen25mhz" for hierarchy "gen25mhz:inst1"
-Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
-    Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
-Warning (21074): Design contains 2 input pin(s) that do not drive logic
-    Warning (15610): No output dependent on input pin "clrIN"
-    Warning (15610): No output dependent on input pin "clrMEM"
-Info (21057): Implemented 147 device resources after synthesis - the final resource count might be different
-    Info (21058): Implemented 35 input pins
-    Info (21059): Implemented 25 output pins
-    Info (21061): Implemented 87 logic cells
-Info: Quartus II 64-Bit Analysis & Synthesis was successful. 0 errors, 15 warnings
-    Info: Peak virtual memory: 655 megabytes
-    Info: Processing ended: Tue Nov 30 11:25:51 2021
-    Info: Elapsed time: 00:00:13
-    Info: Total CPU time (on all processors): 00:00:03
+Error (12006): Node instance "cm" instantiates undefined entity "memclear" File: /tmp/.x2go-mlmjanssen/media/disk/_Users_martijn_ElecTRON/Memory/VHDL/memory_cntrll-behaviour.vhd Line: 75
+Error: Quartus II 32-bit Analysis & Synthesis was unsuccessful. 1 error, 2 warnings
+    Error: Peak virtual memory: 355 megabytes
+    Error: Processing ended: Thu Dec 16 11:34:09 2021
+    Error: Elapsed time: 00:00:29
+    Error: Total CPU time (on all processors): 00:00:02
 
 
