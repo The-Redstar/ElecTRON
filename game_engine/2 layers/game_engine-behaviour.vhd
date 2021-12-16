@@ -3,7 +3,7 @@ use IEEE.std_logic_1164.ALL;
 use ieee.numeric_std.all;
 
 architecture behaviour of game_engine is
-	type game_state is (reset_state, loading_state, get_ready, read_inputs, read1_memory_player_0, read1_memory_player_1, read2_memory_player_0, read2_memory_player_1, check_who_won, wait_state, write_memory_player_0, write_memory_player_1, change_data, player_0_won, player_1_won, tie, player_0_ready, player_1_ready, busy_reset);
+	type game_state is (reset_state, loading_state, get_ready, read_inputs, read1_memory_player_0, read1_memory_player_1, read2_memory_player_0, read2_memory_player_1, check_who_won, wait_state, write_memory_player_0, write_memory_player_1, change_data, check_how_collision, player_0_won, player_1_won, tie, player_0_ready, player_1_ready, busy_reset);
 
 	signal state, new_state: game_state;
 	--signals for registers
@@ -24,7 +24,7 @@ architecture behaviour of game_engine is
 	signal busy_counter_reset: std_logic;
 	signal unsigned_busy_count: std_logic_vector(4 downto 0);
 	--crashes
-	signal crash_itself_0, crash_itself_1: std_logic;
+	signal crash_itself_0, crash_itself_1, border_0, border_1, collision_middle_0, collision_middle_1, collision_head, collision_wall_previous_0, collision_wall_previous_1, collision_wall_mem_0, collision_wall_mem_1: std_logic;
 	--other signals
 	signal wallshape_0, wallshape_1 : std_logic_vector(2 downto 0);
 
@@ -252,6 +252,7 @@ position: 	process (clk)
 			end if;
 		end if;
 
+
 		-- determine the next position of player 1
 		
 		if (next_direction_1 = "01") then 		-- moves to the left, x is decreased with 1
@@ -293,34 +294,37 @@ check_border: 	process (clk, border, next_direction_0, next_position_0, next_pos
 	begin
 		-- check if player 1 collides with a border
 		if (((border(3) = '1') and (next_direction_0 = "01")) or ((border(2) = '1') and (next_direction_0 = "00")) or ((border(1) = '1') and (next_direction_0 = "11")) or ((border(0) = '1') and (next_direction_0 = "10"))) then 
-				e_player_0_state <= '1';
-				d_player_0_state <= "01";
+			border_0= '1';
+		else
+			border_0= '0';
 		end if;
 
 		-- check if player 1 collides with a border
 		if (((border(7) = '1') and (next_direction_0 = "01")) or ((border(6) = '1') and (next_direction_0 = "00")) or ((border(5) = '1') and (next_direction_0 = "11")) or ((border(4) = '1') and (next_direction_0 = "10"))) then 
-				e_player_1_state <= '1';
-				d_player_1_state <= "01";
+			border_1= '1';
+		else
+			border_1= '0';
 		end if;
 
 	end process;
 
 collision: process (clk)
 	begin
+		collision_middle_0 <= '0';
+		collision_middle_1 <= '0';
+		collision_head <= '0';
+		collision_wall_previous_0 <= '0';	
+		collision_wall_previous_1 <= '0';	
 		if (next_position_0 = next_position_1) then -- collide at eachother at middle of square
-					e_player_0_state <= '1';
-					e_player_1_state <= '1';
-				elsif (position_0 = next_position_1) and (position_1 = next_position_0) then -- collide at eachother at border
-					e_player_0_state <= '1';
-					e_player_1_state <= '1';
-					d_player_0_state <= "01";
-					d_player_1_state <= "01";
-				elsif (position_0 = next_position_1) then -- player 1 collides at the wall of player 0 made the previous time
-					e_player_0_state <= '0';
-					e_player_1_state <= '1';
-				elsif (position_1 = next_position_0) then -- player 0 collides at the wall of player 1 made the previous time
-					e_player_0_state <= '1';
-				end if;
+			 collision_middle_0 <= '1';
+			 collision_middle_1 <= '1';		
+		elsif (position_0 = next_position_1) and (position_1 = next_position_0) then -- collide at eachother at border			collision_head_0< = 
+			collision_head <= '1';
+		elsif (position_0 = next_position_1) then -- player 1 collides at the wall of player 0 made the previous time
+			collision_wall_previous_1 <= '1';					
+		elsif (position_1 = next_position_0) then -- player 0 collides at the wall of player 1 made the previous time
+			collision_wall_previous_0 <= '1';	
+		end if;
 	end process;
 
 
@@ -366,7 +370,7 @@ create_next_state: 	process (state, new_state, reset, input, busy, read_memory, 
 		case state is
 			when reset_state =>
 				-- in this state all the values are set to zero to reset everything
-			
+				state_vga 				<= "100";
 				-- go to the state 'want_to_load' next
 				new_state <= loading_state;
 			
@@ -601,11 +605,18 @@ create_next_state: 	process (state, new_state, reset, input, busy, read_memory, 
 							e_player_1_state <= '1';
 						end if;
 					end if;					
-					new_state <= change_data; 
+					new_state <= check_how_collision; 
 				else 
 					new_state <= read2_memory_player_1;
 				end if;
-
+			
+			when check_how_collision
+				if (border_0 = '1') then 
+				e_player_0_state <= '1'; 
+				d_player_0_state <= '01';
+				elsif 
+					if (collision_head = '1') then
+						 
 
 			when change_data =>
 				-- change the data that is going to the graphics engine and update data in the register
