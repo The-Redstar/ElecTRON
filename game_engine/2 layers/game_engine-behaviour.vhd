@@ -378,6 +378,7 @@ create_next_state: 	process (state, new_state, reset, input, busy, read_memory, 
 			when loading_state =>
 				-- continue to let the memory module know to clear the memory and check when the memory is done
 				clear_fsm				<= '1';
+				state_vga 				<= "100";
 				
 				-- initialize the position, direction and state of the players
 				e_position_0				<= '1';
