@@ -84,16 +84,15 @@ LUT:	process(dx, dy)-- the needed conditions for making the bounding boxes
 			when "1111"=> ye0<='0'; ye1<='0'; yg1<='1'; yg3<='1'; yg4<='1'; yg5<='1'; yg6<='1'; ys9<='0'; ys10<='0'; ys11<='0'; ys12<='0'; ys14<='0'; ye14<='0'; ye15<='1';
 			when others=> ye0<='0'; ye1<='0'; yg1<='1'; yg3<='1'; yg4<='1'; yg5<='1'; yg6<='1'; ys9<='0'; ys10<='1'; ys11<='1'; ys12<='1'; ys14<='1'; ye14<='0'; ye15<='1';
 		end case;
-		
 		------------------------------------------------------------------------------------------------------------------------------------------------------------------
 		
 		--determining relative position to the axis
-		if (dx(3) = '0') then
+		if (dx(2) = '0') then
 			rel_x <= not(dx(1 downto 0));
 		else
 			rel_x <= dx(1 downto 0);
 		end if;
-		if (dy(3) = '1') then
+		if (dy(2) = '1') then
 			rel_y <= not(dy(1 downto 0));
 		else
 			rel_y <= dy(1 downto 0);
@@ -235,6 +234,22 @@ layering: process(bbox_wall, bbox_dot, bbox_v, bbox_h, bbox_border, bbox_jump, b
 			color<=C_player0_explosion_outer;
 		elsif player1_layer='1' and player1_outer_explosion_pixel then
 			color<=C_player1_explosion_outer;
+		elsif player0_layer='1' and player0_right_explosion_pixel then
+			color<=C_player0_explosion_outer;
+		elsif player1_layer='1' and player1_right_explosion_pixel then
+			color<=C_player1_explosion_outer;
+		elsif player0_layer='1' and player0_left_explosion_pixel then
+			color<=C_player0_explosion_outer;
+		elsif player1_layer='1' and player1_left_explosion_pixel then
+			color<=C_player1_explosion_outer;
+		elsif player0_layer='1' and player0_top_explosion_pixel then
+			color<=C_player0_explosion_outer;
+		elsif player1_layer='1' and player1_top_explosion_pixel then
+			color<=C_player1_explosion_outer;
+		elsif player0_layer='1' and player0_bottom_explosion_pixel then
+			color<=C_player0_explosion_outer;
+		elsif player1_layer='1' and player1_bottom_explosion_pixel then
+			color<=C_player1_explosion_outer;
 			
 		elsif player0_en='1' and player0_layer='1' and player0_mode(1)='1' and ((player0_wall and bbox_wall(7 downto 4)) /= "0000") then --player0 wall
 			color<=c_player0_wall1;
@@ -274,6 +289,22 @@ layering: process(bbox_wall, bbox_dot, bbox_v, bbox_h, bbox_border, bbox_jump, b
 		elsif player0_outer_explosion_pixel then
 			color<=C_player0_explosion_outer;
 		elsif player1_outer_explosion_pixel then
+			color<=C_player1_explosion_outer;
+		elsif player0_right_explosion_pixel then
+			color<=C_player0_explosion_outer;
+		elsif player1_right_explosion_pixel then
+			color<=C_player1_explosion_outer;
+		elsif player0_left_explosion_pixel then
+			color<=C_player0_explosion_outer;
+		elsif player1_left_explosion_pixel then
+			color<=C_player1_explosion_outer;
+		elsif player0_top_explosion_pixel then
+			color<=C_player0_explosion_outer;
+		elsif player1_top_explosion_pixel then
+			color<=C_player1_explosion_outer;
+		elsif player0_bottom_explosion_pixel then
+			color<=C_player0_explosion_outer;
+		elsif player1_bottom_explosion_pixel then
 			color<=C_player1_explosion_outer;
 			
 		elsif player0_en='1' and player0_mode(1)='1' and ((player0_wall and bbox_wall(3 downto 0)) /= "0000") then --player0 wall
