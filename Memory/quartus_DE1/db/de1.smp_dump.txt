@@ -1,46 +1,85 @@
 
-State Machine - |top_de1|memory_cntrll:inst3|countextend:cey|state
-Name state.WAIT1 state.HIGH2 state.HIGH1 state.SLEEP 
-state.SLEEP 0 0 0 0 
-state.HIGH1 0 0 1 1 
-state.HIGH2 0 1 0 1 
-state.WAIT1 1 0 0 1 
+State Machine - |top_de1|countextend:inst3|state
+Name state.wait_1 state.high_2 state.high_1 state.sleep 
+state.sleep 0 0 0 0 
+state.high_1 0 0 1 1 
+state.high_2 0 1 0 1 
+state.wait_1 1 0 0 1 
 
-State Machine - |top_de1|memory_cntrll:inst3|countextend:cex|state
-Name state.WAIT1 state.HIGH2 state.HIGH1 state.SLEEP 
-state.SLEEP 0 0 0 0 
-state.HIGH1 0 0 1 1 
-state.HIGH2 0 1 0 1 
-state.WAIT1 1 0 0 1 
+State Machine - |top_de1|countextend:inst2|state
+Name state.wait_1 state.high_2 state.high_1 state.sleep 
+state.sleep 0 0 0 0 
+state.high_1 0 0 1 1 
+state.high_2 0 1 0 1 
+state.wait_1 1 0 0 1 
 
-State Machine - |top_de1|memory_cntrll:inst3|readwrite:rw|state
-Name state.fixback2 state.fixback1 state.fix3 state.fix2 state.fix1 state.wait6 state.wait5 state.wait4 state.wait3 state.wait2 state.preCheck state.incrXYW2 state.incrXYW1 state.incrYW2 state.incrYW1 state.incrXW2 state.incrXW1 state.incrW2 state.incrW1 state.incrXY2 state.incrXY1 state.incrY2 state.incrY1 state.incrX2 state.incrX1 state.Check state.wait1 state.rstALL state.SLEEP 
-state.SLEEP 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
-state.rstALL 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 
-state.wait1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 1 
-state.Check 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 1 
-state.incrX1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 1 
-state.incrX2 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 1 
-state.incrY1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 1 
-state.incrY2 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 1 
-state.incrXY1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 1 
-state.incrXY2 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 1 
-state.incrW1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 1 
-state.incrW2 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 1 
-state.incrXW1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 1 
-state.incrXW2 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 1 
-state.incrYW1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
-state.incrYW2 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
-state.incrXYW1 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
-state.incrXYW2 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
-state.preCheck 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
-state.wait2 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
-state.wait3 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
-state.wait4 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
-state.wait5 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
-state.wait6 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
-state.fix1 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
-state.fix2 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
-state.fix3 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
-state.fixback1 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
-state.fixback2 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+State Machine - |top_de1|memory_cntrll:inst|memclear:cm|state
+Name state.rstcnt state.incr_xy2 state.incr_xy1 state.incr_x2 state.incr_x1 state.fixback2 state.fixback1 state.wait5 state.wait4 state.wait3 state.wait2 state.wait1 state.fix3 state.fix2 state.fix1 state.rst_all state.sleep 
+state.sleep 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+state.rst_all 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 
+state.fix1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 1 
+state.fix2 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 1 
+state.fix3 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 1 
+state.wait1 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 1 
+state.wait2 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 1 
+state.wait3 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 1 
+state.wait4 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 1 
+state.wait5 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 1 
+state.fixback1 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 1 
+state.fixback2 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 1 
+state.incr_x1 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 1 
+state.incr_x2 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 1 
+state.incr_xy1 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+state.incr_xy2 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+state.rstcnt 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+
+State Machine - |top_de1|memory_cntrll:inst|countextend:cey|state
+Name state.wait_1 state.high_2 state.high_1 state.sleep 
+state.sleep 0 0 0 0 
+state.high_1 0 0 1 1 
+state.high_2 0 1 0 1 
+state.wait_1 1 0 0 1 
+
+State Machine - |top_de1|memory_cntrll:inst|countextend:cex|state
+Name state.wait_1 state.high_2 state.high_1 state.sleep 
+state.sleep 0 0 0 0 
+state.high_1 0 0 1 1 
+state.high_2 0 1 0 1 
+state.wait_1 1 0 0 1 
+
+State Machine - |top_de1|memory_cntrll:inst|readwrite:rw|state
+Name state.fixback2 state.fixback1 state.fix3 state.fix2 state.fix1 state.wait6w state.wait5w state.wait4w state.wait3w state.wait2w state.wait6 state.wait5 state.wait4 state.wait3 state.wait2 state.precheck state.incr_xyw2 state.incr_xyw1 state.incr_yw2 state.incr_yw1 state.incr_xw2 state.incr_xw1 state.incr_w2 state.incr_w1 state.incr_xy2 state.incr_xy1 state.incr_y2 state.incr_y1 state.incr_x2 state.incr_x1 state.check state.wait1 state.rst_all state.sleep 
+state.sleep 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+state.rst_all 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 
+state.wait1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 1 
+state.check 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 1 
+state.incr_x1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 1 
+state.incr_x2 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 1 
+state.incr_y1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 1 
+state.incr_y2 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 1 
+state.incr_xy1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 1 
+state.incr_xy2 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 1 
+state.incr_w1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 1 
+state.incr_w2 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 1 
+state.incr_xw1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 1 
+state.incr_xw2 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 1 
+state.incr_yw1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+state.incr_yw2 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+state.incr_xyw1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+state.incr_xyw2 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+state.precheck 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+state.wait2 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+state.wait3 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+state.wait4 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+state.wait5 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+state.wait6 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+state.wait2w 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+state.wait3w 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+state.wait4w 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+state.wait5w 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+state.wait6w 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+state.fix1 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+state.fix2 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+state.fix3 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+state.fixback1 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+state.fixback2 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 

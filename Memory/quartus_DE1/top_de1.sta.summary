@@ -3,67 +3,67 @@ TimeQuest Timing Analyzer Summary
 ------------------------------------------------------------
 
 Type  : Slow Model Setup 'gen25mhz:inst1|count[0]'
-Slack : -4.973
-TNS   : -53.084
+Slack : -5.901
+TNS   : -85.568
 
-Type  : Slow Model Setup 'memory_cntrll:inst3|readwrite:rw|state.incrW1'
-Slack : -1.415
-TNS   : -7.310
+Type  : Slow Model Setup 'memory_cntrll:inst|readwrite:rw|state.incr_w1'
+Slack : -1.104
+TNS   : -5.697
 
-Type  : Slow Model Setup 'memory_cntrll:inst3|countextend:cey|state.SLEEP'
-Slack : -0.973
-TNS   : -2.958
+Type  : Slow Model Setup 'memory_cntrll:inst|countextend:cey|state.sleep'
+Slack : -0.895
+TNS   : -2.749
 
-Type  : Slow Model Setup 'memory_cntrll:inst3|countextend:cex|state.SLEEP'
-Slack : -0.863
-TNS   : -2.621
+Type  : Slow Model Setup 'memory_cntrll:inst|countextend:cex|state.sleep'
+Slack : -0.884
+TNS   : -2.705
 
 Type  : Slow Model Setup 'clock_50mhz'
-Slack : 3.684
+Slack : 3.484
 TNS   : 0.000
 
 Type  : Slow Model Hold 'clock_50mhz'
-Slack : -3.432
-TNS   : -3.432
+Slack : -3.232
+TNS   : -3.232
 
 Type  : Slow Model Hold 'gen25mhz:inst1|count[0]'
-Slack : -2.254
-TNS   : -4.936
+Slack : -2.991
+TNS   : -20.092
 
-Type  : Slow Model Hold 'memory_cntrll:inst3|countextend:cex|state.SLEEP'
+Type  : Slow Model Hold 'memory_cntrll:inst|countextend:cex|state.sleep'
 Slack : 0.445
 TNS   : 0.000
 
-Type  : Slow Model Hold 'memory_cntrll:inst3|countextend:cey|state.SLEEP'
+Type  : Slow Model Hold 'memory_cntrll:inst|countextend:cey|state.sleep'
 Slack : 0.445
 TNS   : 0.000
 
-Type  : Slow Model Hold 'memory_cntrll:inst3|readwrite:rw|state.incrW1'
+Type  : Slow Model Hold 'memory_cntrll:inst|readwrite:rw|state.incr_w1'
 Slack : 0.445
 TNS   : 0.000
 
-Type  : Slow Model Recovery 'memory_cntrll:inst3|readwrite:rw|state.incrW1'
-Slack : -0.052
-TNS   : -0.416
+Type  : Slow Model Recovery 'memory_cntrll:inst|countextend:cex|state.sleep'
+Slack : -0.236
+TNS   : -1.180
 
-Type  : Slow Model Recovery 'memory_cntrll:inst3|countextend:cex|state.SLEEP'
-Slack : 0.162
+Type  : Slow Model Recovery 'memory_cntrll:inst|readwrite:rw|state.incr_w1'
+Slack : -0.221
+TNS   : -1.768
+
+Type  : Slow Model Recovery 'memory_cntrll:inst|countextend:cey|state.sleep'
+Slack : -0.205
+TNS   : -1.025
+
+Type  : Slow Model Removal 'memory_cntrll:inst|countextend:cey|state.sleep'
+Slack : 0.761
 TNS   : 0.000
 
-Type  : Slow Model Recovery 'memory_cntrll:inst3|countextend:cey|state.SLEEP'
-Slack : 0.837
+Type  : Slow Model Removal 'memory_cntrll:inst|readwrite:rw|state.incr_w1'
+Slack : 0.777
 TNS   : 0.000
 
-Type  : Slow Model Removal 'memory_cntrll:inst3|countextend:cey|state.SLEEP'
-Slack : -0.085
-TNS   : -0.425
-
-Type  : Slow Model Removal 'memory_cntrll:inst3|countextend:cex|state.SLEEP'
-Slack : 0.590
-TNS   : 0.000
-
-Type  : Slow Model Removal 'memory_cntrll:inst3|readwrite:rw|state.incrW1'
-Slack : 0.804
+Type  : Slow Model Removal 'memory_cntrll:inst|countextend:cex|state.sleep'
+Slack : 0.792
 TNS   : 0.000
 
 Type  : Slow Model Minimum Pulse Width 'clock_50mhz'
@@ -72,82 +72,82 @@ TNS   : -2.853
 
 Type  : Slow Model Minimum Pulse Width 'gen25mhz:inst1|count[0]'
 Slack : -0.611
-TNS   : -45.214
+TNS   : -81.874
 
-Type  : Slow Model Minimum Pulse Width 'memory_cntrll:inst3|readwrite:rw|state.incrW1'
+Type  : Slow Model Minimum Pulse Width 'memory_cntrll:inst|readwrite:rw|state.incr_w1'
 Slack : -0.611
 TNS   : -9.776
 
-Type  : Slow Model Minimum Pulse Width 'memory_cntrll:inst3|countextend:cex|state.SLEEP'
+Type  : Slow Model Minimum Pulse Width 'memory_cntrll:inst|countextend:cex|state.sleep'
 Slack : -0.611
 TNS   : -6.110
 
-Type  : Slow Model Minimum Pulse Width 'memory_cntrll:inst3|countextend:cey|state.SLEEP'
+Type  : Slow Model Minimum Pulse Width 'memory_cntrll:inst|countextend:cey|state.sleep'
 Slack : -0.611
 TNS   : -6.110
 
 Type  : Fast Model Setup 'gen25mhz:inst1|count[0]'
-Slack : -1.735
-TNS   : -13.655
+Slack : -2.056
+TNS   : -19.664
 
-Type  : Fast Model Setup 'memory_cntrll:inst3|readwrite:rw|state.incrW1'
-Slack : 0.055
+Type  : Fast Model Setup 'memory_cntrll:inst|readwrite:rw|state.incr_w1'
+Slack : 0.190
 TNS   : 0.000
 
-Type  : Fast Model Setup 'memory_cntrll:inst3|countextend:cey|state.SLEEP'
-Slack : 0.236
+Type  : Fast Model Setup 'memory_cntrll:inst|countextend:cey|state.sleep'
+Slack : 0.273
 TNS   : 0.000
 
-Type  : Fast Model Setup 'memory_cntrll:inst3|countextend:cex|state.SLEEP'
-Slack : 0.295
+Type  : Fast Model Setup 'memory_cntrll:inst|countextend:cex|state.sleep'
+Slack : 0.285
 TNS   : 0.000
 
 Type  : Fast Model Setup 'clock_50mhz'
-Slack : 2.024
+Slack : 1.952
 TNS   : 0.000
-
-Type  : Fast Model Hold 'clock_50mhz'
-Slack : -1.644
-TNS   : -1.644
 
 Type  : Fast Model Hold 'gen25mhz:inst1|count[0]'
-Slack : -1.489
-TNS   : -3.758
+Slack : -1.726
+TNS   : -13.768
 
-Type  : Fast Model Hold 'memory_cntrll:inst3|countextend:cex|state.SLEEP'
+Type  : Fast Model Hold 'clock_50mhz'
+Slack : -1.572
+TNS   : -1.572
+
+Type  : Fast Model Hold 'memory_cntrll:inst|countextend:cex|state.sleep'
 Slack : 0.215
 TNS   : 0.000
 
-Type  : Fast Model Hold 'memory_cntrll:inst3|countextend:cey|state.SLEEP'
+Type  : Fast Model Hold 'memory_cntrll:inst|countextend:cey|state.sleep'
 Slack : 0.215
 TNS   : 0.000
 
-Type  : Fast Model Hold 'memory_cntrll:inst3|readwrite:rw|state.incrW1'
+Type  : Fast Model Hold 'memory_cntrll:inst|readwrite:rw|state.incr_w1'
 Slack : 0.215
 TNS   : 0.000
 
-Type  : Fast Model Recovery 'memory_cntrll:inst3|readwrite:rw|state.incrW1'
-Slack : 0.468
-TNS   : 0.000
-
-Type  : Fast Model Recovery 'memory_cntrll:inst3|countextend:cex|state.SLEEP'
-Slack : 0.552
-TNS   : 0.000
-
-Type  : Fast Model Recovery 'memory_cntrll:inst3|countextend:cey|state.SLEEP'
-Slack : 0.734
-TNS   : 0.000
-
-Type  : Fast Model Removal 'memory_cntrll:inst3|countextend:cey|state.SLEEP'
-Slack : 0.146
-TNS   : 0.000
-
-Type  : Fast Model Removal 'memory_cntrll:inst3|countextend:cex|state.SLEEP'
+Type  : Fast Model Recovery 'memory_cntrll:inst|readwrite:rw|state.incr_w1'
 Slack : 0.328
 TNS   : 0.000
 
-Type  : Fast Model Removal 'memory_cntrll:inst3|readwrite:rw|state.incrW1'
-Slack : 0.412
+Type  : Fast Model Recovery 'memory_cntrll:inst|countextend:cey|state.sleep'
+Slack : 0.339
+TNS   : 0.000
+
+Type  : Fast Model Recovery 'memory_cntrll:inst|countextend:cex|state.sleep'
+Slack : 0.362
+TNS   : 0.000
+
+Type  : Fast Model Removal 'memory_cntrll:inst|countextend:cex|state.sleep'
+Slack : 0.424
+TNS   : 0.000
+
+Type  : Fast Model Removal 'memory_cntrll:inst|countextend:cey|state.sleep'
+Slack : 0.447
+TNS   : 0.000
+
+Type  : Fast Model Removal 'memory_cntrll:inst|readwrite:rw|state.incr_w1'
+Slack : 0.458
 TNS   : 0.000
 
 Type  : Fast Model Minimum Pulse Width 'clock_50mhz'
@@ -156,17 +156,17 @@ TNS   : -2.380
 
 Type  : Fast Model Minimum Pulse Width 'gen25mhz:inst1|count[0]'
 Slack : -0.500
-TNS   : -37.000
+TNS   : -67.000
 
-Type  : Fast Model Minimum Pulse Width 'memory_cntrll:inst3|readwrite:rw|state.incrW1'
+Type  : Fast Model Minimum Pulse Width 'memory_cntrll:inst|readwrite:rw|state.incr_w1'
 Slack : -0.500
 TNS   : -8.000
 
-Type  : Fast Model Minimum Pulse Width 'memory_cntrll:inst3|countextend:cex|state.SLEEP'
+Type  : Fast Model Minimum Pulse Width 'memory_cntrll:inst|countextend:cex|state.sleep'
 Slack : -0.500
 TNS   : -5.000
 
-Type  : Fast Model Minimum Pulse Width 'memory_cntrll:inst3|countextend:cey|state.SLEEP'
+Type  : Fast Model Minimum Pulse Width 'memory_cntrll:inst|countextend:cey|state.sleep'
 Slack : -0.500
 TNS   : -5.000
 
