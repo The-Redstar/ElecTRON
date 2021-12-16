@@ -24,7 +24,7 @@ architecture behaviour of game_engine is
 	signal busy_counter_reset: std_logic;
 	signal unsigned_busy_count: std_logic_vector(4 downto 0);
 	--crashes
-	signal crash_itself_0, crash_itself_1, border_0, border_1, collision_middle_0, collision_middle_1, collision_head, collision_wall_0, collision_wall_1: std_logic;
+	signal crash_itself_0, crash_itself_1, border_0, border_1, collision_middle_0, collision_middle_1, collision_head, collision_wall_previous_0, collision_wall_previous_1, collision_wall_mem_0, collision_wall_mem_1: std_logic;
 	--other signals
 	signal wallshape_0, wallshape_1 : std_logic_vector(2 downto 0);
 
@@ -312,17 +312,17 @@ collision: process (clk)
 		collision_middle_0 <= '0';
 		collision_middle_1 <= '0';
 		collision_head <= '0';
-		collision_wall_0 <= '0';	
-		collision_wall_1 <= '0';	
+		collision_wall_previous_0 <= '0';	
+		collision_wall_previous_1 <= '0';	
 		if (next_position_0 = next_position_1) then -- collide at eachother at middle of square
 			 collision_middle_0 <= '1';
 			 collision_middle_1 <= '1';		
 		elsif (position_0 = next_position_1) and (position_1 = next_position_0) then -- collide at eachother at border			collision_head_0< = 
 			collision_head <= '1';
 		elsif (position_0 = next_position_1) then -- player 1 collides at the wall of player 0 made the previous time
-			collision_wall_1 <= '1';					
+			collision_wall_previous_1 <= '1';					
 		elsif (position_1 = next_position_0) then -- player 0 collides at the wall of player 1 made the previous time
-			collision_wall_0 <= '1';	
+			collision_wall_previous_0 <= '1';	
 		end if;
 	end process;
 
@@ -613,6 +613,9 @@ create_next_state: 	process (state, new_state, reset, input, busy, read_memory, 
 				if (border_0 = '1') then 
 				e_player_0_state <= '1'; 
 				d_player_0_state <= '01';
+				elsif 
+					if (collision_head = '1') then
+						 
 
 			when change_data =>
 				-- change the data that is going to the graphics engine and update data in the register
