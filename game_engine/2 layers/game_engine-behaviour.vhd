@@ -24,7 +24,7 @@ architecture behaviour of game_engine is
 	signal busy_counter_reset: std_logic;
 	signal unsigned_busy_count: std_logic_vector(4 downto 0);
 	--crashes
-	signal crash_itself_0, crash_itself_1: std_logic;
+	signal crash_itself_0, crash_itself_1, border_1, border_2: std_logic;
 	--other signals
 	signal wallshape_0, wallshape_1 : std_logic_vector(2 downto 0);
 
@@ -297,14 +297,16 @@ check_border: 	process (clk, border, next_direction_0, next_position_0, next_pos
 		address_grid_border_1  <= next_position_1;
 		-- check if player 1 collides with a border
 		if (((border(3) = '1') and (next_direction_0 = "01")) or ((border(2) = '1') and (next_direction_0 = "00")) or ((border(1) = '1') and (next_direction_0 = "11")) or ((border(0) = '1') and (next_direction_0 = "10"))) then 
-				e_player_0_state <= '1';
-				d_player_0_state <= "01";
+			border_0= '1';
+		else
+			border_0= '0';
 		end if;
 
 		-- check if player 1 collides with a border
 		if (((border(7) = '1') and (next_direction_0 = "01")) or ((border(6) = '1') and (next_direction_0 = "00")) or ((border(5) = '1') and (next_direction_0 = "11")) or ((border(4) = '1') and (next_direction_0 = "10"))) then 
-				e_player_1_state <= '1';
-				d_player_1_state <= "01";
+			border_1= '1';
+		else
+			border_1= '0';
 		end if;
 
 	end process;
