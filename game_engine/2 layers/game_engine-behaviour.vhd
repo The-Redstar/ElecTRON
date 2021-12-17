@@ -3,7 +3,7 @@ use IEEE.std_logic_1164.ALL;
 use ieee.numeric_std.all;
 
 architecture behaviour of game_engine is
-	type game_state is (reset_state, loading_state, get_ready, read_inputs, read1_memory_player_0, read1_memory_player_1, read2_memory_player_0, read2_memory_player_1, check_who_won, wait_state, write_memory_player_0, write_memory_player_1, change_data, check_how_collision, player_0_won, player_1_won, tie, player_0_ready, player_1_ready, busy_reset);
+	type game_state is (reset_state, loading_state, home_screen, get_ready, before_start_state, read_inputs, read1_memory_player_0, read1_memory_player_1, read2_memory_player_0, read2_memory_player_1, check_who_won, wait_state, write_memory_player_0, write_memory_player_1, change_data, check_how_collision, player_0_won, player_1_won, tie, busy_reset);
 
 	signal state, new_state: game_state;
 	--signals for registers
@@ -22,7 +22,7 @@ architecture behaviour of game_engine is
 	signal address_fsm, address_mem   	   : std_logic_vector(9 downto 0);
 	--signals for busy counter
 	signal busy_counter_reset: std_logic;
-	signal unsigned_busy_count: std_logic_vector(4 downto 0);
+	signal unsigned_busy_count: std_logic_vector(6 downto 0);
 	--crashes
 	signal crash_itself_0, crash_itself_1, border_0, border_1, collision_middle, collision_head: std_logic;
 	--other signals
@@ -33,7 +33,7 @@ architecture behaviour of game_engine is
 		 global_reset 	   : in  std_logic;
 		 game_engine_reset : in  std_logic;
          busy              : in  std_logic;
-         busy_count        : out std_logic_vector(4 downto 0));
+         busy_count        : out std_logic_vector(6 downto 0));
 	end component;	
 
 	component memory_communication is
@@ -373,15 +373,13 @@ create_next_state: 	process (state, new_state, reset, input, busy, read_memory, 
 				state_vga 				<= "100";
 				
 				-- initialize the position, direction and state of the players
-				e_position_0				<= '1';
-				e_position_1				<= '1';
+				
 				e_direction_0				<= '1';
 				e_direction_1				<= '1';
 				e_player_0_state			<= '1';
 				e_player_1_state			<= '1';
 				
-				d_position_0				<= "01110111001";
-				d_position_1				<= "01110100100";
+				
 				d_direction_0				<= "00";
 				d_direction_1				<= "00";
 				d_player_0_state			<= "10";
@@ -389,66 +387,63 @@ create_next_state: 	process (state, new_state, reset, input, busy, read_memory, 
 				
 				-- when the memory is finished go to the next state: 'get_ready' otherwise stay in this state
 				if (mem_com_ready = '1') then 
-					new_state <= get_ready;
+					new_state <= home_screen;
 				else 
 					new_state <= loading_state;
 				end if;
+
+			when home_screen =>
+				if (select_button = '1') then
+					new_state <= get_ready;
+				else 
+					new_state <= home_screen;
+				end if;
+				e_direction_0 		<= '1';
+				e_direction_1 		<= '1'; 
+				d_next_direction_0 	<= input(1 downto 0);
+				d_next_direction_1	<= input(3 downto 2);		
 				
 			when get_ready =>
 				-- wait for the player to press the button in the right direction: meaning they are ready to play
-			
+				d_position_0				<= position_grid_0;
+				d_position_1				<= position_grid_1;
+				e_position_0				<= '1';
+				e_position_1				<= '1';
+				state_vga 				<= "101";
+				e_player_0_state			<= '1';
+				e_player_1_state			<= '1';
 				-- when player 0 is ready to play the next state is 'player_0_ready'
-				if (input(1 downto 0) = direction_0) then
-					new_state 				<= player_0_ready;
-				-- when player 1 is ready to play the next state is 'player_1_ready'
-				elsif (input(3 downto 2) = direction_1) then
-					new_state				<= player_1_ready;
-				-- when neither player is ready the next state is this state
+				if ((input(1 downto 0) = direction_0) and (input(3 downto 2) = direction_1) and (select_button = '1')) then
+					new_state 				<= before_start_state;
 				else 
 					new_state				<= get_ready;
 				end if;
 
-			when player_0_ready =>
-				-- player 0 is ready to play
-				
-				
-				-- change the player state of player 0 to let the VGA know that player 0 is ready to play
-				e_player_0_state			<= '1';
-				d_player_0_state			<= "11";
-
-				-- when player 1 is ready go the the state 'wait_state' if player 1 is not ready the next state is this state
-				if (input(3 downto 2) = direction_1) then
-					new_state <= wait_state;
-				else 
-					new_state <= player_0_ready;
-				end if;
-
-			when player_1_ready =>
-				-- player 1 is ready to play
-			
-				-- change the player state of player 1 to let the VGA know that player 1 is ready to play
-				e_player_1_state			<= '1';
-				d_player_1_state			<= "11";	
-			
-				
-				-- if player 0 is ready the next state is 'wait_state', if player 0 is not ready the next state is this state
 				if (input(1 downto 0) = direction_0) then
-					new_state <= wait_state;
+					d_player_0_state			<= "11";
 				else 
-					new_state <= player_1_ready;
+					d_player_0_state			<= "10";
 				end if;
-		
-
 				
+				if (input(3 downto 2) = direction_1) then
+					d_player_1_state			<= "11";
+				else 
+					d_player_1_state			<= "10";
+				end if;
+				
+			when before_start_state =>
+			--wait a bit more then two seconds before the game starts
+				state_vga 				<= "111";
+				if (unsigned( unsigned_busy_count) >= 127) then
+					new_state <= busy_reset;
+				else
+					new_state <= before_start_state;
+				end if;
+
 			when wait_state =>
 				-- wait for a certain amount of busy signal cycles before going on
 				-- this determines how fast a player moves in the playingfield
 				state_vga 				<= "111";
-				e_player_0_state			<= '1';
-				d_player_0_state			<= "11";
-				e_player_1_state			<= '1';
-				d_player_1_state			<= "11";
-
 				-- when waited long enough go the next state: read_inputs, otherwise keep waiting
 				if (unsigned( unsigned_busy_count) >= 16) then
 					new_state <= busy_reset;
@@ -603,6 +598,7 @@ create_next_state: 	process (state, new_state, reset, input, busy, read_memory, 
 				end if;
 			
 			when check_how_collision =>
+				state_vga   				<= "111";
 				if (border_0 = '1') then --player crashed against border
 					e_player_0_state <= '1'; 
 					d_player_0_state <= "01";
@@ -671,19 +667,30 @@ create_next_state: 	process (state, new_state, reset, input, busy, read_memory, 
 				-- player 0 won and tell that to the graphics engine
 				state_vga 					<= "010";
 				-- stay in this state
-				new_state <= player_0_won;
-
+				if (select_button = '1') then 
+					new_state <= reset_state;
+				else
+					new_state <= player_0_won;
+				end if;
+	
 			when player_1_won =>
 				-- player 1 won and tell that to the graphics engine
 				state_vga 					<= "011";
-				-- stay in this state
-				new_state <= player_1_won;
+				if (select_button = '1') then 
+					new_state <= reset_state;
+				else
+					new_state <= player_1_won;
+				end if;
+				
 				
 			when tie =>
 				-- both players lost and tell that to the graphics engine
 				state_vga 					<= "001";
-				-- stay in this state
-				new_state <= tie;
+				if (select_button = '1') then 
+					new_state <= reset_state;
+				else
+					new_state <= player_0_won;
+				end if;
 		end case;
 	end process;
 end behaviour;
