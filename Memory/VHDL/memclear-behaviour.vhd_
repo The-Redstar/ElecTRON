@@ -27,7 +27,7 @@ begin
 				rst_mem <= '0';
 				ready_out <= '1';
 				
-				if clear_mem = '1' then
+				if busy_in = '0' and clear_mem = '1' then
 					new_state <= rst_all;
 				else
 					new_state <= sleep;

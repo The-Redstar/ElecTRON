@@ -28,7 +28,7 @@ begin
 				ready_out <= '1';
 				rst_mem <= '0';
 				
-				if goto_in = '1' then
+				if busy_in = '0' and goto_in = '1' then
 					new_state <= rst_all;
 				else
 					new_state <= sleep;

@@ -31,7 +31,6 @@ begin
 				new_state <= high_2;
 			when high_2 =>
 				incr_out <= '1';
-				busy_out <= '1';
 				new_state <= wait_1;
 			when wait_1 =>
 				incr_out <= '0';
