@@ -27,7 +27,7 @@ architecture behaviour of game_engine is
 	signal busy_counter_reset: std_logic;
 	signal unsigned_busy_count: std_logic_vector(4 downto 0);
 	--crashes
-	signal crash_itself_0, crash_itself_1, border_0, border_1, collision_middle_0, collision_middle_1, collision_head, collision_wall_previous_0, collision_wall_previous_1, collision_wall_mem_0, collision_wall_mem_1: std_logic;
+	signal crash_itself_0, crash_itself_1, border_0, border_1, collision_middle, collision_head: std_logic;
 	--other signals
 	signal wallshape_0, wallshape_1 : std_logic_vector(2 downto 0);
 
@@ -416,23 +416,35 @@ position: 	process (clk, next_direction_0, next_direction_1, position_0, positio
 		end if;
 	end process;
 
+<<<<<<< HEAD
+=======
+check_border: 	process (clk, border, next_direction_0, next_position_0, next_position_1)
+	begin
+		-- check if player 1 collides with a border
+		if (((border(3) = '1') and (next_direction_0 = "01")) or ((border(2) = '1') and (next_direction_0 = "00")) or ((border(1) = '1') and (next_direction_0 = "11")) or ((border(0) = '1') and (next_direction_0 = "10"))) then 
+			border_0 <= '1';
+		else
+			border_0 <= '0';
+		end if;
+
+		-- check if player 1 collides with a border
+		if (((border(7) = '1') and (next_direction_0 = "01")) or ((border(6) = '1') and (next_direction_0 = "00")) or ((border(5) = '1') and (next_direction_0 = "11")) or ((border(4) = '1') and (next_direction_0 = "10"))) then 
+			border_1 <= '1';
+		else
+			border_1 <= '0';
+		end if;
+
+	end process;
+>>>>>>> 496cb0ffece5d6923babbad85d9880dc0b699fc6
 
 collision: process (clk)
 	begin
-		collision_middle_0 <= '0';
-		collision_middle_1 <= '0';
+		collision_middle <= '0';
 		collision_head <= '0';
-		collision_wall_previous_0 <= '0';	
-		collision_wall_previous_1 <= '0';	
 		if (next_position_0 = next_position_1) then -- collide at eachother at middle of square
-			 collision_middle_0 <= '1';
-			 collision_middle_1 <= '1';		
+			 collision_middle <= '1';	
 		elsif (position_0 = next_position_1) and (position_1 = next_position_0) then -- collide at eachother at border			collision_head_0< = 
 			collision_head <= '1';
-		elsif (position_0 = next_position_1) then -- player 1 collides at the wall of player 0 made the previous time
-			collision_wall_previous_1 <= '1';					
-		elsif (position_1 = next_position_0) then -- player 0 collides at the wall of player 1 made the previous time
-			collision_wall_previous_0 <= '1';	
 		end if;
 	end process;
 
@@ -753,12 +765,26 @@ create_next_state: 	process (state, new_state, reset, input, busy, read_memory, 
 					new_state <= read2_memory_player_1;
 				end if;
 			
-			when check_how_collision
-				if (border_0 = '1') then 
-				e_player_0_state <= '1'; 
-				d_player_0_state <= '01';
-				elsif 
-					if (collision_head = '1') then
+			when check_how_collision =>
+				if (border_0 = '1') then --player crashed against border
+					e_player_0_state <= '1'; 
+					d_player_0_state <= "01";
+				elsif (collision_head = '1') then --players crash head-to-head
+					e_player_0_state <= '1'; 
+					d_player_0_state <= "01";
+				elsif ((crash_itself_0 = '1') or (collision_middle = '1')) then --player crashed against wall which is saved in the memory or wants to go in the opposite direction it went previous
+					e_player_0_state <= '1';
+				end if;
+
+				if (border_1 = '1') then --player crashed against border
+					e_player_1_state <= '1'; 
+					d_player_1_state <= "01";
+				elsif (collision_head = '1') then --players crash head-to-head
+					e_player_1_state <= '1'; 
+					d_player_1_state <= "01";
+				elsif ((crash_itself_1 = '1') or (collision_middle = '1')) then --player crashed against wall which is saved in the memory or wants to go in the opposite direction it went previous
+					e_player_1_state <= '1';
+				end if;
 						 
 
 			when change_data =>
@@ -771,17 +797,14 @@ create_next_state: 	process (state, new_state, reset, input, busy, read_memory, 
 				d_direction_0 <= next_direction_0;
 				d_direction_1 <= next_direction_1;
 				
-				-- if player 0 collides against a border do not change its position, otherwise do
-				if (player_0_state = "01") then
-					e_position_0 <= '0';
-					d_position_0 <= (others => '0');					
-				else
+				-- if player 0 collides against a border or wants to go in the opposite direction of it was going do not change its position, otherwise do
+				if ((player_0_state = "01") nor (crash_itself_0 = '1')) then
 					e_position_0 <= '1';
 					d_position_0 <= next_position_0;
 				end if;
 					
-				-- if player 1 collides against a border do not change its position, otherwise do
-				if (not player_1_state = "01") then
+				-- if player 1 collides against a border or wants to go in the opposite direction of it was going do not change its position, otherwise do
+				if ((player_1_state = "01") nor (crash_itself_0 = '1')) then
 					e_position_1 <= '1';
 					d_position_1 <= next_position_1;
 				end if; 
