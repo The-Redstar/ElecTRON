@@ -3,19 +3,26 @@ use IEEE.std_logic_1164.ALL;
 use ieee.numeric_std.all;
 
 architecture behaviour of game_engine is
+<<<<<<< HEAD
 	type game_state is (reset_state, loading_state, home_screen, get_ready, before_start_state, read_inputs, read1_memory_player_0, read1_memory_player_1, read2_memory_player_0, read2_memory_player_1, check_who_won, wait_state, write_memory_player_0, write_memory_player_1, change_data, check_how_collision, player_0_won, player_1_won, tie, busy_reset);
+=======
+	type game_state is (reset_state, loading_state, get_ready, read_inputs, read1_memory_player_0, read1_memory_player_1, read2_memory_player_0, read2_memory_player_1, check_who_won, wait_state, write_memory_player_0, write_memory_player_1, change_data, check_how_collision, player_0_won, player_1_won, tie, player_0_ready, player_1_ready, busy_reset, check_jump_0, check_jump_1);
+>>>>>>> 4364ed1151431af652738fb8d161b1e00e9c786d
 
 	signal state, new_state: game_state;
 	--signals for registers
 	signal direction_0, direction_1, next_direction_0, next_direction_1 : std_logic_vector(1 downto 0);
 	signal d_direction_0, d_direction_1, d_next_direction_0, d_next_direction_1 : std_logic_vector(1 downto 0);
-	signal position_0, position_1, next_position_0, next_position_1 : std_logic_vector (10 downto 0);
-	signal d_position_0, d_position_1 : std_logic_vector (10 downto 0);
-	signal read_memory_0 : std_logic_vector (7 downto 0);
-	signal d_read_memory_0 : std_logic_vector (7 downto 0);
+	signal position_0, position_1, next_position_0, next_position_1 : std_logic_vector (9 downto 0);
+	signal d_position_0, d_position_1 : std_logic_vector (9 downto 0);
+	signal layer_0, layer_1, d_layer_0, d_layer_1, e_layer_0, e_layer_1 : std_logic;
+	signal next_layer_0, next_layer_1, d_next_layer_0, d_next_layer_1, e_next_layer_0, e_next_layer_1 : std_logic;
+	signal player_ramp_0, player_ramp_1 : std_logic;
+	signal read_memory : std_logic_vector (7 downto 0);
+	signal d_read_memory : std_logic_vector (7 downto 0);
 	signal player_0_state, player_1_state: std_logic_vector (1 downto 0);
 	signal d_player_0_state, d_player_1_state: std_logic_vector (1 downto 0);
-	signal e_position_0, e_position_1, e_read_memory_0, e_direction_0, e_direction_1, e_next_direction_0, e_next_direction_1, e_player_0_state, e_player_1_state: std_logic;
+	signal e_position_0, e_position_1, e_read_memory, e_direction_0, e_direction_1, e_next_direction_0, e_next_direction_1, e_player_0_state, e_player_1_state: std_logic;
 	--signals for memory communication
 	signal read_data_mem, read_data_fsm, read_data_out, write_data_mem : std_logic_vector(7 downto 0);
         signal write_data_fsm, write_enable_fsm, clear_fsm, read_enable_fsm, mem_com_ready, clear_mem, write_enable_mem   : std_logic;	
@@ -59,10 +66,22 @@ architecture behaviour of game_engine is
 		port(clk, reset	  : in  std_logic;	
 			e_position_0  : in  std_logic;
 			e_position_1  : in  std_logic;
-			d_position_0  : in  std_logic_vector(10 downto 0);
-			d_position_1  : in  std_logic_vector(10 downto 0);
-			e_read_mem_0  : in  std_logic;
-			d_read_mem_0  : in  std_logic_vector(7 downto 0);
+			d_position_0  : in  std_logic_vector(9 downto 0);
+			d_position_1  : in  std_logic_vector(9 downto 0);
+			e_layer_0	  : in  std_logic;		
+			e_layer_1	  : in  std_logic;
+			d_layer_0	  : in  std_logic;
+			d_layer_1	  : in  std_logic;
+			e_next_layer_0: in  std_logic;
+			e_next_layer_1: in  std_logic;
+			d_next_layer_0: in  std_logic;
+			d_next_layer_1: in  std_logic;
+			e_border_0	  : in  std_logic;
+			e_border_1	  : in  std_logic;
+			d_border_0	  : in  std_logic;
+			d_border_1	  : in  std_logic;
+			e_read_mem    : in  std_logic;
+			d_read_mem    : in  std_logic_vector(7 downto 0);
 			e_direction_0 : in  std_logic;
 			e_direction_1 : in  std_logic;
 			d_direction_0 : in  std_logic_vector(1 downto 0);
@@ -75,9 +94,15 @@ architecture behaviour of game_engine is
 			e_p_state_1   : in  std_logic;
 			d_p_state_0   : in  std_logic_vector(1 downto 0);
 			d_p_state_1   : in  std_logic_vector(1 downto 0);
-			q_position_0  : out std_logic_vector(10 downto 0);
-			q_position_1  : out std_logic_vector(10 downto 0);
-			q_read_mem_0  : out std_logic_vector(7 downto 0);
+			q_position_0  : out std_logic_vector(9 downto 0);
+			q_position_1  : out std_logic_vector(9 downto 0);
+			q_layer_0	  : out std_logic;
+			q_layer_1	  : out std_logic;
+			q_next_layer_0: out std_logic;
+			q_next_layer_1: out std_logic;
+			q_border_0	  : out std_logic;
+			q_border_1	  : out std_logic;
+			q_read_mem    : out std_logic_vector(7 downto 0);
 			q_direction_0 : out std_logic_vector(1 downto 0);
 			q_direction_1 : out std_logic_vector(1 downto 0);
 			q_next_dir_0  : out std_logic_vector(1 downto 0);
@@ -94,8 +119,20 @@ reg: ge_register port map (clk => clk,
 			e_position_1  => e_position_1,
 			d_position_0  => d_position_0,
 			d_position_1  => d_position_1,
-			e_read_mem_0  => e_read_memory_0,
-			d_read_mem_0  => d_read_memory_0,
+			e_layer_0	  => e_layer_0,
+			e_layer_1	  => e_layer_1,
+			d_layer_0	  => d_layer_0,
+			d_layer_1	  => d_layer_1,
+			e_next_layer_0=> e_next_layer_0,
+			e_next_layer_1=> e_next_layer_1,
+			d_next_layer_0=> d_next_layer_0,
+			d_next_layer_1=> d_next_layer_1,
+			e_border_0	  => e_border_0,
+			e_border_1	  => e_border_1,
+			d_border_0	  => d_border_0,
+			d_border_1	  => d_border_1,
+			e_read_mem    => e_read_memory,
+			d_read_mem    => d_read_memory,
 			e_direction_0 => e_direction_0,
 			e_direction_1 => e_direction_1,
 			d_direction_0 => d_direction_0,
@@ -108,7 +145,15 @@ reg: ge_register port map (clk => clk,
 			e_p_state_1   => e_player_1_state,
 			d_p_state_0   => d_player_0_state,
 			d_p_state_1   => d_player_1_state,
-			q_read_mem_0  => read_memory_0,
+			q_position_0  => position_0,
+			q_position_1  => position_1,
+			q_layer_0	  => layer_0,
+			q_layer_1	  => layer_1,
+			q_next_layer_0=> next_layer_0,
+			q_next_layer_1=> next_layer_1,
+			q_border_0	  => border_0,
+			q_border_1	  => border_1,
+			q_read_mem    => read_memory,
 			q_direction_0 => direction_0,
 			q_direction_1 => direction_1,
 			q_next_dir_0  => next_direction_0,
@@ -140,8 +185,10 @@ mem_com: memory_communication port map ( clk => clk,
 					memory_ready => memory_ready);
 		
 -- outputs from the register to the graphics engine			
-position_0_vga  <= position_0;
-position_1_vga  <= position_1;
+position_0_vga (9 downto 0) <= position_0;
+position_0_vga (10) 		<= layer_0
+position_1_vga (9 downto 0) <= position_1;
+position_1_vga (10)			<= layer_1;
 direction_0_vga <= direction_0;
 direction_1_vga <= direction_1;
 player_state_0_vga <= player_0_state;
@@ -215,40 +262,83 @@ wallshape: 	process (clk, direction_0, direction_1, next_direction_0, next_direc
 				end if;
 	end process;
 
-position: 	process (clk)
+position: 	process (clk, next_direction_0, next_direction_1, position_0, position_1, layer_0, layer_1, ramp, border) --creating next_position, checking for jumps and the border
 	begin
+		d_next_layer_0 <= layer_0;
+		d_next_layer_1 <= layer_1;
+		d_border_0	  <= '0';
+		d_border_1	  <= '0';
 		if (next_direction_0 = "01") then 		-- moves to the left, x is decreased with 1
 			next_position_0(4 downto 0)  <= std_logic_vector(to_unsigned(to_integer(unsigned(position_0(4 downto 0))) - 1, 5));
 			next_position_0(9 downto 5) <= position_0(9 downto 5);
-			if (ramp(3) = '1') then
-				next_position_0(10)		  <= not position_0(10);
+			if (layer_0 = '0') then
+				if (ramp(1) = '1') then
+					d_next_layer_0 <= not layer_0;
+				end if;
+				if (border(1) = '1') then
+					d_border_0 <= '1';
+				end if;
 			else 
-				next_position_0(10)		  <= position_0(10);
+				if (ramp(5) = '1') then
+					d_next_layer_0 <= not layer_0;
+				end if;
+				if (border(5) = '1') then
+					d_border_0 <= '1';
+				end if;
 			end if;
 		elsif (next_direction_0 = "11") then 	-- moves to the right, x is increased with 1
 			next_position_0(4 downto 0)  <= std_logic_vector(to_unsigned(to_integer(unsigned(position_0(4 downto 0))) + 1, 5));
 			next_position_0(9 downto 5) <= position_0(9 downto 5);
-			next_position_0(10)		  <= position_0(10);
-			if (ramp(1) = '1') then
-				next_position_0(10)		  <= not position_0(10);
+			if (layer_0 = '0') then
+				if (ramp(3) = '1') then
+					d_next_layer_0 <= not layer_0;
+				end if;
+				if (border(3) = '1') then
+					d_border_0 <= '1';
+				end if;
 			else 
-				next_position_0(10)		  <= position_0(10);
+				if (ramp(7) = '1') then
+					d_next_layer_0 <= not layer_0;
+				end if;
+				if (border(7) = '1') then
+					d_border_0 <= '1';
+				end if;
 			end if;
 		elsif (next_direction_0 <= "00") then 	-- moves up, y is decreased with 1
 			next_position_0(4 downto 0) <= position_0(4 downto 0);
 			next_position_0(9 downto 5) <= std_logic_vector(to_unsigned(to_integer(unsigned(position_0(9 downto 5))) - 1, 5));
-			if (ramp(2) = '1') then
-				next_position_0(10)		  <= not position_0(10);
+			if (layer_0 = '0') then
+				if (ramp(0) = '1') then
+					d_next_layer_0 <= not layer_0;
+				end if;
+				if (border(0) = '1') then
+					d_border_0 <= '1';
+				end if;
 			else 
-				next_position_0(10)		  <= position_0(10);
+				if (ramp(4) = '1') then
+					d_next_layer_0 <= not layer_0;
+				end if;
+				if (border(4) = '1') then
+					d_border_0 <= '1';
+				end if;
 			end if;
 		else 									--moves down, y is increased with 1
 			next_position_0(4 downto 0) <= position_0(4 downto 0);
 			next_position_0(9 downto 5) <= std_logic_vector(to_unsigned(to_integer(unsigned(position_0(9 downto 5))) + 1, 5));
-			if (ramp(0) = '1') then
-				next_position_0(10)		  <= not position_0(10);
+			if (layer_0 = '0') then
+				if (ramp(2) = '1') then
+					d_next_layer_0 <= not layer_0;
+				end if;
+				if (border(2) = '1') then
+					d_border_0 <= '1';
+				end if;
 			else 
-				next_position_0(10)		  <= position_0(10);
+				if (ramp(6) = '1') then
+					d_next_layer_0 <= not layer_0;
+				end if;
+				if (border(6) = '1') then
+					d_border_0 <= '1';
+				end if;
 			end if;
 		end if;
 
@@ -258,55 +348,78 @@ position: 	process (clk)
 		if (next_direction_1 = "01") then 		-- moves to the left, x is decreased with 1
 			next_position_1(4 downto 0)  <= std_logic_vector(to_unsigned(to_integer(unsigned(position_1(4 downto 0))) - 1, 5));
 			next_position_1(9 downto 5) <= position_1(9 downto 5);
-			if (ramp(7) = '1') then
-				next_position_1(10)		  <= not position_1(10);
+			if (layer_1 = '0') then
+				if (ramp(1) = '1') then
+					d_next_layer_1 <= not layer_1;
+				end if;
+				if (border(1) = '1') then
+					d_border_1 <= '1';
+				end if;
 			else 
-				next_position_1(10)		  <= position_1(10);
+				if (ramp(5) = '1') then
+					d_next_layer_1 <= not layer_1;
+				end if;
+				if (border(5) = '1') then
+					d_border_1 <= '1';
+				end if;
 			end if;
 		elsif (next_direction_1 = "11") then 	-- moves to the right, x is increased with 1
 			next_position_1(4 downto 0)  <= std_logic_vector(to_unsigned(to_integer(unsigned(position_1(4 downto 0))) + 1, 5));
 			next_position_1(9 downto 5) <= position_1(9 downto 5);
-			if (ramp(5) = '1') then
-				next_position_1(10)		  <= not position_1(10);
+			if (layer_1 = '0') then
+				if (ramp(3) = '1') then
+					d_next_layer_1 <= not layer_1;
+				end if;
+				if (border(3) = '1') then
+					d_border_1 <= '1';
+				end if;
 			else 
-				next_position_1(10)		  <= position_1(10);
-			end if;	
+				if (ramp(7) = '1') then
+					d_next_layer_1 <= not layer_1;
+				end if;
+				if (border(7) = '1') then
+					d_border_1 <= '1';
+				end if;
+			end if;
 		elsif (next_direction_1 <= "00") then 	-- moves up, y is decreased with 1
 			next_position_1(4 downto 0) <= position_1(4 downto 0);
 			next_position_1(9 downto 5) <= std_logic_vector(to_unsigned(to_integer(unsigned(position_1(9 downto 5))) - 1, 5));
-			if (ramp(6) = '1') then
-				next_position_1(10)		  <= not position_1(10);
+			if (layer_1 = '0') then
+				if (ramp(0) = '1') then
+					d_next_layer_1 <= not layer_1;
+				end if;
+				if (border(0) = '1') then
+					d_border_1 <= '1';
+				end if;
 			else 
-				next_position_1(10)		  <= position_1(10);
-			end if;	
+				if (ramp(4) = '1') then
+					d_next_layer_1 <= not layer_1;
+				end if;
+				if (border(4) = '1') then
+					d_border_1 <= '1';
+				end if;
+			end if;
 		else 									--moves down, y is increased with 1
 			next_position_1(4 downto 0) <= position_1(4 downto 0);
 			next_position_1(9 downto 5) <= std_logic_vector(to_unsigned(to_integer(unsigned(position_1(9 downto 5))) + 1, 5));	
-			if (ramp(5) = '1') then
-				next_position_1(10)		  <= not position_1(10);
+			if (layer_1 = '0') then
+				if (ramp(2) = '1') then
+					d_next_layer_1 <= not layer_1;
+				end if;
+				if (border(2) = '1') then
+					d_border_1 <= '1';
+				end if;
 			else 
-				next_position_1(10)		  <= position_1(10);
+				if (ramp(6) = '1') then
+					d_next_layer_1 <= not layer_1;
+				end if;
+				if (border(6) = '1') then
+					d_border_1 <= '1';
+				end if;
 			end if;
 		end if;
 	end process;
 
-check_border: 	process (clk, border, next_direction_0, next_position_0, next_position_1)
-	begin
-		-- check if player 1 collides with a border
-		if (((border(3) = '1') and (next_direction_0 = "01")) or ((border(2) = '1') and (next_direction_0 = "00")) or ((border(1) = '1') and (next_direction_0 = "11")) or ((border(0) = '1') and (next_direction_0 = "10"))) then 
-			border_0 <= '1';
-		else
-			border_0 <= '0';
-		end if;
-
-		-- check if player 1 collides with a border
-		if (((border(7) = '1') and (next_direction_0 = "01")) or ((border(6) = '1') and (next_direction_0 = "00")) or ((border(5) = '1') and (next_direction_0 = "11")) or ((border(4) = '1') and (next_direction_0 = "10"))) then 
-			border_1 <= '1';
-		else
-			border_1 <= '0';
-		end if;
-
-	end process;
 
 collision: process (clk)
 	begin
@@ -320,7 +433,7 @@ collision: process (clk)
 	end process;
 
 
-create_next_state: 	process (state, new_state, reset, input, busy, read_memory, memory_ready, clk, unsigned_busy_count, direction_0, direction_1, next_direction_0, next_direction_1, position_0, position_1, next_position_0, next_position_1, read_memory_0, player_0_state, player_1_state, e_position_0, e_position_1, e_read_memory_0, e_direction_0, e_direction_1, e_next_direction_0, e_next_direction_1, e_player_0_state, e_player_1_state )
+create_next_state: 	process (state, new_state, reset, input, busy, read_memory, memory_ready, clk, unsigned_busy_count, direction_0, direction_1, next_direction_0, next_direction_1, position_0, position_1, next_position_0, next_position_1, read_memory, player_0_state, player_1_state, e_position_0, e_position_1, e_read_memory, e_direction_0, e_direction_1, e_next_direction_0, e_next_direction_1, e_player_0_state, e_player_1_state )
 	begin
 
 		state_vga 				<= "000";
@@ -330,9 +443,17 @@ create_next_state: 	process (state, new_state, reset, input, busy, read_memory, 
 		go_to					<= '0';
 		busy_counter_reset			<= '0';
 		clear_memory				<= '0';
+		
+		--register signals
 		e_position_0				<= '0';
 		e_position_1				<= '0';	
-		e_read_memory_0				<= '0';
+		e_layer_0					<= '0';
+		e_layer_1					<= '0';
+		e_next_layer_0				<= '0';
+		e_next_layer_1				<= '0';
+		e_border_0					<= '0';
+		e_border_1					<= '0';
+		e_read_memory				<= '0';
 		e_direction_0				<= '0';
 		e_direction_1				<= '0';
 		e_next_direction_0			<= '0';	
@@ -341,21 +462,21 @@ create_next_state: 	process (state, new_state, reset, input, busy, read_memory, 
 		e_player_1_state			<= '0';				
 		d_position_0				<= (others => '0');
 		d_position_1				<= (others => '0');	
-		d_read_memory_0				<= (others => '0');
+		d_layer_0					<= (others => '0');
+		d_layer_1					<= (others => '0');
+		--determined in different process
+		--d_next_layer_0				<= (others => '0');
+		--d_next_layer_1				<= (others => '0');
+		d_read_memory				<= (others => '0');
 		d_direction_0				<= (others => '0');
 		d_direction_1				<= (others => '0');
 		d_next_direction_0			<= (others => '0');	
 		d_next_direction_1			<= (others => '0');
 		d_player_0_state			<= (others => '0');
 		d_player_1_state			<= (others => '0');
-		read_data_fsm				<= (others => '0');
-		mem_com_ready   			<= '0';
-		read_data_fsm	   			<= (others => '0');
-		go_to	           			<= '0';
+		
 		clear_mem	     			<= '0';
-      		write_enable_mem  			<= '0';
-        	write_data_mem    			<= (others => '0');
-        	address_mem        			<= (others => '0');
+        write_data_mem    			<= (others => '0');
 
 
 
@@ -474,32 +595,45 @@ create_next_state: 	process (state, new_state, reset, input, busy, read_memory, 
 				-- read the data from the address of the next position of player 0
 				state_vga   				<= "111";
 				address_fsm 				<= position_0(9 downto 0);
-				e_read_memory_0				<= '1';
-				d_read_memory_0				<= read_data_fsm;
+				e_read_memory				<= '1';
+				d_read_memory				<= read_data_fsm;
 				read_enable_fsm				<= '1';
 
 
-				-- wait till the memory module is done with processing the information to go to the next state: 'want_to_read_1'
+				-- wait till the memory module is done with processing the information to go to the next state.
 				if (mem_com_ready = '1') then
-					new_state <= write_memory_player_0; 
+					new_state <= check_jump_0; 
 				else 
 					new_state <= read1_memory_player_0;
 				end if;
-	
+				
+			when check_jump_0 =>
+				state_vga   				<= "111";
+				
+				--check to switch layers
+				--d_next_layer_0 is generated in the process for next position
+				e_next_layer_0	<= '1';
+				
+				--checking for the border
+				--d_border_0 is generated in the process for next position
+				e_border_0 <= '1';
+				
+				new_state <= write_memory_player_0; 
+				
 			when write_memory_player_0 =>
 				-- send to the memory module the wall shape of player 0 on the address of its position
 				state_vga   				<= "111";
 				write_enable 				<= '1';
 				address_fsm 				<= position_0(9 downto 0);
 
-				if (position_0 (10) = '0') then
-					write_memory(7 downto 4) 		<= read_memory_0(7 downto 4);
+				if (layer_0 = '0') then
+					write_memory(7 downto 4) 		<= read_memory(7 downto 4);
 					write_memory(3) 			<= '0';
 					write_memory(2 downto 0) 		<= wallshape_0;
 				else 
 					write_memory(7) 			<= '0';
 					write_memory(6 downto 4) 		<= wallshape_0;
-					write_memory(3 downto 0) 		<= read_memory_0(3 downto 0);
+					write_memory(3 downto 0) 		<= read_memory(3 downto 0);
 				end if;
 				
 				-- wait until the memory is ready to go to the next state 'want_to_write_1'
@@ -513,17 +647,30 @@ create_next_state: 	process (state, new_state, reset, input, busy, read_memory, 
 				-- read the data from the address of the next position of player 1
 				state_vga   				<= "111";
 				address_fsm 					<= position_1(9 downto 0);
-				e_read_memory_0				<= '1';
-				d_read_memory_0				<= read_data_fsm;
+				e_read_memory				<= '1';
+				d_read_memory				<= read_data_fsm;
 				read_enable_fsm				<= '1';
 
 				-- wait till the memory module is done with processing the information to go to the next state: 'check_collision'
 				if (mem_com_ready = '1') then					
-					new_state <= write_memory_player_1; 
+					new_state <= check_jump_1; 
 				else 
 					new_state <= read1_memory_player_1;
 				end if;
 		
+
+			when check_jump_1 =>
+				state_vga   				<= "111";
+				
+				--check to switch layers
+				--d_next_layer_0 is generated in the process for next position
+				e_next_layer_1	<= '1';
+				
+				--checking for the border
+				--d_border_0 is generated in the process for next position
+				e_border_1 <= '1';
+				
+				new_state <= write_memory_player_1; 
 
 			when write_memory_player_1 =>
 				-- send to the memory module the wall shape of player 1 on the address of its position
@@ -531,14 +678,14 @@ create_next_state: 	process (state, new_state, reset, input, busy, read_memory, 
 				write_enable 				<= '1';
 				address_fsm				<= position_1(9 downto 0);
 
-				if (position_1 (10) = '0') then
-					write_memory(7 downto 4) 		<= read_memory_0(7 downto 4);
+				if (layer_1 = '0') then
+					write_memory(7 downto 4) 		<= read_memory(7 downto 4);
 					write_memory(3) 			<= '1';
 					write_memory(2 downto 0) 		<= wallshape_1;
 				else 
 					write_memory(7) 			<= '1';
 					write_memory(6 downto 4) 		<= wallshape_1;
-					write_memory(3 downto 0) 		<= read_memory_0(3 downto 0);
+					write_memory(3 downto 0) 		<= read_memory(3 downto 0);
 				end if;
 				
 				-- wait till the memory is finished before going to the next state 'change_data'
