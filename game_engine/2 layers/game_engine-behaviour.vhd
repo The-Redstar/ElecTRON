@@ -23,8 +23,8 @@ architecture behaviour of game_engine is
 	signal d_player_0_state, d_player_1_state: std_logic_vector (1 downto 0);
 	signal e_position_0, e_position_1, e_read_data_mem, e_direction_0, e_direction_1, e_next_direction_0, e_next_direction_1, e_player_0_state, e_player_1_state: std_logic;
 	--signals for memory communication
-	signal read_data_mem, read_data_fsm, read_data_out, write_data_mem : std_logic_vector(7 downto 0);
-        signal write_data_fsm, write_enable_fsm, clear_fsm, read_enable_fsm, mem_com_ready, clear_mem, write_enable_mem   : std_logic;	
+	signal read_data_mem, read_data_fsm, write_data_mem : std_logic_vector(7 downto 0);
+    signal write_data_fsm, write_enable_fsm, clear_fsm, read_enable_fsm, mem_com_ready, clear_mem, write_enable_mem   : std_logic;	
 	signal address_fsm, address_mem   	   : std_logic_vector(9 downto 0);
 	--signals for busy counter
 	signal busy_counter_reset: std_logic;
@@ -166,23 +166,25 @@ counter: busy_counter port map (clk => clk,
 			busy => busy,
 			busy_count => unsigned_busy_count);
 
-mem_com: memory_communication port map ( clk => clk,
-					reset => reset,
-					address_fsm => address_fsm,
-					read_data_fsm => read_data_fsm, 
-					write_enable_fsm => write_enable_fsm,
-					read_enable_fsm => read_enable_fsm,
-					clear_fsm => clear_fsm,
-					write_data_fsm => write_data_fsm,
-					memory_ready => memory_ready,
-					read_data_mem => read_memory,
-					mem_com_ready => mem_com_ready,
-					read_data_fsm => read_data_fsm,
-					go_to => go_to,
-					clear_mem => clear_memory,
-					write_enable_mem => write_enable,
-					write_data_mem => write_memory,
-					address_mem => address);
+mem_com: memory_communication port map (
+					--in
+					clk 				=> clk,
+					reset 				=> reset,
+					address_fsm 		=> address_fsm,
+					write_enable_fsm 	=> write_enable_fsm,
+					read_enable_fsm 	=> read_enable_fsm,
+					clear_fsm 			=> clear_fsm,
+					write_data_fsm 		=> write_data_fsm,
+					memory_ready 		=> memory_ready,
+					read_data_mem 		=> read_memory,
+					--out
+					mem_com_ready 		=> mem_com_ready,
+					read_data_fsm 		=> read_data_fsm,
+					go_to 				=> go_to,
+					clear_mem 			=> clear_memory,
+					write_enable_mem 	=> write_enable,
+					write_data_mem 		=> write_memory,
+					address_mem 		=> address);
 		
 -- outputs from the register to the graphics engine			
 position_0_vga (9 downto 0) <= position_0;
@@ -433,7 +435,7 @@ collision: process (clk)
 	end process;
 
 
-create_next_state: 	process (state, new_state, reset, input, busy, read_data_mem, memory_ready, clk, unsigned_busy_count, direction_0, direction_1, next_direction_0, next_direction_1, position_0, position_1, next_position_0, next_position_1, read_data_mem, player_0_state, player_1_state, e_position_0, e_position_1, e_read_data_mem, e_direction_0, e_direction_1, e_next_direction_0, e_next_direction_1, e_player_0_state, e_player_1_state )
+create_next_state: 	process (state, new_state, reset, input, busy, read_data_mem, memory_ready, clk, unsigned_busy_count, direction_0, direction_1, next_direction_0, next_direction_1, position_0, position_1, next_position_0, next_position_1, player_0_state, player_1_state, e_position_0, e_position_1, e_read_data_mem, e_direction_0, e_direction_1, e_next_direction_0, e_next_direction_1, e_player_0_state, e_player_1_state )
 	begin
 
 		state_vga 				<= "000";
