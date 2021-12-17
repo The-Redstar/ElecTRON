@@ -416,26 +416,6 @@ position: 	process (clk, next_direction_0, next_direction_1, position_0, positio
 		end if;
 	end process;
 
-<<<<<<< HEAD
-=======
-check_border: 	process (clk, border, next_direction_0, next_position_0, next_position_1)
-	begin
-		-- check if player 1 collides with a border
-		if (((border(3) = '1') and (next_direction_0 = "01")) or ((border(2) = '1') and (next_direction_0 = "00")) or ((border(1) = '1') and (next_direction_0 = "11")) or ((border(0) = '1') and (next_direction_0 = "10"))) then 
-			border_0 <= '1';
-		else
-			border_0 <= '0';
-		end if;
-
-		-- check if player 1 collides with a border
-		if (((border(7) = '1') and (next_direction_0 = "01")) or ((border(6) = '1') and (next_direction_0 = "00")) or ((border(5) = '1') and (next_direction_0 = "11")) or ((border(4) = '1') and (next_direction_0 = "10"))) then 
-			border_1 <= '1';
-		else
-			border_1 <= '0';
-		end if;
-
-	end process;
->>>>>>> 496cb0ffece5d6923babbad85d9880dc0b699fc6
 
 collision: process (clk)
 	begin
