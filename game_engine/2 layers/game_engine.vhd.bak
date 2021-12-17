@@ -6,6 +6,7 @@ entity game_engine is
    port(clk                : in  std_logic;
         reset              : in  std_logic;
         input              : in  std_logic_vector(3 downto 0);
+	select_button	: in std_logic;	
         busy               : in  std_logic;
         read_memory        : in  std_logic_vector(7 downto 0);
         memory_ready       : in  std_logic;
@@ -17,10 +18,6 @@ entity game_engine is
         address            : out std_logic_vector(9 downto 0);
         position_0_vga     : out std_logic_vector(10 downto 0);
         position_1_vga     : out std_logic_vector(10 downto 0);
-	address_grid_border_0: out std_logic_vector(10 downto 0);
-	address_grid_border_1: out std_logic_vector(10 downto 0);
-	address_grid_ramp_0  : out std_logic_vector(10 downto 0);
-	address_grid_ramp_1  : out std_logic_vector(10 downto 0);
         direction_0_vga    : out std_logic_vector(1 downto 0);
         direction_1_vga    : out std_logic_vector(1 downto 0);
         player_state_0_vga : out std_logic_vector(1 downto 0);
