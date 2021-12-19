@@ -20,7 +20,7 @@ architecture behaviour of game_engine is
 	signal player_0_state, player_1_state, d_player_0_state, d_player_1_state: std_logic_vector (1 downto 0);
 	signal e_position_0, e_position_1, e_read_data_reg, e_direction_0, e_direction_1, e_next_direction_0, e_next_direction_1, e_player_0_state, e_player_1_state: std_logic;
 	--signals for memory communication
-	signal read_data_mem, read_data_fsm, write_data_fsm, write_data_mem : std_logic_vector(7 downto 0);
+	signal read_data_fsm, write_data_fsm, write_data_mem : std_logic_vector(7 downto 0);
     signal write_enable_fsm, clear_fsm, read_enable_fsm, mem_com_ready, clear_mem, write_enable_mem   : std_logic;	
 	signal address_fsm, address_mem   	   : std_logic_vector(9 downto 0);
 	--signals for busy counter
@@ -211,7 +211,7 @@ updates: 	process (clk)
 		end if;
 	end process;
 
-wallshape: 	process (clk, direction_0, direction_1, next_direction_0, next_direction_1)
+wallshape: 	process (direction_0, direction_1, next_direction_0, next_direction_1)
 	begin
 		crash_itself_0 <= '0';
 		crash_itself_1 <= '0';
@@ -263,7 +263,7 @@ wallshape: 	process (clk, direction_0, direction_1, next_direction_0, next_direc
 				end if;
 	end process;
 
-position: 	process (clk, next_direction_0, next_direction_1, position_0, position_1, layer_0, layer_1, ramp, border) --creating next_position, checking for jumps and the border
+position: 	process (next_direction_0, next_direction_1, position_0, position_1, layer_0, layer_1, ramp, border) --creating next_position, checking for jumps and the border
 	begin
 		d_next_layer_0 <= layer_0;
 		d_next_layer_1 <= layer_1;
@@ -422,7 +422,7 @@ position: 	process (clk, next_direction_0, next_direction_1, position_0, positio
 	end process;
 
 
-collision: process (clk)
+collision: process (next_position_0, next_position_1, position_0, position_1)
 	begin
 		collision_middle <= '0';
 		collision_head <= '0';
@@ -434,7 +434,7 @@ collision: process (clk)
 	end process;
 
 
-create_next_state: 	process (state, new_state, reset, input, busy, read_data_mem, memory_ready, clk, unsigned_busy_count, direction_0, direction_1, next_direction_0, next_direction_1, position_0, position_1, next_position_0, next_position_1, player_0_state, player_1_state, e_position_0, e_position_1, e_read_data_reg, e_direction_0, e_direction_1, e_next_direction_0, e_next_direction_1, e_player_0_state, e_player_1_state )
+create_next_state: 	process (state, new_state, reset, input, busy, clk, unsigned_busy_count, direction_0, direction_1, next_direction_0, next_direction_1, position_0, position_1, next_position_0, next_position_1, player_0_state, player_1_state, mem_com_ready, select_button, position_grid_0, position_grid_1, read_data_fsm, layer_0, layer_1, read_data_reg, wallshape_0, wallshape_1, next_layer_0, next_layer_1, border_0, border_1, collision_head, collision_middle, crash_itself_0, crash_itself_1)
 	begin
 
 		state_vga 				<= "000";
@@ -534,7 +534,7 @@ create_next_state: 	process (state, new_state, reset, input, busy, read_data_mem
 				d_layer_0					<= position_grid_0 (10);
 				d_layer_1					<= position_grid_1 (10);
 				
-				state_vga 				<= "101";
+				state_vga 					<= "101";
 				e_player_0_state			<= '1';
 				e_player_1_state			<= '1';
 				-- when player 0 is ready to play the next state is 'player_0_ready'
@@ -680,7 +680,7 @@ create_next_state: 	process (state, new_state, reset, input, busy, read_data_mem
 				-- send to the memory module the wall shape of player 1 on the address of its position
 				state_vga   				<= "111";
 				write_enable 				<= '1';
-				address_fsm				<= position_1(9 downto 0);
+				address_fsm					<= position_1(9 downto 0);
 
 				if (layer_1 = '0') then
 					write_data_fsm(7 downto 4) 		<= read_data_reg(7 downto 4);
