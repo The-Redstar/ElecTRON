@@ -66,14 +66,9 @@ begin
 			
 		when write_finished =>
 			mem_com_ready	<= '1';
-			
-			--waiting for fsm
-			if (write_enable_fsm = '0') then
-				new_state <= reset_state;
-			else
-				new_state <= write_finished;
-			end if;
 		
+			new_state <= reset_state;
+			
 		when want_to_read =>
 			go_to			<= '1';
 			address_mem		<= address_fsm;
@@ -81,7 +76,7 @@ begin
 			
 		when read_wait =>
 			address_mem		<= address_fsm;
-			
+			read_data_fsm	<= read_data_mem;
 			--waiting for memory
 			if (memory_ready = '1') then
 				new_state <= read_finished;
@@ -92,13 +87,8 @@ begin
 		when read_finished =>
 			mem_com_ready	<= '1';
 			read_data_fsm	<= read_data_mem;
+			new_state <= reset_state;
 			
-			--waiting for fsm
-			if (read_enable_fsm = '0') then
-				new_state <= reset_state;
-			else
-				new_state <= read_finished;
-			end if;
 			
 		when want_to_clear =>
 			clear_mem		<= '1';

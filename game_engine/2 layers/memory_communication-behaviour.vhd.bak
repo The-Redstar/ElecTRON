@@ -30,7 +30,7 @@ begin
 	go_to			<= '0';
 	clear_mem		<= '0';
 	write_enable_mem<= '0';
-	write_data_mem	<= "0000000000";
+	write_data_mem	<= "00000000";
 	address_mem		<= "0000000000";
 	
 	case state is
@@ -81,7 +81,7 @@ begin
 			
 		when read_wait =>
 			address_mem		<= address_fsm;
-			
+			read_data_fsm	<= read_data_mem;
 			--waiting for memory
 			if (memory_ready = '1') then
 				new_state <= read_finished;
@@ -92,13 +92,8 @@ begin
 		when read_finished =>
 			mem_com_ready	<= '1';
 			read_data_fsm	<= read_data_mem;
+			new_state <= reset_state;
 			
-			--waiting for fsm
-			if (read_enable_fsm = '0') then
-				new_state <= reset_state;
-			else
-				new_state <= read_finished;
-			end if;
 			
 		when want_to_clear =>
 			clear_mem		<= '1';
@@ -117,12 +112,8 @@ begin
 		when clear_finished =>
 			mem_com_ready	<= '1';
 			
-			--waiting for fsm
-			if (clear_fsm = '0') then
-				new_state <= reset_state;
-			else
-				new_state <= clear_finished;
-			end if;
+			new_state <= reset_state;
+			
 	end case;
 end process;
 end architecture;

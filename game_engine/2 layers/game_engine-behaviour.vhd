@@ -20,9 +20,9 @@ architecture behaviour of game_engine is
 	signal player_0_state, player_1_state, d_player_0_state, d_player_1_state: std_logic_vector (1 downto 0);
 	signal e_position_0, e_position_1, e_read_data_reg, e_direction_0, e_direction_1, e_next_direction_0, e_next_direction_1, e_player_0_state, e_player_1_state: std_logic;
 	--signals for memory communication
-	signal read_data_fsm, write_data_fsm, write_data_mem : std_logic_vector(7 downto 0);
-    signal write_enable_fsm, clear_fsm, read_enable_fsm, mem_com_ready, clear_mem, write_enable_mem   : std_logic;	
-	signal address_fsm, address_mem   	   : std_logic_vector(9 downto 0);
+	signal read_data_fsm, write_data_fsm : std_logic_vector(7 downto 0);
+    signal write_enable_fsm, clear_fsm, read_enable_fsm, mem_com_ready : std_logic;	
+	signal address_fsm 	   : std_logic_vector(9 downto 0);
 	--signals for busy counter
 	signal busy_counter_reset: std_logic;
 	signal unsigned_busy_count: std_logic_vector(6 downto 0);
@@ -437,13 +437,8 @@ collision: process (next_position_0, next_position_1, position_0, position_1)
 create_next_state: 	process (state, new_state, reset, input, busy, clk, unsigned_busy_count, direction_0, direction_1, next_direction_0, next_direction_1, position_0, position_1, next_position_0, next_position_1, player_0_state, player_1_state, mem_com_ready, select_button, position_grid_0, position_grid_1, read_data_fsm, layer_0, layer_1, read_data_reg, wallshape_0, wallshape_1, next_layer_0, next_layer_1, border_0, border_1, collision_head, collision_middle, crash_itself_0, crash_itself_1)
 	begin
 
-		state_vga 				<= "000";
-		write_enable 				<= '0';
-		write_memory 				<= "00000000";
-		address 				<= "0000000000";			  
-		go_to					<= '0';
+		state_vga 				<= "000";		  
 		busy_counter_reset			<= '0';
-		clear_memory				<= '0';
 		
 		--register signals
 		e_position_0				<= '0';
@@ -476,9 +471,13 @@ create_next_state: 	process (state, new_state, reset, input, busy, clk, unsigned
 		d_player_0_state			<= (others => '0');
 		d_player_1_state			<= (others => '0');
 		
-		clear_mem	     			<= '0';
-        write_data_mem    			<= (others => '0');
-
+		
+		address_fsm	   			<= (others => '0');
+		write_enable_fsm   			<= '0';
+        	read_enable_fsm    			<= '0';
+		clear_fsm         			<= '0';
+        	write_data_fsm     			<= (others => '0');
+		
 
 
 		case state is
@@ -559,7 +558,7 @@ create_next_state: 	process (state, new_state, reset, input, busy, clk, unsigned
 			when before_start_state =>
 			--wait a bit more then two seconds before the game starts
 				state_vga 				<= "111";
-				if (unsigned( unsigned_busy_count) >= 127) then
+				if (unsigned( unsigned_busy_count) >= 12) then --moet nog terug gezet worden naar 127
 					new_state <= busy_reset;
 				else
 					new_state <= before_start_state;
@@ -679,7 +678,7 @@ create_next_state: 	process (state, new_state, reset, input, busy, clk, unsigned
 			when write_memory_player_1 =>
 				-- send to the memory module the wall shape of player 1 on the address of its position
 				state_vga   				<= "111";
-				write_enable 				<= '1';
+				write_enable_fsm 				<= '1';
 				address_fsm					<= position_1(9 downto 0);
 
 				if (layer_1 = '0') then
@@ -710,11 +709,11 @@ create_next_state: 	process (state, new_state, reset, input, busy, clk, unsigned
 					-- first check which layer player 0 is on, then check if there is already data on that layer at that address
 					-- when there is already data on the next position of player 0, player 0 collides against wall
 					if (next_layer_0 = '0') then
-						if (not read_data_fsm (3 downto 0) = "0000") then
+						if (read_data_fsm (3 downto 0) /= "0000") then
 							e_player_0_state <= '1';
 						end if;
 					elsif (next_layer_0 = '1') then
-						if (not read_data_fsm (7 downto 4) = "0000") then
+						if (read_data_fsm (7 downto 4) /= "0000") then
 							e_player_0_state <= '1';
 						end if;
 					end if;
@@ -731,15 +730,15 @@ create_next_state: 	process (state, new_state, reset, input, busy, clk, unsigned
 				read_enable_fsm				<= '1';
 
 				-- wait till the memory module is done with processing the information to go to the next state: 'check_collision'
-				if (memory_ready = '1') then
+				if (mem_com_ready = '1') then
 					-- first check which layer player 1 is on, then check if there is already data on that layer at that address
 					-- when there is already data on the next position of player 1, player 1 collides against wall					
 					if (next_layer_1 = '0') then
-						if (not read_data_fsm (3 downto 0) = "0000") then
+						if (read_data_fsm (3 downto 0) /= "0000") then
 							e_player_1_state <= '1';
 						end if;
 					elsif (next_layer_1 = '1') then
-						if (not read_data_fsm (7 downto 4) = "0000") then
+						if (read_data_fsm (7 downto 4) /= "0000") then
 							e_player_1_state <= '1';
 						end if;
 					end if;					
@@ -769,7 +768,9 @@ create_next_state: 	process (state, new_state, reset, input, busy, clk, unsigned
 				elsif ((crash_itself_1 = '1') or (collision_middle = '1')) then --player crashed against wall which is saved in the memory or wants to go in the opposite direction it went previous
 					e_player_1_state <= '1';
 				end if;
-						 
+
+			new_state <= change_data;
+					 
 
 			when change_data =>
 				-- change the data that is going to the graphics engine and update data in the register
@@ -782,13 +783,13 @@ create_next_state: 	process (state, new_state, reset, input, busy, clk, unsigned
 				d_direction_1 <= next_direction_1;
 				
 				-- if player 0 collides against a border or wants to go in the opposite direction of it was going do not change its position, otherwise do
-				if ((not player_0_state = "01") and ( not crash_itself_0 = '1')) then
+				if (( player_0_state /= "01") and (crash_itself_0 = '0')) then
 					e_position_0 <= '1';
 					d_position_0 <= next_position_0;
 				end if;
 					
 				-- if player 1 collides against a border or wants to go in the opposite direction of it was going do not change its position, otherwise do
-				if ((not player_1_state = "01") and (not crash_itself_0 = '1')) then
+				if ((player_1_state /= "01") and (crash_itself_0 = '0')) then
 					e_position_1 <= '1';
 					d_position_1 <= next_position_1;
 				end if; 
