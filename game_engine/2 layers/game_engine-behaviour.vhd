@@ -495,14 +495,12 @@ create_next_state: 	process (state, new_state, reset, input, busy, clk, unsigned
 				
 				-- initialize the position, direction and state of the players
 				
-				e_direction_0				<= '1';
-				e_direction_1				<= '1';
+				
 				e_player_0_state			<= '1';
 				e_player_1_state			<= '1';
 				
 				
-				d_direction_0				<= "00";
-				d_direction_1				<= "00";
+				
 				d_player_0_state			<= "10";
 				d_player_1_state			<= "10";
 				
@@ -536,6 +534,11 @@ create_next_state: 	process (state, new_state, reset, input, busy, clk, unsigned
 				state_vga 					<= "101";
 				e_player_0_state			<= '1';
 				e_player_1_state			<= '1';
+				e_direction_0				<= '1';
+				e_direction_1				<= '1';
+				d_direction_0				<= direction_grid_0;
+				d_direction_1				<= direction_grid_1;
+
 				-- when player 0 is ready to play the next state is 'player_0_ready'
 				if ((input(1 downto 0) = direction_0) and (input(3 downto 2) = direction_1) and (select_button = '1')) then
 					new_state 				<= before_start_state;

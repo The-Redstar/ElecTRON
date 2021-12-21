@@ -172,25 +172,7 @@ busy <= '1' after 0 ns,
 read_memory <= "00000000" after 0 ns;
 
 
-memory_ready <= '1' after 0 ns,
-	'0' after 120 ns,
-	'1' after 220 ns,
-	'0' after 3600 ns,
-	'1' after 3700 ns,
-	'0' after 3760 ns,
-	'1' after 3860 ns,
-	'0' after 3960 ns,
-	'1' after 4060 ns,
-	'0' after 4120 ns,
-	'1' after 4220 ns,
-	'0' after 8080 ns,
-	'1' after 8180 ns,
-	'0' after 8240 ns,
-	'1' after 8340 ns,
-	'0' after 8440 ns,
-	'1' after 8540 ns,
-	'0' after 8600 ns,
-	'1' after 8700 ns;
-
+memory_ready <= '1' after 0 ns;
+	
 			
 end architecture structural;

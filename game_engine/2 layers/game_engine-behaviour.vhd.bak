@@ -709,11 +709,11 @@ create_next_state: 	process (state, new_state, reset, input, busy, clk, unsigned
 					-- first check which layer player 0 is on, then check if there is already data on that layer at that address
 					-- when there is already data on the next position of player 0, player 0 collides against wall
 					if (next_layer_0 = '0') then
-						if (not read_data_fsm (3 downto 0) = "0000") then
+						if (read_data_fsm (3 downto 0) /= "0000") then
 							e_player_0_state <= '1';
 						end if;
 					elsif (next_layer_0 = '1') then
-						if (not read_data_fsm (7 downto 4) = "0000") then
+						if (read_data_fsm (7 downto 4) /= "0000") then
 							e_player_0_state <= '1';
 						end if;
 					end if;
@@ -734,11 +734,11 @@ create_next_state: 	process (state, new_state, reset, input, busy, clk, unsigned
 					-- first check which layer player 1 is on, then check if there is already data on that layer at that address
 					-- when there is already data on the next position of player 1, player 1 collides against wall					
 					if (next_layer_1 = '0') then
-						if (not read_data_fsm (3 downto 0) = "0000") then
+						if (read_data_fsm (3 downto 0) /= "0000") then
 							e_player_1_state <= '1';
 						end if;
 					elsif (next_layer_1 = '1') then
-						if (not read_data_fsm (7 downto 4) = "0000") then
+						if (read_data_fsm (7 downto 4) /= "0000") then
 							e_player_1_state <= '1';
 						end if;
 					end if;					
