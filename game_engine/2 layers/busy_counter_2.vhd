@@ -80,6 +80,7 @@ begin
 
 			when others =>
 				next_busy_counter_state <= reset;
+				next_unsigned_busy_count <= (others => '0');
 		end case;
 	end process;
 	busy_count <= std_logic_vector(unsigned_busy_count);
