@@ -77,6 +77,9 @@ begin
 				
 				-- the next state is 'busy_low'
 				next_busy_counter_state <= busy_low;
+
+			when others =>
+				next_busy_counter_state <= reset;
 		end case;
 	end process;
 	busy_count <= std_logic_vector(unsigned_busy_count);

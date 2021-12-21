@@ -7,7 +7,7 @@ entity busy_counter is
         global_reset 	  : in  std_logic;
 		game_engine_reset : in  std_logic;
         busy              : in  std_logic;
-        busy_count        : out std_logic_vector(4 downto 0));
+        busy_count        : out std_logic_vector(6 downto 0));
 end busy_counter;
 
 library IEEE;
@@ -19,7 +19,7 @@ architecture behaviour of busy_counter is
 	-- implemeted as a FSM with the count increasing when busy changes from high to low
 	type busy_counter_state_type is (reset, busy_low, busy_high, busy_high_to_low);
 	signal busy_counter_state, next_busy_counter_state: busy_counter_state_type;
-	signal unsigned_busy_count, next_unsigned_busy_count: unsigned (4 downto 0);
+	signal unsigned_busy_count, next_unsigned_busy_count: unsigned (6 downto 0);
 
 begin
 
@@ -77,6 +77,9 @@ begin
 				
 				-- the next state is 'busy_low'
 				next_busy_counter_state <= busy_low;
+
+			when others =>
+				next_busy_counter_state <= reset_state
 		end case;
 	end process;
 	busy_count <= std_logic_vector(unsigned_busy_count);
