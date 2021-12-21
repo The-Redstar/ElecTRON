@@ -120,7 +120,7 @@ read_memory <=	"00000000" after 0 ns,
 		"00000000" after 650 ns,
 		"00000001" after 1720 ns,
 		"00000001" after 1800 ns,
-		"00000001" after 2720 ns;
+		"00000000" after 2720 ns;
 
 memory_ready <= '1' after 0 ns;
 				
