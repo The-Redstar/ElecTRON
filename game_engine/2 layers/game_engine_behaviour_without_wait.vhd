@@ -1,4 +1,3 @@
---game engine without wait
  library IEEE;
 use IEEE.std_logic_1164.ALL;
 use ieee.numeric_std.all;
@@ -542,7 +541,7 @@ create_next_state: 	process (state, new_state, reset, input, busy, clk, unsigned
 
 				-- when player 0 is ready to play the next state is 'player_0_ready'
 				if ((input(1 downto 0) = direction_0) and (input(3 downto 2) = direction_1) and (select_button = '1')) then
-					new_state 				<= read_inputs;
+					new_state 				<= before_start_state;
 				else 
 					new_state				<= get_ready;
 				end if;
@@ -562,7 +561,7 @@ create_next_state: 	process (state, new_state, reset, input, busy, clk, unsigned
 			when before_start_state =>
 			--wait a bit more then two seconds before the game starts
 				state_vga 				<= "111";
-				if (unsigned( unsigned_busy_count) >= 12) then --moet nog terug gezet worden naar 127
+				if (unsigned( unsigned_busy_count) >= 127) then 
 					new_state <= busy_reset;
 				else
 					new_state <= before_start_state;
@@ -790,12 +789,16 @@ create_next_state: 	process (state, new_state, reset, input, busy, clk, unsigned
 				if (( player_0_state /= "01") and (crash_itself_0 = '0')) then
 					e_position_0 <= '1';
 					d_position_0 <= next_position_0;
+					e_layer_0	 <= '1';
+					d_layer_0	 <= next_layer_0;
 				end if;
 					
 				-- if player 1 collides against a border or wants to go in the opposite direction of it was going do not change its position, otherwise do
 				if ((player_1_state /= "01") and (crash_itself_0 = '0')) then
 					e_position_1 <= '1';
 					d_position_1 <= next_position_1;
+					e_layer_1	 <= '1';
+					d_layer_1	 <= next_layer_1;
 				end if; 
 				
 				-- check_who_won is the next state
@@ -807,7 +810,7 @@ create_next_state: 	process (state, new_state, reset, input, busy, clk, unsigned
 				
 				-- if both players are still playing, go back to the 'wait_state'
 				if ((player_0_state = "11") and (player_1_state = "11")) then
-					new_state <= read_inputs;
+					new_state <= wait_state;
 				-- if only player 0 is still playing, player 0 won
 				elsif (player_0_state = "11") then			
 					new_state <= player_0_won;
@@ -826,7 +829,7 @@ create_next_state: 	process (state, new_state, reset, input, busy, clk, unsigned
 				if (select_button = '1') then 
 					new_state <= reset_state;
 				else
-					new_state <= player_0_won;
+					new_state <= tie;
 				end if;
 	
 			when player_1_won =>
@@ -845,7 +848,7 @@ create_next_state: 	process (state, new_state, reset, input, busy, clk, unsigned
 				if (select_button = '1') then 
 					new_state <= reset_state;
 				else
-					new_state <= tie;
+					new_state <= player_0_won;
 				end if;
 		end case;
 	end process;
