@@ -111,7 +111,7 @@ reset <= 	'1' after 0 ns,
 			'0' after 60 ns;
 
 input <= 	"0000" after 0 ns, 
-			"1000" after 800 ns;
+			"1010" after 800 ns;
 
 -- in reality the busy signal is not always '0', however, since it is shown in another simulation that the code concerning the busy signal works, it is kept '0' for simplicity
 -- this means that in the behavioural code of the game_engine the wait_state is skipped

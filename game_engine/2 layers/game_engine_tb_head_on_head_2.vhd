@@ -94,7 +94,8 @@ begin
 				);
 ramp <= "00000000" after 0 ns;
 border <= "00000000" after 0 ns;
-select_button <= '1' after 0 ns;
+select_button <= '1' after 0 ns,
+		'0' after 800 ns;
 position_grid_0 <=  "01110111001" after 0 ns;
 position_grid_1 <=  "01110100100" after 0 ns;
 direction_grid_0 <= "00" after 0 ns;
