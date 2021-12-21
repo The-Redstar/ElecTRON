@@ -16,7 +16,7 @@ begin
 		end if;
 	end process;
 
-	mem_fsm : process(state, we_in, goto_in, address_in, write_in, cur_x, cur_y, cur_w)
+	mem_fsm : process(state, we_in, goto_in, address_in, write_in, cur_x, cur_y, cur_w, busy_in)
 	begin
 		case state is
 			when sleep =>

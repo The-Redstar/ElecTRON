@@ -16,7 +16,7 @@ begin
 		end if;
 	end process;
 
-	clkext_fsm : process(state, incr_in)
+	clkext_fsm : process(state, incr_in, busy_in)
 	begin
 		case state is
 			when sleep =>

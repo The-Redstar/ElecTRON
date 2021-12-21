@@ -16,7 +16,7 @@ begin
 		end if;
 	end process;
 
-	memclear_fsm : process(state, clear_mem, cur_x, cur_y)
+	memclear_fsm : process(state, clear_mem, cur_x, cur_y, busy_in)
 	begin
 		case state is
 			when sleep =>
