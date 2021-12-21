@@ -314,13 +314,13 @@ sdb: sidebar port map(
 			sidebar_dir<=player0_dir;
 			sidebar_ready<=player0_state(0);
 			sidebar_boost<='0';
-			sidebar_x<=std_logic_vector(unsigned(v_vec(6 downto 0))-to_unsigned(B+C,7)); --take 7 LSB and shift to start of sidebar
+			sidebar_x<=std_logic_vector(unsigned(h_vec(6 downto 0))-to_unsigned(B+C,7)); --take 7 LSB and shift to start of sidebar
 		else --player1
 			sidebar_player<='1';
 			sidebar_dir<=player1_dir;
 			sidebar_ready<=player1_state(0);
 			sidebar_boost<='0';
-			sidebar_x<=std_logic_vector(unsigned(v_vec(6 downto 0))-to_unsigned(B+C+R,7)); --take 7 LSB and shift to start of sidebar
+			sidebar_x<=std_logic_vector(unsigned(h_vec(6 downto 0))-to_unsigned(B+C+80+R,7)); --take 7 LSB and shift to start of sidebar
 		end if;
 		sidebar_y<=v_vec(8 downto 0);
 	end process;
@@ -356,7 +356,7 @@ sdb: sidebar port map(
 			if px<R then
 				--depending on mode
 				if game_state="000" then
-					next_color<="0000";
+					next_color<="1111";
 					
 					--homescreen!
 					

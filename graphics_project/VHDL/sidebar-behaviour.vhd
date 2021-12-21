@@ -13,7 +13,7 @@ architecture behaviour of sidebar is
 	
 	signal x16	: std_logic_vector(2 downto 0); -- scale /16
 	signal y16	: std_logic_vector(4 downto 0); -- scale /16
-	signal x4	: std_logic_vector(4 downto 0); -- scale /16
+--	signal x4	: std_logic_vector(4 downto 0); -- scale /16
 	signal y4	: std_logic_vector(6 downto 0); -- scale /16
 	
 	signal player_mask : std_logic_vector(3 downto 0); --mask that is either 1100 or 0011, for easy color selection
@@ -37,7 +37,7 @@ begin
 	--scaled and offset signals
 	x16 <= x(6 downto 4);
 	y16 <= y(8 downto 4);
-	x4 <= x(6 downto 2);
+--	x4 <= x(6 downto 2);
 	y4 <= y(8 downto 2);
 	
 	sprite_x_o12 <= std_logic_vector(unsigned(x(6 downto 2))-to_unsigned(3,5));
@@ -100,7 +100,7 @@ begin
 --	end process;
 	
 	--color selection process
-	process(x,y,x16,y16,dir,sprite_x_o12, sprite_x_o10, sprite_x_o2, player, mode, ready, boost, player_mask)
+	process(x,y,x16,y16,y4,dir,sprite_x_o12, sprite_x_o10, sprite_x_o2, player, mode, ready, boost, player_mask)
 		variable input_pixel,input_active_pixel	: boolean;
 	begin
 		
@@ -171,7 +171,7 @@ begin
 			color<=player_mask;
 		elsif (unsigned(x16)=to_unsigned(3,3) and unsigned(y16)=to_unsigned(27,5)) and (input_pixel or (input_active_pixel and dir="11")) then
 			color<=player_mask;
-		elsif (unsigned(x16)=to_unsigned(2,3) and unsigned(y16)=to_unsigned(26,5)) and (input_pixel or (input_active_pixel and dir="10")) then
+		elsif (unsigned(x16)=to_unsigned(2,3) and unsigned(y16)=to_unsigned(28,5)) and (input_pixel or (input_active_pixel and dir="10")) then
 			color<=player_mask;
 		end if;
 			

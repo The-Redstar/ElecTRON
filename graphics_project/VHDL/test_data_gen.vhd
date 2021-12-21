@@ -16,7 +16,9 @@ entity test_data_gen is
         player1_dir   : out std_logic_vector(1 downto 0);
         player0_state : out std_logic_vector(1 downto 0);
         player1_state : out std_logic_vector(1 downto 0);
-        game_state    : out std_logic_vector(2 downto 0)
+        game_state    : out std_logic_vector(2 downto 0);
+        current_x     : out std_logic_vector(4 downto 0);
+        current_y     : out std_logic_vector(4 downto 0)
 	);
 end test_data_gen;
 

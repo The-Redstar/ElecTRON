@@ -12,6 +12,8 @@ begin
 
 	x_vec<=std_logic_vector(x);
 	y_vec<=std_logic_vector(y);
+	current_x<=x_vec;
+	current_y<=y_vec;
 
 	process(clk)
 	begin
@@ -27,7 +29,7 @@ begin
 	end process;
 
 
-	process(x_incr,y_incr)
+	process(x_incr,y_incr,x,y)
 	begin
 		if x_incr='1' then
 			next_x<=x+1;
@@ -42,7 +44,7 @@ begin
 		end if;
 	end process;
 	
-	process(x,y)
+	process(x,y,x_vec)
 	begin
 		if y=to_unsigned(0,5) then --empty
 			data   <="00000000";
