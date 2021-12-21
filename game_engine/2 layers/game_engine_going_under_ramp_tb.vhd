@@ -3,10 +3,10 @@ library IEEE;
 use IEEE.std_logic_1164.all;
 use ieee.numeric_std.all;
 
-entity game_engine_tb_going_under_border is
-end entity game_engine_tb_going_under_border;
+entity game_engine_going_under_border_tb is
+end entity game_engine_going_under_border_tb;
 
-architecture structural of game_engine_tb_going_under_border is
+architecture structural of game_engine_going_under_border_tb is
 
 	component game_engine is
 		port(clk                : in  std_logic;
