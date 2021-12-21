@@ -422,13 +422,13 @@ position: 	process (next_direction_0, next_direction_1, position_0, position_1, 
 	end process;
 
 
-collision: process (next_position_0, next_position_1, position_0, position_1)
+collision: process (next_position_0, next_position_1, position_0, position_1, layer_0, layer_1, next_layer_0, next_layer_1)
 	begin
 		collision_middle <= '0';
 		collision_head <= '0';
-		if (next_position_0 = next_position_1) then -- collide at eachother at middle of square
+		if ((next_position_0 = next_position_1) and (next_layer_0 = next_layer_1)) then -- collide at eachother at middle of square
 			 collision_middle <= '1';	
-		elsif (position_0 = next_position_1) and (position_1 = next_position_0) then -- collide at eachother at border			collision_head_0< = 
+		elsif ((position_0 = next_position_1) and (layer_0 = next_layer_1) and ((position_1 = next_position_0) and (layer_1 = next_layer_0)) then -- collide at eachother at border			collision_head_0< = 
 			collision_head <= '1';
 		end if;
 	end process;
@@ -561,7 +561,7 @@ create_next_state: 	process (state, new_state, reset, input, busy, clk, unsigned
 			when before_start_state =>
 			--wait a bit more then two seconds before the game starts
 				state_vga 				<= "111";
-				if (unsigned( unsigned_busy_count) >= 127) then 
+				if (unsigned( unsigned_busy_count) >= 12) then 
 					new_state <= busy_reset;
 				else
 					new_state <= before_start_state;
