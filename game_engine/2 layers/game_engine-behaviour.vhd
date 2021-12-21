@@ -789,12 +789,16 @@ create_next_state: 	process (state, new_state, reset, input, busy, clk, unsigned
 				if (( player_0_state /= "01") and (crash_itself_0 = '0')) then
 					e_position_0 <= '1';
 					d_position_0 <= next_position_0;
+					e_layer_0	 <= '1';
+					d_layer_0	 <= next_layer_0;
 				end if;
 					
 				-- if player 1 collides against a border or wants to go in the opposite direction of it was going do not change its position, otherwise do
 				if ((player_1_state /= "01") and (crash_itself_0 = '0')) then
 					e_position_1 <= '1';
 					d_position_1 <= next_position_1;
+					e_layer_1	 <= '1';
+					d_layer_1	 <= next_layer_1;
 				end if; 
 				
 				-- check_who_won is the next state
