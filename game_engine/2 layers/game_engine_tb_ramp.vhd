@@ -93,7 +93,7 @@ begin
 				);
 				
 				
-ramp <= "00000001" after 0 ns; --ramp to north on layer 0
+ramp <= "00000001" after 0 ns, "00100010" after 7400 ns; --ramp to north on layer 0
 	
 border <= "00000000" after 0 ns;
 select_button <= '1' after 0 ns;
@@ -111,7 +111,7 @@ reset <= '1' after 0 ns,
 
 input <= "0010" after 0 ns,
 	"0000" after 230 ns, -- goes to wait state
-	"0001" after 4000 ns;
+	"0101" after 4000 ns;
 
 -- normally the busy signal has a lower frequency, however for simulating the game_engine that takes to long
 -- therefore a higher frequency was used during the wait_state, once out of the wait_state the busy signal remains 0 for a while like with the real busy signal to go through all the other states

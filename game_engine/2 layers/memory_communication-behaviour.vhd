@@ -94,9 +94,7 @@ begin
 			clear_mem		<= '1';
 			new_state		<= clear_wait;
 			
-		when clear_wait =>
-			clear_mem		<= '1';
-			
+		when clear_wait =>			
 			--waiting for memory
 			if (memory_ready = '1') then
 				new_state <= clear_finished;
