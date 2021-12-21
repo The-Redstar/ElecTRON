@@ -28,11 +28,22 @@ architecture behaviour of graphics_top is
 	end component;
 	
 	component wall_decoder is
-	port(encoded	: in  std_logic_vector(2 downto 0);
-		north		: out std_logic;
-		east		: out std_logic;
-		south		: out std_logic;
-		west		: out std_logic);
+	port(	encoded	: in  std_logic_vector(2 downto 0);
+			north		: out std_logic;
+			east		: out std_logic;
+			south		: out std_logic;
+			west		: out std_logic);
+	end component;
+
+	component sidebar is
+	port(	x      : in  std_logic_vector(6 downto 0);
+			y      : in  std_logic_vector(8 downto 0);
+			player : in  std_logic;
+			mode   : in  std_logic_vector(2 downto 0);
+			ready  : in  std_logic;
+			boost  : in  std_logic;
+			dir    : in  std_logic_vector(1 downto 0);
+			color  : out std_logic_vector(3 downto 0));
 	end component;
 
 
@@ -40,6 +51,7 @@ architecture behaviour of graphics_top is
 
 	--VGA/timing signals
 	signal h_count, next_h_count, v_count, next_v_count:	unsigned(9 downto 0);
+	signal h_vec, v_vec:									std_logic_vector(9 downto 0);
 	signal h_count_x_component:								unsigned(5 downto 0);--6 msb
 	signal v_count_y_component:								unsigned(5 downto 0);--6 msb
 
@@ -53,8 +65,15 @@ architecture behaviour of graphics_top is
 	signal in_visible_y:									std_logic; --basically internal busy signal
 	signal in_visible_x:									std_logic;
 	
+	--sidebar
+	signal sidebar_x:										std_logic_vector(6 downto 0);
+	signal sidebar_y:										std_logic_vector(8 downto 0);
+	signal sidebar_player, sidebar_ready, sidebar_boost:	std_logic;
+	signal sidebar_dir:										std_logic_vector(1 downto 0);
+	
+	
 	--output
-	signal next_color,pixelator_color:						std_logic_vector(3 downto 0);
+	signal next_color,pixelator_color,sidebar_color:		std_logic_vector(3 downto 0);
 	
 
 
@@ -65,6 +84,10 @@ architecture behaviour of graphics_top is
 	signal walls:											std_logic_vector(7 downto 0);--walls; decoded data
 	
 	signal player0_en,player1_en:							std_logic;
+	
+	signal sidebar_player:									std_logic;
+	signal sidebar_dir:										std_logic_vector(1 downto 0);
+	signal sidebar_ready,sidebar_boost:						std_logic;
 	
 	
 
@@ -123,6 +146,17 @@ pxl: pixelator port map(
 		color=>pixelator_color
 	);
 
+sdb: sidebar port map(
+		x=>sidebar_x,
+		y=>sidebar_y,
+		player=>sidebar_player,
+		mode=>game_state,
+		ready=>sidebar_ready,
+		boost=>sidebar_boost,
+		dir=>sidebar_dir,
+		color=>sidebar_color
+	);
+
 
 --some useful values for coordinates and counting
 	dx<=h_count(3 downto 0); --4 lsb
@@ -135,7 +169,8 @@ pxl: pixelator port map(
 	y_vec<=std_logic_vector(y);
 	h_count_x_component<=h_count(9 downto 4); --when comparing multiples of 16 don't create comparison logic for the lower bits
 	v_count_y_component<=h_count(9 downto 4);
-
+	h_vec<=std_logic_vector(h_count);
+	v_vec<=std_logic_vector(v_count);
 
 --clocking process
 	process(clk)
@@ -222,7 +257,7 @@ pxl: pixelator port map(
 
 --memory access
 	--x_incr, pass data
-	process(dx, x, in_visible_y, data_synced, borders_synced, jumps_synced, data, borders, jumps,h_count_x_component)
+	process(dx, x, in_visible_y, data_synced, borders_synced, jumps_synced, data, borders, jumps,h_count_x_component, game_state)
 	begin
 		if dx=unsigned(std_logic_vector(to_signed(-1,4))) then
 			--pass data
@@ -243,10 +278,14 @@ pxl: pixelator port map(
 		
 			x_incr <= '0';
 		end if;
+		
+		if game_state="100" then --erasing memory, block output
+			x_incr <= '0';
+		end if;
 	end process;
 	
 	--y_incr/mem reset
-	process(h_count, y, dy, in_visible_y)
+	process(h_count, y, dy, in_visible_y, game_state)
 	begin
 		if in_visible_y='1' and h_count=to_unsigned(0,10) then --on first timing pixel if output is enabled
 			if y=to_unsigned(0,5) then --reset memory at start of first cell row
@@ -265,8 +304,33 @@ pxl: pixelator port map(
 			y_incr  <= '0';
 		end if;
 		
+		if game_state="100" then --erasing memory, block output
+			mem_rst <= '0';
+			y_incr <= '0';
+		end if;
+		
 	end process;
-	
+
+--sidebar
+	process(h_vec,h_count,v_vec,player0_dir,player1_dir,player0_mode,player1_mode)
+	begin
+		if h_vec(9)='0' then --player0
+			sidebar_player<='0';
+			sidebar_dir<=player0_dir;
+			sidebar_ready<=player0_mode(0);
+			sidebar_boost<='0';
+			sidebar_x<=std_logic_vector(unsigned(v_vec(6 downto 0))-to_unsigned(B+C,7)); --take 7 LSB and shift to start of sidebar
+		else --player1
+			sidebar_player<='1';
+			sidebar_dir<=player1_dir;
+			sidebar_ready<=player1_mode(0);
+			sidebar_boost<='0';
+			sidebar_x<=std_logic_vector(unsigned(v_vec(6 downto 0))-to_unsigned(B+C+R,7)); --take 7 LSB and shift to start of sidebar
+		end if;
+		sidebar_y<=v_vec(8 downto 0);
+	end process;
+
+
 --output
 	--check player positions
 	process(player0_pos,x_vec,y_vec)
@@ -285,24 +349,56 @@ pxl: pixelator port map(
 			player1_en<='0';
 		end if;
 	end process;
-	
-	--output calculations -- dummy, not actual data
-	process(h_count,v_count,in_visible_x,in_visible_y,pixelator_color) --calculate output color (gridded pattern)
-		variable px,py	: unsigned(9 downto 0);
+
+
+	--output selection
+	process(h_count,v_count,in_visible_x,in_visible_y,pixelator_color,sidebar_color,game_state) --calculate output color (gridded pattern)
+		variable px	: unsigned(9 downto 0);
 	begin
 		if in_visible_x='1' and in_visible_y='1' then
 			px:=h_count-(B+C+to_unsigned(80,10));
-			py:=v_count;
 			
 			if px<R then
-				next_color<=pixelator_color;
---				next_color(3) <= px(4) xor py(4);
---				next_color(2 downto 0) <= "000";
+				--depending on mode
+				if game_state="000" then
+					next_color<="0000";
+					
+					--homescreen!
+					
+					
+				else
+					next_color<=pixelator_color;
+				end if;
 			else
-				next_color <= "0000";
+				next_color <= sidebar_color;
 			end if;
 		else
 			next_color <= "0000";
 		end if;
+		
+		if game_state="100" then
+			next_color <= "0000";
+		end if;
 	end process;
+
+
+--	--output calculations -- dummy, not actual data
+--	process(h_count,v_count,in_visible_x,in_visible_y,pixelator_color) --calculate output color (gridded pattern)
+--		variable px,py	: unsigned(9 downto 0);
+--	begin
+--		if in_visible_x='1' and in_visible_y='1' then
+--			px:=h_count-(B+C+to_unsigned(80,10));
+--			py:=v_count;
+--			
+--			if px<R then
+--				next_color<=pixelator_color;
+----				next_color(3) <= px(4) xor py(4);
+----				next_color(2 downto 0) <= "000";
+--			else
+--				next_color <= "0000";
+--			end if;
+--		else
+--			next_color <= "0000";
+--		end if;
+--	end process;
 end behaviour;
