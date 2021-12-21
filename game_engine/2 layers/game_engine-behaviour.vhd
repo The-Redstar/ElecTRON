@@ -428,7 +428,7 @@ collision: process (next_position_0, next_position_1, position_0, position_1, la
 		collision_head <= '0';
 		if ((next_position_0 = next_position_1) and (next_layer_0 = next_layer_1)) then -- collide at eachother at middle of square
 			 collision_middle <= '1';	
-		elsif ((position_0 = next_position_1) and (layer_0 = next_layer_1) and ((position_1 = next_position_0) and (layer_1 = next_layer_0)) then -- collide at eachother at border			collision_head_0< = 
+		elsif ((position_0 = next_position_1) and (layer_0 = next_layer_1)) and ((position_1 = next_position_0) and (layer_1 = next_layer_0)) then -- collide at eachother at border			collision_head_0< = 
 			collision_head <= '1';
 		end if;
 	end process;
@@ -829,7 +829,7 @@ create_next_state: 	process (state, new_state, reset, input, busy, clk, unsigned
 				if (select_button = '1') then 
 					new_state <= reset_state;
 				else
-					new_state <= tie;
+					new_state <= player_0_won;
 				end if;
 	
 			when player_1_won =>
@@ -848,7 +848,7 @@ create_next_state: 	process (state, new_state, reset, input, busy, clk, unsigned
 				if (select_button = '1') then 
 					new_state <= reset_state;
 				else
-					new_state <= player_0_won;
+					new_state <= tie;
 				end if;
 		end case;
 	end process;
