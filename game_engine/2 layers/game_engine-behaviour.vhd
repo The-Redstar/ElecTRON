@@ -829,7 +829,7 @@ create_next_state: 	process (state, new_state, reset, input, busy, clk, unsigned
 				if (select_button = '1') then 
 					new_state <= reset_state;
 				else
-					new_state <= player_0_won;
+					new_state <= tie;
 				end if;
 	
 			when player_1_won =>
