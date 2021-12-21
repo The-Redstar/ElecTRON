@@ -85,11 +85,6 @@ architecture behaviour of graphics_top is
 	
 	signal player0_en,player1_en:							std_logic;
 	
-	signal sidebar_player:									std_logic;
-	signal sidebar_dir:										std_logic_vector(1 downto 0);
-	signal sidebar_ready,sidebar_boost:						std_logic;
-	
-	
 
 	--VGA constants
 	constant B : natural := 96;  -- horizontal sync
@@ -312,18 +307,18 @@ sdb: sidebar port map(
 	end process;
 
 --sidebar
-	process(h_vec,h_count,v_vec,player0_dir,player1_dir,player0_mode,player1_mode)
+	process(h_vec,h_count,v_vec,player0_dir,player1_dir,player0_state,player1_state)
 	begin
 		if h_vec(9)='0' then --player0
 			sidebar_player<='0';
 			sidebar_dir<=player0_dir;
-			sidebar_ready<=player0_mode(0);
+			sidebar_ready<=player0_state(0);
 			sidebar_boost<='0';
 			sidebar_x<=std_logic_vector(unsigned(v_vec(6 downto 0))-to_unsigned(B+C,7)); --take 7 LSB and shift to start of sidebar
 		else --player1
 			sidebar_player<='1';
 			sidebar_dir<=player1_dir;
-			sidebar_ready<=player1_mode(0);
+			sidebar_ready<=player1_state(0);
 			sidebar_boost<='0';
 			sidebar_x<=std_logic_vector(unsigned(v_vec(6 downto 0))-to_unsigned(B+C+R,7)); --take 7 LSB and shift to start of sidebar
 		end if;
