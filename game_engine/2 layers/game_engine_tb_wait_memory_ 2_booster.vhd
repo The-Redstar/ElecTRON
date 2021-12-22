@@ -1,5 +1,5 @@
 library IEEE;
---testbench for second layer
+--testbench for second layer booster
 use IEEE.std_logic_1164.all;
 use ieee.numeric_std.all;
 
@@ -115,8 +115,11 @@ input <= "0010" after 0 ns,
 -- normally the busy signal has a lower frequency, however for simulating the game_engine that takes to long
 -- therefore a higher frequency was used during the wait_state, once out of the wait_state the busy signal remains 0 for a while like with the real busy signal to go through all the other states
 busy <= '1' after 0 ns,
-	'0' after 1000 ns when busy /= '0' else '1'  after 1000= ns;
+	'0' after 1000 ns when busy /= '0' else '1'  after 1000 ns;
 	
+	
+	
+
 read_memory <= "00000000" after 0 ns;
 
 
