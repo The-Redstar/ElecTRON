@@ -2,16 +2,19 @@ library IEEE;
 use IEEE.std_logic_1164.ALL;
 
 architecture behaviour of input_buffer is
-   component flip_flop
-      port(clk    : in  std_logic;
-           rst    : in  std_logic;
-           input  : in  std_logic_vector(4 downto 0);
-           output : out std_logic_vector(4 downto 0));
-   end component;
-
    signal temp: std_logic_vector (4 downto 0);
 begin
-   ff1: flip_flop port map (clk => clk, rst => rst, input => input, output => temp);
-   ff2: flip_flop port map (clk => clk, rst => rst, input => temp, output => output);
+   reg: process(clk)
+      begin
+         if rising_edge(clk) then
+            if rst = '1' then
+               output <= (others => '0');
+               temp <= (others => '0');
+            else
+               output <= temp;
+               temp <= input;
+            end if;
+	end if;
+   end process;
 end behaviour;
 
