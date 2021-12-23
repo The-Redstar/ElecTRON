@@ -671,7 +671,7 @@ create_next_state: 	process (state, new_state, reset, input, busy, clk, unsigned
 				if (booster_0 = '1') then 
 					new_state <= read1_memory_player_0;
 				elsif (booster_1 = '1') then 
-					new_state <= read1_memory_player_1
+					new_state <= read1_memory_player_1;
 				else
 					new_state <= wait_state;
 				end if;
@@ -726,9 +726,9 @@ create_next_state: 	process (state, new_state, reset, input, busy, clk, unsigned
 				-- wait until the memory is ready to go to the next state 'want_to_write_1'
 				if (mem_com_ready = '1') then
 					if (booster_1 = '1') then 
-						new_state <= read1_memory_player_1
+						new_state <= read1_memory_player_1;
 					else
-						new_state <= read2_memory_player_0
+						new_state <= read2_memory_player_0;
 					end if;
 				else 
 					new_state <= write_memory_player_0;
@@ -785,6 +785,7 @@ create_next_state: 	process (state, new_state, reset, input, busy, clk, unsigned
 						new_state <= read2_memory_player_0;
 					else 
 						new_state <= read2_memory_player_1;
+					end if;
 				else
 					new_state <= write_memory_player_1;
 				end if;
@@ -808,10 +809,11 @@ create_next_state: 	process (state, new_state, reset, input, busy, clk, unsigned
 							e_player_0_state <= '1';
 						end if;
 					end if;
-					if (booster_1 = '0') then
+					if (booster_1 = '1') then
 						new_state <= read2_memory_player_1; 
 					else
 						new_state <= check_how_collision;
+					end if;
 				else 
 					new_state <= read2_memory_player_0;
 				end if;
