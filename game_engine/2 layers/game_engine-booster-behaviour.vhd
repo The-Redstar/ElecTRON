@@ -606,22 +606,6 @@ create_next_state: 	process (state, new_state, reset, input, busy, clk, unsigned
 				-- reset the counter
 				busy_counter_reset			<= '1';
 				state_vga 					<= "111";
-				new_state <= booster;
-
-			when booster =>
-				e_booster_0 <= '1';
-				e_booster_1 <= '1';
-				if (booster_begin_0 = '1') then
-					d_booster_0 <= '1';
-				else 
-					d_booster_0 <= not booster_0;
-				end if;
-				
-				if (booster_begin_1 = '1') then
-					d_booster_1 <= '1';
-				else 
-					d_booster_1 <= not booster_1;
-				end if;
 				new_state <= read_inputs;
 
 			when read_inputs =>
@@ -648,8 +632,31 @@ create_next_state: 	process (state, new_state, reset, input, busy, clk, unsigned
 				end if;									
 	
 				-- go to the state 'wall_shape' next
-				new_state <= read1_memory_player_0;
+				new_state <= booster;
 
+			when booster =>
+				e_booster_0 <= '1';
+				e_booster_1 <= '1';
+				if (booster_begin_0 = '1') then
+					d_booster_0 <= '1';
+				else 
+					d_booster_0 <= not booster_0;
+				end if;
+				
+				if (booster_begin_1 = '1') then
+					d_booster_1 <= '1';
+				else 
+					d_booster_1 <= not booster_1;
+				end if;
+				
+				if (booster_0 = '1') then 
+					new_state <= read1_memory_player_0;
+				elsif (booster_1 = '1') then 
+					new_state <= read1_memory_player_1
+				else
+					new_state <= wait_state;
+				end if;
+				
 			when read1_memory_player_0 =>
 				-- read the data from the address of the next position of player 0
 				state_vga   				<= "111";
@@ -699,7 +706,11 @@ create_next_state: 	process (state, new_state, reset, input, busy, clk, unsigned
 				
 				-- wait until the memory is ready to go to the next state 'want_to_write_1'
 				if (mem_com_ready = '1') then
-					new_state <= read1_memory_player_1;
+					if (booster_1 = '1') then 
+						new_state <= read1_memory_player_1
+					else
+						new_state <= read2_memory_player_0
+					end if;
 				else 
 					new_state <= write_memory_player_0;
 				end if;
@@ -751,7 +762,10 @@ create_next_state: 	process (state, new_state, reset, input, busy, clk, unsigned
 				
 				-- wait till the memory is finished before going to the next state 'change_data'
 				if (mem_com_ready = '1') then
-					new_state <= read2_memory_player_0;
+					if (booster_0 = '1') then
+						new_state <= read2_memory_player_0;
+					else 
+						new_state <= read2_memory_player_1;
 				else
 					new_state <= write_memory_player_1;
 				end if;
@@ -775,7 +789,10 @@ create_next_state: 	process (state, new_state, reset, input, busy, clk, unsigned
 							e_player_0_state <= '1';
 						end if;
 					end if;
-					new_state <= read2_memory_player_1; 
+					if (booster_1 = '0') then
+						new_state <= read2_memory_player_1; 
+					else
+						new_state <= check_how_collision;
 				else 
 					new_state <= read2_memory_player_0;
 				end if;
