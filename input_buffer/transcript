@@ -12,7 +12,7 @@
 # //  18 U.S.C. Section 1905.
 # //
 # vsim input_buffer_tb_behaviour_cfg -lib work -L TSMCLib -do "/data/public/common/software/opprog/do_files/init_simulator.do" 
-# Start time: 12:03:11 on Dec 23,2021
+# Start time: 00:33:10 on Dec 24,2021
 # ** Note: (vsim-3813) Design is being optimized due to module recompilation...
 # Loading std.standard
 # Loading std.textio(body)
@@ -21,10 +21,9 @@
 # Loading work.input_buffer_tb(behaviour)#1
 # Loading work.input_buffer_behaviour_cfg#1
 # Loading work.input_buffer(behaviour)#1
-# Loading work.flip_flop_behaviour_cfg#1
-# Loading work.flip_flop(behaviour)#1
 # do /data/public/common/software/opprog/do_files/init_simulator.do
-add wave sim:/input_buffer_tb/test/*
+add wave -position insertpoint  \
+sim:/input_buffer_tb/test/temp
 run 350 ns
-# End time: 12:06:11 on Dec 23,2021, Elapsed time: 0:03:00
+# End time: 00:35:14 on Dec 24,2021, Elapsed time: 0:02:04
 # Errors: 0, Warnings: 0

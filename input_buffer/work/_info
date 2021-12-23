@@ -9,85 +9,19 @@ z2
 cModel Technology
 Z0 d/tmp/.x2go-jwnijenhuis/media/disk/_cygdrive_C_Users_jonat_OneDrive_DOCUME1_Studie_EE2L11_ElecTRON/input_buffer
 T_opt
-!s110 1640257410
-V_SPVII2FZOoQ7LTE@Pe`L0
+!s110 1640302414
+VGJ5g^`]iRH<TDFI54Og<G3
 04 29 0 work input_buffer_tb_behaviour_cfg 1
-=1-000ae431a4f1-61c45771-ced89-712a
+=1-000ae431a4f1-61c50738-252bd-1660e
 o-quiet -auto_acc_if_foreign -work work -L TSMCLib
 tCvgOpt 0
 n@_opt
 OL;O;10.5b;63
-Eflip_flop
-w1640255171
-Z1 DPx3 std 6 textio 0 22 zE1`LPoLg^DX3Oz^4Fj1K3
-Z2 DPx4 ieee 14 std_logic_1164 0 22 eNV`TJ_GofJTzYa?f<@Oe1
 R0
-8VHDL/flip_flop.vhd
-FVHDL/flip_flop.vhd
-l0
-L4
-VR@4;8agAOh=dk3G`XA]SW3
-!s100 40a9]MAi]F_fzKbSRiFd70
-Z3 OL;C;10.5b;63
-33
-!s110 1640255181
-!i10b 1
-!s108 1640255177.000000
-!s90 -2008|-lower|-explicit|-work|work|VHDL/flip_flop.vhd|-quiet|-nologo|
-!s107 VHDL/flip_flop.vhd|
-!i113 0
-Z4 o-quiet -nologo -2008 -lower -explicit -work work
-Z5 tExplicit 1 CvgOpt 0
-Abehaviour
-w1640256303
-Z6 DEx4 work 9 flip_flop 0 22 R@4;8agAOh=dk3G`XA]SW3
-R1
-R2
-8VHDL/flip_flop-behaviour.vhd
-FVHDL/flip_flop-behaviour.vhd
-l5
-L4
-VdK6h_GhOLA;MC[hz718[e1
-!s100 0b7T?YkC4cL:T6o8`4Ez62
-R3
-33
-!s110 1640256312
-!i10b 1
-!s108 1640256309.000000
-!s90 -2008|-lower|-explicit|-work|work|VHDL/flip_flop-behaviour.vhd|-quiet|-nologo|
-!s107 VHDL/flip_flop-behaviour.vhd|
-!i113 0
-R4
-R5
-Cflip_flop_behaviour_cfg
-eflip_flop
-Z7 abehaviour
-DAx4 work 9 flip_flop 9 behaviour 22 dK6h_GhOLA;MC[hz718[e1
-R1
-R2
-R6
-w1640256314
-R0
-8VHDL/flip_flop_behaviour_cfg.vhd
-FVHDL/flip_flop_behaviour_cfg.vhd
-l0
-L1
-V[AN?JDIWE2<G7[_^2zk;i1
-!s100 cWZ8<Sn?VT1;31zCa?h1S2
-R3
-33
-!s110 1640256323
-!i10b 0
-!s108 1640256320.000000
-!s90 -2008|-lower|-explicit|-work|work|VHDL/flip_flop_behaviour_cfg.vhd|-quiet|-nologo|
-!s107 VHDL/flip_flop_behaviour_cfg.vhd|
-!i113 0
-R4
-R5
 Einput_buffer
-w1640255101
-R1
-R2
+Z1 w1640258025
+Z2 DPx3 std 6 textio 0 22 zE1`LPoLg^DX3Oz^4Fj1K3
+Z3 DPx4 ieee 14 std_logic_1164 0 22 eNV`TJ_GofJTzYa?f<@Oe1
 R0
 8VHDL/input_buffer.vhd
 FVHDL/input_buffer.vhd
@@ -95,68 +29,66 @@ l0
 L4
 VYiZ=M_M^o8?lnf?lOF^jk0
 !s100 CnHZ_g;IK4>ZUCnJ;L^SR0
-R3
+Z4 OL;C;10.5b;63
 33
-!s110 1640255113
+!s110 1640302546
 !i10b 1
-!s108 1640255107.000000
+!s108 1640302543.000000
 !s90 -2008|-lower|-explicit|-work|work|VHDL/input_buffer.vhd|-quiet|-nologo|
 !s107 VHDL/input_buffer.vhd|
 !i113 0
-R4
-R5
+Z5 o-quiet -nologo -2008 -lower -explicit -work work
+Z6 tExplicit 1 CvgOpt 0
 Abehaviour
-w1640256729
-Z8 DEx4 work 12 input_buffer 0 22 YiZ=M_M^o8?lnf?lOF^jk0
-R1
+w1640302256
+Z7 DEx4 work 12 input_buffer 0 22 YiZ=M_M^o8?lnf?lOF^jk0
 R2
+R3
 8VHDL/input_buffer-behaviour.vhd
 FVHDL/input_buffer-behaviour.vhd
-l13
+l6
 L4
-VFMCO`6;Wnz=@g_VNz_CmN0
-!s100 f0fmfIOI>WdN<zzVRF[?f1
-R3
+VAhf;AIZ=CkJ=MAU=?5LUI1
+!s100 5Q[6j7AcfW^Gjg:nk19Uk0
+R4
 33
-!s110 1640256738
+!s110 1640302551
 !i10b 1
-!s108 1640256735.000000
+!s108 1640302548.000000
 !s90 -2008|-lower|-explicit|-work|work|VHDL/input_buffer-behaviour.vhd|-quiet|-nologo|
 !s107 VHDL/input_buffer-behaviour.vhd|
 !i113 0
-R4
 R5
+R6
 Cinput_buffer_behaviour_cfg
 einput_buffer
-R7
-R6
-DCx4 work 23 flip_flop_behaviour_cfg 0 22 [AN?JDIWE2<G7[_^2zk;i1
-DAx4 work 12 input_buffer 9 behaviour 22 FMCO`6;Wnz=@g_VNz_CmN0
-R1
+Z8 abehaviour
+DAx4 work 12 input_buffer 9 behaviour 22 Ahf;AIZ=CkJ=MAU=?5LUI1
 R2
-R8
-w1640256740
+R3
+R7
+w1640302347
 R0
 8VHDL/input_buffer_behaviour_cfg.vhd
 FVHDL/input_buffer_behaviour_cfg.vhd
 l0
 L1
-VPAd1G]H[hdi9Fm91fUDlg1
-!s100 D9b:UXdOg727bWRT2:iCT3
-R3
+VdN0TPa26RWWM0@1];J:l>1
+!s100 MQbdhYISoC8Xl1FSIhHZ70
+R4
 33
-!s110 1640256749
+!s110 1640302556
 !i10b 0
-!s108 1640256746.000000
+!s108 1640302553.000000
 !s90 -2008|-lower|-explicit|-work|work|VHDL/input_buffer_behaviour_cfg.vhd|-quiet|-nologo|
 !s107 VHDL/input_buffer_behaviour_cfg.vhd|
 !i113 0
-R4
 R5
+R6
 Einput_buffer_tb
 w1640256789
-R1
 R2
+R3
 R0
 8VHDL/input_buffer_tb.vhd
 FVHDL/input_buffer_tb.vhd
@@ -164,7 +96,7 @@ l0
 L4
 Vz;[cD50gI7O9DVVim@>z91
 !s100 ]6TdoK6zdNi3PP?HbF=PR2
-R3
+R4
 33
 !s110 1640257354
 !i10b 1
@@ -172,39 +104,39 @@ R3
 !s90 -2008|-lower|-explicit|-work|work|VHDL/input_buffer_tb.vhd|-quiet|-nologo|
 !s107 VHDL/input_buffer_tb.vhd|
 !i113 0
-R4
 R5
+R6
 Abehaviour
-w1640257327
-Z9 DEx4 work 15 input_buffer_tb 0 22 z;[cD50gI7O9DVVim@>z91
 R1
+Z9 DEx4 work 15 input_buffer_tb 0 22 z;[cD50gI7O9DVVim@>z91
 R2
+R3
 8VHDL/input_buffer_tb-behaviour.vhd
 FVHDL/input_buffer_tb-behaviour.vhd
 l15
 L4
 VRIbDR?48]4ELcSHJ6z6dE0
 !s100 GIXmLP@8A2JbX6e;c?aCP3
-R3
+R4
 33
-!s110 1640257359
+!s110 1640302562
 !i10b 1
-!s108 1640257355.000000
+!s108 1640302558.000000
 !s90 -2008|-lower|-explicit|-work|work|VHDL/input_buffer_tb-behaviour.vhd|-quiet|-nologo|
 !s107 VHDL/input_buffer_tb-behaviour.vhd|
 !i113 0
-R4
 R5
+R6
 Cinput_buffer_tb_behaviour_cfg
 einput_buffer_tb
-R7
 R8
-DCx4 work 26 input_buffer_behaviour_cfg 0 22 PAd1G]H[hdi9Fm91fUDlg1
+R7
+DCx4 work 26 input_buffer_behaviour_cfg 0 22 dN0TPa26RWWM0@1];J:l>1
 DAx4 work 15 input_buffer_tb 9 behaviour 22 RIbDR?48]4ELcSHJ6z6dE0
-R1
 R2
+R3
 R9
-w1640257067
+w1640302357
 R0
 8VHDL/input_buffer_tb_behaviour_cfg.vhd
 FVHDL/input_buffer_tb_behaviour_cfg.vhd
@@ -212,13 +144,13 @@ l0
 L1
 VL?5mUZ2CWmQ1finR:h21J0
 !s100 zXKXX4Ql<^jQbnzf<Ez0A1
-R3
+R4
 33
-!s110 1640257365
+!s110 1640302567
 !i10b 0
-!s108 1640257361.000000
+!s108 1640302564.000000
 !s90 -2008|-lower|-explicit|-work|work|VHDL/input_buffer_tb_behaviour_cfg.vhd|-quiet|-nologo|
 !s107 VHDL/input_buffer_tb_behaviour_cfg.vhd|
 !i113 0
-R4
 R5
+R6
