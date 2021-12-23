@@ -237,6 +237,22 @@ updates: 	process (clk)
 		end if;
 	end process;
 
+booster: process (input, direction_0, direction_1)
+	begin
+	
+		if (input(1) = (not direction_0(1))) then 
+			booster_begin_0 <= '1';
+		else
+			booster_begin_0 <= '0';
+		end if;
+		
+		if (input(3) = (not direction_1(1))) then
+			booster_begin_1 <= '1';
+		else
+			booster_begin_1 <= '0';
+		end if;
+	end process;
+
 wallshape: 	process (direction_0, direction_1, next_direction_0, next_direction_1)
 	begin
 		
@@ -487,6 +503,8 @@ create_next_state: 	process (state, new_state, reset, input, busy, clk, unsigned
 		d_layer_1					<= '0';
 		d_booster_0					<= '0';
 		d_booster_1					<= '0';
+		d_booster_begin_0			<= '0';
+		d_booster_begin_1			<= '0';
 		--determined in different process
 		--d_next_layer
 		--d_border
@@ -629,19 +647,15 @@ create_next_state: 	process (state, new_state, reset, input, busy, clk, unsigned
 				state_vga 					<= "111";
 				-- remember the values of the input of the players in 'next_direction_#player'
 				
-				if (((direction_0= "00") and (input(1 downto 0)  ="10")) or  ((direction_0= "10") and (input(1 downto 0)  ="00")) or ((direction_0= "01") and (input(1 downto 0)  ="11")) or  ((direction_0= "11") and (input(1 downto 0)  ="01"))) then
-					e_next_direction_0			<= '0';
-					e_booster_begin_0				<= '1';
-					d_booster_begin_0				<= '1'; 				
+				if (booster_begin_0) then
+					e_next_direction_0			<= '0';			
 				else	
 					e_next_direction_0			<= '1';
 					d_next_direction_0			<= input(1 downto 0);
 				end if;
 
-				if (((direction_1= "00") and (input(3 downto 2)  ="10")) or  ((direction_1= "10") and (input(3 downto 2)  ="00")) or ((direction_1= "01") and (input(3 downto 2)  ="11")) or  ((direction_1= "11") and (input(3 downto 2)  ="01"))) then
+				if (booster_begin_1 = '1') then
 					e_next_direction_1			<= '0';
-					e_booster_begin_1				<= '1';
-					d_booster_begin_1				<= '1';
 				else	
 					e_next_direction_1			<= '1';
 					d_next_direction_1			<= input(3 downto 2);
