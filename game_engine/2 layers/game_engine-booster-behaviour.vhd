@@ -14,7 +14,7 @@ architecture behaviour of game_engine is
 	signal d_next_direction_0, d_next_direction_1, next_direction_0, next_direction_1 : std_logic_vector(1 downto 0);
 	signal position_0, position_1, next_position_0, next_position_1 : std_logic_vector (9 downto 0);
 	signal d_position_0, d_position_1 : std_logic_vector (9 downto 0);
-	signal layer_0, layer_1, d_layer_0, d_layer_1, e_layer_0, e_layer_1, d_booster_0, d_booster_1, e_booster_0, e_booster_1, d_booster_begin_0, d_booster_begin_1, e_booster_begin_0, e_booster_begin_1 : std_logic;
+	signal layer_0, layer_1, d_layer_0, d_layer_1, e_layer_0, e_layer_1, d_booster_0, d_booster_1, e_booster_0, e_booster_1 : std_logic;
 	signal next_layer_0, next_layer_1, d_next_layer_0, d_next_layer_1, e_next_layer_0, e_next_layer_1 : std_logic;
 	signal border_0, border_1, d_border_0, d_border_1, e_border_0, e_border_1: std_logic;
 	signal d_read_data_reg, read_data_reg : std_logic_vector (7 downto 0);
@@ -72,12 +72,8 @@ architecture behaviour of game_engine is
 			d_layer_1	  : in  std_logic;
 			e_booster_0	  : in  std_logic;		
 			e_booster_1	  : in  std_logic;
-			e_booster_begin_0	  : in  std_logic;		
-			e_booster_begin_1	  : in  std_logic;
 			d_booster_0	  : in  std_logic;
 			d_booster_1	  : in  std_logic;
-			d_booster_begin_0	  : in  std_logic;
-			d_booster_begin_1	  : in  std_logic;
 			e_next_layer_0: in  std_logic;
 			e_next_layer_1: in  std_logic;
 			d_next_layer_0: in  std_logic;
@@ -106,8 +102,6 @@ architecture behaviour of game_engine is
 			q_layer_1	  : out std_logic;
 			q_booster_0	  : out std_logic;
 			q_booster_1	  : out std_logic;
-			q_booster_begin_0	  : out std_logic;
-			q_booster_begin_1	  : out std_logic;
 			q_next_layer_0: out std_logic;
 			q_next_layer_1: out std_logic;
 			q_border_0	  : out std_logic;
@@ -137,10 +131,6 @@ reg: ge_register port map (clk => clk,
 			e_booster_1	  => e_booster_1,
 			d_booster_0	  => d_booster_0,
 			d_booster_1	  => d_booster_1,
-			e_booster_begin_0	  => e_booster_begin_0,
-			e_booster_begin_1	  => e_booster_begin_1,
-			d_booster_begin_0	  => d_booster_begin_0,
-			d_booster_begin_1	  => d_booster_begin_1,
 			e_next_layer_0=> e_next_layer_0,
 			e_next_layer_1=> e_next_layer_1,
 			d_next_layer_0=> d_next_layer_0,
@@ -169,8 +159,6 @@ reg: ge_register port map (clk => clk,
 			q_layer_1	  => layer_1,
 			q_booster_0	  => booster_0,
 			q_booster_1	  => booster_1,
-			q_booster_begin_0	  => booster_begin_0,
-			q_booster_begin_1	  => booster_begin_1,
 			q_next_layer_0=> next_layer_0,
 			q_next_layer_1=> next_layer_1,
 			q_border_0	  => border_0,
@@ -484,8 +472,6 @@ create_next_state: 	process (state, new_state, reset, input, busy, clk, unsigned
 		e_layer_1					<= '0';
 		e_booster_0					<= '0';
 		e_booster_1					<= '0';
-		e_booster_begin_0					<= '0';
-		e_booster_begin_1					<= '0';
 		e_next_layer_0				<= '0';
 		e_next_layer_1				<= '0';
 		e_border_0					<= '0';
@@ -523,10 +509,7 @@ create_next_state: 	process (state, new_state, reset, input, busy, clk, unsigned
 		clear_fsm         			<= '0';
         	write_data_fsm     			<= (others => '0');
 	
-		e_booster_begin_0				<= '0';
-		e_booster_begin_1				<= '0';
-		d_booster_begin_0				<= '0';
-		d_booster_begin_1				<= '0';
+
 		
 
 		
@@ -593,8 +576,6 @@ create_next_state: 	process (state, new_state, reset, input, busy, clk, unsigned
 				d_direction_1				<= direction_grid_1;
 				e_booster_0					<= '1';
 				e_booster_1					<= '1';
-				e_booster_begin_0					<= '1';
-				e_booster_begin_1					<= '1';
 				
 				
 				-- when player 0 is ready to play the next state is 'player_0_ready'
@@ -646,9 +627,8 @@ create_next_state: 	process (state, new_state, reset, input, busy, clk, unsigned
 				-- read the inputs from the players and remember them
 				state_vga 					<= "111";
 				-- remember the values of the input of the players in 'next_direction_#player'
-				
 				if (booster_begin_0) then
-					e_next_direction_0			<= '0';			
+					e_next_direction_0			<= '0';	
 				else	
 					e_next_direction_0			<= '1';
 					d_next_direction_0			<= input(1 downto 0);

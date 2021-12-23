@@ -5,7 +5,7 @@ use ieee.numeric_std.all;
 
 architecture behaviour of game_engine is
 
-	type game_state is (reset_state, loading_state, booster, home_screen, get_ready, before_start_state, read_inputs, read1_memory_player_0, read1_memory_player_1, read2_memory_player_0, read2_memory_player_1, check_who_won, wait_state, write_memory_player_0, write_memory_player_1, change_data, check_how_collision, player_0_won, player_1_won, tie, busy_reset, check_jump_0, check_jump_1);
+	type game_state is (reset_state, loading_state, booster, check_booster, home_screen, get_ready, before_start_state, read_inputs, read1_memory_player_0, read1_memory_player_1, read2_memory_player_0, read2_memory_player_1, check_who_won, wait_state, write_memory_player_0, write_memory_player_1, change_data, check_how_collision, player_0_won, player_1_won, tie, busy_reset, check_jump_0, check_jump_1);
 
 
 	signal state, new_state: game_state;
@@ -14,7 +14,7 @@ architecture behaviour of game_engine is
 	signal d_next_direction_0, d_next_direction_1, next_direction_0, next_direction_1 : std_logic_vector(1 downto 0);
 	signal position_0, position_1, next_position_0, next_position_1 : std_logic_vector (9 downto 0);
 	signal d_position_0, d_position_1 : std_logic_vector (9 downto 0);
-	signal layer_0, layer_1, d_layer_0, d_layer_1, e_layer_0, e_layer_1, d_booster_0, d_booster_1, e_booster_0, e_booster_1, d_booster_begin_0, d_booster_begin_1, e_booster_begin_0, e_booster_begin_1 : std_logic;
+	signal layer_0, layer_1, d_layer_0, d_layer_1, e_layer_0, e_layer_1, d_booster_0, d_booster_1, e_booster_0, e_booster_1 : std_logic;
 	signal next_layer_0, next_layer_1, d_next_layer_0, d_next_layer_1, e_next_layer_0, e_next_layer_1 : std_logic;
 	signal border_0, border_1, d_border_0, d_border_1, e_border_0, e_border_1: std_logic;
 	signal d_read_data_reg, read_data_reg : std_logic_vector (7 downto 0);
@@ -628,10 +628,10 @@ create_next_state: 	process (state, new_state, reset, input, busy, clk, unsigned
 				-- read the inputs from the players and remember them
 				state_vga 					<= "111";
 				-- remember the values of the input of the players in 'next_direction_#player'
-				
+				e_booster_begin_0				<= '1';
+				e_booster_begin_1				<= '1';
 				if (((direction_0= "00") and (input(1 downto 0)  ="10")) or  ((direction_0= "10") and (input(1 downto 0)  ="00")) or ((direction_0= "01") and (input(1 downto 0)  ="11")) or  ((direction_0= "11") and (input(1 downto 0)  ="01"))) then
 					e_next_direction_0			<= '0';
-					e_booster_begin_0				<= '1';
 					d_booster_begin_0				<= '1'; 				
 				else	
 					e_next_direction_0			<= '1';
@@ -640,7 +640,6 @@ create_next_state: 	process (state, new_state, reset, input, busy, clk, unsigned
 
 				if (((direction_1= "00") and (input(3 downto 2)  ="10")) or  ((direction_1= "10") and (input(3 downto 2)  ="00")) or ((direction_1= "01") and (input(3 downto 2)  ="11")) or  ((direction_1= "11") and (input(3 downto 2)  ="01"))) then
 					e_next_direction_1			<= '0';
-					e_booster_begin_1				<= '1';
 					d_booster_begin_1				<= '1';
 				else	
 					e_next_direction_1			<= '1';
@@ -664,7 +663,10 @@ create_next_state: 	process (state, new_state, reset, input, busy, clk, unsigned
 				else 
 					d_booster_1 <= not booster_1;
 				end if;
+				new_state <= check_booster;
 				
+			when check_booster =>
+			
 				if (booster_0 = '1') then 
 					new_state <= read1_memory_player_0;
 				elsif (booster_1 = '1') then 
@@ -810,6 +812,7 @@ create_next_state: 	process (state, new_state, reset, input, busy, clk, unsigned
 						new_state <= read2_memory_player_1; 
 					else
 						new_state <= check_how_collision;
+					end if;
 				else 
 					new_state <= read2_memory_player_0;
 				end if;
