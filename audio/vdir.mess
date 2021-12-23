@@ -1,0 +1,102 @@
+Library vendor : Model Technology
+Maximum unnamed designs : 3
+ENTITY audio_top
+    Source modified time: Thu Dec 23 19:56:25 2021
+    Depends on: P std textio zE1`LPoLg^DX3Oz^4Fj1K3
+    Depends on: P ieee std_logic_1164 eNV`TJ_GofJTzYa?f<@Oe1
+    Source directory: /tmp/.x2go-mhpadriaanse/media/disk/_cygdrive_C_Users_Marijn_Nodig_TUDELF1_B2_Q2_L_x2go/electron/audio
+    HDL source file: VHDL/audio_top.vhd
+    Source file: VHDL/audio_top.vhd
+    Start location: VHDL/audio_top.vhd:4
+    Version string: ?QfADhfMH@Do:eAP5C9AJ3
+    Opcode format: 10.5b; VCOM SE-64 Object version 63
+    VHDL language standard: 3 (VHDL-2008)
+    Compile time: Thu Dec 23 19:56:29 2021
+    Debug Symbol file exists
+    Compiled in vopt flow
+    Compile options: -quiet -nologo -2008 -lower -explicit -work work
+    Compile defaults: Explicit=1 CvgOpt=0
+  ARCHITECTURE BODY behaviour
+    Source modified time: Thu Dec 23 19:56:43 2021
+    Depends on: E work audio_top ?QfADhfMH@Do:eAP5C9AJ3
+    Depends on: P std textio zE1`LPoLg^DX3Oz^4Fj1K3
+    Depends on: P ieee std_logic_1164 eNV`TJ_GofJTzYa?f<@Oe1
+    HDL source file: VHDL/audio_top-behaviour.vhd
+    Source file: VHDL/audio_top-behaviour.vhd
+    Start location: VHDL/audio_top-behaviour.vhd:4
+    Version string: =3B8:n22B:EJicgPc@b`Y3
+    Opcode format: 10.5b; VCOM SE-64 Object version 63
+    VHDL language standard: 3 (VHDL-2008)
+    Compile time: Thu Dec 23 19:56:47 2021
+    Debug Symbol file exists
+    Compiled in vopt flow
+    Compile options: -quiet -nologo -2008 -lower -explicit -work work
+    Compile defaults: Explicit=1 CvgOpt=0
+    Source directory: /tmp/.x2go-mhpadriaanse/media/disk/_cygdrive_C_Users_Marijn_Nodig_TUDELF1_B2_Q2_L_x2go/electron/audio
+ENTITY engine_oscil
+    Source modified time: Thu Dec 23 20:41:25 2021
+    Depends on: P std textio zE1`LPoLg^DX3Oz^4Fj1K3
+    Depends on: P ieee std_logic_1164 eNV`TJ_GofJTzYa?f<@Oe1
+    Source directory: /tmp/.x2go-mhpadriaanse/media/disk/_cygdrive_C_Users_Marijn_Nodig_TUDELF1_B2_Q2_L_x2go/electron/audio
+    HDL source file: VHDL/engine_oscil.vhd
+    Source file: VHDL/engine_oscil.vhd
+    Start location: VHDL/engine_oscil.vhd:4
+    Version string: T5mIY0Sz;>_nh?_gd009i3
+    Opcode format: 10.5b; VCOM SE-64 Object version 63
+    VHDL language standard: 3 (VHDL-2008)
+    Compile time: Thu Dec 23 21:18:29 2021
+    Debug Symbol file exists
+    Compiled in vopt flow
+    Compile options: -quiet -nologo -2008 -lower -explicit -work work
+    Compile defaults: Explicit=1 CvgOpt=0
+  ARCHITECTURE BODY behaviour
+    Source modified time: Thu Dec 23 21:19:36 2021
+    Depends on: E work engine_oscil T5mIY0Sz;>_nh?_gd009i3
+    Depends on: P ieee numeric_std :ASDNFgHXf_ih3J@9F3Ze1
+    Depends on: P std textio zE1`LPoLg^DX3Oz^4Fj1K3
+    Depends on: P ieee std_logic_1164 eNV`TJ_GofJTzYa?f<@Oe1
+    HDL source file: VHDL/engine_oscil-behaviour.vhd
+    Source file: VHDL/engine_oscil-behaviour.vhd
+    Start location: VHDL/engine_oscil-behaviour.vhd:12
+    Version string: gl;1nK]iRfLeWY>lOTH`j3
+    Opcode format: 10.5b; VCOM SE-64 Object version 63
+    VHDL language standard: 3 (VHDL-2008)
+    Compile time: Thu Dec 23 21:19:49 2021
+    Debug Symbol file exists
+    Compiled in vopt flow
+    Compile options: -quiet -nologo -2008 -lower -explicit -work work
+    Compile defaults: Explicit=1 CvgOpt=0
+    Source directory: /tmp/.x2go-mhpadriaanse/media/disk/_cygdrive_C_Users_Marijn_Nodig_TUDELF1_B2_Q2_L_x2go/electron/audio
+ENTITY rng
+    Source modified time: Thu Dec 23 21:07:08 2021
+    Depends on: P std textio zE1`LPoLg^DX3Oz^4Fj1K3
+    Depends on: P ieee std_logic_1164 eNV`TJ_GofJTzYa?f<@Oe1
+    Source directory: /tmp/.x2go-mhpadriaanse/media/disk/_cygdrive_C_Users_Marijn_Nodig_TUDELF1_B2_Q2_L_x2go/electron/audio
+    HDL source file: VHDL/rng.vhd
+    Source file: VHDL/rng.vhd
+    Start location: VHDL/rng.vhd:4
+    Version string: A<8Hl[8H?bSemIU=E?b:l2
+    Opcode format: 10.5b; VCOM SE-64 Object version 63
+    VHDL language standard: 3 (VHDL-2008)
+    Compile time: Thu Dec 23 21:16:05 2021
+    Debug Symbol file exists
+    Compiled in vopt flow
+    Compile options: -quiet -nologo -2008 -lower -explicit -work work
+    Compile defaults: Explicit=1 CvgOpt=0
+  ARCHITECTURE BODY behaviour
+    Source modified time: Thu Dec 23 21:15:45 2021
+    Depends on: E work rng A<8Hl[8H?bSemIU=E?b:l2
+    Depends on: P std textio zE1`LPoLg^DX3Oz^4Fj1K3
+    Depends on: P ieee std_logic_1164 eNV`TJ_GofJTzYa?f<@Oe1
+    HDL source file: VHDL/rng-behaviour.vhd
+    Source file: VHDL/rng-behaviour.vhd
+    Start location: VHDL/rng-behaviour.vhd:8
+    Version string: L`4PO4i3gfoocHCNB1QL11
+    Opcode format: 10.5b; VCOM SE-64 Object version 63
+    VHDL language standard: 3 (VHDL-2008)
+    Compile time: Thu Dec 23 21:16:09 2021
+    Debug Symbol file exists
+    Compiled in vopt flow
+    Compile options: -quiet -nologo -2008 -lower -explicit -work work
+    Compile defaults: Explicit=1 CvgOpt=0
+    Source directory: /tmp/.x2go-mhpadriaanse/media/disk/_cygdrive_C_Users_Marijn_Nodig_TUDELF1_B2_Q2_L_x2go/electron/audio

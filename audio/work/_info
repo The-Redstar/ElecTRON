@@ -1,0 +1,138 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 d/tmp/.x2go-mhpadriaanse/media/disk/_cygdrive_C_Users_Marijn_Nodig_TUDELF1_B2_Q2_L_x2go/electron/audio
+Eaudio_top
+w1640289283
+Z1 DPx3 std 6 textio 0 22 zE1`LPoLg^DX3Oz^4Fj1K3
+Z2 DPx4 ieee 14 std_logic_1164 0 22 eNV`TJ_GofJTzYa?f<@Oe1
+R0
+8VHDL/audio_top.vhd
+FVHDL/audio_top.vhd
+l0
+L4
+Vg4_;kBIYbg;7jG;j;@`>D1
+!s100 2ZbHajmE`BzN72V?RmoOn2
+Z3 OL;C;10.5b;63
+33
+!s110 1640290798
+!i10b 1
+!s108 1640290795.000000
+!s90 -2008|-lower|-explicit|-work|work|VHDL/audio_top.vhd|-quiet|-nologo|
+!s107 VHDL/audio_top.vhd|
+!i113 0
+Z4 o-quiet -nologo -2008 -lower -explicit -work work
+Z5 tExplicit 1 CvgOpt 0
+Abehaviour
+w1640289482
+DEx4 work 9 audio_top 0 22 g4_;kBIYbg;7jG;j;@`>D1
+Z6 DPx4 ieee 11 numeric_std 0 22 :ASDNFgHXf_ih3J@9F3Ze1
+R1
+R2
+Z7 8VHDL/audio_top-behaviour.vhd
+Z8 FVHDL/audio_top-behaviour.vhd
+l19
+L5
+VBh=m3QC3nHohA^F:d3kBW2
+!s100 1D>8[1l23HQUPT=cR=FLF1
+R3
+33
+!s110 1640290803
+!i10b 1
+!s108 1640290799.000000
+Z9 !s90 -2008|-lower|-explicit|-work|work|VHDL/audio_top-behaviour.vhd|-quiet|-nologo|
+!s107 VHDL/audio_top-behaviour.vhd|
+!i113 0
+R4
+R5
+Eengine_oscil
+w1640288485
+R1
+R2
+R0
+8VHDL/engine_oscil.vhd
+FVHDL/engine_oscil.vhd
+l0
+L4
+VT5mIY0Sz;>_nh?_gd009i3
+!s100 ZIjED;5MPe1YkZ1VjFI?J2
+R3
+33
+!s110 1640290709
+!i10b 1
+!s108 1640290706.000000
+!s90 -2008|-lower|-explicit|-work|work|VHDL/engine_oscil.vhd|-quiet|-nologo|
+!s107 VHDL/engine_oscil.vhd|
+!i113 0
+R4
+R5
+Abehaviour
+w1640290776
+DEx4 work 12 engine_oscil 0 22 T5mIY0Sz;>_nh?_gd009i3
+R6
+R1
+R2
+8VHDL/engine_oscil-behaviour.vhd
+FVHDL/engine_oscil-behaviour.vhd
+l18
+L12
+Vgl;1nK]iRfLeWY>lOTH`j3
+!s100 M=2_SS?MDHHM;;IlaM4OU0
+R3
+33
+!s110 1640290789
+!i10b 1
+!s108 1640290785.000000
+!s90 -2008|-lower|-explicit|-work|work|VHDL/engine_oscil-behaviour.vhd|-quiet|-nologo|
+!s107 VHDL/engine_oscil-behaviour.vhd|
+!i113 0
+R4
+R5
+Erng
+w1640290028
+R1
+R2
+R0
+8VHDL/rng.vhd
+FVHDL/rng.vhd
+l0
+L4
+VA<8Hl[8H?bSemIU=E?b:l2
+!s100 ?Wk_D??lB><RO??8a]n8l2
+R3
+33
+!s110 1640290565
+!i10b 1
+!s108 1640290561.000000
+!s90 -2008|-lower|-explicit|-work|work|VHDL/rng.vhd|-quiet|-nologo|
+!s107 VHDL/rng.vhd|
+!i113 0
+R4
+R5
+Abehaviour
+w1640290545
+DEx4 work 3 rng 0 22 A<8Hl[8H?bSemIU=E?b:l2
+R1
+R2
+8VHDL/rng-behaviour.vhd
+FVHDL/rng-behaviour.vhd
+l10
+L8
+VL`4PO4i3gfoocHCNB1QL11
+!s100 XP;YRE=eKGJGLTmo2]A<Q2
+R3
+33
+!s110 1640290569
+!i10b 1
+!s108 1640290566.000000
+!s90 -2008|-lower|-explicit|-work|work|VHDL/rng-behaviour.vhd|-quiet|-nologo|
+!s107 VHDL/rng-behaviour.vhd|
+!i113 0
+R4
+R5
