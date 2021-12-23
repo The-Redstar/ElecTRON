@@ -104,6 +104,7 @@ architecture behaviour of game_engine is
 			q_layer_1	  : out std_logic;
 			q_booster_0	  : out std_logic;
 			q_booster_1	  : out std_logic;
+			q_booster_sync	  : out std_logic;
 			q_next_layer_0: out std_logic;
 			q_next_layer_1: out std_logic;
 			q_border_0	  : out std_logic;
@@ -163,6 +164,7 @@ reg: ge_register port map (clk => clk,
 			q_layer_1	  => layer_1,
 			q_booster_0	  => booster_0,
 			q_booster_1	  => booster_1,
+			q_booster_sync	  => booster_sync,
 			q_next_layer_0=> next_layer_0,
 			q_next_layer_1=> next_layer_1,
 			q_border_0	  => border_0,
@@ -476,6 +478,7 @@ create_next_state: 	process (state, new_state, reset, input, busy, clk, unsigned
 		e_layer_1					<= '0';
 		e_booster_0					<= '0';
 		e_booster_1					<= '0';
+		e_booster_sync					<= '0';
 		e_next_layer_0				<= '0';
 		e_next_layer_1				<= '0';
 		e_border_0					<= '0';
@@ -493,6 +496,7 @@ create_next_state: 	process (state, new_state, reset, input, busy, clk, unsigned
 		d_layer_1					<= '0';
 		d_booster_0					<= '0';
 		d_booster_1					<= '0';
+		d_booster_sync					<= '0';
 		--determined in different process
 		--d_next_layer
 		--d_border
@@ -578,6 +582,7 @@ create_next_state: 	process (state, new_state, reset, input, busy, clk, unsigned
 				d_direction_1				<= direction_grid_1;
 				e_booster_0					<= '1';
 				e_booster_1					<= '1';
+				e_booster_sync					<= '1';
 				
 				
 				-- when player 0 is ready to play the next state is 'player_0_ready'
