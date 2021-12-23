@@ -5,30 +5,30 @@ use IEEE.numeric_std.ALL;
 architecture behaviour of graphics_top is
 
 	component pixelator is
-	port(dx				: in  std_logic_vector(3 downto 0);
-		dy				: in  std_logic_vector(3 downto 0);
+	port(	dx				: in  std_logic_vector(3 downto 0);
+			dy				: in  std_logic_vector(3 downto 0);
 
-		player0_en		: in  std_logic;
-		player1_en		: in  std_logic;
-		player0_layer	: in  std_logic;
-		player1_layer	: in  std_logic;
-		player0_dir		: in  std_logic_vector(1 downto 0);
-		player1_dir		: in  std_logic_vector(1 downto 0);
-		player0_mode	: in  std_logic_vector(1 downto 0);
-		player1_mode	: in  std_logic_vector(1 downto 0);
+			player0_en		: in  std_logic;
+			player1_en		: in  std_logic;
+			player0_layer	: in  std_logic;
+			player1_layer	: in  std_logic;
+			player0_dir		: in  std_logic_vector(1 downto 0);
+			player1_dir		: in  std_logic_vector(1 downto 0);
+			player0_mode	: in  std_logic_vector(1 downto 0);
+			player1_mode	: in  std_logic_vector(1 downto 0);
 
-		walls			: in  std_logic_vector(7 downto 0);
-		layer0_player	: in  std_logic;
-		layer1_player	: in  std_logic;
-		
-		borders			: in  std_logic_vector(7 downto 0);
-		jumps			: in  std_logic_vector(7 downto 0);
+			walls			: in  std_logic_vector(7 downto 0);
+			layer0_player	: in  std_logic;
+			layer1_player	: in  std_logic;
+			
+			borders			: in  std_logic_vector(7 downto 0);
+			jumps			: in  std_logic_vector(7 downto 0);
 
-		color			: out std_logic_vector(3 downto 0));
+			color			: out std_logic_vector(3 downto 0));
 	end component;
 	
 	component wall_decoder is
-	port(	encoded	: in  std_logic_vector(2 downto 0);
+	port(	encoded		: in  std_logic_vector(2 downto 0);
 			north		: out std_logic;
 			east		: out std_logic;
 			south		: out std_logic;
@@ -36,16 +36,22 @@ architecture behaviour of graphics_top is
 	end component;
 
 	component sidebar is
-	port(	x      : in  std_logic_vector(6 downto 0);
-			y      : in  std_logic_vector(8 downto 0);
-			player : in  std_logic;
-			mode   : in  std_logic_vector(2 downto 0);
-			ready  : in  std_logic;
-			boost  : in  std_logic;
-			dir    : in  std_logic_vector(1 downto 0);
-			color  : out std_logic_vector(3 downto 0));
+	port(	x			: in  std_logic_vector(6 downto 0);
+			y			: in  std_logic_vector(8 downto 0);
+			player		: in  std_logic;
+			mode		: in  std_logic_vector(2 downto 0);
+			ready		: in  std_logic;
+			boost		: in  std_logic;
+			dir			: in  std_logic_vector(1 downto 0);
+			color		: out std_logic_vector(3 downto 0));
 	end component;
 
+	component homescreen is
+	port(	x			: in  std_logic_vector(8 downto 0);
+			y			: in  std_logic_vector(8 downto 0);
+			pixelator	: in  std_logic_vector(3 downto 0);
+			color		: out std_logic_vector(3 downto 0));
+	end component;
 
 
 
@@ -65,15 +71,25 @@ architecture behaviour of graphics_top is
 	signal in_visible_y:									std_logic; --basically internal busy signal
 	signal in_visible_x:									std_logic;
 	
+	signal central_x:										unsigned(9 downto 0); --x, 0 at start of central 480 pixels
+	signal central_x_vec:									std_logic_vector(9 downto 0);
+	
+	--pixelator
+	signal pixelator_color:									std_logic_vector(3 downto 0);
+	
 	--sidebar
 	signal sidebar_x:										std_logic_vector(6 downto 0);
 	signal sidebar_y:										std_logic_vector(8 downto 0);
 	signal sidebar_player, sidebar_ready, sidebar_boost:	std_logic;
 	signal sidebar_dir:										std_logic_vector(1 downto 0);
+	signal sidebar_color:									std_logic_vector(3 downto 0);
 	
+	--homescreen
+	signal homescreen_x, homescreen_y:						std_logic_vector(8 downto 0);
+	signal homescreen_color:								std_logic_vector(3 downto 0);
 	
 	--output
-	signal next_color,pixelator_color,sidebar_color:		std_logic_vector(3 downto 0);
+	signal next_color:										std_logic_vector(3 downto 0);
 	
 
 
@@ -123,8 +139,8 @@ dec1: wall_decoder port map(
 	
 --calculate pixel from game data
 pxl: pixelator port map(
-		dx=>dx_vec,
-		dy=>dy_vec,
+		dx=>dx_vec,--pixelator_dx_vec,
+		dy=>dy_vec,--pixelator_dy_vec,
 		player0_en=>player0_en,
 		player1_en=>player1_en,
 		player0_layer=>player0_pos(10),
@@ -152,20 +168,81 @@ sdb: sidebar port map(
 		color=>sidebar_color
 	);
 
+hscr: homescreen port map(
+		x=>homescreen_x,
+		y=>homescreen_y,
+		pixelator=>pixelator_color,
+		color=>homescreen_color
+	);
+
 
 --some useful values for coordinates and counting
-	dx<=h_count(3 downto 0); --4 lsb
-	dy<=v_count(3 downto 0);
-	dx_vec<=std_logic_vector(dx);
-	dy_vec<=std_logic_vector(dy);
-	x<=h_count(8 downto 4)-to_unsigned(9+5,5); --5 more significant bits --9 offscreen + 80p left half of screen
-	y<=v_count(8 downto 4);
-	x_vec<=std_logic_vector(x);
-	y_vec<=std_logic_vector(y);
-	h_count_x_component<=h_count(9 downto 4); --when comparing multiples of 16 don't create comparison logic for the lower bits
-	v_count_y_component<=h_count(9 downto 4);
 	h_vec<=std_logic_vector(h_count);
 	v_vec<=std_logic_vector(v_count);
+	
+	--switching pixelator/memory coordinates to fit either the normal game or the homescreen
+	process(h_count,v_count,h_vec,v_vec)
+		variable v_x, hcxc	: unsigned(9 downto 0);
+	begin
+		if game_state/="000" then --standard, not homescreen
+			dx_vec<=h_vec(3 downto 0); --4 lsb
+			dy_vec<=v_vec(3 downto 0);
+			
+			x_vec<=std_logic_vector(h_count(8 downto 4)-to_unsigned(9+5,5)); --5 more significant bits --9 offscreen + 80p left half of screen
+			y_vec<=std_logic_vector(v_count(8 downto 4));
+			
+			h_count_x_component<=h_count(9 downto 4); --when comparing multiples of 16 don't create comparison logic for the lower bits
+			v_count_y_component<=h_count(9 downto 4);
+		
+		else --homescreen, display grid on 1/2 scale starting at (120,200) relative to central_x, v
+			dx_vec(0)<='0';
+			dx_vec(3 downto 1)<=std_logic_vector(h_count(2 downto 0)-to_unsigned(120,3)); --120 is only misalignment relative to 8pixel grid
+			dy_vec(0)<='0';
+			dy_vec(3 downto 1)<=v_vec(2 downto 0); --200==0mod8, no shift
+			
+			v_x:=h_count-to_unsigned(120+80+9*16,10); --shift to start of screen, past sidebar, to start of homescreen map preview
+			x_vec<=std_logic_vector(v_x(7 downto 3)); --5 more significant bits --9 offscreen + 80p left half of screen
+			y_vec<=std_logic_vector(v_count(7 downto 3)-to_unsigned(25,5)); --offset by 200, but 200/8=25
+			
+			--most difficult to change
+			--original: h_count//16
+			--new: shifted h_count//8
+
+			--original must be 14 at start of game grid; h~(9+5)x16 +0..15
+			--original 0 at h=0 +0..15
+			--new signal must be 14 at start of preview; h~(9+5)x16+120
+			--new 0 at (9+5)x16+120 - (9+5)*8 +0..7= 232+0..7
+			--so take hcount-232 and divide by 8
+			
+			hcxc:=h_count-to_unsigned(232,10);
+			h_count_x_component<=hcxc(8 downto 3); --when comparing multiples of 16 don't create comparison logic for the lower bits
+			
+			if h_count<to_unsigned(8*16,10) then --prevent the scaled down value from being repeated at the start of the line, 8*16 skips the first 16 blocks
+				h_count_x_component<=to_unsigned(0,6);
+			end if;
+			
+			--rescale by factor 1/2, move original 0 mark to 200
+			v_count_y_component<=h_count(8 downto 3)-to_unsigned(25,6); --move by 200=8x25
+		
+		end if;
+	end process;
+	
+	dx<=unsigned(dx_vec);
+	dy<=unsigned(dy_vec);
+	
+	x<=unsigned(x_vec);
+	y<=unsigned(y_vec);
+	
+
+	
+	central_x<=h_count-(B+C+to_unsigned(80,10));
+	central_x_vec<=std_logic_vector(central_x);
+	
+--	pixelator_dx_vec<=dx_vec;
+--	pixelator_dy_vec<=dy_vec;
+	
+	homescreen_y<=v_vec(8 downto 0);
+	homescreen_x<=central_x_vec(8 downto 0);
 
 --clocking process
 	process(clk)
@@ -254,7 +331,7 @@ sdb: sidebar port map(
 	--x_incr, pass data
 	process(dx, x, in_visible_y, data_synced, borders_synced, jumps_synced, data, borders, jumps,h_count_x_component, game_state)
 	begin
-		if dx=unsigned(std_logic_vector(to_signed(-1,4))) then
+		if dx=unsigned(std_logic_vector(to_signed(-1,4))) or (game_state="000" and dx=unsigned(std_logic_vector(to_signed(-2,4))))then --highest dx value -> pass data on
 			--pass data
 			next_data_synced<=data;
 			next_borders_synced<=borders;
@@ -266,7 +343,7 @@ sdb: sidebar port map(
 			else
 				x_incr <= '0';
 			end if;
-		else
+		else --keep data
 			next_data_synced<=data_synced;
 			next_borders_synced<=borders_synced;
 			next_jumps_synced<=jumps_synced;
@@ -326,42 +403,47 @@ sdb: sidebar port map(
 	end process;
 
 
---output
-	--check player positions
-	process(player0_pos,x_vec,y_vec)
+--pixelator player enables
+	--check player positions against current position
+	process(player0_pos,x_vec,y_vec,game_state)
 	begin
 		if player0_pos(9 downto 5)=y_vec and player0_pos(4 downto 0)=x_vec then
 			player0_en<='1';
 		else
 			player0_en<='0';
 		end if;
+		
+		if game_state="000" then --homescreen
+			player0_en<='0';
+		end if;
 	end process;
-	process(player1_pos,x_vec,y_vec)
+	
+	process(player1_pos,x_vec,y_vec,game_state)
 	begin
 		if player1_pos(9 downto 5)=y_vec and player1_pos(4 downto 0)=x_vec then
 			player1_en<='1';
 		else
 			player1_en<='0';
 		end if;
+		
+		if game_state="000" then --homescreen
+			player1_en<='0';
+		end if;
 	end process;
 
 
-	--output selection
+--output color selection
 	process(h_count,v_count,in_visible_x,in_visible_y,pixelator_color,sidebar_color,game_state) --calculate output color (gridded pattern)
-		variable px	: unsigned(9 downto 0);
+		--variable px	: unsigned(9 downto 0);
 	begin
 		if in_visible_x='1' and in_visible_y='1' then
-			px:=h_count-(B+C+to_unsigned(80,10));
+			--px:=h_count-(B+C+to_unsigned(80,10));
 			
-			if px<R then
+			if central_x<R then
 				--depending on mode
-				if game_state="000" then
-					next_color<="1111";
-					
-					--homescreen!
-					
-					
-				else
+				if game_state="000" then --homescreen!
+					next_color<=homescreen_color;
+				else --game
 					next_color<=pixelator_color;
 				end if;
 			else
@@ -376,24 +458,4 @@ sdb: sidebar port map(
 		end if;
 	end process;
 
-
---	--output calculations -- dummy, not actual data
---	process(h_count,v_count,in_visible_x,in_visible_y,pixelator_color) --calculate output color (gridded pattern)
---		variable px,py	: unsigned(9 downto 0);
---	begin
---		if in_visible_x='1' and in_visible_y='1' then
---			px:=h_count-(B+C+to_unsigned(80,10));
---			py:=v_count;
---			
---			if px<R then
---				next_color<=pixelator_color;
-----				next_color(3) <= px(4) xor py(4);
-----				next_color(2 downto 0) <= "000";
---			else
---				next_color <= "0000";
---			end if;
---		else
---			next_color <= "0000";
---		end if;
---	end process;
 end behaviour;
