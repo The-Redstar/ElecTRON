@@ -1,0 +1,30 @@
+graphics_top:
+     Type      Instances   Area   Area % 
+-----------------------------------------
+sequential            50 2465.210   59.2 
+inverter              10  118.541    2.8 
+logic_abstract         3    0.000    0.0 
+logic                 99 1582.739   38.0 
+physical_cells         0    0.000    0.0 
+-----------------------------------------
+total                162 4166.490  100.0 
+
+
+pixelator:
+     Type      Instances   Area   Area % 
+-----------------------------------------
+inverter              13   85.613    4.5 
+logic                138 1817.626   95.5 
+physical_cells         0    0.000    0.0 
+-----------------------------------------
+total                151 1903.238  100.0 
+
+
+wall_decoder (2x):
+     Type      Instances   Area  Area % 
+----------------------------------------
+inverter               1   6.586    3.5 
+logic                 11 182.202   96.5 
+physical_cells         0   0.000    0.0 
+----------------------------------------
+total                 12 188.787  100.0 
