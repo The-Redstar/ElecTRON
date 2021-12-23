@@ -95,6 +95,17 @@ begin
 					d    => d_booster_1,
 					q    => q_booster_1);
 
+	booster_begin_0:reg_1 port map			      ( clk  => clk,
+					reset=> reset,
+					e    => e_booster_begin_0,
+					d    => d_booster_begin_0,
+					q    => q_booster_begin_0);
+	booster_begin_1:reg_1 port map			      ( clk  => clk,
+					reset=> reset,
+					e    => e_booster_begin_1,
+					d    => d_booster_begin_1,
+					q    => q_booster_begin_1);
+
 	border_0:reg_1 port map			      ( clk  => clk,
 					reset=> reset,
 					e    => e_border_0,
