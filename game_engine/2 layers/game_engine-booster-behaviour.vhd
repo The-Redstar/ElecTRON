@@ -14,7 +14,7 @@ architecture behaviour of game_engine is
 	signal d_next_direction_0, d_next_direction_1, next_direction_0, next_direction_1 : std_logic_vector(1 downto 0);
 	signal position_0, position_1, next_position_0, next_position_1 : std_logic_vector (9 downto 0);
 	signal d_position_0, d_position_1 : std_logic_vector (9 downto 0);
-	signal layer_0, layer_1, d_layer_0, d_layer_1, e_layer_0, e_layer_1, d_booster_0, d_booster_1, e_booster_0, e_booster_1 : std_logic;
+	signal layer_0, layer_1, d_layer_0, d_layer_1, e_layer_0, e_layer_1, d_booster_0, d_booster_1, e_booster_0, e_booster_1, d_booster_sync, e_booster_sync: std_logic;
 	signal next_layer_0, next_layer_1, d_next_layer_0, d_next_layer_1, e_next_layer_0, e_next_layer_1 : std_logic;
 	signal border_0, border_1, d_border_0, d_border_1, e_border_0, e_border_1: std_logic;
 	signal d_read_data_reg, read_data_reg : std_logic_vector (7 downto 0);
@@ -28,7 +28,7 @@ architecture behaviour of game_engine is
 	signal busy_counter_reset: std_logic;
 	signal unsigned_busy_count: std_logic_vector(6 downto 0);
 	--crashes and other stuff
-	signal booster_begin_0, booster_begin_1, booster_0, booster_1, collision_middle, collision_head: std_logic;
+	signal booster_begin_0, booster_begin_1, booster_0, booster_1, booster_sync, collision_middle, collision_head: std_logic;
 	--other signals
 	signal wallshape_0, wallshape_1 : std_logic_vector(2 downto 0);
 
@@ -59,7 +59,7 @@ architecture behaviour of game_engine is
         	address_mem        : out std_logic_vector(9 downto 0));
 	end component;
 
---booster, booster begin and booster_count moet nog worden opgeslagen in een register
+--booster, booster begin moet nog worden opgeslagen in een register
 	component ge_register is
 		port(clk, reset	  : in  std_logic;	
 			e_position_0  : in  std_logic;
@@ -649,16 +649,18 @@ create_next_state: 	process (state, new_state, reset, input, busy, clk, unsigned
 			when booster =>
 				e_booster_0 <= '1';
 				e_booster_1 <= '1';
+				e_booster_sync <= '1';
+				d_booster_sync <= not booster_sync;
 				if (booster_begin_0 = '1') then
 					d_booster_0 <= '1';
 				else 
-					d_booster_0 <= not booster_0;
+					d_booster_0 <= booster_sync;
 				end if;
 				
 				if (booster_begin_1 = '1') then
 					d_booster_1 <= '1';
 				else 
-					d_booster_1 <= not booster_1;
+					d_booster_1 <= booster_sync;
 				end if;
 				new_state <= check_booster;
 				
