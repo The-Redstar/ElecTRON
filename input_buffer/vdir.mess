@@ -1,0 +1,162 @@
+Library vendor : Model Technology
+Maximum unnamed designs : 3
+ENTITY flip_flop
+    Source modified time: Thu Dec 23 11:26:11 2021
+    Depends on: P std textio zE1`LPoLg^DX3Oz^4Fj1K3
+    Depends on: P ieee std_logic_1164 eNV`TJ_GofJTzYa?f<@Oe1
+    Source directory: /tmp/.x2go-jwnijenhuis/media/disk/_cygdrive_C_Users_jonat_OneDrive_DOCUME1_Studie_EE2L11_ElecTRON/input_buffer
+    HDL source file: VHDL/flip_flop.vhd
+    Source file: VHDL/flip_flop.vhd
+    Start location: VHDL/flip_flop.vhd:4
+    Version string: R@4;8agAOh=dk3G`XA]SW3
+    Opcode format: 10.5b; VCOM SE-64 Object version 63
+    VHDL language standard: 3 (VHDL-2008)
+    Compile time: Thu Dec 23 11:26:21 2021
+    Debug Symbol file exists
+    Compiled in vopt flow
+    Compile options: -quiet -nologo -2008 -lower -explicit -work work
+    Compile defaults: Explicit=1 CvgOpt=0
+  ARCHITECTURE BODY behaviour
+    Source modified time: Thu Dec 23 11:45:03 2021
+    Depends on: E work flip_flop R@4;8agAOh=dk3G`XA]SW3
+    Depends on: P std textio zE1`LPoLg^DX3Oz^4Fj1K3
+    Depends on: P ieee std_logic_1164 eNV`TJ_GofJTzYa?f<@Oe1
+    HDL source file: VHDL/flip_flop-behaviour.vhd
+    Source file: VHDL/flip_flop-behaviour.vhd
+    Start location: VHDL/flip_flop-behaviour.vhd:4
+    Version string: dK6h_GhOLA;MC[hz718[e1
+    Opcode format: 10.5b; VCOM SE-64 Object version 63
+    VHDL language standard: 3 (VHDL-2008)
+    Compile time: Thu Dec 23 11:45:12 2021
+    Debug Symbol file exists
+    Compiled in vopt flow
+    Compile options: -quiet -nologo -2008 -lower -explicit -work work
+    Compile defaults: Explicit=1 CvgOpt=0
+    Source directory: /tmp/.x2go-jwnijenhuis/media/disk/_cygdrive_C_Users_jonat_OneDrive_DOCUME1_Studie_EE2L11_ElecTRON/input_buffer
+VHDL CONFIGURATION flip_flop_behaviour_cfg
+    Configuration applies to entity: flip_flop
+    Block configuration applies to architecture: behaviour
+    Depends on: A work flip_flop behaviour dK6h_GhOLA;MC[hz718[e1
+    Depends on: P std textio zE1`LPoLg^DX3Oz^4Fj1K3
+    Depends on: P ieee std_logic_1164 eNV`TJ_GofJTzYa?f<@Oe1
+    Depends on: E work flip_flop R@4;8agAOh=dk3G`XA]SW3
+    Source modified time: Thu Dec 23 11:45:14 2021
+    Source directory: /tmp/.x2go-jwnijenhuis/media/disk/_cygdrive_C_Users_jonat_OneDrive_DOCUME1_Studie_EE2L11_ElecTRON/input_buffer
+    HDL source file: VHDL/flip_flop_behaviour_cfg.vhd
+    Source file: VHDL/flip_flop_behaviour_cfg.vhd
+    Start location: VHDL/flip_flop_behaviour_cfg.vhd:1
+    Version string: [AN?JDIWE2<G7[_^2zk;i1
+    Opcode format: 10.5b; VCOM SE-64 Object version 63
+    VHDL language standard: 3 (VHDL-2008)
+    Compile time: Thu Dec 23 11:45:23 2021
+    Compiled in vopt flow
+    Compile options: -quiet -nologo -2008 -lower -explicit -work work
+    Compile defaults: Explicit=1 CvgOpt=0
+ENTITY input_buffer
+    Source modified time: Thu Dec 23 11:25:01 2021
+    Depends on: P std textio zE1`LPoLg^DX3Oz^4Fj1K3
+    Depends on: P ieee std_logic_1164 eNV`TJ_GofJTzYa?f<@Oe1
+    Source directory: /tmp/.x2go-jwnijenhuis/media/disk/_cygdrive_C_Users_jonat_OneDrive_DOCUME1_Studie_EE2L11_ElecTRON/input_buffer
+    HDL source file: VHDL/input_buffer.vhd
+    Source file: VHDL/input_buffer.vhd
+    Start location: VHDL/input_buffer.vhd:4
+    Version string: YiZ=M_M^o8?lnf?lOF^jk0
+    Opcode format: 10.5b; VCOM SE-64 Object version 63
+    VHDL language standard: 3 (VHDL-2008)
+    Compile time: Thu Dec 23 11:25:13 2021
+    Debug Symbol file exists
+    Compiled in vopt flow
+    Compile options: -quiet -nologo -2008 -lower -explicit -work work
+    Compile defaults: Explicit=1 CvgOpt=0
+  ARCHITECTURE BODY behaviour
+    Source modified time: Thu Dec 23 11:52:09 2021
+    Depends on: E work input_buffer YiZ=M_M^o8?lnf?lOF^jk0
+    Depends on: P std textio zE1`LPoLg^DX3Oz^4Fj1K3
+    Depends on: P ieee std_logic_1164 eNV`TJ_GofJTzYa?f<@Oe1
+    HDL source file: VHDL/input_buffer-behaviour.vhd
+    Source file: VHDL/input_buffer-behaviour.vhd
+    Start location: VHDL/input_buffer-behaviour.vhd:4
+    Version string: FMCO`6;Wnz=@g_VNz_CmN0
+    Opcode format: 10.5b; VCOM SE-64 Object version 63
+    VHDL language standard: 3 (VHDL-2008)
+    Compile time: Thu Dec 23 11:52:18 2021
+    Debug Symbol file exists
+    Compiled in vopt flow
+    Compile options: -quiet -nologo -2008 -lower -explicit -work work
+    Compile defaults: Explicit=1 CvgOpt=0
+    Source directory: /tmp/.x2go-jwnijenhuis/media/disk/_cygdrive_C_Users_jonat_OneDrive_DOCUME1_Studie_EE2L11_ElecTRON/input_buffer
+VHDL CONFIGURATION input_buffer_behaviour_cfg
+    Configuration applies to entity: input_buffer
+    Block configuration applies to architecture: behaviour
+    Depends on: E work flip_flop R@4;8agAOh=dk3G`XA]SW3
+    Depends on: C work flip_flop_behaviour_cfg [AN?JDIWE2<G7[_^2zk;i1
+    Depends on: A work input_buffer behaviour FMCO`6;Wnz=@g_VNz_CmN0
+    Depends on: P std textio zE1`LPoLg^DX3Oz^4Fj1K3
+    Depends on: P ieee std_logic_1164 eNV`TJ_GofJTzYa?f<@Oe1
+    Depends on: E work input_buffer YiZ=M_M^o8?lnf?lOF^jk0
+    Source modified time: Thu Dec 23 11:52:20 2021
+    Source directory: /tmp/.x2go-jwnijenhuis/media/disk/_cygdrive_C_Users_jonat_OneDrive_DOCUME1_Studie_EE2L11_ElecTRON/input_buffer
+    HDL source file: VHDL/input_buffer_behaviour_cfg.vhd
+    Source file: VHDL/input_buffer_behaviour_cfg.vhd
+    Start location: VHDL/input_buffer_behaviour_cfg.vhd:1
+    Version string: PAd1G]H[hdi9Fm91fUDlg1
+    Opcode format: 10.5b; VCOM SE-64 Object version 63
+    VHDL language standard: 3 (VHDL-2008)
+    Compile time: Thu Dec 23 11:52:29 2021
+    Compiled in vopt flow
+    Compile options: -quiet -nologo -2008 -lower -explicit -work work
+    Compile defaults: Explicit=1 CvgOpt=0
+ENTITY input_buffer_tb
+    Source modified time: Thu Dec 23 11:53:09 2021
+    Depends on: P std textio zE1`LPoLg^DX3Oz^4Fj1K3
+    Depends on: P ieee std_logic_1164 eNV`TJ_GofJTzYa?f<@Oe1
+    Source directory: /tmp/.x2go-jwnijenhuis/media/disk/_cygdrive_C_Users_jonat_OneDrive_DOCUME1_Studie_EE2L11_ElecTRON/input_buffer
+    HDL source file: VHDL/input_buffer_tb.vhd
+    Source file: VHDL/input_buffer_tb.vhd
+    Start location: VHDL/input_buffer_tb.vhd:4
+    Version string: z;[cD50gI7O9DVVim@>z91
+    Opcode format: 10.5b; VCOM SE-64 Object version 63
+    VHDL language standard: 3 (VHDL-2008)
+    Compile time: Thu Dec 23 11:53:19 2021
+    Debug Symbol file exists
+    Compiled in vopt flow
+    Compile options: -quiet -nologo -2008 -lower -explicit -work work
+    Compile defaults: Explicit=1 CvgOpt=0
+  ARCHITECTURE BODY behaviour
+    Source modified time: Thu Dec 23 11:55:26 2021
+    Depends on: E work input_buffer_tb z;[cD50gI7O9DVVim@>z91
+    Depends on: P std textio zE1`LPoLg^DX3Oz^4Fj1K3
+    Depends on: P ieee std_logic_1164 eNV`TJ_GofJTzYa?f<@Oe1
+    HDL source file: VHDL/input_buffer_tb-behaviour.vhd
+    Source file: VHDL/input_buffer_tb-behaviour.vhd
+    Start location: VHDL/input_buffer_tb-behaviour.vhd:4
+    Version string: =X5PWCMR9]fz=_ifAKQ=<1
+    Opcode format: 10.5b; VCOM SE-64 Object version 63
+    VHDL language standard: 3 (VHDL-2008)
+    Compile time: Thu Dec 23 11:55:36 2021
+    Debug Symbol file exists
+    Compiled in vopt flow
+    Compile options: -quiet -nologo -2008 -lower -explicit -work work
+    Compile defaults: Explicit=1 CvgOpt=0
+    Source directory: /tmp/.x2go-jwnijenhuis/media/disk/_cygdrive_C_Users_jonat_OneDrive_DOCUME1_Studie_EE2L11_ElecTRON/input_buffer
+VHDL CONFIGURATION input_buffer_tb_behaviour_cfg
+    Configuration applies to entity: input_buffer_tb
+    Block configuration applies to architecture: behaviour
+    Depends on: E work input_buffer YiZ=M_M^o8?lnf?lOF^jk0
+    Depends on: C work input_buffer_behaviour_cfg PAd1G]H[hdi9Fm91fUDlg1
+    Depends on: A work input_buffer_tb behaviour =X5PWCMR9]fz=_ifAKQ=<1
+    Depends on: P std textio zE1`LPoLg^DX3Oz^4Fj1K3
+    Depends on: P ieee std_logic_1164 eNV`TJ_GofJTzYa?f<@Oe1
+    Depends on: E work input_buffer_tb z;[cD50gI7O9DVVim@>z91
+    Source modified time: Thu Dec 23 11:57:47 2021
+    Source directory: /tmp/.x2go-jwnijenhuis/media/disk/_cygdrive_C_Users_jonat_OneDrive_DOCUME1_Studie_EE2L11_ElecTRON/input_buffer
+    HDL source file: VHDL/input_buffer_tb_behaviour_cfg.vhd
+    Source file: VHDL/input_buffer_tb_behaviour_cfg.vhd
+    Start location: VHDL/input_buffer_tb_behaviour_cfg.vhd:1
+    Version string: L?5mUZ2CWmQ1finR:h21J0
+    Opcode format: 10.5b; VCOM SE-64 Object version 63
+    VHDL language standard: 3 (VHDL-2008)
+    Compile time: Thu Dec 23 11:57:57 2021
+    Compiled in vopt flow
+    Compile options: -quiet -nologo -2008 -lower -explicit -work work
+    Compile defaults: Explicit=1 CvgOpt=0
