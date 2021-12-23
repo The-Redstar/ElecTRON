@@ -110,7 +110,9 @@ reset <= '1' after 0 ns,
 
 input <= "0010" after 0 ns,
 	"0000" after 230 ns, -- goes to wait state
-	"0001" after 4000 ns;
+	"0001" after 40000 ns,
+	"0011" after 100000 ns,
+	"0000" after 300000 ns;
 
 -- normally the busy signal has a lower frequency, however for simulating the game_engine that takes to long
 -- therefore a higher frequency was used during the wait_state, once out of the wait_state the busy signal remains 0 for a while like with the real busy signal to go through all the other states

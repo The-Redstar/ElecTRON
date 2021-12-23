@@ -105,6 +105,13 @@ begin
 					e    => e_border_1,
 					d    => d_border_1,
 					q    => q_border_1);
+
+	booster_sync:reg_1 port map			      ( clk  => clk,
+					reset=> reset,
+					e    => e_booster_sync,
+					d    => d_booster_sync,
+					q    => q_booster_sync);
+
 	r_mem_0:reg_8 port map			     ( clk  => clk,
 					reset=> reset,
 					e    => e_read_mem,

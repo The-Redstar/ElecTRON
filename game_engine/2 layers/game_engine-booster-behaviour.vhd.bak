@@ -72,12 +72,8 @@ architecture behaviour of game_engine is
 			d_layer_1	  : in  std_logic;
 			e_booster_0	  : in  std_logic;		
 			e_booster_1	  : in  std_logic;
-			e_booster_begin_0	  : in  std_logic;		
-			e_booster_begin_1	  : in  std_logic;
 			d_booster_0	  : in  std_logic;
 			d_booster_1	  : in  std_logic;
-			d_booster_begin_0	  : in  std_logic;
-			d_booster_begin_1	  : in  std_logic;
 			e_next_layer_0: in  std_logic;
 			e_next_layer_1: in  std_logic;
 			d_next_layer_0: in  std_logic;
@@ -106,8 +102,6 @@ architecture behaviour of game_engine is
 			q_layer_1	  : out std_logic;
 			q_booster_0	  : out std_logic;
 			q_booster_1	  : out std_logic;
-			q_booster_begin_0	  : out std_logic;
-			q_booster_begin_1	  : out std_logic;
 			q_next_layer_0: out std_logic;
 			q_next_layer_1: out std_logic;
 			q_border_0	  : out std_logic;
@@ -137,10 +131,6 @@ reg: ge_register port map (clk => clk,
 			e_booster_1	  => e_booster_1,
 			d_booster_0	  => d_booster_0,
 			d_booster_1	  => d_booster_1,
-			e_booster_begin_0	  => e_booster_begin_0,
-			e_booster_begin_1	  => e_booster_begin_1,
-			d_booster_begin_0	  => d_booster_begin_0,
-			d_booster_begin_1	  => d_booster_begin_1,
 			e_next_layer_0=> e_next_layer_0,
 			e_next_layer_1=> e_next_layer_1,
 			d_next_layer_0=> d_next_layer_0,
@@ -169,8 +159,6 @@ reg: ge_register port map (clk => clk,
 			q_layer_1	  => layer_1,
 			q_booster_0	  => booster_0,
 			q_booster_1	  => booster_1,
-			q_booster_begin_0	  => booster_begin_0,
-			q_booster_begin_1	  => booster_begin_1,
 			q_next_layer_0=> next_layer_0,
 			q_next_layer_1=> next_layer_1,
 			q_border_0	  => border_0,
@@ -234,6 +222,22 @@ updates: 	process (clk)
 			else
 				state <= new_state;
 			end if;
+		end if;
+	end process;
+
+begin_booster: process (input, direction_0, direction_1)
+	begin
+	
+		if (input(1) = (not direction_0(1))) then 
+			booster_begin_0 <= '1';
+		else
+			booster_begin_0 <= '0';
+		end if;
+		
+		if (input(3) = (not direction_1(1))) then
+			booster_begin_1 <= '1';
+		else
+			booster_begin_1 <= '0';
 		end if;
 	end process;
 
@@ -468,8 +472,6 @@ create_next_state: 	process (state, new_state, reset, input, busy, clk, unsigned
 		e_layer_1					<= '0';
 		e_booster_0					<= '0';
 		e_booster_1					<= '0';
-		e_booster_begin_0					<= '0';
-		e_booster_begin_1					<= '0';
 		e_next_layer_0				<= '0';
 		e_next_layer_1				<= '0';
 		e_border_0					<= '0';
@@ -505,10 +507,7 @@ create_next_state: 	process (state, new_state, reset, input, busy, clk, unsigned
 		clear_fsm         			<= '0';
         	write_data_fsm     			<= (others => '0');
 	
-		e_booster_begin_0				<= '0';
-		e_booster_begin_1				<= '0';
-		d_booster_begin_0				<= '0';
-		d_booster_begin_1				<= '0';
+
 		
 
 		
@@ -575,8 +574,6 @@ create_next_state: 	process (state, new_state, reset, input, busy, clk, unsigned
 				d_direction_1				<= direction_grid_1;
 				e_booster_0					<= '1';
 				e_booster_1					<= '1';
-				e_booster_begin_0					<= '1';
-				e_booster_begin_1					<= '1';
 				
 				
 				-- when player 0 is ready to play the next state is 'player_0_ready'
@@ -628,19 +625,15 @@ create_next_state: 	process (state, new_state, reset, input, busy, clk, unsigned
 				-- read the inputs from the players and remember them
 				state_vga 					<= "111";
 				-- remember the values of the input of the players in 'next_direction_#player'
-				e_booster_begin_0				<= '1';
-				e_booster_begin_1				<= '1';
-				if (((direction_0= "00") and (input(1 downto 0)  ="10")) or  ((direction_0= "10") and (input(1 downto 0)  ="00")) or ((direction_0= "01") and (input(1 downto 0)  ="11")) or  ((direction_0= "11") and (input(1 downto 0)  ="01"))) then
-					e_next_direction_0			<= '0';
-					d_booster_begin_0				<= '1'; 				
+				if (booster_begin_0 = '1') then
+					e_next_direction_0			<= '0';	
 				else	
 					e_next_direction_0			<= '1';
 					d_next_direction_0			<= input(1 downto 0);
 				end if;
 
-				if (((direction_1= "00") and (input(3 downto 2)  ="10")) or  ((direction_1= "10") and (input(3 downto 2)  ="00")) or ((direction_1= "01") and (input(3 downto 2)  ="11")) or  ((direction_1= "11") and (input(3 downto 2)  ="01"))) then
+				if (booster_begin_1 = '1') then
 					e_next_direction_1			<= '0';
-					d_booster_begin_1				<= '1';
 				else	
 					e_next_direction_1			<= '1';
 					d_next_direction_1			<= input(3 downto 2);

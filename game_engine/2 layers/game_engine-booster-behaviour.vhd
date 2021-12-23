@@ -74,6 +74,8 @@ architecture behaviour of game_engine is
 			e_booster_1	  : in  std_logic;
 			d_booster_0	  : in  std_logic;
 			d_booster_1	  : in  std_logic;
+			e_booster_sync	  : in  std_logic;
+			d_booster_sync  : in  std_logic;
 			e_next_layer_0: in  std_logic;
 			e_next_layer_1: in  std_logic;
 			d_next_layer_0: in  std_logic;
@@ -131,6 +133,8 @@ reg: ge_register port map (clk => clk,
 			e_booster_1	  => e_booster_1,
 			d_booster_0	  => d_booster_0,
 			d_booster_1	  => d_booster_1,
+			e_booster_sync	  => e_booster_sync,
+			d_booster_sync	  => d_booster_sync,
 			e_next_layer_0=> e_next_layer_0,
 			e_next_layer_1=> e_next_layer_1,
 			d_next_layer_0=> d_next_layer_0,
@@ -225,7 +229,7 @@ updates: 	process (clk)
 		end if;
 	end process;
 
-booster: process (input, direction_0, direction_1)
+begin_booster: process (input, direction_0, direction_1)
 	begin
 	
 		if (input(1) = (not direction_0(1))) then 
@@ -489,8 +493,6 @@ create_next_state: 	process (state, new_state, reset, input, busy, clk, unsigned
 		d_layer_1					<= '0';
 		d_booster_0					<= '0';
 		d_booster_1					<= '0';
-		d_booster_begin_0			<= '0';
-		d_booster_begin_1			<= '0';
 		--determined in different process
 		--d_next_layer
 		--d_border
@@ -627,7 +629,7 @@ create_next_state: 	process (state, new_state, reset, input, busy, clk, unsigned
 				-- read the inputs from the players and remember them
 				state_vga 					<= "111";
 				-- remember the values of the input of the players in 'next_direction_#player'
-				if (booster_begin_0) then
+				if (booster_begin_0 = '1') then
 					e_next_direction_0			<= '0';	
 				else	
 					e_next_direction_0			<= '1';
