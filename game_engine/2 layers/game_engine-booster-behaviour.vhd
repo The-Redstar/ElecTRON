@@ -5,7 +5,7 @@ use ieee.numeric_std.all;
 
 architecture behaviour of game_engine is
 
-	type game_state is (reset_state, loading_state, booster, home_screen, get_ready, before_start_state, read_inputs, read1_memory_player_0, read1_memory_player_1, read2_memory_player_0, read2_memory_player_1, check_who_won, wait_state, write_memory_player_0, write_memory_player_1, change_data, check_how_collision, player_0_won, player_1_won, tie, busy_reset, check_jump_0, check_jump_1);
+	type game_state is (reset_state, loading_state, booster, check_booster, home_screen, get_ready, before_start_state, read_inputs, read1_memory_player_0, read1_memory_player_1, read2_memory_player_0, read2_memory_player_1, check_who_won, wait_state, write_memory_player_0, write_memory_player_1, change_data, check_how_collision, player_0_won, player_1_won, tie, busy_reset, check_jump_0, check_jump_1);
 
 
 	signal state, new_state: game_state;
@@ -663,7 +663,10 @@ create_next_state: 	process (state, new_state, reset, input, busy, clk, unsigned
 				else 
 					d_booster_1 <= not booster_1;
 				end if;
+				new_state <= check_booster;
 				
+			when check_booster =>
+			
 				if (booster_0 = '1') then 
 					new_state <= read1_memory_player_0;
 				elsif (booster_1 = '1') then 
