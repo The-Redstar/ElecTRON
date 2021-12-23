@@ -611,16 +611,14 @@ create_next_state: 	process (state, new_state, reset, input, busy, clk, unsigned
 			when booster =>
 				e_booster_0 <= '1';
 				e_booster_1 <= '1';
-				if (booster_begin_0 = '1') and (unsigned(booster_count_0) <= 5) then
+				if (booster_begin_0 = '1') then
 					d_booster_0 <= '1';
-					booster_count_0 <=  std_logic_vector(to_unsigned(to_integer(unsigned(booster_count_0(2 downto 0))) + 1, 3));
 				else 
 					d_booster_0 <= not booster_0;
 				end if;
 				
-				if (booster_begin_1 = '1') and (unsigned(booster_count_1) <= 5) then
+				if (booster_begin_1 = '1') then
 					d_booster_1 <= '1';
-					booster_count_1 <=  std_logic_vector(to_unsigned(to_integer(unsigned(booster_count_1(2 downto 0))) + 1, 3));
 				else 
 					d_booster_1 <= not booster_1;
 				end if;
@@ -633,7 +631,8 @@ create_next_state: 	process (state, new_state, reset, input, busy, clk, unsigned
 				
 				if (((direction_0= "00") and (input(1 downto 0)  ="10")) or  ((direction_0= "10") and (input(1 downto 0)  ="00")) or ((direction_0= "01") and (input(1 downto 0)  ="11")) or  ((direction_0= "11") and (input(1 downto 0)  ="01"))) then
 					e_next_direction_0			<= '0';
-					booster_begin_0				<= '1'; 				
+					e_booster_begin_0				<= '1';
+					d_booster_begin_0				<= '1'; 				
 				else	
 					e_next_direction_0			<= '1';
 					d_next_direction_0			<= input(1 downto 0);
@@ -641,7 +640,8 @@ create_next_state: 	process (state, new_state, reset, input, busy, clk, unsigned
 
 				if (((direction_1= "00") and (input(3 downto 2)  ="10")) or  ((direction_1= "10") and (input(3 downto 2)  ="00")) or ((direction_1= "01") and (input(3 downto 2)  ="11")) or  ((direction_1= "11") and (input(3 downto 2)  ="01"))) then
 					e_next_direction_1			<= '0';
-					booster_begin_1				<= '1';
+					e_booster_begin_1				<= '1';
+					e_booster_begin_1				<= '1';
 				else	
 					e_next_direction_1			<= '1';
 					d_next_direction_1			<= input(3 downto 2);
