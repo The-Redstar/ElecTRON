@@ -1,1 +1,0 @@
-ssh -XY jwnijenhuis@ce-epo3-cad.ewi.tudelft.nl cd /tmp/.x2go-jwnijenhuis/media/disk/_cygdrive_C_Users_jonat_OneDrive_DOCUME1_Studie_EE2L11_ElecTRON/Memory/backend/syn/run\; genus -files ../tcl/syn2.tcl
