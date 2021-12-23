@@ -810,6 +810,7 @@ create_next_state: 	process (state, new_state, reset, input, busy, clk, unsigned
 						new_state <= read2_memory_player_1; 
 					else
 						new_state <= check_how_collision;
+					end if;
 				else 
 					new_state <= read2_memory_player_0;
 				end if;

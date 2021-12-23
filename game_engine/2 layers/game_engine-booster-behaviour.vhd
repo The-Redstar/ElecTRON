@@ -628,10 +628,10 @@ create_next_state: 	process (state, new_state, reset, input, busy, clk, unsigned
 				-- read the inputs from the players and remember them
 				state_vga 					<= "111";
 				-- remember the values of the input of the players in 'next_direction_#player'
-				
+				e_booster_begin_0				<= '1';
+				e_booster_begin_1				<= '1';
 				if (((direction_0= "00") and (input(1 downto 0)  ="10")) or  ((direction_0= "10") and (input(1 downto 0)  ="00")) or ((direction_0= "01") and (input(1 downto 0)  ="11")) or  ((direction_0= "11") and (input(1 downto 0)  ="01"))) then
 					e_next_direction_0			<= '0';
-					e_booster_begin_0				<= '1';
 					d_booster_begin_0				<= '1'; 				
 				else	
 					e_next_direction_0			<= '1';
@@ -640,7 +640,6 @@ create_next_state: 	process (state, new_state, reset, input, busy, clk, unsigned
 
 				if (((direction_1= "00") and (input(3 downto 2)  ="10")) or  ((direction_1= "10") and (input(3 downto 2)  ="00")) or ((direction_1= "01") and (input(3 downto 2)  ="11")) or  ((direction_1= "11") and (input(3 downto 2)  ="01"))) then
 					e_next_direction_1			<= '0';
-					e_booster_begin_1				<= '1';
 					d_booster_begin_1				<= '1';
 				else	
 					e_next_direction_1			<= '1';
