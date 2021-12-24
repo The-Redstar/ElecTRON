@@ -18,6 +18,7 @@ entity game_engine is
 		direction_grid_1 : in std_logic_vector(1 downto 0);
 select_button	   : in std_logic;
 	pulse_audio	: out std_logic;
+	map_select	  : out std_logic_vector(1 downto 0);
         state_vga          : out std_logic_vector(2 downto 0);
         write_enable       : out std_logic;
         write_memory       : out std_logic_vector(7 downto 0);
