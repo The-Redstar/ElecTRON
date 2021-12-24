@@ -1,3 +1,4 @@
+--booster
 library IEEE;
 use IEEE.std_logic_1164.ALL;
 
@@ -34,48 +35,88 @@ architecture structural of ge_register is
            q     : out std_logic_vector(10 downto 0));
    end component;
 
+   component reg_1
+      port(clk   : in  std_logic;
+           reset : in  std_logic;
+           e     : in  std_logic;
+           d     : in  std_logic;
+           q     : out std_logic);
+   end component;
+
+   component reg_10
+      port(clk   : in  std_logic;
+           reset : in  std_logic;
+           e     : in  std_logic;
+           d     : in  std_logic_vector(9 downto 0);
+           q     : out std_logic_vector(9 downto 0));
+   end component;
+
 begin
 
-	pos0:reg_11 port map          ( clk  => clk,
+	pos0:reg_10 port map          ( clk  => clk,
 					reset=> reset,
 					e    => e_position_0,
 					d    => d_position_0,
 					q    => q_position_0);
-	pos1:reg_11 port map			      ( clk  => clk,
+	pos1:reg_10 port map			      ( clk  => clk,
 					reset=> reset,
 					e    => e_position_1,
 					d    => d_position_1,
-					q    => q_position_1); 
-	next_pos0:reg_11 port map			  ( clk  => clk,
+					q    => q_position_1);
+	layer_0:reg_1 port map			      ( clk  => clk,
 					reset=> reset,
-					e    => e_next_pos_0,
-					d    => d_next_pos_0,
-					q    => q_next_pos_0); 
-	next_pos1:reg_11 port map			  ( clk  => clk,
+					e    => e_layer_0,
+					d    => d_layer_0,
+					q    => q_layer_0);
+	layer_1:reg_1 port map			      ( clk  => clk,
 					reset=> reset,
-					e    => e_next_pos_1,
-					d    => d_next_pos_1,
-					q    => q_next_pos_1); 
-	wall_0:reg_3 port map			      ( clk  => clk,
+					e    => e_layer_1,
+					d    => d_layer_1,
+					q    => q_layer_1);
+	n_layer_0:reg_1 port map			      ( clk  => clk,
 					reset=> reset,
-					e    => e_wallshape_0,
-					d    => d_wallshape_0,
-					q    => q_wallshape_0);
-	wall_1:reg_3 port map			      ( clk  => clk,
+					e    => e_next_layer_0,
+					d    => d_next_layer_0,
+					q    => q_next_layer_0);
+	n_layer_1:reg_1 port map			      ( clk  => clk,
 					reset=> reset,
-					e    => e_wallshape_1,
-					d    => d_wallshape_1,
-					q    => q_wallshape_1);
+					e    => e_next_layer_1,
+					d    => d_next_layer_1,
+					q    => q_next_layer_1);
+
+	booster_0:reg_1 port map			      ( clk  => clk,
+					reset=> reset,
+					e    => e_booster_0,
+					d    => d_booster_0,
+					q    => q_booster_0);
+	booster_1:reg_1 port map			      ( clk  => clk,
+					reset=> reset,
+					e    => e_booster_1,
+					d    => d_booster_1,
+					q    => q_booster_1);
+
+	border_0:reg_1 port map			      ( clk  => clk,
+					reset=> reset,
+					e    => e_border_0,
+					d    => d_border_0,
+					q    => q_border_0);
+	border_1:reg_1 port map			      ( clk  => clk,
+					reset=> reset,
+					e    => e_border_1,
+					d    => d_border_1,
+					q    => q_border_1);
+
+	booster_sync:reg_1 port map			      ( clk  => clk,
+					reset=> reset,
+					e    => e_booster_sync,
+					d    => d_booster_sync,
+					q    => q_booster_sync);
+
 	r_mem_0:reg_8 port map			     ( clk  => clk,
 					reset=> reset,
-					e    => e_read_mem_0,
-					d    => d_read_mem_0,
-					q    => q_read_mem_0);
-	r_mem_1:reg_8 port map			     ( clk  => clk,
-					reset=> reset,
-					e    => e_read_mem_1,
-					d    => d_read_mem_1,
-					q    => q_read_mem_1);
+					e    => e_read_mem,
+					d    => d_read_mem,
+					q    => q_read_mem);
 	dir_0:reg_2 port map			      ( clk  => clk,
 					reset=> reset,
 					e    => e_direction_0,
