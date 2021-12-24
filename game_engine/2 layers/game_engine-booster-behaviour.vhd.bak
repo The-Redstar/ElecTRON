@@ -104,6 +104,7 @@ architecture behaviour of game_engine is
 			q_layer_1	  : out std_logic;
 			q_booster_0	  : out std_logic;
 			q_booster_1	  : out std_logic;
+			q_booster_sync	  : out std_logic;
 			q_next_layer_0: out std_logic;
 			q_next_layer_1: out std_logic;
 			q_border_0	  : out std_logic;

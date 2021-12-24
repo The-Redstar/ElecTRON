@@ -514,6 +514,7 @@ create_next_state: 	process (state, new_state, reset, input, busy, clk, unsigned
         	read_enable_fsm    			<= '0';
 		clear_fsm         			<= '0';
         	write_data_fsm     			<= (others => '0');
+		pulse_audio				<= '0';
 	
 
 		
@@ -874,7 +875,7 @@ create_next_state: 	process (state, new_state, reset, input, busy, clk, unsigned
 			when change_data =>
 				-- change the data that is going to the graphics engine and update data in the register
 				state_vga   				<= "111";
-				
+				pulse_audio <= '1';
 				e_direction_0 <= '1';
 				e_direction_1 <= '1';
 				
