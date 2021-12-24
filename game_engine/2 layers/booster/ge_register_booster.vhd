@@ -59,6 +59,6 @@ port(clk, reset	  : in  std_logic;
 			q_next_dir_0  : out std_logic_vector(1 downto 0);
 			q_next_dir_1  : out std_logic_vector(1 downto 0);
 			q_p_state_0   : out std_logic_vector(1 downto 0);
-			q_p_state_1   : out std_logic_vector(1 downto 0));
+			q_p_state_1   : out std_logic_vector(1 downto 0);
 			q_map_select  : out std_logic_vector(1 downto 0));
 end ge_register;

@@ -13,10 +13,10 @@ architecture behaviour of game_engine is
 	signal position_0, position_1, next_position_0, next_position_1 : std_logic_vector (9 downto 0);
 	signal d_position_0, d_position_1 : std_logic_vector (9 downto 0);
 	signal layer_0, layer_1, d_layer_0, d_layer_1, e_layer_0, e_layer_1, d_booster_0, d_booster_1, e_booster_0, e_booster_1, d_booster_sync, e_booster_sync: std_logic;
-	signal next_layer_0, next_layer_1, d_next_layer_0, d_next_layer_1, e_next_layer_0, e_next_layer_1 : std_logic;
+	signal next_layer_0, next_layer_1, d_next_layer_0, d_next_layer_1, e_next_layer_0, e_next_layer_1, e_map_select : std_logic;
 	signal border_0, border_1, d_border_0, d_border_1, e_border_0, e_border_1: std_logic;
 	signal d_read_data_reg, read_data_reg : std_logic_vector (7 downto 0);
-	signal player_0_state, player_1_state, d_player_0_state, d_player_1_state: std_logic_vector (1 downto 0);
+	signal player_0_state, player_1_state, d_player_0_state, d_player_1_state, d_map_select: std_logic_vector (1 downto 0);
 	signal e_position_0, e_position_1, e_read_data_reg, e_direction_0, e_direction_1, e_next_direction_0, e_next_direction_1, e_player_0_state, e_player_1_state: std_logic;
 	signal read_data_fsm, write_data_fsm : std_logic_vector(7 downto 0);
 	signal write_enable_fsm, clear_fsm, read_enable_fsm, mem_com_ready : std_logic;	

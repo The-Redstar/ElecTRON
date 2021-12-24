@@ -502,6 +502,7 @@ create_next_state: 	process (state, new_state, reset, input, busy, clk, unsigned
 		d_next_direction_1			<= (others => '0');
 		d_player_0_state			<= (others => '0');
 		d_player_1_state			<= (others => '0');
+		d_map_select				<= (others => '0');
 		
 		
 		address_fsm	   			<= (others => '0');
