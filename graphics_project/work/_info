@@ -47,6 +47,7 @@ R2
 R3
 n@_opt3
 R4
+R0
 Ecolor_bus
 w1638527129
 Z5 DPx3 std 6 textio 0 22 zE1`LPoLg^DX3Oz^4Fj1K3
@@ -136,22 +137,22 @@ R8
 R9
 R10
 Abehaviour
-w1640073236
+w1640255244
 Z13 DEx4 work 12 graphics_top 0 22 zXI][4oeP<mLe2I@J3nR_3
 Z14 DPx4 ieee 11 numeric_std 0 22 :ASDNFgHXf_ih3J@9F3Ze1
 R5
 R6
 8VHDL/graphics_top-behaviour.vhd
 FVHDL/graphics_top-behaviour.vhd
-l104
+l120
 L5
-V>eYMilkRUmibBj;<^L4^T1
-!s100 8JV2;R6ooH4kEDiPaPU>z2
+VC0B<1E7=5J[cn;`3BFzeC1
+!s100 9Cf3RQofc2M[OV[kNCPRP2
 R8
 33
-!s110 1640073250
+!s110 1640255279
 !i10b 1
-!s108 1640073248.000000
+!s108 1640255276.000000
 !s90 -2008|-lower|-explicit|-work|work|VHDL/graphics_top-behaviour.vhd|-quiet|-nologo|
 !s107 VHDL/graphics_top-behaviour.vhd|
 !i113 0
@@ -160,30 +161,32 @@ R10
 Cgraphics_top_behaviour_cfg
 egraphics_top
 R12
-Z15 DEx4 work 7 sidebar 0 22 o[>zY;5i2bf=jFRzoHAWF0
-Z16 DEx4 work 9 pixelator 0 22 DED2Z2^z:G=QzWoY8fJj>3
-Z17 DEx4 work 12 wall_decoder 0 22 4H24:=z3AXSDn103dV2<z2
-Z18 DCx4 work 21 sidebar_behaviour_cfg 0 22 BgVUiF7@fVQG>WKQ9naU=0
-Z19 DCx4 work 23 pixelator_behaviour_cfg 0 22 [dBTf@n@Y<DODm82Fd^;O0
-Z20 DCx4 work 26 wall_decoder_behaviour_cfg 0 22 L6e_04k@DbcI[5nO3Z_R80
+Z15 DEx4 work 10 homescreen 0 22 `mUMTbTSd`LCII4<Sn7lY3
+Z16 DEx4 work 7 sidebar 0 22 o[>zY;5i2bf=jFRzoHAWF0
+Z17 DEx4 work 9 pixelator 0 22 DED2Z2^z:G=QzWoY8fJj>3
+Z18 DEx4 work 12 wall_decoder 0 22 4H24:=z3AXSDn103dV2<z2
+DCx4 work 24 homescreen_behaviour_cfg 0 22 0O86_XE3kAMP^f^a7babW2
+Z19 DCx4 work 21 sidebar_behaviour_cfg 0 22 BgVUiF7@fVQG>WKQ9naU=0
+Z20 DCx4 work 23 pixelator_behaviour_cfg 0 22 [dBTf@n@Y<DODm82Fd^;O0
+Z21 DCx4 work 26 wall_decoder_behaviour_cfg 0 22 L6e_04k@DbcI[5nO3Z_R80
 R14
-DAx4 work 12 graphics_top 9 behaviour 22 >eYMilkRUmibBj;<^L4^T1
+DAx4 work 12 graphics_top 9 behaviour 22 C0B<1E7=5J[cn;`3BFzeC1
 R5
 R6
 R13
-w1640009419
+w1640206108
 R7
 8VHDL/graphics_top_behaviour_cfg.vhd
 FVHDL/graphics_top_behaviour_cfg.vhd
 l0
 L1
-V:H6biX53F4L:>aX?iOhSI1
-!s100 C0W0P8CkjI1YHd1P2TC:Y1
+VHlLKPRfB=dUnfbIl<LXMg0
+!s100 BQ_o0Em8Z?mU^k`KgEWI<0
 R8
 33
-!s110 1640073255
+!s110 1640255285
 !i10b 0
-!s108 1640073251.000000
+!s108 1640255281.000000
 !s90 -2008|-lower|-explicit|-work|work|VHDL/graphics_top_behaviour_cfg.vhd|-quiet|-nologo|
 !s107 VHDL/graphics_top_behaviour_cfg.vhd|
 !i113 0
@@ -212,7 +215,7 @@ R9
 R10
 Abehaviour
 w1638528636
-DEx4 work 15 graphics_top_tb 0 22 REoSCaT;oSFVP7JEbPRok3
+Z22 DEx4 work 15 graphics_top_tb 0 22 REoSCaT;oSFVP7JEbPRok3
 R14
 R5
 R6
@@ -229,6 +232,103 @@ R8
 !s108 1639037610.000000
 !s90 -2008|-lower|-explicit|-work|work|VHDL/graphics_top_tb-behaviour.vhd|-quiet|-nologo|
 !s107 VHDL/graphics_top_tb-behaviour.vhd|
+!i113 0
+R9
+R10
+Cgraphics_top_tb_behaviour_cfg
+egraphics_top_tb
+R12
+R13
+DCx4 work 26 graphics_top_behaviour_cfg 0 22 HlLKPRfB=dUnfbIl<LXMg0
+R14
+DAx4 work 15 graphics_top_tb 9 behaviour 22 e7fcmL@XH>SebOTaf:jQ20
+R5
+R6
+R22
+w1640198279
+R7
+8VHDL/graphics_top_tb_behaviour_cfg.vhd
+FVHDL/graphics_top_tb_behaviour_cfg.vhd
+l0
+L1
+VLYn9H2M?HYDgYnFX:]]6Y0
+!s100 I9j:YB@glk?>eTXaZ?YdS2
+R8
+33
+!s110 1640255291
+!i10b 0
+!s108 1640255287.000000
+!s90 -2008|-lower|-explicit|-work|work|VHDL/graphics_top_tb_behaviour_cfg.vhd|-quiet|-nologo|
+!s107 VHDL/graphics_top_tb_behaviour_cfg.vhd|
+!i113 0
+R9
+R10
+Ehomescreen
+w1640197235
+R5
+R6
+R7
+8VHDL/homescreen.vhd
+FVHDL/homescreen.vhd
+l0
+L4
+V`mUMTbTSd`LCII4<Sn7lY3
+!s100 3fPG?cDVoYZ`WIU^8WSjk1
+R8
+33
+!s110 1640197428
+!i10b 1
+!s108 1640197425.000000
+!s90 -2008|-just|E|-lower|-explicit|-work|work|VHDL/homescreen.vhd|-quiet|-nologo|
+!s107 VHDL/homescreen.vhd|
+!i113 0
+o-quiet -nologo -2008 -just E -lower -explicit -work work
+R10
+Abehaviour
+w1640201498
+R15
+R14
+R5
+R6
+8VHDL/homescreen-behaviour.vhd
+FVHDL/homescreen-behaviour.vhd
+l18
+L5
+V[Bd<0OO]M;XAl0Dmz04Tb3
+!s100 8_>oPCY99g3]?N9[F;BHP2
+R8
+33
+!s110 1640201514
+!i10b 1
+!s108 1640201508.000000
+!s90 -2008|-lower|-explicit|-work|work|VHDL/homescreen-behaviour.vhd|-quiet|-nologo|
+!s107 VHDL/homescreen-behaviour.vhd|
+!i113 0
+R9
+R10
+Chomescreen_behaviour_cfg
+ehomescreen
+R12
+R14
+DAx4 work 10 homescreen 9 behaviour 22 [Bd<0OO]M;XAl0Dmz04Tb3
+R5
+R6
+R15
+w1640201273
+R7
+8VHDL/homescreen_behaviour_cfg.vhd
+FVHDL/homescreen_behaviour_cfg.vhd
+l0
+L1
+V0O86_XE3kAMP^f^a7babW2
+!s100 T58ZIa:KNC:6M[_nU]T@U1
+R8
+33
+!s110 1640201524
+!i10b 0
+!s108 1640201518.000000
+!s90 -2008|-lower|-explicit|-work|work|VHDL/homescreen_behaviour_cfg.vhd|-quiet|-nologo|
+!s107 VHDL/homescreen_behaviour_cfg.vhd|
 !i113 0
 R9
 R10
@@ -259,7 +359,7 @@ w1638526113
 R14
 R5
 R6
-R16
+R17
 8VHDL/pixelator-behaviour.vhd
 FVHDL/pixelator-behaviour.vhd
 l44
@@ -283,7 +383,7 @@ DAx4 work 9 pixelator 9 behaviour 22 h2nk5`1=d7Im`2EfC>GAY2
 R14
 R5
 R6
-R16
+R17
 w1637320648
 R7
 8VHDL/pixelator_behaviour_cfg.vhd
@@ -325,7 +425,7 @@ R9
 R10
 Abehaviour
 w1637923894
-Z21 DEx4 work 12 pixelator_tb 0 22 C4FTH0k`n2zK4=cAnK7L?0
+Z23 DEx4 work 12 pixelator_tb 0 22 C4FTH0k`n2zK4=cAnK7L?0
 R5
 R6
 8VHDL/pixelator_tb-behaviour.vhd
@@ -348,11 +448,11 @@ Cpixelator_tb_behaviour_cfg
 epixelator_tb
 R12
 DEx4 work 9 pixelator 0 22 2YINacIB@:]BmMT5J;ZAz3
-R19
+R20
 DAx4 work 12 pixelator_tb 9 behaviour 22 :A5=Yc<[H@jfHl]N>F[FD3
 R5
 R6
-R21
+R23
 w1637320801
 R7
 8VHDL/pixelator_tb_behaviour_cfg.vhd
@@ -394,7 +494,7 @@ R9
 R10
 Abehaviour
 w1640008538
-R15
+R16
 R14
 R5
 R6
@@ -421,7 +521,7 @@ R14
 DAx4 work 7 sidebar 9 behaviour 22 hhozi4Sff1XS>AfZXh<a^3
 R5
 R6
-R15
+R16
 w1640009429
 R7
 8VHDL/sidebar_behaviour_cfg.vhd
@@ -463,7 +563,7 @@ R9
 R10
 Abehaviour
 w1640080839
-Z22 DEx4 work 10 sidebar_tb 0 22 W6T9l?GVGkmd6oD[Q^A2c1
+Z24 DEx4 work 10 sidebar_tb 0 22 W6T9l?GVGkmd6oD[Q^A2c1
 R14
 R5
 R6
@@ -486,13 +586,13 @@ R10
 Csidebar_tb_behaviour_cfg
 esidebar_tb
 R12
-R15
-R18
+R16
+R19
 R14
 DAx4 work 10 sidebar_tb 9 behaviour 22 4g:ZUA6zFPFlmYd_?`Fo`0
 R5
 R6
-R22
+R24
 w1640079857
 R7
 8VHDL/sidebar_tb_behaviour_cfg.vhd
@@ -534,7 +634,7 @@ R9
 R10
 Abehaviour
 w1640074474
-Z23 DEx4 work 13 test_data_gen 0 22 Sz`@2L]cPi1n;FT2;Yo`o1
+Z25 DEx4 work 13 test_data_gen 0 22 Sz`@2L]cPi1n;FT2;Yo`o1
 R14
 R5
 R6
@@ -561,7 +661,7 @@ R14
 DAx4 work 13 test_data_gen 9 behaviour 22 U?ca46W9z;S_7XXE01egA2
 R5
 R6
-R23
+R25
 w1640074009
 R7
 8VHDL/test_data_gen_behaviour_cfg.vhd
@@ -603,7 +703,7 @@ R9
 R10
 Abehaviour
 w1637318969
-R17
+R18
 R5
 R6
 8VHDL/wall_decoder-behaviour.vhd
@@ -628,7 +728,7 @@ R12
 DAx4 work 12 wall_decoder 9 behaviour 22 DGKMbcJMh720MLA>4fHWF2
 R5
 R6
-R17
+R18
 w1637318979
 R7
 8VHDL/wall_decoder_behaviour_cfg.vhd
@@ -670,7 +770,7 @@ R9
 R10
 Abehaviour
 w1637319009
-Z24 DEx4 work 15 wall_decoder_tb 0 22 hO>gG^oC4EZAFc=B7S4T62
+Z26 DEx4 work 15 wall_decoder_tb 0 22 hO>gG^oC4EZAFc=B7S4T62
 R5
 R6
 8VHDL/wall_decoder_tb-behaviour.vhd
@@ -692,12 +792,12 @@ R10
 Cwall_decoder_tb_behaviour_cfg
 ewall_decoder_tb
 R12
-R17
-R20
+R18
+R21
 DAx4 work 15 wall_decoder_tb 9 behaviour 22 G]_JJ9jbg2Ma1aY=m2]IX2
 R5
 R6
-R24
+R26
 w1637319024
 R7
 8VHDL/wall_decoder_tb_behaviour_cfg.vhd

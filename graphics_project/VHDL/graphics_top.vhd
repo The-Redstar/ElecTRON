@@ -24,6 +24,11 @@ entity graphics_top is
 		player1_dir		: in  std_logic_vector(1 downto 0);
 		player0_state	: in  std_logic_vector(1 downto 0);
 		player1_state	: in  std_logic_vector(1 downto 0);
+		player0_boost	: in  std_logic;
+		player1_boost	: in  std_logic;
+		
+		player0_input	: in  std_logic_vector(1 downto 0);
+		player1_input	: in  std_logic_vector(1 downto 0);
 
 		busy			: out std_logic;
 		audio_clock		: out std_logic;

@@ -5,9 +5,9 @@ set_db use_scan_seqs_for_non_dft false
 
 include ../tcl/read_hdl.tcl
 
-elaborate sidebar_behaviour_cfg
+elaborate homescreen_behaviour_cfg
 
-include ../in/sidebar.sdc
+include ../in/homescreen.sdc
 
 synthesize -to_mapped
 #set_db syn_generic_effort medium
@@ -16,9 +16,9 @@ synthesize -to_mapped
 
 ungroup -all -flat
 insert_tiehilo_cells
-write_hdl -mapped > ../out/sidebar.v
-write_sdf > ../out/sidebar.sdf
-write_sdc > ../out/sidebar.sdc
+write_hdl -mapped > ../out/homescreen.v
+write_sdf > ../out/homescreen.sdf
+write_sdc > ../out/homescreen.sdc
 
 report timing
 report gates
