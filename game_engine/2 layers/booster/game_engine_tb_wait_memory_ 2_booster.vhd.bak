@@ -28,7 +28,6 @@ select_button	   : in std_logic;
         state_vga          : out std_logic_vector(2 downto 0);
         write_enable       : out std_logic;
         write_memory       : out std_logic_vector(7 downto 0);
-	pulse_audio	: out std_logic;
         address            : out std_logic_vector(9 downto 0);
         position_0_vga     : out std_logic_vector(10 downto 0);
         position_1_vga     : out std_logic_vector(10 downto 0);
@@ -65,7 +64,6 @@ signal select_button	   : std_logic;
     signal player_state_1_vga : std_logic_vector(1 downto 0);
 	signal go_to	          : std_logic;
 	signal clear_memory       : std_logic;
-signal pulse_audio	: std_logic;
 
 begin
 
@@ -92,7 +90,6 @@ begin
 							direction_1_vga    => direction_1_vga,
 							player_state_0_vga => player_state_0_vga,
 							player_state_1_vga => player_state_1_vga,
-							pulse_audio		=> pulse_audio,
 							go_to	           => go_to,
 							clear_memory       => clear_memory
 				);
