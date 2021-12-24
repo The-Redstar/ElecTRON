@@ -495,7 +495,9 @@ create_next_state: 	process (state, new_state, reset, input, busy, clk, unsigned
 		e_next_direction_0			<= '0';	
 		e_next_direction_1			<= '0';
 		e_player_0_state			<= '0';
-		e_player_1_state			<= '0';				
+		e_player_1_state			<= '0';			
+		e_map_select				<= '0';			
+			
 		d_position_0				<= (others => '0');
 		d_position_1				<= (others => '0');	
 		d_layer_0					<= '0';
@@ -513,6 +515,7 @@ create_next_state: 	process (state, new_state, reset, input, busy, clk, unsigned
 		d_next_direction_1			<= (others => '0');
 		d_player_0_state			<= (others => '0');
 		d_player_1_state			<= (others => '0');
+		d_map_select				<= (others => '0');
 		
 		
 		address_fsm	   			<= (others => '0');
@@ -569,7 +572,10 @@ create_next_state: 	process (state, new_state, reset, input, busy, clk, unsigned
 				e_direction_0 		<= '1';
 				e_direction_1 		<= '1'; 
 				d_next_direction_0 	<= input(1 downto 0);
-				d_next_direction_1	<= input(3 downto 2);		
+				d_next_direction_1	<= input(3 downto 2);
+				
+				e_map_select		<= '1';
+				d_map_select		<= input(1 downto 0);
 				
 			when get_ready =>
 				-- wait for the player to press the button in the right direction: meaning they are ready to play
