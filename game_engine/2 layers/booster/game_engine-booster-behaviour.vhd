@@ -98,6 +98,8 @@ architecture behaviour of game_engine is
 			e_p_state_1   : in  std_logic;
 			d_p_state_0   : in  std_logic_vector(1 downto 0);
 			d_p_state_1   : in  std_logic_vector(1 downto 0);
+			e_map_select  : in  std_logic;
+			d_map_select  : in  std_logic_vector(1 downto 0);
 			q_position_0  : out std_logic_vector(9 downto 0);
 			q_position_1  : out std_logic_vector(9 downto 0);
 			q_layer_0	  : out std_logic;
@@ -115,7 +117,8 @@ architecture behaviour of game_engine is
 			q_next_dir_0  : out std_logic_vector(1 downto 0);
 			q_next_dir_1  : out std_logic_vector(1 downto 0);
 			q_p_state_0   : out std_logic_vector(1 downto 0);
-			q_p_state_1   : out std_logic_vector(1 downto 0));
+			q_p_state_1   : out std_logic_vector(1 downto 0);
+			q_map_select  : out std_logic_vector(1 downto 0));
 	end component;
 
 begin
@@ -158,6 +161,8 @@ reg: ge_register port map (clk => clk,
 			e_p_state_1   => e_player_1_state,
 			d_p_state_0   => d_player_0_state,
 			d_p_state_1   => d_player_1_state,
+			e_map_select  => e_map_select,
+			d_map_select  => d_map_select,
 			q_position_0  => position_0,
 			q_position_1  => position_1,
 			q_layer_0	  => layer_0,
@@ -175,7 +180,8 @@ reg: ge_register port map (clk => clk,
 			q_next_dir_0  => next_direction_0,
 			q_next_dir_1  => next_direction_1,
 			q_p_state_0   => player_0_state,
-			q_p_state_1   => player_1_state);
+			q_p_state_1   => player_1_state,
+			q_map_select  => map_select);
 			
 counter: busy_counter port map (clk => clk,
 			global_reset => reset,
