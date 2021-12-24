@@ -586,6 +586,8 @@ create_next_state: 	process (state, new_state, reset, input, busy, clk, unsigned
 				d_position_1				<= position_grid_1 (9 downto 0);
 				e_position_0				<= '1';
 				e_position_1				<= '1';
+				e_layer_0					<= '1';
+				e_layer_1					<= '1';
 				d_layer_0					<= position_grid_0 (10);
 				d_layer_1					<= position_grid_1 (10);
 				
