@@ -259,8 +259,8 @@ create_next_state: 	process (state, new_state, reset, input, busy, read_memory, 
 				e_player_0_state			<= '1';
 				e_player_1_state			<= '1';
 				
-				d_position_0				<= "01110111001";
-				d_position_1				<= "01110100100";
+				d_position_1				<= "01110111001";
+				d_position_0				<= "01110100100";
 				d_direction_0				<= "00";
 				d_direction_1				<= "00";
 				d_player_0_state			<= "10";
@@ -1099,22 +1099,12 @@ create_next_state: 	process (state, new_state, reset, input, busy, read_memory, 
 				d_player_0_state			<= (others => '0');
 				d_player_1_state			<= (others => '0');
 				
-				-- when player 0 collided on border, there shall be no writing and the next state is 'want_to_write_1'
-				if (player_0_state = "01") then 
-					write_enable 				<= '0';
-					write_memory			 	<= "00000000";
-					address 					<= "0000000000";
-					go_to 						<= '0';
-					new_state 					<= want_to_write_1;
-				-- if player 0 did not collide the next state will be 'write_memory_player_0'
-				else 
-					write_enable 				<= '1';
-					write_memory(7 downto 3) 	<= "00000";
-					write_memory(2 downto 0) 	<= wallshape_0;
-					address 					<= position_0(9 downto 0);
-					go_to 						<= '1';
-					new_state 					<= write_memory_player_0;
-				end if;
+				write_enable 				<= '1';
+				write_memory(7 downto 3) 	<= "00000";
+				write_memory(2 downto 0) 	<= wallshape_0;
+				address 					<= position_0(9 downto 0);
+				go_to 						<= '1';
+				new_state 					<= write_memory_player_0;
 
 			when write_memory_player_0 =>
 				-- send to the memory module the wall shape of player 0 on the address of its position
@@ -1201,22 +1191,12 @@ create_next_state: 	process (state, new_state, reset, input, busy, read_memory, 
 				d_player_0_state			<= (others => '0');
 				d_player_1_state			<= (others => '0');
 				
-				-- when player 1 collided on a border, there shall be no writing and the next state will be 'change_data'
-				if (player_1_state = "01") then 
-					write_enable 				<= '0';
-					write_memory			 	<= "00000000";
-					address 					<= "0000000000";
-					go_to 						<= '0';
-					new_state 					<= change_data;
-				-- if player 1 did not collide, the next state will be 'write_memory_player_1'
-				else 
-					write_enable 				<= '1';
-					write_memory(7 downto 3) 	<= "00001";
-					write_memory(2 downto 0) 	<= wallshape_1;
-					address 					<= position_1(9 downto 0);
-					go_to 						<= '1';
-					new_state 					<= write_memory_player_1;
-				end if;
+				write_enable 				<= '1';
+				write_memory(7 downto 3) 	<= "00001";
+				write_memory(2 downto 0) 	<= wallshape_1;
+				address 					<= position_1(9 downto 0);
+				go_to 						<= '1';
+				new_state 					<= write_memory_player_1;
 
 			when write_memory_player_1 =>
 				-- send to the memory module the wall shape of player 1 on the address of its position

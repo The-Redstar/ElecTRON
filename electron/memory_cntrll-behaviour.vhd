@@ -70,22 +70,12 @@ begin
 	cx: counter5b port map (clk => x_incr_out, rst => rst_cnt, count_out => cur_x);
 	cy: counter5b port map (clk => y_incr_out, rst => rst_cnt, count_out => cur_y);
 	cw: counter8b port map (clk => w_incr_out, rst => rst_cnt, count_out => cur_w);
-<<<<<<< HEAD
 	cex: countextend port map (clk => clk, rst => rst_in, incr_in => x_incr_in, incr_out => x_incr2, busy_in => busy);
 	cey: countextend port map (clk => clk, rst => rst_in, incr_in => y_incr_in, incr_out => Y_incr2, busy_in => busy);
 	cm: memclear port map (clk => clk, rst => rst_in, clear_mem => clr_in, x_incr_mem => x_incr3, y_incr_mem => y_incr3, rst_mem => clr_rst, we_mem => we_clr, me_mem => me_clr, ready_out => ready_clr, cur_x => cur_x, cur_y => cur_y, busy_in => busy);
 
 	
 	busy <= not(ready);
-=======
-	cex: countextend port map (clk => clk, rst => rst_in, incr_in => x_incr_in, incr_out => x_incr2, busy_in => busy_ce);
-	cey: countextend port map (clk => clk, rst => rst_in, incr_in => y_incr_in, incr_out => Y_incr2, busy_in => busy_ce);
-	cm: memclear port map (clk => clk, rst => rst_in, clear_mem => clr_in, x_incr_mem => x_incr3, y_incr_mem => y_incr3, rst_mem => clr_rst, we_mem => we_clr, me_mem => me_clr, ready_out => ready_clr, cur_x => cur_x, cur_y => cur_y, busy_in => busy);
-
-	
-	busy_ce <= not(ready);
-	busy <= busy_ce or x_incr2 or y_incr2;
->>>>>>> origin/game_engine
 	cur_x_out <= cur_x;
 	cur_y_out <= cur_y;
 	x_incr_out <= x_incr1 or x_incr2 or x_incr3;

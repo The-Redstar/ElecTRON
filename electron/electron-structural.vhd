@@ -3,14 +3,12 @@ use IEEE.std_logic_1164.ALL;
 
 architecture structural of electron is
    component game_engine
-	  port(clk                : in  std_logic;
+	  port(clk            : in  std_logic;
            reset              : in  std_logic;
-		   input              : in  std_logic_vector(3 downto 0);
-		   busy               : in  std_logic;
+	   input              : in  std_logic_vector(3 downto 0);
+	   busy               : in  std_logic;
            read_memory        : in  std_logic_vector(7 downto 0);
            memory_ready       : in  std_logic;
-	       border		      : in  std_logic_vector(7 downto 0);
-	       ramp		          : in  std_logic_vector(7 downto 0);
            state_vga          : out std_logic_vector(2 downto 0);
            write_enable       : out std_logic;
            write_memory       : out std_logic_vector(7 downto 0);
@@ -21,8 +19,8 @@ architecture structural of electron is
            direction_1_vga    : out std_logic_vector(1 downto 0);
            player_state_0_vga : out std_logic_vector(1 downto 0);
            player_state_1_vga : out std_logic_vector(1 downto 0);
-	       go_to	          : out std_logic;
-	       clear_memory       : out std_logic);
+	   go_to	             : out std_logic;
+	   clear_memory       : out std_logic);
    end component;
    
    component memory_cntrll
@@ -48,7 +46,6 @@ architecture structural of electron is
            cur_y_out   : out std_logic_vector(4 downto 0);
            rst_vga	   : in  std_logic);
    end component;
-<<<<<<< HEAD
    
    component graphics_top
       port(clk	: in  std_logic;
@@ -80,6 +77,15 @@ architecture structural of electron is
 		   game_state		: in  std_logic_vector(2 downto 0));
    end component;
 
+   component input_buffer
+	  port(clk 		: in std_logic;
+		rst	: in std_logic;
+		dir_in 	: in std_logic_vector(3 downto 0);
+		dir_out	: out std_logic_vector(3 downto 0);
+		start_in : in std_logic;
+		start_out : out std_logic);
+   end component;
+
 	signal busy: std_logic;
 	signal read_memory, write_memory: std_logic_vector(7 downto 0);
 	signal memory_ready, write_enable, go_to, clear_memory: std_logic;
@@ -90,9 +96,11 @@ architecture structural of electron is
 	signal game_state: std_logic_vector (2 downto 0);
 	signal x_increment, y_increment: std_logic;
 	signal reset_vga_mem: std_logic;
-	signal ofjkld, kldfjl: std_logic_vector (4 downto 0);
-	signal adfkljkl: std_logic;
+	signal random1, random2: std_logic_vector (4 downto 0);
+	signal random3: std_logic;
 	signal ramps, borders: std_logic_vector (7 downto 0);
+	signal direction_between: std_logic_vector (3 downto 0);
+	signal random5: std_logic;
 
 begin
 	lbl0:game_engine port map ( 
@@ -102,8 +110,6 @@ begin
 					busy    			=> busy,
 					read_memory    		=> read_memory,
 					memory_ready		=> memory_ready,
-					border				=> borders,
-					ramp				=> ramps,
 					state_vga			=> game_state,
 					write_enable		=> write_enable,
 					write_memory		=> write_memory,
@@ -136,8 +142,8 @@ begin
 					x_incr_in   => x_increment,
 					y_incr_in   => y_increment,
 					ready_out   => memory_ready,
-					cur_x_out   => ofjkld,
-					cur_y_out   => kldfjl,
+					cur_x_out   => random1,
+					cur_y_out   => random2,
 					rst_vga	   	=> reset_vga_mem);
 					
 	lbl2:graphics_top port map (
@@ -159,56 +165,15 @@ begin
 					player0_state	=> player_state_0,
 					player1_state	=> player_state_1,
 					busy			=> busy,
-					audio_clock		=> adfkljkl,
+					audio_clock		=> random3,
 					game_state		=> game_state);
-=======
+	lbl3:input_buffer port map (
+					clk	=> clk,
+					rst	=> rst,
+					dir_in	=> direction_in,
+					start_in => start_in,
+					dir_out => direction_between,
+					start_out	=> random5);
 
-begin
-
-	lbl0:game_engine port map ( 
-					clk  				=> clk,
-					reset				=> rst,
-					input    			=> direction,
-					busy    			=> ,
-					read_memory    		=> ,
-					memory_ready		=> ,
-					border				=> ,
-					ramp				=> ,
-					state_vga			=> ,
-					write_enable		=> ,
-					write_memory		=> ,
-					address				=> ,
-					position_0_vga		=> ,
-					position_1_vga		=> ,
-					direction_0_vga		=>,
-					direction_1_vga		=>,
-					player_state_0_vga	=>,
-					player_state_1_vga	=>,
-					go_to				=>,
-					clear_memory		=>);
-					
-	lbl1:memory_cntrll port map ( 
-					read_mem    =>,
-					clk         => clk,
-					x_incr_mem  => x_increment,
-					y_incr_mem  => y_increment,
-					w_incr_mem  => w_increment,
-					rst_mem     => memory_reset,
-					we_mem      =>,
-					me_mem      =>,
-					read_out    =>,
-					write_in    =>,
-					we_in       =>,
-					address_in  =>,
-					goto_in     =>,
-					rst_in      =>,
-					clr_in      =>,
-					x_incr_in   =>,
-					y_incr_in   =>,
-					ready_out   =>,
-					cur_x_out   =>,
-					cur_y_out   =>,
-					rst_vga	   	=>;
->>>>>>> origin/game_engine
 end structural;
 

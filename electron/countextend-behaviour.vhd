@@ -16,11 +16,7 @@ begin
 		end if;
 	end process;
 
-<<<<<<< HEAD
 	clkext_fsm : process(state, incr_in, busy_in)
-=======
-	clkext_fsm : process(state, incr_in)
->>>>>>> origin/game_engine
 	begin
 		case state is
 			when sleep =>
