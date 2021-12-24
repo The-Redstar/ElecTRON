@@ -240,13 +240,13 @@ updates: 	process (clk)
 begin_booster: process (input, direction_0, direction_1)
 	begin
 	
-		if (input(1) = (not direction_0(1))) then 
+		if ((input(1) = (not direction_0(1))) and (input(0) = direction_0(0))) then 
 			booster_begin_0 <= '1';
 		else
 			booster_begin_0 <= '0';
 		end if;
 		
-		if (input(3) = (not direction_1(1))) then
+		if ((input(3) = (not direction_1(1))) and (input(2) = direction_1(0))) then
 			booster_begin_1 <= '1';
 		else
 			booster_begin_1 <= '0';
