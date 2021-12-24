@@ -35,6 +35,7 @@ begin
 	
 	case state is
 		when reset_state =>
+			--go to the correct cycle
 			if (write_enable_fsm = '1') then
 				new_state <= want_to_write;
 			elsif (read_enable_fsm = '1') then
@@ -46,6 +47,7 @@ begin
 			end if;
 			
 		when want_to_write =>
+			--go_to is 1 for one clock cycle
 			go_to			<= '1';
 			write_enable_mem<= '1';
 			write_data_mem	<= write_data_fsm;
@@ -53,6 +55,7 @@ begin
 			new_state 		<= write_wait;
 			
 		when write_wait =>
+			--keep giving the outputs without go_to
 			write_enable_mem<= '1';
 			write_data_mem	<= write_data_fsm;
 			address_mem		<= address_fsm;
@@ -65,11 +68,13 @@ begin
 			end if;
 			
 		when write_finished =>
+			--signal the game engine it can continue
 			mem_com_ready	<= '1';
 		
 			new_state <= reset_state;
 			
 		when want_to_read =>
+			--tell the memory controller to start working
 			go_to			<= '1';
 			address_mem		<= address_fsm;
 			new_state		<= read_wait;
@@ -85,12 +90,14 @@ begin
 			end if;
 			
 		when read_finished =>
+			--signal the game engine the sample the outputs
 			mem_com_ready	<= '1';
 			read_data_fsm	<= read_data_mem;
 			new_state <= reset_state;
 			
 			
 		when want_to_clear =>
+			--start doing something, memory controller
 			clear_mem		<= '1';
 			new_state		<= clear_wait;
 			

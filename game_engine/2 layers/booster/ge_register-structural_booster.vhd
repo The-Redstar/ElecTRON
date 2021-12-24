@@ -147,6 +147,11 @@ begin
 					e    => e_p_state_1,
 					d    => d_p_state_1,
 					q    => q_p_state_1);
+	map_select:reg_2 port map			   ( clk  => clk,
+					reset=> reset,
+					e    => e_map_select,
+					d    => d_map_select,
+					q    => q_map_select);
 
 end structural;
 

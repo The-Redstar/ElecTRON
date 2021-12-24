@@ -1,5 +1,4 @@
---game engine with booster
- library IEEE;
+library IEEE;
 use IEEE.std_logic_1164.ALL;
 use ieee.numeric_std.all;
 
@@ -9,29 +8,25 @@ architecture behaviour of game_engine is
 
 
 	signal state, new_state: game_state;
-	--signals for registers
 	signal direction_0, direction_1, d_direction_0, d_direction_1 : std_logic_vector(1 downto 0);
 	signal d_next_direction_0, d_next_direction_1, next_direction_0, next_direction_1 : std_logic_vector(1 downto 0);
 	signal position_0, position_1, next_position_0, next_position_1 : std_logic_vector (9 downto 0);
 	signal d_position_0, d_position_1 : std_logic_vector (9 downto 0);
 	signal layer_0, layer_1, d_layer_0, d_layer_1, e_layer_0, e_layer_1, d_booster_0, d_booster_1, e_booster_0, e_booster_1, d_booster_sync, e_booster_sync: std_logic;
-	signal next_layer_0, next_layer_1, d_next_layer_0, d_next_layer_1, e_next_layer_0, e_next_layer_1 : std_logic;
+	signal next_layer_0, next_layer_1, d_next_layer_0, d_next_layer_1, e_next_layer_0, e_next_layer_1, e_map_select : std_logic;
 	signal border_0, border_1, d_border_0, d_border_1, e_border_0, e_border_1: std_logic;
 	signal d_read_data_reg, read_data_reg : std_logic_vector (7 downto 0);
-	signal player_0_state, player_1_state, d_player_0_state, d_player_1_state: std_logic_vector (1 downto 0);
+	signal player_0_state, player_1_state, d_player_0_state, d_player_1_state, d_map_select: std_logic_vector (1 downto 0);
 	signal e_position_0, e_position_1, e_read_data_reg, e_direction_0, e_direction_1, e_next_direction_0, e_next_direction_1, e_player_0_state, e_player_1_state: std_logic;
-	--signals for memory communication
 	signal read_data_fsm, write_data_fsm : std_logic_vector(7 downto 0);
-    signal write_enable_fsm, clear_fsm, read_enable_fsm, mem_com_ready : std_logic;	
+	signal write_enable_fsm, clear_fsm, read_enable_fsm, mem_com_ready : std_logic;	
 	signal address_fsm 	   : std_logic_vector(9 downto 0);
-	--signals for busy counter
 	signal busy_counter_reset: std_logic;
 	signal unsigned_busy_count: std_logic_vector(6 downto 0);
-	--crashes and other stuff
 	signal booster_begin_0, booster_begin_1, booster_0, booster_1, booster_sync, collision_middle, collision_head: std_logic;
-	--other signals
 	signal wallshape_0, wallshape_1 : std_logic_vector(2 downto 0);
 
+-- component to count the falling edges of the busy signals
 	component busy_counter is
 	port(clk               : in  std_logic;
 		 global_reset 	   : in  std_logic;
@@ -40,6 +35,7 @@ architecture behaviour of game_engine is
          busy_count        : out std_logic_vector(6 downto 0));
 	end component;	
 
+-- component to communicate with the memory module
 	component memory_communication is
 	port (  clk                : in  std_logic;
         	reset              : in  std_logic;
@@ -59,7 +55,7 @@ architecture behaviour of game_engine is
         	address_mem        : out std_logic_vector(9 downto 0));
 	end component;
 
---booster, booster begin moet nog worden opgeslagen in een register
+-- component to save signals in registers
 	component ge_register is
 		port(clk, reset	  : in  std_logic;	
 			e_position_0  : in  std_logic;
@@ -177,43 +173,38 @@ reg: ge_register port map (clk => clk,
 			q_p_state_0   => player_0_state,
 			q_p_state_1   => player_1_state);
 			
-counter: busy_counter port map (clk => clk,
-			global_reset => reset,
-			game_engine_reset => busy_counter_reset,
-			busy => busy,
-			busy_count => unsigned_busy_count);
+counter: busy_counter port map (clk 		=> clk,
+			global_reset 		=> reset,
+			game_engine_reset 	=> busy_counter_reset,
+			busy 			=> busy,
+			busy_count 		=> unsigned_busy_count);
 
-mem_com: memory_communication port map (
-					clk 				=> clk,
-					reset 				=> reset,
-					--from fsm to mem
+mem_com: memory_communication port map (clk 			=> clk,
+					reset 			=> reset,
 					address_fsm 		=> address_fsm,
 					write_enable_fsm 	=> write_enable_fsm,
 					read_enable_fsm 	=> read_enable_fsm,
-					clear_fsm 			=> clear_fsm,
+					clear_fsm 		=> clear_fsm,
 					write_data_fsm 		=> write_data_fsm,
-					--in from mem
 					memory_ready 		=> memory_ready,
 					read_data_mem 		=> read_memory,
-					--out for fsm
 					mem_com_ready 		=> mem_com_ready,
 					read_data_fsm 		=> read_data_fsm,
-					--out to mem
-					go_to 				=> go_to,
-					clear_mem 			=> clear_memory,
+					go_to 			=> go_to,
+					clear_mem 		=> clear_memory,
 					write_enable_mem 	=> write_enable,
 					write_data_mem 		=> write_memory,
 					address_mem 		=> address);
 		
 -- outputs from the register to the graphics engine			
-position_0_vga (9 downto 0) <= position_0;
+position_0_vga (9 downto 0) 	<= position_0;
 position_0_vga (10) 		<= layer_0;
-position_1_vga (9 downto 0) <= position_1;
-position_1_vga (10)			<= layer_1;
-direction_0_vga <= direction_0;
-direction_1_vga <= direction_1;
-player_state_0_vga <= player_0_state;
-player_state_1_vga <= player_1_state;
+position_1_vga (9 downto 0)	<= position_1;
+position_1_vga (10)		<= layer_1;
+direction_0_vga 		<= direction_0;
+direction_1_vga 		<= direction_1;
+player_state_0_vga 		<= player_0_state;
+player_state_1_vga 		<= player_1_state;
 
 
 
@@ -231,6 +222,7 @@ updates: 	process (clk)
 		end if;
 	end process;
 
+-- check if a player is boosting
 begin_booster: process (input, direction_0, direction_1)
 	begin
 	
@@ -247,6 +239,7 @@ begin_booster: process (input, direction_0, direction_1)
 		end if;
 	end process;
 
+-- determine the shape the players moved
 wallshape: 	process (direction_0, direction_1, next_direction_0, next_direction_1)
 	begin
 		
@@ -294,6 +287,7 @@ wallshape: 	process (direction_0, direction_1, next_direction_0, next_direction_
 				end if;
 	end process;
 
+--determine the next position of the players
 position: 	process (next_direction_0, next_direction_1, position_0, position_1, layer_0, layer_1, ramp, border) --creating next_position, checking for jumps and the border
 	begin
 		d_next_layer_0 <= layer_0;
@@ -303,7 +297,7 @@ position: 	process (next_direction_0, next_direction_1, position_0, position_1, 
 		if (next_direction_0 = "01") then 		-- moves to the left, x is decreased with 1
 			next_position_0(4 downto 0)  <= std_logic_vector(to_unsigned(to_integer(unsigned(position_0(4 downto 0))) - 1, 5));
 			next_position_0(9 downto 5) <= position_0(9 downto 5);
-			if (layer_0 = '0') then
+			if (layer_0 = '0') then --check if player moves to a different layer
 				if (ramp(1) = '1') then
 					d_next_layer_0 <= not layer_0;
 				end if;
@@ -311,7 +305,7 @@ position: 	process (next_direction_0, next_direction_1, position_0, position_1, 
 					d_border_0 <= '1';
 				end if;
 			else 
-				if (ramp(5) = '1') then
+				if (ramp(5) = '1') then --check if player moves to a different layer
 					d_next_layer_0 <= not layer_0;
 				end if;
 				if (border(5) = '1') then
@@ -322,14 +316,14 @@ position: 	process (next_direction_0, next_direction_1, position_0, position_1, 
 			next_position_0(4 downto 0)  <= std_logic_vector(to_unsigned(to_integer(unsigned(position_0(4 downto 0))) + 1, 5));
 			next_position_0(9 downto 5) <= position_0(9 downto 5);
 			if (layer_0 = '0') then
-				if (ramp(3) = '1') then
+				if (ramp(3) = '1') then --check if player moves to a different layer
 					d_next_layer_0 <= not layer_0;
 				end if;
 				if (border(3) = '1') then
 					d_border_0 <= '1';
 				end if;
 			else 
-				if (ramp(7) = '1') then
+				if (ramp(7) = '1') then --check if player moves to a different layer
 					d_next_layer_0 <= not layer_0;
 				end if;
 				if (border(7) = '1') then
@@ -340,14 +334,14 @@ position: 	process (next_direction_0, next_direction_1, position_0, position_1, 
 			next_position_0(4 downto 0) <= position_0(4 downto 0);
 			next_position_0(9 downto 5) <= std_logic_vector(to_unsigned(to_integer(unsigned(position_0(9 downto 5))) - 1, 5));
 			if (layer_0 = '0') then
-				if (ramp(0) = '1') then
+				if (ramp(0) = '1') then --check if player moves to a different layer
 					d_next_layer_0 <= not layer_0;
 				end if;
 				if (border(0) = '1') then
 					d_border_0 <= '1';
 				end if;
 			else 
-				if (ramp(4) = '1') then
+				if (ramp(4) = '1') then --check if player moves to a different layer
 					d_next_layer_0 <= not layer_0;
 				end if;
 				if (border(4) = '1') then
@@ -358,10 +352,10 @@ position: 	process (next_direction_0, next_direction_1, position_0, position_1, 
 			next_position_0(4 downto 0) <= position_0(4 downto 0);
 			next_position_0(9 downto 5) <= std_logic_vector(to_unsigned(to_integer(unsigned(position_0(9 downto 5))) + 1, 5));
 			if (layer_0 = '0') then
-				if (ramp(2) = '1') then
+				if (ramp(2) = '1') then --check if player moves to a different layer
 					d_next_layer_0 <= not layer_0;
 				end if;
-				if (border(2) = '1') then
+				if (border(2) = '1') then --check if a player collides against a border
 					d_border_0 <= '1';
 				end if;
 			else 
@@ -489,7 +483,8 @@ create_next_state: 	process (state, new_state, reset, input, busy, clk, unsigned
 		e_next_direction_0			<= '0';	
 		e_next_direction_1			<= '0';
 		e_player_0_state			<= '0';
-		e_player_1_state			<= '0';				
+		e_player_1_state			<= '0';		
+		e_map_select				<= '0';		
 		d_position_0				<= (others => '0');
 		d_position_1				<= (others => '0');	
 		d_layer_0					<= '0';
@@ -507,6 +502,7 @@ create_next_state: 	process (state, new_state, reset, input, busy, clk, unsigned
 		d_next_direction_1			<= (others => '0');
 		d_player_0_state			<= (others => '0');
 		d_player_1_state			<= (others => '0');
+		d_map_select				<= (others => '0');
 		
 		
 		address_fsm	   			<= (others => '0');
@@ -563,7 +559,9 @@ create_next_state: 	process (state, new_state, reset, input, busy, clk, unsigned
 				e_direction_0 		<= '1';
 				e_direction_1 		<= '1'; 
 				d_next_direction_0 	<= input(1 downto 0);
-				d_next_direction_1	<= input(3 downto 2);		
+				d_next_direction_1	<= input(3 downto 2);
+				d_map_select		<= input(1 downto 0);
+				e_map_select		<= '1';			
 				
 			when get_ready =>
 				-- wait for the player to press the button in the right direction: meaning they are ready to play

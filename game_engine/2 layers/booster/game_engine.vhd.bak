@@ -30,5 +30,5 @@ select_button	   : in std_logic;
         player_state_1_vga : out std_logic_vector(1 downto 0);
 		go_to	           : out std_logic;
 		clear_memory       : out std_logic;
-map_select : out std_logic_vector(1 downto 0));
+map_select : std_logic_vector(1 downto 0));
 end game_engine;
