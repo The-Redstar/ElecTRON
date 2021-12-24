@@ -390,13 +390,13 @@ hscr: homescreen port map(
 			sidebar_player<='0';
 			sidebar_dir<=player0_dir;
 			sidebar_ready<=player0_state(0);
-			sidebar_boost<='0';
+			sidebar_boost<=player0_boost;
 			sidebar_x<=std_logic_vector(unsigned(h_vec(6 downto 0))-to_unsigned(B+C,7)); --take 7 LSB and shift to start of sidebar
 		else --player1
 			sidebar_player<='1';
 			sidebar_dir<=player1_dir;
 			sidebar_ready<=player1_state(0);
-			sidebar_boost<='0';
+			sidebar_boost<=player1_boost;
 			sidebar_x<=std_logic_vector(unsigned(h_vec(6 downto 0))-to_unsigned(B+C+80+R,7)); --take 7 LSB and shift to start of sidebar
 		end if;
 		sidebar_y<=v_vec(8 downto 0);
