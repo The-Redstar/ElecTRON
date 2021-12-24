@@ -1,0 +1,11 @@
+library IEEE;
+use IEEE.std_logic_1164.ALL;
+
+entity grid_top is
+   port(map     : in  std_logic_vector(1 downto 0);
+        x       : in  std_logic_vector(4 downto 0);
+        y       : in  std_logic_vector(4 downto 0);
+        jumps   : out std_logic_vector(7 downto 0);
+        borders : out std_logic_vector(7 downto 0));
+end grid_top;
+
