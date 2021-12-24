@@ -231,9 +231,14 @@ layering: process(bbox_wall, bbox_dot, bbox_v, bbox_h, bbox_border, bbox_jump, b
 		elsif player1_layer='1' and player1_inner_explosion_pixel then
 			color<=C_player1_explosion_inner;
 		elsif player0_layer='1' and player0_outer_explosion_pixel then
-			color<=C_player0_explosion_outer;
+			if player1_layer='1' and player1_outer_explosion_pixel then --collision
+				color<="1111";
+			else
+				color<=C_player0_explosion_outer;
+			end if;
 		elsif player1_layer='1' and player1_outer_explosion_pixel then
 			color<=C_player1_explosion_outer;
+			
 		elsif player0_layer='1' and player0_right_explosion_pixel then
 			color<=C_player0_explosion_outer;
 		elsif player1_layer='1' and player1_right_explosion_pixel then
@@ -287,7 +292,11 @@ layering: process(bbox_wall, bbox_dot, bbox_v, bbox_h, bbox_border, bbox_jump, b
 		elsif player1_inner_explosion_pixel then
 			color<=C_player1_explosion_inner;
 		elsif player0_outer_explosion_pixel then
-			color<=C_player0_explosion_outer;
+			if player1_outer_explosion_pixel then --collision
+				color<="1111";
+			else
+				color<=C_player0_explosion_outer;
+			end if;
 		elsif player1_outer_explosion_pixel then
 			color<=C_player1_explosion_outer;
 		elsif player0_right_explosion_pixel then
