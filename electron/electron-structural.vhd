@@ -48,6 +48,7 @@ architecture structural of electron is
            cur_y_out   : out std_logic_vector(4 downto 0);
            rst_vga	   : in  std_logic);
    end component;
+<<<<<<< HEAD
    
    component graphics_top
       port(clk	: in  std_logic;
@@ -160,5 +161,54 @@ begin
 					busy			=> busy,
 					audio_clock		=> adfkljkl,
 					game_state		=> game_state);
+=======
+
+begin
+
+	lbl0:game_engine port map ( 
+					clk  				=> clk,
+					reset				=> rst,
+					input    			=> direction,
+					busy    			=> ,
+					read_memory    		=> ,
+					memory_ready		=> ,
+					border				=> ,
+					ramp				=> ,
+					state_vga			=> ,
+					write_enable		=> ,
+					write_memory		=> ,
+					address				=> ,
+					position_0_vga		=> ,
+					position_1_vga		=> ,
+					direction_0_vga		=>,
+					direction_1_vga		=>,
+					player_state_0_vga	=>,
+					player_state_1_vga	=>,
+					go_to				=>,
+					clear_memory		=>);
+					
+	lbl1:memory_cntrll port map ( 
+					read_mem    =>,
+					clk         => clk,
+					x_incr_mem  => x_increment,
+					y_incr_mem  => y_increment,
+					w_incr_mem  => w_increment,
+					rst_mem     => memory_reset,
+					we_mem      =>,
+					me_mem      =>,
+					read_out    =>,
+					write_in    =>,
+					we_in       =>,
+					address_in  =>,
+					goto_in     =>,
+					rst_in      =>,
+					clr_in      =>,
+					x_incr_in   =>,
+					y_incr_in   =>,
+					ready_out   =>,
+					cur_x_out   =>,
+					cur_y_out   =>,
+					rst_vga	   	=>;
+>>>>>>> origin/game_engine
 end structural;
 

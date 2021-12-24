@@ -16,7 +16,11 @@ begin
 		end if;
 	end process;
 
+<<<<<<< HEAD
 	mem_fsm : process(state, we_in, goto_in, address_in, write_in, cur_x, cur_y, cur_w, busy_in)
+=======
+	mem_fsm : process(state, we_in, goto_in, address_in, write_in, cur_x, cur_y, cur_w)
+>>>>>>> origin/game_engine
 	begin
 		case state is
 			when sleep =>
