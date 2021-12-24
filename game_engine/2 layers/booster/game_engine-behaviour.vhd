@@ -537,8 +537,11 @@ create_next_state: 	process (state, new_state, reset, input, busy, clk, unsigned
 				-- in this state all the values are set to zero to reset everything
 				state_vga 				<= "100";
 				-- go to the state 'want_to_load' next
-				new_state <= loading_state;
-			
+				if (select_button = '0') then
+					new_state <= loading_state;
+				else
+					new_state <= reset_state;
+				end if;
 			
 			when loading_state =>
 				-- continue to let the memory module know to clear the memory and check when the memory is done
