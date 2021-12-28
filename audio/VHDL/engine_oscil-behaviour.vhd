@@ -87,7 +87,7 @@ begin
 --wave output
 	process(count,period)
 	begin
-		if count<shift_right(period,2) then
+		if count<shift_right(period,1) then
 			next_wave<='1';
 		else
 			next_wave<='0';

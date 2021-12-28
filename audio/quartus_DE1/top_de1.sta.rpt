@@ -1,5 +1,5 @@
 TimeQuest Timing Analyzer report for top_de1
-Tue Dec 28 19:11:15 2021
+Tue Dec 28 20:03:32 2021
 Quartus II 32-bit Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Full Version
 
 
@@ -96,12 +96,11 @@ applicable agreement for further details.
 ; Maximum allowed            ; 16          ;
 ;                            ;             ;
 ; Average used               ; 1.00        ;
-; Maximum used               ; 2           ;
+; Maximum used               ; 1           ;
 ;                            ;             ;
 ; Usage by Processor         ; % Time Used ;
 ;     Processor 1            ; 100.0%      ;
-;     Processor 2            ; < 0.1%      ;
-;     Processors 3-16        ;   0.0%      ;
+;     Processors 2-16        ;   0.0%      ;
 +----------------------------+-------------+
 
 
@@ -115,13 +114,13 @@ applicable agreement for further details.
 +-------------------------+------+--------+------------+-------+-------+------------+-----------+-------------+-------+--------+-----------+------------+----------+--------+--------+-----------------------------+
 
 
-+--------------------------------------------------------------+
-; Slow Model Fmax Summary                                      ;
-+-----------+-----------------+-------------------------+------+
-; Fmax      ; Restricted Fmax ; Clock Name              ; Note ;
-+-----------+-----------------+-------------------------+------+
-; 187.3 MHz ; 187.3 MHz       ; gen25mhz:inst1|count[0] ;      ;
-+-----------+-----------------+-------------------------+------+
++---------------------------------------------------------------+
+; Slow Model Fmax Summary                                       ;
++------------+-----------------+-------------------------+------+
+; Fmax       ; Restricted Fmax ; Clock Name              ; Note ;
++------------+-----------------+-------------------------+------+
+; 185.56 MHz ; 185.56 MHz      ; gen25mhz:inst1|count[0] ;      ;
++------------+-----------------+-------------------------+------+
 This panel reports FMAX for every clock in the design, regardless of the user-specified clock periods.  FMAX is only computed for paths where the source and destination registers or ports are driven by the same clock.  Paths of different clocks, including generated clocks, are ignored.  For paths between a clock and its inversion, FMAX is computed as if the rising and falling edges are scaled along with FMAX, such that the duty cycle (in terms of a percentage) is maintained. Altera recommends that you always use clock constraints and other slack reports for sign-off analysis.
 
 
@@ -130,7 +129,7 @@ This panel reports FMAX for every clock in the design, regardless of the user-sp
 +-------------------------+--------+---------------+
 ; Clock                   ; Slack  ; End Point TNS ;
 +-------------------------+--------+---------------+
-; gen25mhz:inst1|count[0] ; -4.339 ; -262.043      ;
+; gen25mhz:inst1|count[0] ; -4.389 ; -480.543      ;
 ; clock_50mhz             ; 2.116  ; 0.000         ;
 +-------------------------+--------+---------------+
 
@@ -141,7 +140,7 @@ This panel reports FMAX for every clock in the design, regardless of the user-sp
 ; Clock                   ; Slack  ; End Point TNS ;
 +-------------------------+--------+---------------+
 ; clock_50mhz             ; -1.864 ; -1.864        ;
-; gen25mhz:inst1|count[0] ; 0.614  ; 0.000         ;
+; gen25mhz:inst1|count[0] ; 0.616  ; 0.000         ;
 +-------------------------+--------+---------------+
 
 
@@ -163,116 +162,116 @@ No paths to report.
 ; Clock                   ; Slack  ; End Point TNS ;
 +-------------------------+--------+---------------+
 ; clock_50mhz             ; -1.631 ; -2.853        ;
-; gen25mhz:inst1|count[0] ; -0.611 ; -112.424      ;
+; gen25mhz:inst1|count[0] ; -0.611 ; -182.078      ;
 +-------------------------+--------+---------------+
 
 
-+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Slow Model Setup: 'gen25mhz:inst1|count[0]'                                                                                                                                                     ;
-+--------+---------------------------------------------+---------------------------------------------+-------------------------+-------------------------+--------------+------------+------------+
-; Slack  ; From Node                                   ; To Node                                     ; Launch Clock            ; Latch Clock             ; Relationship ; Clock Skew ; Data Delay ;
-+--------+---------------------------------------------+---------------------------------------------+-------------------------+-------------------------+--------------+------------+------------+
-; -4.339 ; audio_top:inst3|engine_oscil:en0|period[6]  ; audio_top:inst3|engine_oscil:en0|period[13] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; -0.004     ; 5.373      ;
-; -4.333 ; audio_top:inst3|engine_oscil:en0|period[10] ; audio_top:inst3|engine_oscil:en0|period[13] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; -0.003     ; 5.368      ;
-; -4.305 ; audio_top:inst3|engine_oscil:en0|period[7]  ; audio_top:inst3|engine_oscil:en0|period[13] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; -0.003     ; 5.340      ;
-; -4.273 ; audio_top:inst3|engine_oscil:en0|count[10]  ; audio_top:inst3|engine_oscil:en0|period[13] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.001      ; 5.312      ;
-; -4.265 ; audio_top:inst3|engine_oscil:en0|period[6]  ; audio_top:inst3|engine_oscil:en0|period[12] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; -0.005     ; 5.298      ;
-; -4.265 ; audio_top:inst3|engine_oscil:en0|period[6]  ; audio_top:inst3|engine_oscil:en0|period[11] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; -0.005     ; 5.298      ;
-; -4.263 ; audio_top:inst3|engine_oscil:en0|count[4]   ; audio_top:inst3|engine_oscil:en0|period[13] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; -0.002     ; 5.299      ;
-; -4.259 ; audio_top:inst3|engine_oscil:en0|period[10] ; audio_top:inst3|engine_oscil:en0|period[12] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; -0.004     ; 5.293      ;
-; -4.259 ; audio_top:inst3|engine_oscil:en0|period[10] ; audio_top:inst3|engine_oscil:en0|period[11] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; -0.004     ; 5.293      ;
-; -4.231 ; audio_top:inst3|engine_oscil:en0|period[7]  ; audio_top:inst3|engine_oscil:en0|period[12] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; -0.004     ; 5.265      ;
-; -4.231 ; audio_top:inst3|engine_oscil:en0|period[7]  ; audio_top:inst3|engine_oscil:en0|period[11] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; -0.004     ; 5.265      ;
-; -4.199 ; audio_top:inst3|engine_oscil:en0|count[10]  ; audio_top:inst3|engine_oscil:en0|period[12] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.000      ; 5.237      ;
-; -4.199 ; audio_top:inst3|engine_oscil:en0|count[10]  ; audio_top:inst3|engine_oscil:en0|period[11] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.000      ; 5.237      ;
-; -4.197 ; audio_top:inst3|engine_oscil:en0|count[6]   ; audio_top:inst3|engine_oscil:en0|period[13] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; -0.002     ; 5.233      ;
-; -4.189 ; audio_top:inst3|engine_oscil:en0|count[4]   ; audio_top:inst3|engine_oscil:en0|period[12] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; -0.003     ; 5.224      ;
-; -4.189 ; audio_top:inst3|engine_oscil:en0|count[4]   ; audio_top:inst3|engine_oscil:en0|period[11] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; -0.003     ; 5.224      ;
-; -4.187 ; audio_top:inst3|engine_oscil:en0|count[15]  ; audio_top:inst3|engine_oscil:en0|period[13] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.001      ; 5.226      ;
-; -4.147 ; audio_top:inst3|engine_oscil:en0|period[11] ; audio_top:inst3|engine_oscil:en0|period[13] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.001      ; 5.186      ;
-; -4.147 ; audio_top:inst3|engine_oscil:en0|count[13]  ; audio_top:inst3|engine_oscil:en0|period[13] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.001      ; 5.186      ;
-; -4.142 ; audio_top:inst3|engine_oscil:en0|count[5]   ; audio_top:inst3|engine_oscil:en0|period[13] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; -0.002     ; 5.178      ;
-; -4.137 ; audio_top:inst3|engine_oscil:en0|period[9]  ; audio_top:inst3|engine_oscil:en0|period[13] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; -0.003     ; 5.172      ;
-; -4.131 ; audio_top:inst3|engine_oscil:en0|period[12] ; audio_top:inst3|engine_oscil:en0|period[13] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.001      ; 5.170      ;
-; -4.123 ; audio_top:inst3|engine_oscil:en0|count[6]   ; audio_top:inst3|engine_oscil:en0|period[12] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; -0.003     ; 5.158      ;
-; -4.123 ; audio_top:inst3|engine_oscil:en0|count[6]   ; audio_top:inst3|engine_oscil:en0|period[11] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; -0.003     ; 5.158      ;
-; -4.121 ; audio_top:inst3|engine_oscil:en0|period[4]  ; audio_top:inst3|engine_oscil:en0|period[13] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; -0.003     ; 5.156      ;
-; -4.113 ; audio_top:inst3|engine_oscil:en0|count[15]  ; audio_top:inst3|engine_oscil:en0|period[12] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.000      ; 5.151      ;
-; -4.113 ; audio_top:inst3|engine_oscil:en0|count[15]  ; audio_top:inst3|engine_oscil:en0|period[11] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.000      ; 5.151      ;
-; -4.109 ; audio_top:inst3|engine_oscil:en0|period[1]  ; audio_top:inst3|engine_oscil:en0|period[13] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; -0.002     ; 5.145      ;
-; -4.102 ; audio_top:inst3|engine_oscil:en0|period[5]  ; audio_top:inst3|engine_oscil:en0|period[13] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; -0.004     ; 5.136      ;
-; -4.102 ; audio_top:inst3|engine_oscil:en0|period[13] ; audio_top:inst3|engine_oscil:en0|period[13] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.000      ; 5.140      ;
-; -4.089 ; audio_top:inst3|engine_oscil:en0|period[6]  ; audio_top:inst3|engine_oscil:en0|count[9]   ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; -0.005     ; 5.122      ;
-; -4.089 ; audio_top:inst3|engine_oscil:en0|period[6]  ; audio_top:inst3|engine_oscil:en0|count[10]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; -0.005     ; 5.122      ;
-; -4.089 ; audio_top:inst3|engine_oscil:en0|period[6]  ; audio_top:inst3|engine_oscil:en0|count[11]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; -0.005     ; 5.122      ;
-; -4.089 ; audio_top:inst3|engine_oscil:en0|period[6]  ; audio_top:inst3|engine_oscil:en0|count[12]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; -0.005     ; 5.122      ;
-; -4.089 ; audio_top:inst3|engine_oscil:en0|period[6]  ; audio_top:inst3|engine_oscil:en0|count[13]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; -0.005     ; 5.122      ;
-; -4.089 ; audio_top:inst3|engine_oscil:en0|period[6]  ; audio_top:inst3|engine_oscil:en0|count[14]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; -0.005     ; 5.122      ;
-; -4.089 ; audio_top:inst3|engine_oscil:en0|period[6]  ; audio_top:inst3|engine_oscil:en0|count[16]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; -0.005     ; 5.122      ;
-; -4.089 ; audio_top:inst3|engine_oscil:en0|period[6]  ; audio_top:inst3|engine_oscil:en0|count[17]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; -0.005     ; 5.122      ;
-; -4.089 ; audio_top:inst3|engine_oscil:en0|period[6]  ; audio_top:inst3|engine_oscil:en0|count[15]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; -0.005     ; 5.122      ;
-; -4.083 ; audio_top:inst3|engine_oscil:en0|period[10] ; audio_top:inst3|engine_oscil:en0|count[9]   ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; -0.004     ; 5.117      ;
-; -4.083 ; audio_top:inst3|engine_oscil:en0|period[10] ; audio_top:inst3|engine_oscil:en0|count[10]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; -0.004     ; 5.117      ;
-; -4.083 ; audio_top:inst3|engine_oscil:en0|period[10] ; audio_top:inst3|engine_oscil:en0|count[11]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; -0.004     ; 5.117      ;
-; -4.083 ; audio_top:inst3|engine_oscil:en0|period[10] ; audio_top:inst3|engine_oscil:en0|count[12]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; -0.004     ; 5.117      ;
-; -4.083 ; audio_top:inst3|engine_oscil:en0|period[10] ; audio_top:inst3|engine_oscil:en0|count[13]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; -0.004     ; 5.117      ;
-; -4.083 ; audio_top:inst3|engine_oscil:en0|period[10] ; audio_top:inst3|engine_oscil:en0|count[14]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; -0.004     ; 5.117      ;
-; -4.083 ; audio_top:inst3|engine_oscil:en0|period[10] ; audio_top:inst3|engine_oscil:en0|count[16]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; -0.004     ; 5.117      ;
-; -4.083 ; audio_top:inst3|engine_oscil:en0|period[10] ; audio_top:inst3|engine_oscil:en0|count[17]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; -0.004     ; 5.117      ;
-; -4.083 ; audio_top:inst3|engine_oscil:en0|period[10] ; audio_top:inst3|engine_oscil:en0|count[15]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; -0.004     ; 5.117      ;
-; -4.073 ; audio_top:inst3|engine_oscil:en0|period[11] ; audio_top:inst3|engine_oscil:en0|period[12] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.000      ; 5.111      ;
-; -4.073 ; audio_top:inst3|engine_oscil:en0|period[11] ; audio_top:inst3|engine_oscil:en0|period[11] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.000      ; 5.111      ;
-; -4.073 ; audio_top:inst3|engine_oscil:en0|count[13]  ; audio_top:inst3|engine_oscil:en0|period[12] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.000      ; 5.111      ;
-; -4.073 ; audio_top:inst3|engine_oscil:en0|count[13]  ; audio_top:inst3|engine_oscil:en0|period[11] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.000      ; 5.111      ;
-; -4.068 ; audio_top:inst3|engine_oscil:en0|count[5]   ; audio_top:inst3|engine_oscil:en0|period[12] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; -0.003     ; 5.103      ;
-; -4.068 ; audio_top:inst3|engine_oscil:en0|count[5]   ; audio_top:inst3|engine_oscil:en0|period[11] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; -0.003     ; 5.103      ;
-; -4.063 ; audio_top:inst3|engine_oscil:en0|period[9]  ; audio_top:inst3|engine_oscil:en0|period[12] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; -0.004     ; 5.097      ;
-; -4.063 ; audio_top:inst3|engine_oscil:en0|period[9]  ; audio_top:inst3|engine_oscil:en0|period[11] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; -0.004     ; 5.097      ;
-; -4.057 ; audio_top:inst3|engine_oscil:en0|period[12] ; audio_top:inst3|engine_oscil:en0|period[12] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.000      ; 5.095      ;
-; -4.057 ; audio_top:inst3|engine_oscil:en0|period[12] ; audio_top:inst3|engine_oscil:en0|period[11] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.000      ; 5.095      ;
-; -4.055 ; audio_top:inst3|engine_oscil:en0|period[7]  ; audio_top:inst3|engine_oscil:en0|count[9]   ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; -0.004     ; 5.089      ;
-; -4.055 ; audio_top:inst3|engine_oscil:en0|period[7]  ; audio_top:inst3|engine_oscil:en0|count[10]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; -0.004     ; 5.089      ;
-; -4.055 ; audio_top:inst3|engine_oscil:en0|period[7]  ; audio_top:inst3|engine_oscil:en0|count[11]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; -0.004     ; 5.089      ;
-; -4.055 ; audio_top:inst3|engine_oscil:en0|period[7]  ; audio_top:inst3|engine_oscil:en0|count[12]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; -0.004     ; 5.089      ;
-; -4.055 ; audio_top:inst3|engine_oscil:en0|period[7]  ; audio_top:inst3|engine_oscil:en0|count[13]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; -0.004     ; 5.089      ;
-; -4.055 ; audio_top:inst3|engine_oscil:en0|period[7]  ; audio_top:inst3|engine_oscil:en0|count[14]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; -0.004     ; 5.089      ;
-; -4.055 ; audio_top:inst3|engine_oscil:en0|period[7]  ; audio_top:inst3|engine_oscil:en0|count[16]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; -0.004     ; 5.089      ;
-; -4.055 ; audio_top:inst3|engine_oscil:en0|period[7]  ; audio_top:inst3|engine_oscil:en0|count[17]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; -0.004     ; 5.089      ;
-; -4.055 ; audio_top:inst3|engine_oscil:en0|period[7]  ; audio_top:inst3|engine_oscil:en0|count[15]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; -0.004     ; 5.089      ;
-; -4.047 ; audio_top:inst3|engine_oscil:en0|period[4]  ; audio_top:inst3|engine_oscil:en0|period[12] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; -0.004     ; 5.081      ;
-; -4.047 ; audio_top:inst3|engine_oscil:en0|period[4]  ; audio_top:inst3|engine_oscil:en0|period[11] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; -0.004     ; 5.081      ;
-; -4.037 ; audio_top:inst3|engine_oscil:en0|count[8]   ; audio_top:inst3|engine_oscil:en0|period[13] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; -0.002     ; 5.073      ;
-; -4.035 ; audio_top:inst3|engine_oscil:en0|period[1]  ; audio_top:inst3|engine_oscil:en0|period[12] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; -0.003     ; 5.070      ;
-; -4.035 ; audio_top:inst3|engine_oscil:en0|period[1]  ; audio_top:inst3|engine_oscil:en0|period[11] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; -0.003     ; 5.070      ;
-; -4.028 ; audio_top:inst3|engine_oscil:en0|period[5]  ; audio_top:inst3|engine_oscil:en0|period[12] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; -0.005     ; 5.061      ;
-; -4.028 ; audio_top:inst3|engine_oscil:en0|period[5]  ; audio_top:inst3|engine_oscil:en0|period[11] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; -0.005     ; 5.061      ;
-; -4.028 ; audio_top:inst3|engine_oscil:en0|period[13] ; audio_top:inst3|engine_oscil:en0|period[12] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; -0.001     ; 5.065      ;
-; -4.028 ; audio_top:inst3|engine_oscil:en0|period[13] ; audio_top:inst3|engine_oscil:en0|period[11] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; -0.001     ; 5.065      ;
-; -4.023 ; audio_top:inst3|engine_oscil:en0|count[10]  ; audio_top:inst3|engine_oscil:en0|count[9]   ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.000      ; 5.061      ;
-; -4.023 ; audio_top:inst3|engine_oscil:en0|count[10]  ; audio_top:inst3|engine_oscil:en0|count[10]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.000      ; 5.061      ;
-; -4.023 ; audio_top:inst3|engine_oscil:en0|count[10]  ; audio_top:inst3|engine_oscil:en0|count[11]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.000      ; 5.061      ;
-; -4.023 ; audio_top:inst3|engine_oscil:en0|count[10]  ; audio_top:inst3|engine_oscil:en0|count[12]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.000      ; 5.061      ;
-; -4.023 ; audio_top:inst3|engine_oscil:en0|count[10]  ; audio_top:inst3|engine_oscil:en0|count[13]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.000      ; 5.061      ;
-; -4.023 ; audio_top:inst3|engine_oscil:en0|count[10]  ; audio_top:inst3|engine_oscil:en0|count[14]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.000      ; 5.061      ;
-; -4.023 ; audio_top:inst3|engine_oscil:en0|count[10]  ; audio_top:inst3|engine_oscil:en0|count[16]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.000      ; 5.061      ;
-; -4.023 ; audio_top:inst3|engine_oscil:en0|count[10]  ; audio_top:inst3|engine_oscil:en0|count[17]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.000      ; 5.061      ;
-; -4.023 ; audio_top:inst3|engine_oscil:en0|count[10]  ; audio_top:inst3|engine_oscil:en0|count[15]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.000      ; 5.061      ;
-; -4.013 ; audio_top:inst3|engine_oscil:en0|count[4]   ; audio_top:inst3|engine_oscil:en0|count[9]   ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; -0.003     ; 5.048      ;
-; -4.013 ; audio_top:inst3|engine_oscil:en0|count[4]   ; audio_top:inst3|engine_oscil:en0|count[10]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; -0.003     ; 5.048      ;
-; -4.013 ; audio_top:inst3|engine_oscil:en0|count[4]   ; audio_top:inst3|engine_oscil:en0|count[11]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; -0.003     ; 5.048      ;
-; -4.013 ; audio_top:inst3|engine_oscil:en0|count[4]   ; audio_top:inst3|engine_oscil:en0|count[12]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; -0.003     ; 5.048      ;
-; -4.013 ; audio_top:inst3|engine_oscil:en0|count[4]   ; audio_top:inst3|engine_oscil:en0|count[13]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; -0.003     ; 5.048      ;
-; -4.013 ; audio_top:inst3|engine_oscil:en0|count[4]   ; audio_top:inst3|engine_oscil:en0|count[14]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; -0.003     ; 5.048      ;
-; -4.013 ; audio_top:inst3|engine_oscil:en0|count[4]   ; audio_top:inst3|engine_oscil:en0|count[16]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; -0.003     ; 5.048      ;
-; -4.013 ; audio_top:inst3|engine_oscil:en0|count[4]   ; audio_top:inst3|engine_oscil:en0|count[17]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; -0.003     ; 5.048      ;
-; -4.013 ; audio_top:inst3|engine_oscil:en0|count[4]   ; audio_top:inst3|engine_oscil:en0|count[15]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; -0.003     ; 5.048      ;
-; -3.986 ; audio_top:inst3|engine_oscil:en0|count[9]   ; audio_top:inst3|engine_oscil:en0|period[13] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.001      ; 5.025      ;
-; -3.963 ; audio_top:inst3|engine_oscil:en0|count[8]   ; audio_top:inst3|engine_oscil:en0|period[12] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; -0.003     ; 4.998      ;
-; -3.963 ; audio_top:inst3|engine_oscil:en0|count[8]   ; audio_top:inst3|engine_oscil:en0|period[11] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; -0.003     ; 4.998      ;
-; -3.963 ; audio_top:inst3|engine_oscil:en0|count[11]  ; audio_top:inst3|engine_oscil:en0|period[13] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.001      ; 5.002      ;
-; -3.958 ; audio_top:inst3|engine_oscil:en0|count[7]   ; audio_top:inst3|engine_oscil:en0|period[13] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; -0.002     ; 4.994      ;
-; -3.949 ; audio_top:inst3|engine_oscil:en0|period[14] ; audio_top:inst3|engine_oscil:en0|period[13] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; -0.004     ; 4.983      ;
-+--------+---------------------------------------------+---------------------------------------------+-------------------------+-------------------------+--------------+------------+------------+
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Slow Model Setup: 'gen25mhz:inst1|count[0]'                                                                                                                                                    ;
++--------+--------------------------------------------+---------------------------------------------+-------------------------+-------------------------+--------------+------------+------------+
+; Slack  ; From Node                                  ; To Node                                     ; Launch Clock            ; Latch Clock             ; Relationship ; Clock Skew ; Data Delay ;
++--------+--------------------------------------------+---------------------------------------------+-------------------------+-------------------------+--------------+------------+------------+
+; -4.389 ; audio_top:inst3|engine_oscil:en0|count[6]  ; audio_top:inst3|engine_oscil:en0|period[4]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.001      ; 5.428      ;
+; -4.389 ; audio_top:inst3|engine_oscil:en0|count[6]  ; audio_top:inst3|engine_oscil:en0|period[3]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.001      ; 5.428      ;
+; -4.372 ; audio_top:inst3|engine_oscil:en0|count[6]  ; audio_top:inst3|engine_oscil:en0|period[1]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.001      ; 5.411      ;
+; -4.372 ; audio_top:inst3|engine_oscil:en0|count[6]  ; audio_top:inst3|engine_oscil:en0|period[0]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.001      ; 5.411      ;
+; -4.364 ; audio_top:inst3|engine_oscil:en0|period[5] ; audio_top:inst3|engine_oscil:en0|period[4]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.000      ; 5.402      ;
+; -4.364 ; audio_top:inst3|engine_oscil:en0|period[5] ; audio_top:inst3|engine_oscil:en0|period[3]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.000      ; 5.402      ;
+; -4.347 ; audio_top:inst3|engine_oscil:en0|period[5] ; audio_top:inst3|engine_oscil:en0|period[1]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.000      ; 5.385      ;
+; -4.347 ; audio_top:inst3|engine_oscil:en0|period[5] ; audio_top:inst3|engine_oscil:en0|period[0]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.000      ; 5.385      ;
+; -4.343 ; audio_top:inst3|engine_oscil:en0|count[5]  ; audio_top:inst3|engine_oscil:en0|period[4]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.000      ; 5.381      ;
+; -4.343 ; audio_top:inst3|engine_oscil:en0|count[5]  ; audio_top:inst3|engine_oscil:en0|period[3]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.000      ; 5.381      ;
+; -4.335 ; audio_top:inst3|engine_oscil:en1|period[5] ; audio_top:inst3|engine_oscil:en1|period[16] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.003      ; 5.376      ;
+; -4.335 ; audio_top:inst3|engine_oscil:en1|period[5] ; audio_top:inst3|engine_oscil:en1|period[14] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.003      ; 5.376      ;
+; -4.335 ; audio_top:inst3|engine_oscil:en1|period[5] ; audio_top:inst3|engine_oscil:en1|period[10] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.003      ; 5.376      ;
+; -4.335 ; audio_top:inst3|engine_oscil:en1|period[5] ; audio_top:inst3|engine_oscil:en1|period[11] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.003      ; 5.376      ;
+; -4.334 ; audio_top:inst3|engine_oscil:en1|period[5] ; audio_top:inst3|engine_oscil:en1|period[13] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.002      ; 5.374      ;
+; -4.334 ; audio_top:inst3|engine_oscil:en1|period[5] ; audio_top:inst3|engine_oscil:en1|period[15] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.002      ; 5.374      ;
+; -4.326 ; audio_top:inst3|engine_oscil:en0|count[9]  ; audio_top:inst3|engine_oscil:en0|period[4]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.000      ; 5.364      ;
+; -4.326 ; audio_top:inst3|engine_oscil:en0|count[9]  ; audio_top:inst3|engine_oscil:en0|period[3]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.000      ; 5.364      ;
+; -4.326 ; audio_top:inst3|engine_oscil:en0|count[5]  ; audio_top:inst3|engine_oscil:en0|period[1]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.000      ; 5.364      ;
+; -4.326 ; audio_top:inst3|engine_oscil:en0|count[5]  ; audio_top:inst3|engine_oscil:en0|period[0]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.000      ; 5.364      ;
+; -4.323 ; audio_top:inst3|engine_oscil:en1|period[6] ; audio_top:inst3|engine_oscil:en1|period[16] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.003      ; 5.364      ;
+; -4.323 ; audio_top:inst3|engine_oscil:en1|period[6] ; audio_top:inst3|engine_oscil:en1|period[14] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.003      ; 5.364      ;
+; -4.323 ; audio_top:inst3|engine_oscil:en1|period[6] ; audio_top:inst3|engine_oscil:en1|period[10] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.003      ; 5.364      ;
+; -4.323 ; audio_top:inst3|engine_oscil:en1|period[6] ; audio_top:inst3|engine_oscil:en1|period[11] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.003      ; 5.364      ;
+; -4.322 ; audio_top:inst3|engine_oscil:en1|period[6] ; audio_top:inst3|engine_oscil:en1|period[13] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.002      ; 5.362      ;
+; -4.322 ; audio_top:inst3|engine_oscil:en1|period[6] ; audio_top:inst3|engine_oscil:en1|period[15] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.002      ; 5.362      ;
+; -4.309 ; audio_top:inst3|engine_oscil:en0|count[9]  ; audio_top:inst3|engine_oscil:en0|period[1]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.000      ; 5.347      ;
+; -4.309 ; audio_top:inst3|engine_oscil:en0|count[9]  ; audio_top:inst3|engine_oscil:en0|period[0]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.000      ; 5.347      ;
+; -4.297 ; audio_top:inst3|engine_oscil:en0|count[6]  ; audio_top:inst3|engine_oscil:en0|period[15] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.001      ; 5.336      ;
+; -4.297 ; audio_top:inst3|engine_oscil:en0|count[6]  ; audio_top:inst3|engine_oscil:en0|period[14] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.001      ; 5.336      ;
+; -4.272 ; audio_top:inst3|engine_oscil:en0|period[5] ; audio_top:inst3|engine_oscil:en0|period[15] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.000      ; 5.310      ;
+; -4.272 ; audio_top:inst3|engine_oscil:en0|period[5] ; audio_top:inst3|engine_oscil:en0|period[14] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.000      ; 5.310      ;
+; -4.257 ; audio_top:inst3|engine_oscil:en1|period[5] ; audio_top:inst3|engine_oscil:en1|period[4]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.000      ; 5.295      ;
+; -4.257 ; audio_top:inst3|engine_oscil:en1|period[5] ; audio_top:inst3|engine_oscil:en1|period[3]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.000      ; 5.295      ;
+; -4.257 ; audio_top:inst3|engine_oscil:en1|period[5] ; audio_top:inst3|engine_oscil:en1|period[1]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.000      ; 5.295      ;
+; -4.257 ; audio_top:inst3|engine_oscil:en1|period[5] ; audio_top:inst3|engine_oscil:en1|period[0]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.000      ; 5.295      ;
+; -4.257 ; audio_top:inst3|engine_oscil:en1|period[5] ; audio_top:inst3|engine_oscil:en1|period[6]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.000      ; 5.295      ;
+; -4.251 ; audio_top:inst3|engine_oscil:en0|count[5]  ; audio_top:inst3|engine_oscil:en0|period[15] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.000      ; 5.289      ;
+; -4.251 ; audio_top:inst3|engine_oscil:en0|count[5]  ; audio_top:inst3|engine_oscil:en0|period[14] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.000      ; 5.289      ;
+; -4.247 ; audio_top:inst3|engine_oscil:en1|period[7] ; audio_top:inst3|engine_oscil:en1|period[16] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.002      ; 5.287      ;
+; -4.247 ; audio_top:inst3|engine_oscil:en1|period[7] ; audio_top:inst3|engine_oscil:en1|period[14] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.002      ; 5.287      ;
+; -4.247 ; audio_top:inst3|engine_oscil:en1|period[7] ; audio_top:inst3|engine_oscil:en1|period[10] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.002      ; 5.287      ;
+; -4.247 ; audio_top:inst3|engine_oscil:en1|period[7] ; audio_top:inst3|engine_oscil:en1|period[11] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.002      ; 5.287      ;
+; -4.246 ; audio_top:inst3|engine_oscil:en1|period[7] ; audio_top:inst3|engine_oscil:en1|period[13] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.001      ; 5.285      ;
+; -4.246 ; audio_top:inst3|engine_oscil:en1|period[7] ; audio_top:inst3|engine_oscil:en1|period[15] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.001      ; 5.285      ;
+; -4.245 ; audio_top:inst3|engine_oscil:en1|period[6] ; audio_top:inst3|engine_oscil:en1|period[4]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.000      ; 5.283      ;
+; -4.245 ; audio_top:inst3|engine_oscil:en1|period[6] ; audio_top:inst3|engine_oscil:en1|period[3]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.000      ; 5.283      ;
+; -4.245 ; audio_top:inst3|engine_oscil:en1|period[6] ; audio_top:inst3|engine_oscil:en1|period[1]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.000      ; 5.283      ;
+; -4.245 ; audio_top:inst3|engine_oscil:en1|period[6] ; audio_top:inst3|engine_oscil:en1|period[0]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.000      ; 5.283      ;
+; -4.245 ; audio_top:inst3|engine_oscil:en1|period[6] ; audio_top:inst3|engine_oscil:en1|period[6]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.000      ; 5.283      ;
+; -4.234 ; audio_top:inst3|engine_oscil:en0|count[9]  ; audio_top:inst3|engine_oscil:en0|period[15] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.000      ; 5.272      ;
+; -4.234 ; audio_top:inst3|engine_oscil:en0|count[9]  ; audio_top:inst3|engine_oscil:en0|period[14] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.000      ; 5.272      ;
+; -4.214 ; audio_top:inst3|engine_oscil:en0|count[6]  ; audio_top:inst3|engine_oscil:en0|count[0]   ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.001      ; 5.253      ;
+; -4.214 ; audio_top:inst3|engine_oscil:en0|count[6]  ; audio_top:inst3|engine_oscil:en0|count[1]   ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.001      ; 5.253      ;
+; -4.214 ; audio_top:inst3|engine_oscil:en0|count[6]  ; audio_top:inst3|engine_oscil:en0|count[2]   ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.001      ; 5.253      ;
+; -4.214 ; audio_top:inst3|engine_oscil:en0|count[6]  ; audio_top:inst3|engine_oscil:en0|count[3]   ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.001      ; 5.253      ;
+; -4.214 ; audio_top:inst3|engine_oscil:en0|count[6]  ; audio_top:inst3|engine_oscil:en0|count[4]   ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.001      ; 5.253      ;
+; -4.214 ; audio_top:inst3|engine_oscil:en0|count[6]  ; audio_top:inst3|engine_oscil:en0|count[5]   ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.001      ; 5.253      ;
+; -4.214 ; audio_top:inst3|engine_oscil:en0|count[6]  ; audio_top:inst3|engine_oscil:en0|count[8]   ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.001      ; 5.253      ;
+; -4.214 ; audio_top:inst3|engine_oscil:en0|count[0]  ; audio_top:inst3|engine_oscil:en0|period[4]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.000      ; 5.252      ;
+; -4.214 ; audio_top:inst3|engine_oscil:en0|count[0]  ; audio_top:inst3|engine_oscil:en0|period[3]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.000      ; 5.252      ;
+; -4.210 ; audio_top:inst3|engine_oscil:en1|period[8] ; audio_top:inst3|engine_oscil:en1|period[16] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.002      ; 5.250      ;
+; -4.210 ; audio_top:inst3|engine_oscil:en1|period[8] ; audio_top:inst3|engine_oscil:en1|period[14] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.002      ; 5.250      ;
+; -4.210 ; audio_top:inst3|engine_oscil:en1|period[8] ; audio_top:inst3|engine_oscil:en1|period[10] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.002      ; 5.250      ;
+; -4.210 ; audio_top:inst3|engine_oscil:en1|period[8] ; audio_top:inst3|engine_oscil:en1|period[11] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.002      ; 5.250      ;
+; -4.209 ; audio_top:inst3|engine_oscil:en1|period[8] ; audio_top:inst3|engine_oscil:en1|period[13] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.001      ; 5.248      ;
+; -4.209 ; audio_top:inst3|engine_oscil:en1|period[8] ; audio_top:inst3|engine_oscil:en1|period[15] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.001      ; 5.248      ;
+; -4.197 ; audio_top:inst3|engine_oscil:en0|count[0]  ; audio_top:inst3|engine_oscil:en0|period[1]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.000      ; 5.235      ;
+; -4.197 ; audio_top:inst3|engine_oscil:en0|count[0]  ; audio_top:inst3|engine_oscil:en0|period[0]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.000      ; 5.235      ;
+; -4.192 ; audio_top:inst3|engine_oscil:en1|count[5]  ; audio_top:inst3|engine_oscil:en1|period[16] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.003      ; 5.233      ;
+; -4.192 ; audio_top:inst3|engine_oscil:en1|count[5]  ; audio_top:inst3|engine_oscil:en1|period[14] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.003      ; 5.233      ;
+; -4.192 ; audio_top:inst3|engine_oscil:en1|count[5]  ; audio_top:inst3|engine_oscil:en1|period[10] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.003      ; 5.233      ;
+; -4.192 ; audio_top:inst3|engine_oscil:en1|count[5]  ; audio_top:inst3|engine_oscil:en1|period[11] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.003      ; 5.233      ;
+; -4.191 ; audio_top:inst3|engine_oscil:en1|count[5]  ; audio_top:inst3|engine_oscil:en1|period[13] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.002      ; 5.231      ;
+; -4.191 ; audio_top:inst3|engine_oscil:en1|count[5]  ; audio_top:inst3|engine_oscil:en1|period[15] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.002      ; 5.231      ;
+; -4.189 ; audio_top:inst3|engine_oscil:en0|period[5] ; audio_top:inst3|engine_oscil:en0|count[0]   ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.000      ; 5.227      ;
+; -4.189 ; audio_top:inst3|engine_oscil:en0|period[5] ; audio_top:inst3|engine_oscil:en0|count[1]   ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.000      ; 5.227      ;
+; -4.189 ; audio_top:inst3|engine_oscil:en0|period[5] ; audio_top:inst3|engine_oscil:en0|count[2]   ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.000      ; 5.227      ;
+; -4.189 ; audio_top:inst3|engine_oscil:en0|period[5] ; audio_top:inst3|engine_oscil:en0|count[3]   ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.000      ; 5.227      ;
+; -4.189 ; audio_top:inst3|engine_oscil:en0|period[5] ; audio_top:inst3|engine_oscil:en0|count[4]   ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.000      ; 5.227      ;
+; -4.189 ; audio_top:inst3|engine_oscil:en0|period[5] ; audio_top:inst3|engine_oscil:en0|count[5]   ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.000      ; 5.227      ;
+; -4.189 ; audio_top:inst3|engine_oscil:en0|period[5] ; audio_top:inst3|engine_oscil:en0|count[8]   ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.000      ; 5.227      ;
+; -4.175 ; audio_top:inst3|engine_oscil:en0|period[6] ; audio_top:inst3|engine_oscil:en0|period[4]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.000      ; 5.213      ;
+; -4.175 ; audio_top:inst3|engine_oscil:en0|period[6] ; audio_top:inst3|engine_oscil:en0|period[3]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.000      ; 5.213      ;
+; -4.169 ; audio_top:inst3|engine_oscil:en1|period[7] ; audio_top:inst3|engine_oscil:en1|period[4]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; -0.001     ; 5.206      ;
+; -4.169 ; audio_top:inst3|engine_oscil:en1|period[7] ; audio_top:inst3|engine_oscil:en1|period[3]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; -0.001     ; 5.206      ;
+; -4.169 ; audio_top:inst3|engine_oscil:en1|period[7] ; audio_top:inst3|engine_oscil:en1|period[1]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; -0.001     ; 5.206      ;
+; -4.169 ; audio_top:inst3|engine_oscil:en1|period[7] ; audio_top:inst3|engine_oscil:en1|period[0]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; -0.001     ; 5.206      ;
+; -4.169 ; audio_top:inst3|engine_oscil:en1|period[7] ; audio_top:inst3|engine_oscil:en1|period[6]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; -0.001     ; 5.206      ;
+; -4.168 ; audio_top:inst3|engine_oscil:en0|count[5]  ; audio_top:inst3|engine_oscil:en0|count[0]   ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.000      ; 5.206      ;
+; -4.168 ; audio_top:inst3|engine_oscil:en0|count[5]  ; audio_top:inst3|engine_oscil:en0|count[1]   ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.000      ; 5.206      ;
+; -4.168 ; audio_top:inst3|engine_oscil:en0|count[5]  ; audio_top:inst3|engine_oscil:en0|count[2]   ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.000      ; 5.206      ;
+; -4.168 ; audio_top:inst3|engine_oscil:en0|count[5]  ; audio_top:inst3|engine_oscil:en0|count[3]   ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.000      ; 5.206      ;
+; -4.168 ; audio_top:inst3|engine_oscil:en0|count[5]  ; audio_top:inst3|engine_oscil:en0|count[4]   ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.000      ; 5.206      ;
+; -4.168 ; audio_top:inst3|engine_oscil:en0|count[5]  ; audio_top:inst3|engine_oscil:en0|count[5]   ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.000      ; 5.206      ;
+; -4.168 ; audio_top:inst3|engine_oscil:en0|count[5]  ; audio_top:inst3|engine_oscil:en0|count[8]   ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.000      ; 5.206      ;
+; -4.164 ; audio_top:inst3|engine_oscil:en0|period[4] ; audio_top:inst3|engine_oscil:en0|period[4]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.000      ; 5.202      ;
+; -4.164 ; audio_top:inst3|engine_oscil:en0|period[4] ; audio_top:inst3|engine_oscil:en0|period[3]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.000      ; 5.202      ;
+; -4.164 ; audio_top:inst3|engine_oscil:en0|period[0] ; audio_top:inst3|engine_oscil:en0|period[4]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.000      ; 5.202      ;
+; -4.164 ; audio_top:inst3|engine_oscil:en0|period[0] ; audio_top:inst3|engine_oscil:en0|period[3]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.000      ; 5.202      ;
++--------+--------------------------------------------+---------------------------------------------+-------------------------+-------------------------+--------------+------------+------------+
 
 
 +--------------------------------------------------------------------------------------------------------------------------------------------+
@@ -300,106 +299,106 @@ No paths to report.
 +-------+-------------------------------------------------+-------------------------------------------------+-------------------------+-------------------------+--------------+------------+------------+
 ; Slack ; From Node                                       ; To Node                                         ; Launch Clock            ; Latch Clock             ; Relationship ; Clock Skew ; Data Delay ;
 +-------+-------------------------------------------------+-------------------------------------------------+-------------------------+-------------------------+--------------+------------+------------+
-; 0.614 ; audio_top:inst3|rng:expl|shifter[19]            ; audio_top:inst3|rng:expl|shifter[20]            ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 0.900      ;
-; 0.616 ; audio_top:inst3|rng:expl|shifter[16]            ; audio_top:inst3|rng:expl|shifter[17]            ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 0.902      ;
-; 0.618 ; audio_top:inst3|rng:expl|shifter[17]            ; audio_top:inst3|rng:expl|shifter[18]            ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 0.904      ;
-; 0.621 ; audio_top:inst3|rng:expl|shifter[10]            ; audio_top:inst3|rng:expl|shifter[11]            ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 0.907      ;
-; 0.623 ; audio_top:inst3|rng:expl|shifter[12]            ; audio_top:inst3|rng:expl|shifter[13]            ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 0.909      ;
-; 0.623 ; audio_top:inst3|rng:expl|shifter[13]            ; audio_top:inst3|rng:expl|shifter[14]            ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 0.909      ;
-; 0.625 ; audio_top:inst3|rng:expl|shifter[14]            ; audio_top:inst3|rng:expl|shifter[15]            ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 0.911      ;
-; 0.638 ; test_data_gen:inst|vga_x[9]                     ; test_data_gen:inst|vga_x[9]                     ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 0.924      ;
-; 0.770 ; audio_top:inst3|rng:expl|shifter[2]             ; audio_top:inst3|rng:expl|shifter[3]             ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 1.056      ;
-; 0.771 ; audio_top:inst3|rng:expl|shifter[9]             ; audio_top:inst3|rng:expl|shifter[10]            ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 1.057      ;
-; 0.773 ; audio_top:inst3|rng:expl|shifter[11]            ; audio_top:inst3|rng:expl|shifter[12]            ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 1.059      ;
-; 0.776 ; audio_top:inst3|rng:expl|shifter[3]             ; audio_top:inst3|rng:expl|shifter[4]             ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 1.062      ;
-; 0.781 ; audio_top:inst3|rng:expl|shifter[15]            ; audio_top:inst3|rng:expl|shifter[16]            ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 1.067      ;
-; 0.789 ; audio_top:inst3|rng:expl|shifter[20]            ; audio_top:inst3|rng:expl|shifter[21]            ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 1.075      ;
-; 0.842 ; audio_top:inst3|rng:expl|shifter[1]             ; audio_top:inst3|rng:expl|shifter[2]             ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 1.128      ;
-; 0.846 ; audio_top:inst3|rng:expl|shifter[5]             ; audio_top:inst3|rng:expl|shifter[6]             ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 1.132      ;
-; 0.931 ; audio_top:inst3|rng:expl|shifter[0]             ; audio_top:inst3|rng:expl|shifter[1]             ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 1.217      ;
-; 0.932 ; audio_top:inst3|rng:expl|shifter[7]             ; audio_top:inst3|rng:expl|shifter[8]             ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 1.218      ;
+; 0.616 ; audio_top:inst3|rng:expl|shifter[12]            ; audio_top:inst3|rng:expl|shifter[13]            ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 0.902      ;
+; 0.764 ; audio_top:inst3|rng:expl|shifter[9]             ; audio_top:inst3|rng:expl|shifter[10]            ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 1.050      ;
+; 0.765 ; audio_top:inst3|rng:expl|shifter[11]            ; audio_top:inst3|rng:expl|shifter[12]            ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 1.051      ;
+; 0.798 ; audio_top:inst3|rng:expl|shifter[8]             ; audio_top:inst3|rng:expl|shifter[9]             ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; -0.001     ; 1.083      ;
+; 0.841 ; audio_top:inst3|rng:expl|shifter[13]            ; audio_top:inst3|rng:expl|shifter[14]            ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.001      ; 1.128      ;
+; 0.922 ; audio_top:inst3|rng:expl|shifter[6]             ; audio_top:inst3|rng:expl|shifter[0]             ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 1.208      ;
+; 0.934 ; audio_top:inst3|rng:expl|shifter[14]            ; audio_top:inst3|rng:expl|shifter[15]            ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 1.220      ;
+; 0.935 ; audio_top:inst3|rng:expl|shifter[0]             ; audio_top:inst3|rng:expl|shifter[1]             ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 1.221      ;
+; 0.935 ; audio_top:inst3|rng:expl|shifter[17]            ; audio_top:inst3|rng:expl|shifter[18]            ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 1.221      ;
 ; 0.938 ; audio_top:inst3|engine_oscil:en0|new_period[9]  ; audio_top:inst3|engine_oscil:en0|new_period[9]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 1.224      ;
+; 0.938 ; audio_top:inst3|engine_oscil:en1|new_period[9]  ; audio_top:inst3|engine_oscil:en1|new_period[9]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 1.224      ;
 ; 0.946 ; audio_top:inst3|engine_oscil:en0|new_period[11] ; audio_top:inst3|engine_oscil:en0|new_period[11] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 1.232      ;
+; 0.946 ; audio_top:inst3|engine_oscil:en1|new_period[11] ; audio_top:inst3|engine_oscil:en1|new_period[11] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 1.232      ;
 ; 0.947 ; audio_top:inst3|engine_oscil:en0|new_period[7]  ; audio_top:inst3|engine_oscil:en0|new_period[7]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 1.233      ;
 ; 0.947 ; audio_top:inst3|engine_oscil:en0|new_period[13] ; audio_top:inst3|engine_oscil:en0|new_period[13] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 1.233      ;
+; 0.947 ; audio_top:inst3|engine_oscil:en1|new_period[7]  ; audio_top:inst3|engine_oscil:en1|new_period[7]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 1.233      ;
+; 0.947 ; audio_top:inst3|engine_oscil:en1|new_period[13] ; audio_top:inst3|engine_oscil:en1|new_period[13] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 1.233      ;
+; 0.947 ; audio_top:inst3|rng:expl|shifter[22]            ; audio_top:inst3|rng:expl|shifter[23]            ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 1.233      ;
 ; 0.951 ; audio_top:inst3|rng:expl|shifter[21]            ; audio_top:inst3|rng:expl|shifter[22]            ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 1.237      ;
-; 0.952 ; audio_top:inst3|rng:expl|shifter[6]             ; audio_top:inst3|rng:expl|shifter[7]             ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 1.238      ;
-; 0.968 ; audio_top:inst3|engine_oscil:en0|count[9]       ; audio_top:inst3|engine_oscil:en0|count[9]       ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 1.254      ;
-; 0.968 ; audio_top:inst3|engine_oscil:en0|count[10]      ; audio_top:inst3|engine_oscil:en0|count[10]      ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 1.254      ;
 ; 0.968 ; audio_top:inst3|engine_oscil:en0|new_period[0]  ; audio_top:inst3|engine_oscil:en0|new_period[0]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 1.254      ;
 ; 0.968 ; audio_top:inst3|engine_oscil:en0|new_period[10] ; audio_top:inst3|engine_oscil:en0|new_period[10] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 1.254      ;
-; 0.971 ; test_data_gen:inst|vga_x[3]                     ; test_data_gen:inst|vga_x[3]                     ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 1.257      ;
+; 0.968 ; audio_top:inst3|engine_oscil:en1|new_period[0]  ; audio_top:inst3|engine_oscil:en1|new_period[0]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 1.254      ;
+; 0.968 ; audio_top:inst3|engine_oscil:en1|new_period[10] ; audio_top:inst3|engine_oscil:en1|new_period[10] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 1.254      ;
+; 0.971 ; test_data_gen:inst|vga_x[8]                     ; test_data_gen:inst|vga_x[8]                     ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 1.257      ;
 ; 0.972 ; audio_top:inst3|engine_oscil:en0|new_period[2]  ; audio_top:inst3|engine_oscil:en0|new_period[2]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 1.258      ;
 ; 0.972 ; audio_top:inst3|engine_oscil:en0|new_period[4]  ; audio_top:inst3|engine_oscil:en0|new_period[4]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 1.258      ;
-; 0.972 ; audio_top:inst3|engine_oscil:en0|new_period[12] ; audio_top:inst3|engine_oscil:en0|period[12]     ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 1.258      ;
-; 0.972 ; test_data_gen:inst|vga_x[1]                     ; test_data_gen:inst|vga_x[1]                     ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 1.258      ;
+; 0.975 ; audio_top:inst3|rng:expl|shifter[16]            ; audio_top:inst3|rng:expl|shifter[17]            ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 1.261      ;
+; 0.976 ; audio_top:inst3|engine_oscil:en0|count[9]       ; audio_top:inst3|engine_oscil:en0|count[9]       ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 1.262      ;
+; 0.976 ; audio_top:inst3|engine_oscil:en1|count[0]       ; audio_top:inst3|engine_oscil:en1|count[0]       ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 1.262      ;
+; 0.976 ; audio_top:inst3|engine_oscil:en1|new_period[2]  ; audio_top:inst3|engine_oscil:en1|new_period[2]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 1.262      ;
+; 0.976 ; audio_top:inst3|rng:expl|shifter[7]             ; audio_top:inst3|rng:expl|shifter[8]             ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 1.262      ;
 ; 0.977 ; audio_top:inst3|engine_oscil:en0|new_period[6]  ; audio_top:inst3|engine_oscil:en0|new_period[6]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 1.263      ;
 ; 0.977 ; audio_top:inst3|engine_oscil:en0|new_period[8]  ; audio_top:inst3|engine_oscil:en0|new_period[8]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 1.263      ;
 ; 0.977 ; audio_top:inst3|engine_oscil:en0|new_period[16] ; audio_top:inst3|engine_oscil:en0|new_period[16] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 1.263      ;
-; 0.977 ; test_data_gen:inst|vga_x[5]                     ; test_data_gen:inst|vga_x[5]                     ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 1.263      ;
-; 0.979 ; audio_top:inst3|engine_oscil:en0|count[2]       ; audio_top:inst3|engine_oscil:en0|count[2]       ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 1.265      ;
-; 0.980 ; test_data_gen:inst|vga_x[7]                     ; test_data_gen:inst|vga_x[7]                     ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 1.266      ;
-; 0.980 ; test_data_gen:inst|vga_x[8]                     ; test_data_gen:inst|vga_x[8]                     ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 1.266      ;
-; 0.985 ; audio_top:inst3|engine_oscil:en0|count[0]       ; audio_top:inst3|engine_oscil:en0|count[0]       ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 1.271      ;
-; 0.985 ; audio_top:inst3|engine_oscil:en0|count[4]       ; audio_top:inst3|engine_oscil:en0|count[4]       ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 1.271      ;
-; 0.986 ; audio_top:inst3|engine_oscil:en0|count[6]       ; audio_top:inst3|engine_oscil:en0|count[6]       ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 1.272      ;
-; 0.986 ; audio_top:inst3|engine_oscil:en0|count[7]       ; audio_top:inst3|engine_oscil:en0|count[7]       ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 1.272      ;
-; 0.986 ; audio_top:inst3|engine_oscil:en0|count[8]       ; audio_top:inst3|engine_oscil:en0|count[8]       ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 1.272      ;
+; 0.977 ; audio_top:inst3|engine_oscil:en1|count[9]       ; audio_top:inst3|engine_oscil:en1|count[9]       ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 1.263      ;
+; 0.977 ; audio_top:inst3|engine_oscil:en1|new_period[4]  ; audio_top:inst3|engine_oscil:en1|new_period[4]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 1.263      ;
+; 0.977 ; audio_top:inst3|engine_oscil:en1|new_period[6]  ; audio_top:inst3|engine_oscil:en1|new_period[6]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 1.263      ;
+; 0.977 ; audio_top:inst3|engine_oscil:en1|new_period[8]  ; audio_top:inst3|engine_oscil:en1|new_period[8]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 1.263      ;
+; 0.977 ; audio_top:inst3|engine_oscil:en1|new_period[16] ; audio_top:inst3|engine_oscil:en1|new_period[16] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 1.263      ;
+; 0.979 ; audio_top:inst3|rng:expl|shifter[2]             ; audio_top:inst3|rng:expl|shifter[3]             ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 1.265      ;
+; 0.980 ; audio_top:inst3|engine_oscil:en1|count[10]      ; audio_top:inst3|engine_oscil:en1|count[10]      ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 1.266      ;
+; 0.980 ; test_data_gen:inst|vga_x[1]                     ; test_data_gen:inst|vga_x[1]                     ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 1.266      ;
+; 0.980 ; test_data_gen:inst|vga_x[4]                     ; test_data_gen:inst|vga_x[4]                     ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 1.266      ;
+; 0.981 ; audio_top:inst3|engine_oscil:en0|count[11]      ; audio_top:inst3|engine_oscil:en0|count[11]      ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 1.267      ;
+; 0.981 ; audio_top:inst3|engine_oscil:en0|count[16]      ; audio_top:inst3|engine_oscil:en0|count[16]      ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 1.267      ;
+; 0.981 ; audio_top:inst3|engine_oscil:en1|count[4]       ; audio_top:inst3|engine_oscil:en1|count[4]       ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 1.267      ;
+; 0.981 ; audio_top:inst3|engine_oscil:en1|count[11]      ; audio_top:inst3|engine_oscil:en1|count[11]      ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 1.267      ;
+; 0.981 ; audio_top:inst3|rng:expl|shifter[4]             ; audio_top:inst3|rng:expl|shifter[5]             ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 1.267      ;
+; 0.981 ; audio_top:inst3|rng:expl|shifter[10]            ; audio_top:inst3|rng:expl|shifter[11]            ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 1.267      ;
+; 0.983 ; audio_top:inst3|engine_oscil:en1|count[2]       ; audio_top:inst3|engine_oscil:en1|count[2]       ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 1.269      ;
+; 0.984 ; audio_top:inst3|engine_oscil:en0|count[0]       ; audio_top:inst3|engine_oscil:en0|count[0]       ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 1.270      ;
+; 0.984 ; audio_top:inst3|engine_oscil:en0|count[13]      ; audio_top:inst3|engine_oscil:en0|count[13]      ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 1.270      ;
+; 0.984 ; audio_top:inst3|engine_oscil:en1|count[6]       ; audio_top:inst3|engine_oscil:en1|count[6]       ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 1.270      ;
+; 0.984 ; audio_top:inst3|engine_oscil:en1|count[13]      ; audio_top:inst3|engine_oscil:en1|count[13]      ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 1.270      ;
+; 0.985 ; audio_top:inst3|engine_oscil:en0|count[8]       ; audio_top:inst3|engine_oscil:en0|count[8]       ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 1.271      ;
 ; 0.986 ; audio_top:inst3|engine_oscil:en0|new_period[1]  ; audio_top:inst3|engine_oscil:en0|new_period[1]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 1.272      ;
+; 0.986 ; audio_top:inst3|engine_oscil:en1|new_period[1]  ; audio_top:inst3|engine_oscil:en1|new_period[1]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 1.272      ;
+; 0.986 ; audio_top:inst3|rng:expl|shifter[15]            ; audio_top:inst3|rng:expl|shifter[16]            ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 1.272      ;
+; 0.987 ; audio_top:inst3|engine_oscil:en0|count[2]       ; audio_top:inst3|engine_oscil:en0|count[2]       ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 1.273      ;
 ; 0.987 ; audio_top:inst3|engine_oscil:en0|new_period[3]  ; audio_top:inst3|engine_oscil:en0|new_period[3]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 1.273      ;
 ; 0.987 ; audio_top:inst3|engine_oscil:en0|new_period[5]  ; audio_top:inst3|engine_oscil:en0|new_period[5]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 1.273      ;
 ; 0.987 ; audio_top:inst3|engine_oscil:en0|new_period[15] ; audio_top:inst3|engine_oscil:en0|new_period[15] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 1.273      ;
-; 0.992 ; audio_top:inst3|engine_oscil:en0|count[13]      ; audio_top:inst3|engine_oscil:en0|count[13]      ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 1.278      ;
-; 0.996 ; audio_top:inst3|engine_oscil:en0|count[16]      ; audio_top:inst3|engine_oscil:en0|count[16]      ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 1.282      ;
-; 1.007 ; audio_top:inst3|engine_oscil:en0|new_period[11] ; audio_top:inst3|engine_oscil:en0|period[11]     ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 1.293      ;
-; 1.010 ; audio_top:inst3|rng:expl|shifter[4]             ; audio_top:inst3|rng:expl|shifter[5]             ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 1.296      ;
-; 1.011 ; audio_top:inst3|rng:expl|shifter[18]            ; audio_top:inst3|rng:expl|shifter[19]            ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 1.297      ;
-; 1.014 ; test_data_gen:inst|vga_x[2]                     ; test_data_gen:inst|vga_x[2]                     ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 1.300      ;
-; 1.015 ; audio_top:inst3|engine_oscil:en0|count[17]      ; audio_top:inst3|engine_oscil:en0|count[17]      ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 1.301      ;
-; 1.015 ; test_data_gen:inst|vga_x[4]                     ; test_data_gen:inst|vga_x[4]                     ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 1.301      ;
-; 1.016 ; audio_top:inst3|engine_oscil:en0|count[3]       ; audio_top:inst3|engine_oscil:en0|count[3]       ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 1.302      ;
-; 1.016 ; audio_top:inst3|engine_oscil:en0|count[5]       ; audio_top:inst3|engine_oscil:en0|count[5]       ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 1.302      ;
+; 0.987 ; audio_top:inst3|engine_oscil:en1|new_period[3]  ; audio_top:inst3|engine_oscil:en1|new_period[3]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 1.273      ;
+; 0.987 ; audio_top:inst3|engine_oscil:en1|new_period[5]  ; audio_top:inst3|engine_oscil:en1|new_period[5]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 1.273      ;
+; 0.987 ; audio_top:inst3|engine_oscil:en1|new_period[15] ; audio_top:inst3|engine_oscil:en1|new_period[15] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 1.273      ;
+; 0.990 ; audio_top:inst3|engine_oscil:en1|count[7]       ; audio_top:inst3|engine_oscil:en1|count[7]       ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 1.276      ;
+; 0.990 ; audio_top:inst3|engine_oscil:en1|count[8]       ; audio_top:inst3|engine_oscil:en1|count[8]       ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 1.276      ;
+; 0.990 ; audio_top:inst3|engine_oscil:en1|count[16]      ; audio_top:inst3|engine_oscil:en1|count[16]      ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 1.276      ;
+; 0.991 ; audio_top:inst3|engine_oscil:en0|count[4]       ; audio_top:inst3|engine_oscil:en0|count[4]       ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 1.277      ;
+; 0.991 ; audio_top:inst3|rng:expl|shifter[3]             ; audio_top:inst3|rng:expl|shifter[4]             ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; -0.001     ; 1.276      ;
+; 0.997 ; audio_top:inst3|rng:expl|shifter[18]            ; audio_top:inst3|rng:expl|shifter[19]            ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; -0.001     ; 1.282      ;
+; 1.009 ; audio_top:inst3|engine_oscil:en0|new_period[17] ; audio_top:inst3|engine_oscil:en0|new_period[17] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 1.295      ;
+; 1.009 ; audio_top:inst3|engine_oscil:en1|new_period[17] ; audio_top:inst3|engine_oscil:en1|new_period[17] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 1.295      ;
+; 1.015 ; audio_top:inst3|engine_oscil:en1|count[17]      ; audio_top:inst3|engine_oscil:en1|count[17]      ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 1.301      ;
+; 1.018 ; test_data_gen:inst|vga_x[5]                     ; test_data_gen:inst|vga_x[5]                     ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 1.304      ;
+; 1.019 ; audio_top:inst3|engine_oscil:en0|count[17]      ; audio_top:inst3|engine_oscil:en0|count[17]      ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 1.305      ;
 ; 1.019 ; audio_top:inst3|engine_oscil:en0|new_period[12] ; audio_top:inst3|engine_oscil:en0|new_period[12] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 1.305      ;
 ; 1.019 ; audio_top:inst3|engine_oscil:en0|new_period[14] ; audio_top:inst3|engine_oscil:en0|new_period[14] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 1.305      ;
+; 1.019 ; audio_top:inst3|engine_oscil:en1|new_period[12] ; audio_top:inst3|engine_oscil:en1|new_period[12] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 1.305      ;
+; 1.019 ; audio_top:inst3|engine_oscil:en1|new_period[14] ; audio_top:inst3|engine_oscil:en1|new_period[14] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 1.305      ;
+; 1.019 ; test_data_gen:inst|vga_x[2]                     ; test_data_gen:inst|vga_x[2]                     ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 1.305      ;
+; 1.019 ; test_data_gen:inst|vga_x[9]                     ; test_data_gen:inst|vga_x[9]                     ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 1.305      ;
 ; 1.022 ; test_data_gen:inst|vga_x[0]                     ; test_data_gen:inst|vga_x[0]                     ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 1.308      ;
-; 1.024 ; audio_top:inst3|engine_oscil:en0|count[1]       ; audio_top:inst3|engine_oscil:en0|count[1]       ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 1.310      ;
-; 1.025 ; audio_top:inst3|engine_oscil:en0|new_period[17] ; audio_top:inst3|engine_oscil:en0|new_period[17] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 1.311      ;
-; 1.030 ; audio_top:inst3|engine_oscil:en0|count[12]      ; audio_top:inst3|engine_oscil:en0|count[12]      ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 1.316      ;
-; 1.040 ; audio_top:inst3|engine_oscil:en0|count[14]      ; audio_top:inst3|engine_oscil:en0|count[14]      ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 1.326      ;
-; 1.040 ; audio_top:inst3|engine_oscil:en0|count[15]      ; audio_top:inst3|engine_oscil:en0|count[15]      ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 1.326      ;
-; 1.114 ; audio_top:inst3|rng:expl|shifter[6]             ; audio_top:inst3|rng:expl|shifter[0]             ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 1.400      ;
-; 1.131 ; audio_top:inst3|engine_oscil:en0|new_period[6]  ; audio_top:inst3|engine_oscil:en0|period[6]      ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.002      ; 1.419      ;
-; 1.134 ; audio_top:inst3|engine_oscil:en0|new_period[7]  ; audio_top:inst3|engine_oscil:en0|period[7]      ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.001      ; 1.421      ;
-; 1.147 ; audio_top:inst3|engine_oscil:en0|new_period[0]  ; audio_top:inst3|engine_oscil:en0|period[0]      ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 1.433      ;
-; 1.157 ; audio_top:inst3|rng:expl|shifter[22]            ; audio_top:inst3|rng:expl|shifter[23]            ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 1.443      ;
-; 1.192 ; audio_top:inst3|engine_oscil:en0|new_period[2]  ; audio_top:inst3|engine_oscil:en0|period[2]      ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 1.478      ;
-; 1.199 ; test_data_gen:inst|vga_x[6]                     ; test_data_gen:inst|vga_x[6]                     ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 1.485      ;
-; 1.253 ; audio_top:inst3|rng:expl|shifter[23]            ; audio_top:inst3|rng:expl|shifter[0]             ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 1.539      ;
-; 1.400 ; audio_top:inst3|engine_oscil:en0|count[10]      ; audio_top:inst3|engine_oscil:en0|count[11]      ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 1.686      ;
-; 1.400 ; audio_top:inst3|engine_oscil:en0|new_period[10] ; audio_top:inst3|engine_oscil:en0|new_period[11] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 1.686      ;
-; 1.400 ; audio_top:inst3|engine_oscil:en0|count[9]       ; audio_top:inst3|engine_oscil:en0|count[10]      ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 1.686      ;
-; 1.400 ; audio_top:inst3|engine_oscil:en0|new_period[9]  ; audio_top:inst3|engine_oscil:en0|new_period[10] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 1.686      ;
-; 1.403 ; test_data_gen:inst|vga_x[3]                     ; test_data_gen:inst|vga_x[4]                     ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 1.689      ;
-; 1.404 ; audio_top:inst3|engine_oscil:en0|new_period[2]  ; audio_top:inst3|engine_oscil:en0|new_period[3]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 1.690      ;
-; 1.404 ; audio_top:inst3|engine_oscil:en0|new_period[4]  ; audio_top:inst3|engine_oscil:en0|new_period[5]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 1.690      ;
-; 1.408 ; audio_top:inst3|engine_oscil:en0|new_period[11] ; audio_top:inst3|engine_oscil:en0|new_period[12] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 1.694      ;
-; 1.409 ; audio_top:inst3|engine_oscil:en0|new_period[6]  ; audio_top:inst3|engine_oscil:en0|new_period[7]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 1.695      ;
-; 1.409 ; audio_top:inst3|engine_oscil:en0|new_period[7]  ; audio_top:inst3|engine_oscil:en0|new_period[8]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 1.695      ;
-; 1.409 ; audio_top:inst3|engine_oscil:en0|new_period[13] ; audio_top:inst3|engine_oscil:en0|new_period[14] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 1.695      ;
-; 1.409 ; test_data_gen:inst|vga_x[5]                     ; test_data_gen:inst|vga_x[6]                     ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 1.695      ;
-; 1.411 ; audio_top:inst3|engine_oscil:en0|count[2]       ; audio_top:inst3|engine_oscil:en0|count[3]       ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 1.697      ;
-; 1.412 ; test_data_gen:inst|vga_x[8]                     ; test_data_gen:inst|vga_x[9]                     ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 1.698      ;
-; 1.412 ; test_data_gen:inst|vga_x[7]                     ; test_data_gen:inst|vga_x[8]                     ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 1.698      ;
-; 1.417 ; audio_top:inst3|engine_oscil:en0|count[4]       ; audio_top:inst3|engine_oscil:en0|count[5]       ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 1.703      ;
-; 1.418 ; audio_top:inst3|engine_oscil:en0|count[6]       ; audio_top:inst3|engine_oscil:en0|count[7]       ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 1.704      ;
-; 1.418 ; audio_top:inst3|engine_oscil:en0|count[7]       ; audio_top:inst3|engine_oscil:en0|count[8]       ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 1.704      ;
-; 1.424 ; audio_top:inst3|engine_oscil:en0|count[13]      ; audio_top:inst3|engine_oscil:en0|count[14]      ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 1.710      ;
-; 1.434 ; audio_top:inst3|engine_oscil:en0|new_period[13] ; audio_top:inst3|engine_oscil:en0|period[13]     ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.001      ; 1.721      ;
-; 1.447 ; test_data_gen:inst|vga_x[2]                     ; test_data_gen:inst|vga_x[3]                     ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 1.733      ;
-; 1.448 ; audio_top:inst3|engine_oscil:en0|new_period[1]  ; audio_top:inst3|engine_oscil:en0|new_period[2]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 1.734      ;
-; 1.448 ; test_data_gen:inst|vga_x[4]                     ; test_data_gen:inst|vga_x[5]                     ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 1.734      ;
-; 1.449 ; audio_top:inst3|engine_oscil:en0|new_period[12] ; audio_top:inst3|engine_oscil:en0|new_period[13] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 1.735      ;
-; 1.449 ; audio_top:inst3|engine_oscil:en0|new_period[3]  ; audio_top:inst3|engine_oscil:en0|new_period[4]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 1.735      ;
+; 1.024 ; audio_top:inst3|engine_oscil:en1|count[5]       ; audio_top:inst3|engine_oscil:en1|count[5]       ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 1.310      ;
+; 1.024 ; test_data_gen:inst|vga_x[3]                     ; test_data_gen:inst|vga_x[3]                     ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 1.310      ;
+; 1.026 ; audio_top:inst3|engine_oscil:en0|count[12]      ; audio_top:inst3|engine_oscil:en0|count[12]      ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 1.312      ;
+; 1.026 ; audio_top:inst3|engine_oscil:en1|count[1]       ; audio_top:inst3|engine_oscil:en1|count[1]       ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 1.312      ;
+; 1.027 ; audio_top:inst3|engine_oscil:en1|count[3]       ; audio_top:inst3|engine_oscil:en1|count[3]       ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 1.313      ;
+; 1.029 ; audio_top:inst3|engine_oscil:en0|count[1]       ; audio_top:inst3|engine_oscil:en0|count[1]       ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 1.315      ;
+; 1.030 ; audio_top:inst3|engine_oscil:en0|count[5]       ; audio_top:inst3|engine_oscil:en0|count[5]       ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 1.316      ;
+; 1.030 ; audio_top:inst3|engine_oscil:en0|count[14]      ; audio_top:inst3|engine_oscil:en0|count[14]      ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 1.316      ;
+; 1.030 ; audio_top:inst3|engine_oscil:en1|count[12]      ; audio_top:inst3|engine_oscil:en1|count[12]      ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 1.316      ;
+; 1.031 ; audio_top:inst3|engine_oscil:en1|count[14]      ; audio_top:inst3|engine_oscil:en1|count[14]      ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 1.317      ;
+; 1.031 ; audio_top:inst3|engine_oscil:en1|count[15]      ; audio_top:inst3|engine_oscil:en1|count[15]      ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 1.317      ;
+; 1.100 ; audio_top:inst3|rng:expl|shifter[23]            ; audio_top:inst3|rng:expl|shifter[0]             ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 1.386      ;
+; 1.146 ; audio_top:inst3|engine_oscil:en0|new_period[1]  ; audio_top:inst3|engine_oscil:en0|period[1]      ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.003      ; 1.435      ;
+; 1.174 ; audio_top:inst3|engine_oscil:en1|count[17]      ; audio_top:inst3|engine_oscil:en1|wave           ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 1.460      ;
+; 1.179 ; audio_top:inst3|engine_oscil:en1|new_period[6]  ; audio_top:inst3|engine_oscil:en1|period[6]      ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 1.465      ;
+; 1.187 ; audio_top:inst3|engine_oscil:en1|new_period[1]  ; audio_top:inst3|engine_oscil:en1|period[1]      ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 1.473      ;
+; 1.195 ; test_data_gen:inst|vga_x[6]                     ; test_data_gen:inst|vga_x[6]                     ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 1.481      ;
 +-------+-------------------------------------------------+-------------------------------------------------+-------------------------+-------------------------+--------------+------------+------------+
 
 
@@ -531,13 +530,17 @@ No paths to report.
 +-----------+-------------------------+-------+-------+------------+-------------------------+
 ; Data Port ; Clock Port              ; Rise  ; Fall  ; Clock Edge ; Clock Reference         ;
 +-----------+-------------------------+-------+-------+------------+-------------------------+
-; but2      ; gen25mhz:inst1|count[0] ; 9.330 ; 9.330 ; Rise       ; gen25mhz:inst1|count[0] ;
-; reset     ; gen25mhz:inst1|count[0] ; 8.185 ; 8.185 ; Rise       ; gen25mhz:inst1|count[0] ;
-; sw01[*]   ; gen25mhz:inst1|count[0] ; 3.811 ; 3.811 ; Rise       ; gen25mhz:inst1|count[0] ;
-;  sw01[0]  ; gen25mhz:inst1|count[0] ; 3.811 ; 3.811 ; Rise       ; gen25mhz:inst1|count[0] ;
-;  sw01[1]  ; gen25mhz:inst1|count[0] ; 3.791 ; 3.791 ; Rise       ; gen25mhz:inst1|count[0] ;
-; sw8       ; gen25mhz:inst1|count[0] ; 2.464 ; 2.464 ; Rise       ; gen25mhz:inst1|count[0] ;
-; sw9       ; gen25mhz:inst1|count[0] ; 4.758 ; 4.758 ; Rise       ; gen25mhz:inst1|count[0] ;
+; but2      ; gen25mhz:inst1|count[0] ; 9.547 ; 9.547 ; Rise       ; gen25mhz:inst1|count[0] ;
+; but3      ; gen25mhz:inst1|count[0] ; 9.510 ; 9.510 ; Rise       ; gen25mhz:inst1|count[0] ;
+; reset     ; gen25mhz:inst1|count[0] ; 8.086 ; 8.086 ; Rise       ; gen25mhz:inst1|count[0] ;
+; sw01[*]   ; gen25mhz:inst1|count[0] ; 4.083 ; 4.083 ; Rise       ; gen25mhz:inst1|count[0] ;
+;  sw01[0]  ; gen25mhz:inst1|count[0] ; 4.083 ; 4.083 ; Rise       ; gen25mhz:inst1|count[0] ;
+;  sw01[1]  ; gen25mhz:inst1|count[0] ; 3.804 ; 3.804 ; Rise       ; gen25mhz:inst1|count[0] ;
+; sw8       ; gen25mhz:inst1|count[0] ; 2.231 ; 2.231 ; Rise       ; gen25mhz:inst1|count[0] ;
+; sw9       ; gen25mhz:inst1|count[0] ; 4.819 ; 4.819 ; Rise       ; gen25mhz:inst1|count[0] ;
+; sw23[*]   ; gen25mhz:inst1|count[0] ; 4.099 ; 4.099 ; Rise       ; gen25mhz:inst1|count[0] ;
+;  sw23[0]  ; gen25mhz:inst1|count[0] ; 3.943 ; 3.943 ; Rise       ; gen25mhz:inst1|count[0] ;
+;  sw23[1]  ; gen25mhz:inst1|count[0] ; 4.099 ; 4.099 ; Rise       ; gen25mhz:inst1|count[0] ;
 +-----------+-------------------------+-------+-------+------------+-------------------------+
 
 
@@ -546,13 +549,17 @@ No paths to report.
 +-----------+-------------------------+--------+--------+------------+-------------------------+
 ; Data Port ; Clock Port              ; Rise   ; Fall   ; Clock Edge ; Clock Reference         ;
 +-----------+-------------------------+--------+--------+------------+-------------------------+
-; but2      ; gen25mhz:inst1|count[0] ; -6.556 ; -6.556 ; Rise       ; gen25mhz:inst1|count[0] ;
-; reset     ; gen25mhz:inst1|count[0] ; -3.848 ; -3.848 ; Rise       ; gen25mhz:inst1|count[0] ;
-; sw01[*]   ; gen25mhz:inst1|count[0] ; 0.062  ; 0.062  ; Rise       ; gen25mhz:inst1|count[0] ;
-;  sw01[0]  ; gen25mhz:inst1|count[0] ; 0.062  ; 0.062  ; Rise       ; gen25mhz:inst1|count[0] ;
-;  sw01[1]  ; gen25mhz:inst1|count[0] ; -0.299 ; -0.299 ; Rise       ; gen25mhz:inst1|count[0] ;
-; sw8       ; gen25mhz:inst1|count[0] ; -0.761 ; -0.761 ; Rise       ; gen25mhz:inst1|count[0] ;
-; sw9       ; gen25mhz:inst1|count[0] ; -0.974 ; -0.974 ; Rise       ; gen25mhz:inst1|count[0] ;
+; but2      ; gen25mhz:inst1|count[0] ; -6.627 ; -6.627 ; Rise       ; gen25mhz:inst1|count[0] ;
+; but3      ; gen25mhz:inst1|count[0] ; -6.899 ; -6.899 ; Rise       ; gen25mhz:inst1|count[0] ;
+; reset     ; gen25mhz:inst1|count[0] ; -4.172 ; -4.172 ; Rise       ; gen25mhz:inst1|count[0] ;
+; sw01[*]   ; gen25mhz:inst1|count[0] ; 0.058  ; 0.058  ; Rise       ; gen25mhz:inst1|count[0] ;
+;  sw01[0]  ; gen25mhz:inst1|count[0] ; 0.010  ; 0.010  ; Rise       ; gen25mhz:inst1|count[0] ;
+;  sw01[1]  ; gen25mhz:inst1|count[0] ; 0.058  ; 0.058  ; Rise       ; gen25mhz:inst1|count[0] ;
+; sw8       ; gen25mhz:inst1|count[0] ; -0.732 ; -0.732 ; Rise       ; gen25mhz:inst1|count[0] ;
+; sw9       ; gen25mhz:inst1|count[0] ; -0.544 ; -0.544 ; Rise       ; gen25mhz:inst1|count[0] ;
+; sw23[*]   ; gen25mhz:inst1|count[0] ; 0.094  ; 0.094  ; Rise       ; gen25mhz:inst1|count[0] ;
+;  sw23[0]  ; gen25mhz:inst1|count[0] ; 0.094  ; 0.094  ; Rise       ; gen25mhz:inst1|count[0] ;
+;  sw23[1]  ; gen25mhz:inst1|count[0] ; -0.637 ; -0.637 ; Rise       ; gen25mhz:inst1|count[0] ;
 +-----------+-------------------------+--------+--------+------------+-------------------------+
 
 
@@ -561,8 +568,9 @@ No paths to report.
 +-----------+-------------------------+-------+-------+------------+-------------------------+
 ; Data Port ; Clock Port              ; Rise  ; Fall  ; Clock Edge ; Clock Reference         ;
 +-----------+-------------------------+-------+-------+------------+-------------------------+
-; wave[*]   ; gen25mhz:inst1|count[0] ; 9.847 ; 9.847 ; Rise       ; gen25mhz:inst1|count[0] ;
-;  wave[0]  ; gen25mhz:inst1|count[0] ; 9.847 ; 9.847 ; Rise       ; gen25mhz:inst1|count[0] ;
+; wave[*]   ; gen25mhz:inst1|count[0] ; 9.302 ; 9.302 ; Rise       ; gen25mhz:inst1|count[0] ;
+;  wave[0]  ; gen25mhz:inst1|count[0] ; 9.239 ; 9.239 ; Rise       ; gen25mhz:inst1|count[0] ;
+;  wave[1]  ; gen25mhz:inst1|count[0] ; 9.302 ; 9.302 ; Rise       ; gen25mhz:inst1|count[0] ;
 +-----------+-------------------------+-------+-------+------------+-------------------------+
 
 
@@ -571,8 +579,9 @@ No paths to report.
 +-----------+-------------------------+-------+-------+------------+-------------------------+
 ; Data Port ; Clock Port              ; Rise  ; Fall  ; Clock Edge ; Clock Reference         ;
 +-----------+-------------------------+-------+-------+------------+-------------------------+
-; wave[*]   ; gen25mhz:inst1|count[0] ; 8.618 ; 8.618 ; Rise       ; gen25mhz:inst1|count[0] ;
-;  wave[0]  ; gen25mhz:inst1|count[0] ; 8.618 ; 8.618 ; Rise       ; gen25mhz:inst1|count[0] ;
+; wave[*]   ; gen25mhz:inst1|count[0] ; 8.886 ; 8.886 ; Rise       ; gen25mhz:inst1|count[0] ;
+;  wave[0]  ; gen25mhz:inst1|count[0] ; 8.886 ; 8.886 ; Rise       ; gen25mhz:inst1|count[0] ;
+;  wave[1]  ; gen25mhz:inst1|count[0] ; 9.138 ; 9.138 ; Rise       ; gen25mhz:inst1|count[0] ;
 +-----------+-------------------------+-------+-------+------------+-------------------------+
 
 
@@ -581,7 +590,7 @@ No paths to report.
 +-------------------------+--------+---------------+
 ; Clock                   ; Slack  ; End Point TNS ;
 +-------------------------+--------+---------------+
-; gen25mhz:inst1|count[0] ; -1.122 ; -51.967       ;
+; gen25mhz:inst1|count[0] ; -1.116 ; -102.531      ;
 ; clock_50mhz             ; 1.343  ; 0.000         ;
 +-------------------------+--------+---------------+
 
@@ -614,116 +623,116 @@ No paths to report.
 ; Clock                   ; Slack  ; End Point TNS ;
 +-------------------------+--------+---------------+
 ; clock_50mhz             ; -1.380 ; -2.380        ;
-; gen25mhz:inst1|count[0] ; -0.500 ; -92.000       ;
+; gen25mhz:inst1|count[0] ; -0.500 ; -149.000      ;
 +-------------------------+--------+---------------+
 
 
-+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Fast Model Setup: 'gen25mhz:inst1|count[0]'                                                                                                                                                     ;
-+--------+---------------------------------------------+---------------------------------------------+-------------------------+-------------------------+--------------+------------+------------+
-; Slack  ; From Node                                   ; To Node                                     ; Launch Clock            ; Latch Clock             ; Relationship ; Clock Skew ; Data Delay ;
-+--------+---------------------------------------------+---------------------------------------------+-------------------------+-------------------------+--------------+------------+------------+
-; -1.122 ; audio_top:inst3|engine_oscil:en0|period[6]  ; audio_top:inst3|engine_oscil:en0|period[13] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; -0.003     ; 2.151      ;
-; -1.107 ; audio_top:inst3|engine_oscil:en0|period[10] ; audio_top:inst3|engine_oscil:en0|period[13] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; -0.003     ; 2.136      ;
-; -1.105 ; audio_top:inst3|engine_oscil:en0|period[7]  ; audio_top:inst3|engine_oscil:en0|period[13] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; -0.003     ; 2.134      ;
-; -1.084 ; audio_top:inst3|engine_oscil:en0|period[6]  ; audio_top:inst3|engine_oscil:en0|period[12] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; -0.004     ; 2.112      ;
-; -1.084 ; audio_top:inst3|engine_oscil:en0|period[6]  ; audio_top:inst3|engine_oscil:en0|period[11] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; -0.004     ; 2.112      ;
-; -1.081 ; audio_top:inst3|engine_oscil:en0|count[4]   ; audio_top:inst3|engine_oscil:en0|period[13] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; -0.002     ; 2.111      ;
-; -1.075 ; audio_top:inst3|engine_oscil:en0|count[15]  ; audio_top:inst3|engine_oscil:en0|period[13] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.001      ; 2.108      ;
-; -1.071 ; audio_top:inst3|engine_oscil:en0|count[6]   ; audio_top:inst3|engine_oscil:en0|period[13] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; -0.002     ; 2.101      ;
-; -1.069 ; audio_top:inst3|engine_oscil:en0|period[10] ; audio_top:inst3|engine_oscil:en0|period[12] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; -0.004     ; 2.097      ;
-; -1.069 ; audio_top:inst3|engine_oscil:en0|period[10] ; audio_top:inst3|engine_oscil:en0|period[11] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; -0.004     ; 2.097      ;
-; -1.067 ; audio_top:inst3|engine_oscil:en0|period[7]  ; audio_top:inst3|engine_oscil:en0|period[12] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; -0.004     ; 2.095      ;
-; -1.067 ; audio_top:inst3|engine_oscil:en0|period[7]  ; audio_top:inst3|engine_oscil:en0|period[11] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; -0.004     ; 2.095      ;
-; -1.064 ; audio_top:inst3|engine_oscil:en0|count[10]  ; audio_top:inst3|engine_oscil:en0|period[13] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.001      ; 2.097      ;
-; -1.051 ; audio_top:inst3|engine_oscil:en0|count[13]  ; audio_top:inst3|engine_oscil:en0|period[13] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.001      ; 2.084      ;
-; -1.043 ; audio_top:inst3|engine_oscil:en0|count[4]   ; audio_top:inst3|engine_oscil:en0|period[12] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; -0.003     ; 2.072      ;
-; -1.043 ; audio_top:inst3|engine_oscil:en0|count[4]   ; audio_top:inst3|engine_oscil:en0|period[11] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; -0.003     ; 2.072      ;
-; -1.042 ; audio_top:inst3|engine_oscil:en0|period[9]  ; audio_top:inst3|engine_oscil:en0|period[13] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; -0.003     ; 2.071      ;
-; -1.037 ; audio_top:inst3|engine_oscil:en0|count[15]  ; audio_top:inst3|engine_oscil:en0|period[12] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.000      ; 2.069      ;
-; -1.037 ; audio_top:inst3|engine_oscil:en0|count[15]  ; audio_top:inst3|engine_oscil:en0|period[11] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.000      ; 2.069      ;
-; -1.033 ; audio_top:inst3|engine_oscil:en0|count[6]   ; audio_top:inst3|engine_oscil:en0|period[12] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; -0.003     ; 2.062      ;
-; -1.033 ; audio_top:inst3|engine_oscil:en0|count[6]   ; audio_top:inst3|engine_oscil:en0|period[11] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; -0.003     ; 2.062      ;
-; -1.026 ; audio_top:inst3|engine_oscil:en0|period[4]  ; audio_top:inst3|engine_oscil:en0|period[13] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; -0.003     ; 2.055      ;
-; -1.026 ; audio_top:inst3|engine_oscil:en0|count[10]  ; audio_top:inst3|engine_oscil:en0|period[12] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.000      ; 2.058      ;
-; -1.026 ; audio_top:inst3|engine_oscil:en0|count[10]  ; audio_top:inst3|engine_oscil:en0|period[11] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.000      ; 2.058      ;
-; -1.024 ; audio_top:inst3|engine_oscil:en0|period[12] ; audio_top:inst3|engine_oscil:en0|period[13] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.001      ; 2.057      ;
-; -1.024 ; audio_top:inst3|engine_oscil:en0|period[13] ; audio_top:inst3|engine_oscil:en0|period[13] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.000      ; 2.056      ;
-; -1.017 ; audio_top:inst3|engine_oscil:en0|period[5]  ; audio_top:inst3|engine_oscil:en0|period[13] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; -0.003     ; 2.046      ;
-; -1.014 ; audio_top:inst3|engine_oscil:en0|count[5]   ; audio_top:inst3|engine_oscil:en0|period[13] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; -0.002     ; 2.044      ;
-; -1.013 ; audio_top:inst3|engine_oscil:en0|count[13]  ; audio_top:inst3|engine_oscil:en0|period[12] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.000      ; 2.045      ;
-; -1.013 ; audio_top:inst3|engine_oscil:en0|count[13]  ; audio_top:inst3|engine_oscil:en0|period[11] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.000      ; 2.045      ;
-; -1.012 ; audio_top:inst3|engine_oscil:en0|period[11] ; audio_top:inst3|engine_oscil:en0|period[13] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.001      ; 2.045      ;
-; -1.007 ; audio_top:inst3|engine_oscil:en0|count[8]   ; audio_top:inst3|engine_oscil:en0|period[13] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; -0.002     ; 2.037      ;
-; -1.004 ; audio_top:inst3|engine_oscil:en0|period[9]  ; audio_top:inst3|engine_oscil:en0|period[12] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; -0.004     ; 2.032      ;
-; -1.004 ; audio_top:inst3|engine_oscil:en0|period[9]  ; audio_top:inst3|engine_oscil:en0|period[11] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; -0.004     ; 2.032      ;
-; -0.997 ; audio_top:inst3|engine_oscil:en0|period[6]  ; audio_top:inst3|engine_oscil:en0|count[9]   ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; -0.004     ; 2.025      ;
-; -0.997 ; audio_top:inst3|engine_oscil:en0|period[6]  ; audio_top:inst3|engine_oscil:en0|count[10]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; -0.004     ; 2.025      ;
-; -0.997 ; audio_top:inst3|engine_oscil:en0|period[6]  ; audio_top:inst3|engine_oscil:en0|count[11]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; -0.004     ; 2.025      ;
-; -0.997 ; audio_top:inst3|engine_oscil:en0|period[6]  ; audio_top:inst3|engine_oscil:en0|count[12]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; -0.004     ; 2.025      ;
-; -0.997 ; audio_top:inst3|engine_oscil:en0|period[6]  ; audio_top:inst3|engine_oscil:en0|count[13]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; -0.004     ; 2.025      ;
-; -0.997 ; audio_top:inst3|engine_oscil:en0|period[6]  ; audio_top:inst3|engine_oscil:en0|count[14]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; -0.004     ; 2.025      ;
-; -0.997 ; audio_top:inst3|engine_oscil:en0|period[6]  ; audio_top:inst3|engine_oscil:en0|count[16]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; -0.004     ; 2.025      ;
-; -0.997 ; audio_top:inst3|engine_oscil:en0|period[6]  ; audio_top:inst3|engine_oscil:en0|count[17]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; -0.004     ; 2.025      ;
-; -0.997 ; audio_top:inst3|engine_oscil:en0|period[6]  ; audio_top:inst3|engine_oscil:en0|count[15]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; -0.004     ; 2.025      ;
-; -0.988 ; audio_top:inst3|engine_oscil:en0|count[9]   ; audio_top:inst3|engine_oscil:en0|period[13] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.001      ; 2.021      ;
-; -0.988 ; audio_top:inst3|engine_oscil:en0|period[4]  ; audio_top:inst3|engine_oscil:en0|period[12] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; -0.004     ; 2.016      ;
-; -0.988 ; audio_top:inst3|engine_oscil:en0|period[4]  ; audio_top:inst3|engine_oscil:en0|period[11] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; -0.004     ; 2.016      ;
-; -0.986 ; audio_top:inst3|engine_oscil:en0|period[12] ; audio_top:inst3|engine_oscil:en0|period[12] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.000      ; 2.018      ;
-; -0.986 ; audio_top:inst3|engine_oscil:en0|period[12] ; audio_top:inst3|engine_oscil:en0|period[11] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.000      ; 2.018      ;
-; -0.986 ; audio_top:inst3|engine_oscil:en0|period[13] ; audio_top:inst3|engine_oscil:en0|period[12] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; -0.001     ; 2.017      ;
-; -0.986 ; audio_top:inst3|engine_oscil:en0|period[13] ; audio_top:inst3|engine_oscil:en0|period[11] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; -0.001     ; 2.017      ;
-; -0.982 ; audio_top:inst3|engine_oscil:en0|period[10] ; audio_top:inst3|engine_oscil:en0|count[9]   ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; -0.004     ; 2.010      ;
-; -0.982 ; audio_top:inst3|engine_oscil:en0|period[10] ; audio_top:inst3|engine_oscil:en0|count[10]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; -0.004     ; 2.010      ;
-; -0.982 ; audio_top:inst3|engine_oscil:en0|period[10] ; audio_top:inst3|engine_oscil:en0|count[11]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; -0.004     ; 2.010      ;
-; -0.982 ; audio_top:inst3|engine_oscil:en0|period[10] ; audio_top:inst3|engine_oscil:en0|count[12]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; -0.004     ; 2.010      ;
-; -0.982 ; audio_top:inst3|engine_oscil:en0|period[10] ; audio_top:inst3|engine_oscil:en0|count[13]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; -0.004     ; 2.010      ;
-; -0.982 ; audio_top:inst3|engine_oscil:en0|period[10] ; audio_top:inst3|engine_oscil:en0|count[14]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; -0.004     ; 2.010      ;
-; -0.982 ; audio_top:inst3|engine_oscil:en0|period[10] ; audio_top:inst3|engine_oscil:en0|count[16]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; -0.004     ; 2.010      ;
-; -0.982 ; audio_top:inst3|engine_oscil:en0|period[10] ; audio_top:inst3|engine_oscil:en0|count[17]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; -0.004     ; 2.010      ;
-; -0.982 ; audio_top:inst3|engine_oscil:en0|period[10] ; audio_top:inst3|engine_oscil:en0|count[15]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; -0.004     ; 2.010      ;
-; -0.981 ; audio_top:inst3|engine_oscil:en0|period[1]  ; audio_top:inst3|engine_oscil:en0|period[13] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; -0.002     ; 2.011      ;
-; -0.980 ; audio_top:inst3|engine_oscil:en0|period[7]  ; audio_top:inst3|engine_oscil:en0|count[9]   ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; -0.004     ; 2.008      ;
-; -0.980 ; audio_top:inst3|engine_oscil:en0|period[7]  ; audio_top:inst3|engine_oscil:en0|count[10]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; -0.004     ; 2.008      ;
-; -0.980 ; audio_top:inst3|engine_oscil:en0|period[7]  ; audio_top:inst3|engine_oscil:en0|count[11]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; -0.004     ; 2.008      ;
-; -0.980 ; audio_top:inst3|engine_oscil:en0|period[7]  ; audio_top:inst3|engine_oscil:en0|count[12]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; -0.004     ; 2.008      ;
-; -0.980 ; audio_top:inst3|engine_oscil:en0|period[7]  ; audio_top:inst3|engine_oscil:en0|count[13]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; -0.004     ; 2.008      ;
-; -0.980 ; audio_top:inst3|engine_oscil:en0|period[7]  ; audio_top:inst3|engine_oscil:en0|count[14]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; -0.004     ; 2.008      ;
-; -0.980 ; audio_top:inst3|engine_oscil:en0|period[7]  ; audio_top:inst3|engine_oscil:en0|count[16]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; -0.004     ; 2.008      ;
-; -0.980 ; audio_top:inst3|engine_oscil:en0|period[7]  ; audio_top:inst3|engine_oscil:en0|count[17]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; -0.004     ; 2.008      ;
-; -0.980 ; audio_top:inst3|engine_oscil:en0|period[7]  ; audio_top:inst3|engine_oscil:en0|count[15]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; -0.004     ; 2.008      ;
-; -0.979 ; audio_top:inst3|engine_oscil:en0|period[5]  ; audio_top:inst3|engine_oscil:en0|period[12] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; -0.004     ; 2.007      ;
-; -0.979 ; audio_top:inst3|engine_oscil:en0|period[5]  ; audio_top:inst3|engine_oscil:en0|period[11] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; -0.004     ; 2.007      ;
-; -0.976 ; audio_top:inst3|engine_oscil:en0|count[5]   ; audio_top:inst3|engine_oscil:en0|period[12] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; -0.003     ; 2.005      ;
-; -0.976 ; audio_top:inst3|engine_oscil:en0|count[5]   ; audio_top:inst3|engine_oscil:en0|period[11] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; -0.003     ; 2.005      ;
-; -0.976 ; audio_top:inst3|engine_oscil:en0|period[14] ; audio_top:inst3|engine_oscil:en0|period[13] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; -0.003     ; 2.005      ;
-; -0.974 ; audio_top:inst3|engine_oscil:en0|period[11] ; audio_top:inst3|engine_oscil:en0|period[12] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.000      ; 2.006      ;
-; -0.974 ; audio_top:inst3|engine_oscil:en0|period[11] ; audio_top:inst3|engine_oscil:en0|period[11] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.000      ; 2.006      ;
-; -0.969 ; audio_top:inst3|engine_oscil:en0|period[16] ; audio_top:inst3|engine_oscil:en0|period[13] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; -0.003     ; 1.998      ;
-; -0.969 ; audio_top:inst3|engine_oscil:en0|count[8]   ; audio_top:inst3|engine_oscil:en0|period[12] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; -0.003     ; 1.998      ;
-; -0.969 ; audio_top:inst3|engine_oscil:en0|count[8]   ; audio_top:inst3|engine_oscil:en0|period[11] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; -0.003     ; 1.998      ;
-; -0.960 ; audio_top:inst3|engine_oscil:en0|period[6]  ; audio_top:inst3|engine_oscil:en0|period[2]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; -0.001     ; 1.991      ;
-; -0.960 ; audio_top:inst3|engine_oscil:en0|period[6]  ; audio_top:inst3|engine_oscil:en0|period[1]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; -0.001     ; 1.991      ;
-; -0.960 ; audio_top:inst3|engine_oscil:en0|period[6]  ; audio_top:inst3|engine_oscil:en0|period[0]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; -0.001     ; 1.991      ;
-; -0.956 ; audio_top:inst3|engine_oscil:en0|count[4]   ; audio_top:inst3|engine_oscil:en0|count[9]   ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; -0.003     ; 1.985      ;
-; -0.956 ; audio_top:inst3|engine_oscil:en0|count[4]   ; audio_top:inst3|engine_oscil:en0|count[10]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; -0.003     ; 1.985      ;
-; -0.956 ; audio_top:inst3|engine_oscil:en0|count[4]   ; audio_top:inst3|engine_oscil:en0|count[11]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; -0.003     ; 1.985      ;
-; -0.956 ; audio_top:inst3|engine_oscil:en0|count[4]   ; audio_top:inst3|engine_oscil:en0|count[12]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; -0.003     ; 1.985      ;
-; -0.956 ; audio_top:inst3|engine_oscil:en0|count[4]   ; audio_top:inst3|engine_oscil:en0|count[13]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; -0.003     ; 1.985      ;
-; -0.956 ; audio_top:inst3|engine_oscil:en0|count[4]   ; audio_top:inst3|engine_oscil:en0|count[14]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; -0.003     ; 1.985      ;
-; -0.956 ; audio_top:inst3|engine_oscil:en0|count[4]   ; audio_top:inst3|engine_oscil:en0|count[16]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; -0.003     ; 1.985      ;
-; -0.956 ; audio_top:inst3|engine_oscil:en0|count[4]   ; audio_top:inst3|engine_oscil:en0|count[17]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; -0.003     ; 1.985      ;
-; -0.956 ; audio_top:inst3|engine_oscil:en0|count[4]   ; audio_top:inst3|engine_oscil:en0|count[15]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; -0.003     ; 1.985      ;
-; -0.955 ; audio_top:inst3|engine_oscil:en0|period[6]  ; audio_top:inst3|engine_oscil:en0|period[14] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.000      ; 1.987      ;
-; -0.955 ; audio_top:inst3|engine_oscil:en0|period[6]  ; audio_top:inst3|engine_oscil:en0|period[15] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.000      ; 1.987      ;
-; -0.955 ; audio_top:inst3|engine_oscil:en0|period[6]  ; audio_top:inst3|engine_oscil:en0|period[16] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.000      ; 1.987      ;
-; -0.955 ; audio_top:inst3|engine_oscil:en0|period[6]  ; audio_top:inst3|engine_oscil:en0|period[6]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.000      ; 1.987      ;
-; -0.955 ; audio_top:inst3|engine_oscil:en0|period[6]  ; audio_top:inst3|engine_oscil:en0|period[5]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.000      ; 1.987      ;
-; -0.955 ; audio_top:inst3|engine_oscil:en0|period[6]  ; audio_top:inst3|engine_oscil:en0|period[17] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.000      ; 1.987      ;
-; -0.952 ; audio_top:inst3|engine_oscil:en0|count[11]  ; audio_top:inst3|engine_oscil:en0|period[13] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.001      ; 1.985      ;
-; -0.950 ; audio_top:inst3|engine_oscil:en0|count[9]   ; audio_top:inst3|engine_oscil:en0|period[12] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.000      ; 1.982      ;
-; -0.950 ; audio_top:inst3|engine_oscil:en0|count[9]   ; audio_top:inst3|engine_oscil:en0|period[11] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.000      ; 1.982      ;
-+--------+---------------------------------------------+---------------------------------------------+-------------------------+-------------------------+--------------+------------+------------+
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Fast Model Setup: 'gen25mhz:inst1|count[0]'                                                                                                                                                    ;
++--------+--------------------------------------------+---------------------------------------------+-------------------------+-------------------------+--------------+------------+------------+
+; Slack  ; From Node                                  ; To Node                                     ; Launch Clock            ; Latch Clock             ; Relationship ; Clock Skew ; Data Delay ;
++--------+--------------------------------------------+---------------------------------------------+-------------------------+-------------------------+--------------+------------+------------+
+; -1.116 ; audio_top:inst3|engine_oscil:en0|count[6]  ; audio_top:inst3|engine_oscil:en0|period[4]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.001      ; 2.149      ;
+; -1.116 ; audio_top:inst3|engine_oscil:en0|count[6]  ; audio_top:inst3|engine_oscil:en0|period[3]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.001      ; 2.149      ;
+; -1.113 ; audio_top:inst3|engine_oscil:en0|count[5]  ; audio_top:inst3|engine_oscil:en0|period[4]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.000      ; 2.145      ;
+; -1.113 ; audio_top:inst3|engine_oscil:en0|count[5]  ; audio_top:inst3|engine_oscil:en0|period[3]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.000      ; 2.145      ;
+; -1.107 ; audio_top:inst3|engine_oscil:en0|count[6]  ; audio_top:inst3|engine_oscil:en0|period[1]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.000      ; 2.139      ;
+; -1.107 ; audio_top:inst3|engine_oscil:en0|count[6]  ; audio_top:inst3|engine_oscil:en0|period[0]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.000      ; 2.139      ;
+; -1.104 ; audio_top:inst3|engine_oscil:en0|count[5]  ; audio_top:inst3|engine_oscil:en0|period[1]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; -0.001     ; 2.135      ;
+; -1.104 ; audio_top:inst3|engine_oscil:en0|count[5]  ; audio_top:inst3|engine_oscil:en0|period[0]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; -0.001     ; 2.135      ;
+; -1.102 ; audio_top:inst3|engine_oscil:en1|period[5] ; audio_top:inst3|engine_oscil:en1|period[13] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.001      ; 2.135      ;
+; -1.102 ; audio_top:inst3|engine_oscil:en1|period[5] ; audio_top:inst3|engine_oscil:en1|period[16] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.002      ; 2.136      ;
+; -1.102 ; audio_top:inst3|engine_oscil:en1|period[5] ; audio_top:inst3|engine_oscil:en1|period[15] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.001      ; 2.135      ;
+; -1.102 ; audio_top:inst3|engine_oscil:en1|period[5] ; audio_top:inst3|engine_oscil:en1|period[14] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.002      ; 2.136      ;
+; -1.102 ; audio_top:inst3|engine_oscil:en1|period[5] ; audio_top:inst3|engine_oscil:en1|period[10] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.002      ; 2.136      ;
+; -1.102 ; audio_top:inst3|engine_oscil:en1|period[5] ; audio_top:inst3|engine_oscil:en1|period[11] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.002      ; 2.136      ;
+; -1.099 ; audio_top:inst3|engine_oscil:en0|period[5] ; audio_top:inst3|engine_oscil:en0|period[4]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.001      ; 2.132      ;
+; -1.099 ; audio_top:inst3|engine_oscil:en0|period[5] ; audio_top:inst3|engine_oscil:en0|period[3]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.001      ; 2.132      ;
+; -1.095 ; audio_top:inst3|engine_oscil:en0|count[9]  ; audio_top:inst3|engine_oscil:en0|period[4]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.000      ; 2.127      ;
+; -1.095 ; audio_top:inst3|engine_oscil:en0|count[9]  ; audio_top:inst3|engine_oscil:en0|period[3]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.000      ; 2.127      ;
+; -1.090 ; audio_top:inst3|engine_oscil:en0|period[5] ; audio_top:inst3|engine_oscil:en0|period[1]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.000      ; 2.122      ;
+; -1.090 ; audio_top:inst3|engine_oscil:en0|period[5] ; audio_top:inst3|engine_oscil:en0|period[0]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.000      ; 2.122      ;
+; -1.086 ; audio_top:inst3|engine_oscil:en0|count[9]  ; audio_top:inst3|engine_oscil:en0|period[1]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; -0.001     ; 2.117      ;
+; -1.086 ; audio_top:inst3|engine_oscil:en0|count[9]  ; audio_top:inst3|engine_oscil:en0|period[0]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; -0.001     ; 2.117      ;
+; -1.082 ; audio_top:inst3|engine_oscil:en1|period[6] ; audio_top:inst3|engine_oscil:en1|period[13] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.002      ; 2.116      ;
+; -1.082 ; audio_top:inst3|engine_oscil:en1|period[6] ; audio_top:inst3|engine_oscil:en1|period[16] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.003      ; 2.117      ;
+; -1.082 ; audio_top:inst3|engine_oscil:en1|period[6] ; audio_top:inst3|engine_oscil:en1|period[15] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.002      ; 2.116      ;
+; -1.082 ; audio_top:inst3|engine_oscil:en1|period[6] ; audio_top:inst3|engine_oscil:en1|period[14] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.003      ; 2.117      ;
+; -1.082 ; audio_top:inst3|engine_oscil:en1|period[6] ; audio_top:inst3|engine_oscil:en1|period[10] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.003      ; 2.117      ;
+; -1.082 ; audio_top:inst3|engine_oscil:en1|period[6] ; audio_top:inst3|engine_oscil:en1|period[11] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.003      ; 2.117      ;
+; -1.075 ; audio_top:inst3|engine_oscil:en0|count[0]  ; audio_top:inst3|engine_oscil:en0|period[4]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.000      ; 2.107      ;
+; -1.075 ; audio_top:inst3|engine_oscil:en0|count[0]  ; audio_top:inst3|engine_oscil:en0|period[3]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.000      ; 2.107      ;
+; -1.074 ; audio_top:inst3|engine_oscil:en0|count[6]  ; audio_top:inst3|engine_oscil:en0|period[15] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.001      ; 2.107      ;
+; -1.074 ; audio_top:inst3|engine_oscil:en0|count[6]  ; audio_top:inst3|engine_oscil:en0|period[14] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.001      ; 2.107      ;
+; -1.071 ; audio_top:inst3|engine_oscil:en1|period[5] ; audio_top:inst3|engine_oscil:en1|period[4]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; -0.001     ; 2.102      ;
+; -1.071 ; audio_top:inst3|engine_oscil:en1|period[5] ; audio_top:inst3|engine_oscil:en1|period[3]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; -0.001     ; 2.102      ;
+; -1.071 ; audio_top:inst3|engine_oscil:en1|period[5] ; audio_top:inst3|engine_oscil:en1|period[1]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; -0.001     ; 2.102      ;
+; -1.071 ; audio_top:inst3|engine_oscil:en1|period[5] ; audio_top:inst3|engine_oscil:en1|period[0]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; -0.001     ; 2.102      ;
+; -1.071 ; audio_top:inst3|engine_oscil:en1|period[5] ; audio_top:inst3|engine_oscil:en1|period[6]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; -0.001     ; 2.102      ;
+; -1.071 ; audio_top:inst3|engine_oscil:en0|count[5]  ; audio_top:inst3|engine_oscil:en0|period[15] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.000      ; 2.103      ;
+; -1.071 ; audio_top:inst3|engine_oscil:en0|count[5]  ; audio_top:inst3|engine_oscil:en0|period[14] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.000      ; 2.103      ;
+; -1.066 ; audio_top:inst3|engine_oscil:en0|count[0]  ; audio_top:inst3|engine_oscil:en0|period[1]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; -0.001     ; 2.097      ;
+; -1.066 ; audio_top:inst3|engine_oscil:en0|count[0]  ; audio_top:inst3|engine_oscil:en0|period[0]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; -0.001     ; 2.097      ;
+; -1.065 ; audio_top:inst3|engine_oscil:en0|period[0] ; audio_top:inst3|engine_oscil:en0|period[4]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.001      ; 2.098      ;
+; -1.065 ; audio_top:inst3|engine_oscil:en0|period[0] ; audio_top:inst3|engine_oscil:en0|period[3]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.001      ; 2.098      ;
+; -1.064 ; audio_top:inst3|engine_oscil:en1|period[7] ; audio_top:inst3|engine_oscil:en1|period[13] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.001      ; 2.097      ;
+; -1.064 ; audio_top:inst3|engine_oscil:en1|period[7] ; audio_top:inst3|engine_oscil:en1|period[16] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.002      ; 2.098      ;
+; -1.064 ; audio_top:inst3|engine_oscil:en1|period[7] ; audio_top:inst3|engine_oscil:en1|period[15] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.001      ; 2.097      ;
+; -1.064 ; audio_top:inst3|engine_oscil:en1|period[7] ; audio_top:inst3|engine_oscil:en1|period[14] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.002      ; 2.098      ;
+; -1.064 ; audio_top:inst3|engine_oscil:en1|period[7] ; audio_top:inst3|engine_oscil:en1|period[10] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.002      ; 2.098      ;
+; -1.064 ; audio_top:inst3|engine_oscil:en1|period[7] ; audio_top:inst3|engine_oscil:en1|period[11] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.002      ; 2.098      ;
+; -1.057 ; audio_top:inst3|engine_oscil:en0|period[5] ; audio_top:inst3|engine_oscil:en0|period[15] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.001      ; 2.090      ;
+; -1.057 ; audio_top:inst3|engine_oscil:en0|period[5] ; audio_top:inst3|engine_oscil:en0|period[14] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.001      ; 2.090      ;
+; -1.056 ; audio_top:inst3|engine_oscil:en0|period[0] ; audio_top:inst3|engine_oscil:en0|period[1]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.000      ; 2.088      ;
+; -1.056 ; audio_top:inst3|engine_oscil:en0|period[0] ; audio_top:inst3|engine_oscil:en0|period[0]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.000      ; 2.088      ;
+; -1.056 ; audio_top:inst3|engine_oscil:en1|period[8] ; audio_top:inst3|engine_oscil:en1|period[13] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.001      ; 2.089      ;
+; -1.056 ; audio_top:inst3|engine_oscil:en1|period[8] ; audio_top:inst3|engine_oscil:en1|period[16] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.002      ; 2.090      ;
+; -1.056 ; audio_top:inst3|engine_oscil:en1|period[8] ; audio_top:inst3|engine_oscil:en1|period[15] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.001      ; 2.089      ;
+; -1.056 ; audio_top:inst3|engine_oscil:en1|period[8] ; audio_top:inst3|engine_oscil:en1|period[14] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.002      ; 2.090      ;
+; -1.056 ; audio_top:inst3|engine_oscil:en1|period[8] ; audio_top:inst3|engine_oscil:en1|period[10] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.002      ; 2.090      ;
+; -1.056 ; audio_top:inst3|engine_oscil:en1|period[8] ; audio_top:inst3|engine_oscil:en1|period[11] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.002      ; 2.090      ;
+; -1.053 ; audio_top:inst3|engine_oscil:en0|count[9]  ; audio_top:inst3|engine_oscil:en0|period[15] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.000      ; 2.085      ;
+; -1.053 ; audio_top:inst3|engine_oscil:en0|count[9]  ; audio_top:inst3|engine_oscil:en0|period[14] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.000      ; 2.085      ;
+; -1.052 ; audio_top:inst3|engine_oscil:en1|count[5]  ; audio_top:inst3|engine_oscil:en1|period[13] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.001      ; 2.085      ;
+; -1.052 ; audio_top:inst3|engine_oscil:en1|count[5]  ; audio_top:inst3|engine_oscil:en1|period[16] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.002      ; 2.086      ;
+; -1.052 ; audio_top:inst3|engine_oscil:en1|count[5]  ; audio_top:inst3|engine_oscil:en1|period[15] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.001      ; 2.085      ;
+; -1.052 ; audio_top:inst3|engine_oscil:en1|count[5]  ; audio_top:inst3|engine_oscil:en1|period[14] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.002      ; 2.086      ;
+; -1.052 ; audio_top:inst3|engine_oscil:en1|count[5]  ; audio_top:inst3|engine_oscil:en1|period[10] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.002      ; 2.086      ;
+; -1.052 ; audio_top:inst3|engine_oscil:en1|count[5]  ; audio_top:inst3|engine_oscil:en1|period[11] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.002      ; 2.086      ;
+; -1.051 ; audio_top:inst3|engine_oscil:en1|period[6] ; audio_top:inst3|engine_oscil:en1|period[4]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.000      ; 2.083      ;
+; -1.051 ; audio_top:inst3|engine_oscil:en1|period[6] ; audio_top:inst3|engine_oscil:en1|period[3]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.000      ; 2.083      ;
+; -1.051 ; audio_top:inst3|engine_oscil:en1|period[6] ; audio_top:inst3|engine_oscil:en1|period[1]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.000      ; 2.083      ;
+; -1.051 ; audio_top:inst3|engine_oscil:en1|period[6] ; audio_top:inst3|engine_oscil:en1|period[0]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.000      ; 2.083      ;
+; -1.051 ; audio_top:inst3|engine_oscil:en1|period[6] ; audio_top:inst3|engine_oscil:en1|period[6]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.000      ; 2.083      ;
+; -1.045 ; audio_top:inst3|engine_oscil:en0|period[6] ; audio_top:inst3|engine_oscil:en0|period[4]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.001      ; 2.078      ;
+; -1.045 ; audio_top:inst3|engine_oscil:en0|period[6] ; audio_top:inst3|engine_oscil:en0|period[3]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.001      ; 2.078      ;
+; -1.036 ; audio_top:inst3|engine_oscil:en0|period[6] ; audio_top:inst3|engine_oscil:en0|period[1]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.000      ; 2.068      ;
+; -1.036 ; audio_top:inst3|engine_oscil:en0|period[6] ; audio_top:inst3|engine_oscil:en0|period[0]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.000      ; 2.068      ;
+; -1.034 ; audio_top:inst3|engine_oscil:en0|period[1] ; audio_top:inst3|engine_oscil:en0|period[4]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.001      ; 2.067      ;
+; -1.034 ; audio_top:inst3|engine_oscil:en0|period[1] ; audio_top:inst3|engine_oscil:en0|period[3]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.001      ; 2.067      ;
+; -1.033 ; audio_top:inst3|engine_oscil:en0|count[0]  ; audio_top:inst3|engine_oscil:en0|period[15] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.000      ; 2.065      ;
+; -1.033 ; audio_top:inst3|engine_oscil:en0|count[0]  ; audio_top:inst3|engine_oscil:en0|period[14] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.000      ; 2.065      ;
+; -1.033 ; audio_top:inst3|engine_oscil:en1|period[7] ; audio_top:inst3|engine_oscil:en1|period[4]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; -0.001     ; 2.064      ;
+; -1.033 ; audio_top:inst3|engine_oscil:en1|period[7] ; audio_top:inst3|engine_oscil:en1|period[3]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; -0.001     ; 2.064      ;
+; -1.033 ; audio_top:inst3|engine_oscil:en1|period[7] ; audio_top:inst3|engine_oscil:en1|period[1]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; -0.001     ; 2.064      ;
+; -1.033 ; audio_top:inst3|engine_oscil:en1|period[7] ; audio_top:inst3|engine_oscil:en1|period[0]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; -0.001     ; 2.064      ;
+; -1.033 ; audio_top:inst3|engine_oscil:en1|period[7] ; audio_top:inst3|engine_oscil:en1|period[6]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; -0.001     ; 2.064      ;
+; -1.030 ; audio_top:inst3|engine_oscil:en0|count[6]  ; audio_top:inst3|engine_oscil:en0|count[0]   ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.001      ; 2.063      ;
+; -1.030 ; audio_top:inst3|engine_oscil:en0|count[6]  ; audio_top:inst3|engine_oscil:en0|count[1]   ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.001      ; 2.063      ;
+; -1.030 ; audio_top:inst3|engine_oscil:en0|count[6]  ; audio_top:inst3|engine_oscil:en0|count[2]   ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.001      ; 2.063      ;
+; -1.030 ; audio_top:inst3|engine_oscil:en0|count[6]  ; audio_top:inst3|engine_oscil:en0|count[3]   ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.001      ; 2.063      ;
+; -1.030 ; audio_top:inst3|engine_oscil:en0|count[6]  ; audio_top:inst3|engine_oscil:en0|count[4]   ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.001      ; 2.063      ;
+; -1.030 ; audio_top:inst3|engine_oscil:en0|count[6]  ; audio_top:inst3|engine_oscil:en0|count[5]   ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.001      ; 2.063      ;
+; -1.030 ; audio_top:inst3|engine_oscil:en0|count[6]  ; audio_top:inst3|engine_oscil:en0|count[8]   ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.001      ; 2.063      ;
+; -1.030 ; audio_top:inst3|engine_oscil:en1|period[3] ; audio_top:inst3|engine_oscil:en1|period[13] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.002      ; 2.064      ;
+; -1.030 ; audio_top:inst3|engine_oscil:en1|period[3] ; audio_top:inst3|engine_oscil:en1|period[16] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.003      ; 2.065      ;
+; -1.030 ; audio_top:inst3|engine_oscil:en1|period[3] ; audio_top:inst3|engine_oscil:en1|period[15] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.002      ; 2.064      ;
+; -1.030 ; audio_top:inst3|engine_oscil:en1|period[3] ; audio_top:inst3|engine_oscil:en1|period[14] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.003      ; 2.065      ;
+; -1.030 ; audio_top:inst3|engine_oscil:en1|period[3] ; audio_top:inst3|engine_oscil:en1|period[10] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.003      ; 2.065      ;
+; -1.030 ; audio_top:inst3|engine_oscil:en1|period[3] ; audio_top:inst3|engine_oscil:en1|period[11] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.003      ; 2.065      ;
+; -1.027 ; audio_top:inst3|engine_oscil:en0|count[5]  ; audio_top:inst3|engine_oscil:en0|count[0]   ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.000      ; 2.059      ;
+; -1.027 ; audio_top:inst3|engine_oscil:en0|count[5]  ; audio_top:inst3|engine_oscil:en0|count[1]   ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 1.000        ; 0.000      ; 2.059      ;
++--------+--------------------------------------------+---------------------------------------------+-------------------------+-------------------------+--------------+------------+------------+
 
 
 +--------------------------------------------------------------------------------------------------------------------------------------------+
@@ -751,106 +760,106 @@ No paths to report.
 +-------+-------------------------------------------------+-------------------------------------------------+-------------------------+-------------------------+--------------+------------+------------+
 ; Slack ; From Node                                       ; To Node                                         ; Launch Clock            ; Latch Clock             ; Relationship ; Clock Skew ; Data Delay ;
 +-------+-------------------------------------------------+-------------------------------------------------+-------------------------+-------------------------+--------------+------------+------------+
-; 0.238 ; audio_top:inst3|rng:expl|shifter[16]            ; audio_top:inst3|rng:expl|shifter[17]            ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 0.390      ;
-; 0.238 ; audio_top:inst3|rng:expl|shifter[19]            ; audio_top:inst3|rng:expl|shifter[20]            ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 0.390      ;
-; 0.240 ; audio_top:inst3|rng:expl|shifter[10]            ; audio_top:inst3|rng:expl|shifter[11]            ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 0.392      ;
-; 0.240 ; audio_top:inst3|rng:expl|shifter[17]            ; audio_top:inst3|rng:expl|shifter[18]            ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 0.392      ;
-; 0.242 ; audio_top:inst3|rng:expl|shifter[13]            ; audio_top:inst3|rng:expl|shifter[14]            ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 0.394      ;
-; 0.243 ; audio_top:inst3|rng:expl|shifter[12]            ; audio_top:inst3|rng:expl|shifter[13]            ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 0.395      ;
-; 0.245 ; audio_top:inst3|rng:expl|shifter[14]            ; audio_top:inst3|rng:expl|shifter[15]            ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 0.397      ;
-; 0.248 ; test_data_gen:inst|vga_x[9]                     ; test_data_gen:inst|vga_x[9]                     ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 0.400      ;
-; 0.310 ; audio_top:inst3|rng:expl|shifter[20]            ; audio_top:inst3|rng:expl|shifter[21]            ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 0.462      ;
-; 0.317 ; audio_top:inst3|rng:expl|shifter[2]             ; audio_top:inst3|rng:expl|shifter[3]             ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 0.469      ;
-; 0.317 ; audio_top:inst3|rng:expl|shifter[9]             ; audio_top:inst3|rng:expl|shifter[10]            ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 0.469      ;
-; 0.317 ; audio_top:inst3|rng:expl|shifter[11]            ; audio_top:inst3|rng:expl|shifter[12]            ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 0.469      ;
-; 0.318 ; audio_top:inst3|rng:expl|shifter[1]             ; audio_top:inst3|rng:expl|shifter[2]             ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 0.470      ;
-; 0.319 ; audio_top:inst3|rng:expl|shifter[15]            ; audio_top:inst3|rng:expl|shifter[16]            ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 0.471      ;
-; 0.320 ; audio_top:inst3|rng:expl|shifter[3]             ; audio_top:inst3|rng:expl|shifter[4]             ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 0.472      ;
-; 0.320 ; audio_top:inst3|rng:expl|shifter[5]             ; audio_top:inst3|rng:expl|shifter[6]             ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 0.472      ;
-; 0.355 ; audio_top:inst3|engine_oscil:en0|count[9]       ; audio_top:inst3|engine_oscil:en0|count[9]       ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 0.507      ;
-; 0.355 ; audio_top:inst3|engine_oscil:en0|count[10]      ; audio_top:inst3|engine_oscil:en0|count[10]      ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 0.507      ;
+; 0.238 ; audio_top:inst3|rng:expl|shifter[12]            ; audio_top:inst3|rng:expl|shifter[13]            ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 0.390      ;
+; 0.312 ; audio_top:inst3|rng:expl|shifter[9]             ; audio_top:inst3|rng:expl|shifter[10]            ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 0.464      ;
+; 0.313 ; audio_top:inst3|rng:expl|shifter[11]            ; audio_top:inst3|rng:expl|shifter[12]            ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 0.465      ;
+; 0.315 ; audio_top:inst3|rng:expl|shifter[8]             ; audio_top:inst3|rng:expl|shifter[9]             ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; -0.001     ; 0.466      ;
+; 0.317 ; audio_top:inst3|rng:expl|shifter[13]            ; audio_top:inst3|rng:expl|shifter[14]            ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.001      ; 0.470      ;
 ; 0.355 ; audio_top:inst3|engine_oscil:en0|new_period[9]  ; audio_top:inst3|engine_oscil:en0|new_period[9]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 0.507      ;
 ; 0.355 ; audio_top:inst3|engine_oscil:en0|new_period[10] ; audio_top:inst3|engine_oscil:en0|new_period[10] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 0.507      ;
+; 0.355 ; audio_top:inst3|engine_oscil:en1|new_period[9]  ; audio_top:inst3|engine_oscil:en1|new_period[9]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 0.507      ;
+; 0.355 ; audio_top:inst3|engine_oscil:en1|new_period[10] ; audio_top:inst3|engine_oscil:en1|new_period[10] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 0.507      ;
 ; 0.356 ; audio_top:inst3|engine_oscil:en0|new_period[0]  ; audio_top:inst3|engine_oscil:en0|new_period[0]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 0.508      ;
+; 0.356 ; audio_top:inst3|engine_oscil:en1|new_period[0]  ; audio_top:inst3|engine_oscil:en1|new_period[0]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 0.508      ;
 ; 0.358 ; audio_top:inst3|engine_oscil:en0|new_period[2]  ; audio_top:inst3|engine_oscil:en0|new_period[2]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 0.510      ;
 ; 0.358 ; audio_top:inst3|engine_oscil:en0|new_period[4]  ; audio_top:inst3|engine_oscil:en0|new_period[4]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 0.510      ;
-; 0.358 ; test_data_gen:inst|vga_x[1]                     ; test_data_gen:inst|vga_x[1]                     ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 0.510      ;
+; 0.358 ; audio_top:inst3|engine_oscil:en1|count[9]       ; audio_top:inst3|engine_oscil:en1|count[9]       ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 0.510      ;
+; 0.360 ; audio_top:inst3|engine_oscil:en0|count[9]       ; audio_top:inst3|engine_oscil:en0|count[9]       ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 0.512      ;
 ; 0.360 ; audio_top:inst3|engine_oscil:en0|new_period[11] ; audio_top:inst3|engine_oscil:en0|new_period[11] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 0.512      ;
-; 0.360 ; test_data_gen:inst|vga_x[3]                     ; test_data_gen:inst|vga_x[3]                     ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 0.512      ;
-; 0.360 ; test_data_gen:inst|vga_x[5]                     ; test_data_gen:inst|vga_x[5]                     ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 0.512      ;
+; 0.360 ; audio_top:inst3|engine_oscil:en1|count[0]       ; audio_top:inst3|engine_oscil:en1|count[0]       ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 0.512      ;
+; 0.360 ; audio_top:inst3|engine_oscil:en1|count[10]      ; audio_top:inst3|engine_oscil:en1|count[10]      ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 0.512      ;
+; 0.360 ; audio_top:inst3|engine_oscil:en1|new_period[2]  ; audio_top:inst3|engine_oscil:en1|new_period[2]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 0.512      ;
+; 0.360 ; audio_top:inst3|engine_oscil:en1|new_period[11] ; audio_top:inst3|engine_oscil:en1|new_period[11] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 0.512      ;
+; 0.360 ; test_data_gen:inst|vga_x[8]                     ; test_data_gen:inst|vga_x[8]                     ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 0.512      ;
 ; 0.361 ; audio_top:inst3|engine_oscil:en0|new_period[6]  ; audio_top:inst3|engine_oscil:en0|new_period[6]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 0.513      ;
 ; 0.361 ; audio_top:inst3|engine_oscil:en0|new_period[7]  ; audio_top:inst3|engine_oscil:en0|new_period[7]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 0.513      ;
 ; 0.361 ; audio_top:inst3|engine_oscil:en0|new_period[8]  ; audio_top:inst3|engine_oscil:en0|new_period[8]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 0.513      ;
 ; 0.361 ; audio_top:inst3|engine_oscil:en0|new_period[13] ; audio_top:inst3|engine_oscil:en0|new_period[13] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 0.513      ;
 ; 0.361 ; audio_top:inst3|engine_oscil:en0|new_period[16] ; audio_top:inst3|engine_oscil:en0|new_period[16] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 0.513      ;
-; 0.361 ; audio_top:inst3|rng:expl|shifter[0]             ; audio_top:inst3|rng:expl|shifter[1]             ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 0.513      ;
-; 0.361 ; audio_top:inst3|rng:expl|shifter[7]             ; audio_top:inst3|rng:expl|shifter[8]             ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 0.513      ;
-; 0.362 ; audio_top:inst3|engine_oscil:en0|count[2]       ; audio_top:inst3|engine_oscil:en0|count[2]       ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 0.514      ;
-; 0.363 ; audio_top:inst3|engine_oscil:en0|count[4]       ; audio_top:inst3|engine_oscil:en0|count[4]       ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 0.515      ;
-; 0.364 ; audio_top:inst3|engine_oscil:en0|count[6]       ; audio_top:inst3|engine_oscil:en0|count[6]       ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 0.516      ;
-; 0.364 ; audio_top:inst3|engine_oscil:en0|count[7]       ; audio_top:inst3|engine_oscil:en0|count[7]       ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 0.516      ;
-; 0.364 ; audio_top:inst3|engine_oscil:en0|count[8]       ; audio_top:inst3|engine_oscil:en0|count[8]       ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 0.516      ;
-; 0.365 ; test_data_gen:inst|vga_x[7]                     ; test_data_gen:inst|vga_x[7]                     ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 0.517      ;
-; 0.365 ; test_data_gen:inst|vga_x[8]                     ; test_data_gen:inst|vga_x[8]                     ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 0.517      ;
-; 0.366 ; audio_top:inst3|engine_oscil:en0|count[0]       ; audio_top:inst3|engine_oscil:en0|count[0]       ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 0.518      ;
-; 0.369 ; audio_top:inst3|engine_oscil:en0|count[13]      ; audio_top:inst3|engine_oscil:en0|count[13]      ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 0.521      ;
-; 0.371 ; audio_top:inst3|engine_oscil:en0|count[3]       ; audio_top:inst3|engine_oscil:en0|count[3]       ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 0.523      ;
-; 0.371 ; audio_top:inst3|engine_oscil:en0|count[17]      ; audio_top:inst3|engine_oscil:en0|count[17]      ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 0.523      ;
+; 0.361 ; audio_top:inst3|engine_oscil:en1|new_period[4]  ; audio_top:inst3|engine_oscil:en1|new_period[4]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 0.513      ;
+; 0.361 ; audio_top:inst3|engine_oscil:en1|new_period[6]  ; audio_top:inst3|engine_oscil:en1|new_period[6]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 0.513      ;
+; 0.361 ; audio_top:inst3|engine_oscil:en1|new_period[7]  ; audio_top:inst3|engine_oscil:en1|new_period[7]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 0.513      ;
+; 0.361 ; audio_top:inst3|engine_oscil:en1|new_period[8]  ; audio_top:inst3|engine_oscil:en1|new_period[8]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 0.513      ;
+; 0.361 ; audio_top:inst3|engine_oscil:en1|new_period[13] ; audio_top:inst3|engine_oscil:en1|new_period[13] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 0.513      ;
+; 0.361 ; audio_top:inst3|engine_oscil:en1|new_period[16] ; audio_top:inst3|engine_oscil:en1|new_period[16] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 0.513      ;
+; 0.361 ; audio_top:inst3|rng:expl|shifter[14]            ; audio_top:inst3|rng:expl|shifter[15]            ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 0.513      ;
+; 0.362 ; audio_top:inst3|rng:expl|shifter[0]             ; audio_top:inst3|rng:expl|shifter[1]             ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 0.514      ;
+; 0.362 ; audio_top:inst3|rng:expl|shifter[17]            ; audio_top:inst3|rng:expl|shifter[18]            ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 0.514      ;
+; 0.363 ; audio_top:inst3|engine_oscil:en0|count[8]       ; audio_top:inst3|engine_oscil:en0|count[8]       ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 0.515      ;
+; 0.363 ; audio_top:inst3|engine_oscil:en0|count[11]      ; audio_top:inst3|engine_oscil:en0|count[11]      ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 0.515      ;
+; 0.363 ; audio_top:inst3|engine_oscil:en0|count[16]      ; audio_top:inst3|engine_oscil:en0|count[16]      ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 0.515      ;
+; 0.363 ; audio_top:inst3|engine_oscil:en1|count[2]       ; audio_top:inst3|engine_oscil:en1|count[2]       ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 0.515      ;
+; 0.363 ; audio_top:inst3|engine_oscil:en1|count[4]       ; audio_top:inst3|engine_oscil:en1|count[4]       ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 0.515      ;
+; 0.363 ; audio_top:inst3|engine_oscil:en1|count[11]      ; audio_top:inst3|engine_oscil:en1|count[11]      ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 0.515      ;
+; 0.365 ; audio_top:inst3|engine_oscil:en0|count[0]       ; audio_top:inst3|engine_oscil:en0|count[0]       ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 0.517      ;
+; 0.365 ; audio_top:inst3|engine_oscil:en0|count[2]       ; audio_top:inst3|engine_oscil:en0|count[2]       ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 0.517      ;
+; 0.365 ; audio_top:inst3|engine_oscil:en0|count[13]      ; audio_top:inst3|engine_oscil:en0|count[13]      ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 0.517      ;
+; 0.365 ; audio_top:inst3|engine_oscil:en1|count[6]       ; audio_top:inst3|engine_oscil:en1|count[6]       ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 0.517      ;
+; 0.365 ; audio_top:inst3|engine_oscil:en1|count[13]      ; audio_top:inst3|engine_oscil:en1|count[13]      ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 0.517      ;
+; 0.365 ; test_data_gen:inst|vga_x[4]                     ; test_data_gen:inst|vga_x[4]                     ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 0.517      ;
+; 0.366 ; audio_top:inst3|engine_oscil:en0|new_period[17] ; audio_top:inst3|engine_oscil:en0|new_period[17] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 0.518      ;
+; 0.366 ; audio_top:inst3|engine_oscil:en1|count[7]       ; audio_top:inst3|engine_oscil:en1|count[7]       ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 0.518      ;
+; 0.366 ; audio_top:inst3|engine_oscil:en1|count[8]       ; audio_top:inst3|engine_oscil:en1|count[8]       ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 0.518      ;
+; 0.366 ; audio_top:inst3|engine_oscil:en1|new_period[17] ; audio_top:inst3|engine_oscil:en1|new_period[17] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 0.518      ;
+; 0.366 ; audio_top:inst3|engine_oscil:en1|count[16]      ; audio_top:inst3|engine_oscil:en1|count[16]      ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 0.518      ;
+; 0.366 ; test_data_gen:inst|vga_x[1]                     ; test_data_gen:inst|vga_x[1]                     ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 0.518      ;
+; 0.368 ; audio_top:inst3|engine_oscil:en0|count[4]       ; audio_top:inst3|engine_oscil:en0|count[4]       ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 0.520      ;
 ; 0.371 ; audio_top:inst3|engine_oscil:en0|new_period[1]  ; audio_top:inst3|engine_oscil:en0|new_period[1]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 0.523      ;
 ; 0.371 ; audio_top:inst3|engine_oscil:en0|new_period[3]  ; audio_top:inst3|engine_oscil:en0|new_period[3]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 0.523      ;
 ; 0.371 ; audio_top:inst3|engine_oscil:en0|new_period[12] ; audio_top:inst3|engine_oscil:en0|new_period[12] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 0.523      ;
-; 0.371 ; audio_top:inst3|rng:expl|shifter[21]            ; audio_top:inst3|rng:expl|shifter[22]            ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 0.523      ;
-; 0.372 ; audio_top:inst3|engine_oscil:en0|count[5]       ; audio_top:inst3|engine_oscil:en0|count[5]       ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 0.524      ;
-; 0.372 ; audio_top:inst3|engine_oscil:en0|count[16]      ; audio_top:inst3|engine_oscil:en0|count[16]      ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 0.524      ;
+; 0.371 ; audio_top:inst3|engine_oscil:en1|count[17]      ; audio_top:inst3|engine_oscil:en1|count[17]      ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 0.523      ;
+; 0.371 ; audio_top:inst3|engine_oscil:en1|new_period[1]  ; audio_top:inst3|engine_oscil:en1|new_period[1]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 0.523      ;
+; 0.371 ; audio_top:inst3|engine_oscil:en1|new_period[3]  ; audio_top:inst3|engine_oscil:en1|new_period[3]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 0.523      ;
+; 0.371 ; audio_top:inst3|engine_oscil:en1|new_period[12] ; audio_top:inst3|engine_oscil:en1|new_period[12] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 0.523      ;
+; 0.371 ; audio_top:inst3|rng:expl|shifter[22]            ; audio_top:inst3|rng:expl|shifter[23]            ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 0.523      ;
 ; 0.372 ; audio_top:inst3|engine_oscil:en0|new_period[5]  ; audio_top:inst3|engine_oscil:en0|new_period[5]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 0.524      ;
 ; 0.372 ; audio_top:inst3|engine_oscil:en0|new_period[14] ; audio_top:inst3|engine_oscil:en0|new_period[14] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 0.524      ;
 ; 0.372 ; audio_top:inst3|engine_oscil:en0|new_period[15] ; audio_top:inst3|engine_oscil:en0|new_period[15] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 0.524      ;
-; 0.372 ; audio_top:inst3|rng:expl|shifter[6]             ; audio_top:inst3|rng:expl|shifter[7]             ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 0.524      ;
-; 0.373 ; test_data_gen:inst|vga_x[2]                     ; test_data_gen:inst|vga_x[2]                     ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 0.525      ;
-; 0.373 ; test_data_gen:inst|vga_x[4]                     ; test_data_gen:inst|vga_x[4]                     ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 0.525      ;
-; 0.374 ; audio_top:inst3|engine_oscil:en0|count[1]       ; audio_top:inst3|engine_oscil:en0|count[1]       ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 0.526      ;
-; 0.374 ; audio_top:inst3|engine_oscil:en0|new_period[17] ; audio_top:inst3|engine_oscil:en0|new_period[17] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 0.526      ;
-; 0.376 ; test_data_gen:inst|vga_x[0]                     ; test_data_gen:inst|vga_x[0]                     ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 0.528      ;
-; 0.376 ; audio_top:inst3|rng:expl|shifter[4]             ; audio_top:inst3|rng:expl|shifter[5]             ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 0.528      ;
-; 0.377 ; audio_top:inst3|rng:expl|shifter[18]            ; audio_top:inst3|rng:expl|shifter[19]            ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 0.529      ;
-; 0.379 ; audio_top:inst3|engine_oscil:en0|count[12]      ; audio_top:inst3|engine_oscil:en0|count[12]      ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 0.531      ;
-; 0.380 ; audio_top:inst3|engine_oscil:en0|new_period[12] ; audio_top:inst3|engine_oscil:en0|period[12]     ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 0.532      ;
-; 0.383 ; audio_top:inst3|engine_oscil:en0|count[14]      ; audio_top:inst3|engine_oscil:en0|count[14]      ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 0.535      ;
-; 0.383 ; audio_top:inst3|engine_oscil:en0|count[15]      ; audio_top:inst3|engine_oscil:en0|count[15]      ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 0.535      ;
-; 0.401 ; audio_top:inst3|engine_oscil:en0|new_period[11] ; audio_top:inst3|engine_oscil:en0|period[11]     ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 0.553      ;
-; 0.418 ; audio_top:inst3|rng:expl|shifter[6]             ; audio_top:inst3|rng:expl|shifter[0]             ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 0.570      ;
-; 0.423 ; audio_top:inst3|engine_oscil:en0|new_period[7]  ; audio_top:inst3|engine_oscil:en0|period[7]      ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.002      ; 0.577      ;
-; 0.423 ; audio_top:inst3|engine_oscil:en0|new_period[6]  ; audio_top:inst3|engine_oscil:en0|period[6]      ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.002      ; 0.577      ;
-; 0.440 ; audio_top:inst3|rng:expl|shifter[22]            ; audio_top:inst3|rng:expl|shifter[23]            ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 0.592      ;
-; 0.441 ; test_data_gen:inst|vga_x[6]                     ; test_data_gen:inst|vga_x[6]                     ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 0.593      ;
-; 0.443 ; audio_top:inst3|engine_oscil:en0|new_period[0]  ; audio_top:inst3|engine_oscil:en0|period[0]      ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.001      ; 0.596      ;
-; 0.457 ; audio_top:inst3|engine_oscil:en0|new_period[2]  ; audio_top:inst3|engine_oscil:en0|period[2]      ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.001      ; 0.610      ;
-; 0.459 ; audio_top:inst3|rng:expl|shifter[23]            ; audio_top:inst3|rng:expl|shifter[0]             ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 0.611      ;
-; 0.493 ; audio_top:inst3|engine_oscil:en0|count[10]      ; audio_top:inst3|engine_oscil:en0|count[11]      ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 0.645      ;
-; 0.493 ; audio_top:inst3|engine_oscil:en0|count[9]       ; audio_top:inst3|engine_oscil:en0|count[10]      ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 0.645      ;
-; 0.493 ; audio_top:inst3|engine_oscil:en0|new_period[9]  ; audio_top:inst3|engine_oscil:en0|new_period[10] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 0.645      ;
-; 0.493 ; audio_top:inst3|engine_oscil:en0|new_period[10] ; audio_top:inst3|engine_oscil:en0|new_period[11] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 0.645      ;
-; 0.496 ; audio_top:inst3|engine_oscil:en0|new_period[2]  ; audio_top:inst3|engine_oscil:en0|new_period[3]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 0.648      ;
-; 0.496 ; audio_top:inst3|engine_oscil:en0|new_period[4]  ; audio_top:inst3|engine_oscil:en0|new_period[5]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 0.648      ;
-; 0.498 ; audio_top:inst3|engine_oscil:en0|new_period[11] ; audio_top:inst3|engine_oscil:en0|new_period[12] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 0.650      ;
-; 0.498 ; test_data_gen:inst|vga_x[3]                     ; test_data_gen:inst|vga_x[4]                     ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 0.650      ;
-; 0.498 ; test_data_gen:inst|vga_x[5]                     ; test_data_gen:inst|vga_x[6]                     ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 0.650      ;
-; 0.499 ; audio_top:inst3|engine_oscil:en0|new_period[6]  ; audio_top:inst3|engine_oscil:en0|new_period[7]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 0.651      ;
-; 0.499 ; audio_top:inst3|engine_oscil:en0|new_period[7]  ; audio_top:inst3|engine_oscil:en0|new_period[8]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 0.651      ;
-; 0.499 ; audio_top:inst3|engine_oscil:en0|new_period[13] ; audio_top:inst3|engine_oscil:en0|new_period[14] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 0.651      ;
-; 0.500 ; audio_top:inst3|engine_oscil:en0|count[2]       ; audio_top:inst3|engine_oscil:en0|count[3]       ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 0.652      ;
-; 0.501 ; audio_top:inst3|engine_oscil:en0|count[4]       ; audio_top:inst3|engine_oscil:en0|count[5]       ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 0.653      ;
-; 0.502 ; audio_top:inst3|engine_oscil:en0|count[6]       ; audio_top:inst3|engine_oscil:en0|count[7]       ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 0.654      ;
-; 0.502 ; audio_top:inst3|engine_oscil:en0|count[7]       ; audio_top:inst3|engine_oscil:en0|count[8]       ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 0.654      ;
-; 0.503 ; test_data_gen:inst|vga_x[8]                     ; test_data_gen:inst|vga_x[9]                     ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 0.655      ;
-; 0.503 ; test_data_gen:inst|vga_x[7]                     ; test_data_gen:inst|vga_x[8]                     ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 0.655      ;
-; 0.507 ; audio_top:inst3|engine_oscil:en0|count[13]      ; audio_top:inst3|engine_oscil:en0|count[14]      ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 0.659      ;
-; 0.511 ; audio_top:inst3|engine_oscil:en0|new_period[1]  ; audio_top:inst3|engine_oscil:en0|new_period[2]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 0.663      ;
-; 0.511 ; audio_top:inst3|engine_oscil:en0|new_period[3]  ; audio_top:inst3|engine_oscil:en0|new_period[4]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 0.663      ;
-; 0.511 ; audio_top:inst3|engine_oscil:en0|new_period[12] ; audio_top:inst3|engine_oscil:en0|new_period[13] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 0.663      ;
-; 0.511 ; audio_top:inst3|engine_oscil:en0|count[3]       ; audio_top:inst3|engine_oscil:en0|count[4]       ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 0.663      ;
-; 0.512 ; audio_top:inst3|engine_oscil:en0|new_period[5]  ; audio_top:inst3|engine_oscil:en0|new_period[6]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 0.664      ;
-; 0.512 ; audio_top:inst3|engine_oscil:en0|new_period[15] ; audio_top:inst3|engine_oscil:en0|new_period[16] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 0.664      ;
+; 0.372 ; audio_top:inst3|engine_oscil:en1|new_period[5]  ; audio_top:inst3|engine_oscil:en1|new_period[5]  ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 0.524      ;
+; 0.372 ; audio_top:inst3|engine_oscil:en1|new_period[14] ; audio_top:inst3|engine_oscil:en1|new_period[14] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 0.524      ;
+; 0.372 ; audio_top:inst3|engine_oscil:en1|new_period[15] ; audio_top:inst3|engine_oscil:en1|new_period[15] ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 0.524      ;
+; 0.373 ; audio_top:inst3|engine_oscil:en0|count[17]      ; audio_top:inst3|engine_oscil:en0|count[17]      ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 0.525      ;
+; 0.373 ; audio_top:inst3|rng:expl|shifter[21]            ; audio_top:inst3|rng:expl|shifter[22]            ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 0.525      ;
+; 0.374 ; test_data_gen:inst|vga_x[5]                     ; test_data_gen:inst|vga_x[5]                     ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 0.526      ;
+; 0.375 ; test_data_gen:inst|vga_x[0]                     ; test_data_gen:inst|vga_x[0]                     ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 0.527      ;
+; 0.375 ; audio_top:inst3|rng:expl|shifter[16]            ; audio_top:inst3|rng:expl|shifter[17]            ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 0.527      ;
+; 0.376 ; audio_top:inst3|engine_oscil:en1|count[5]       ; audio_top:inst3|engine_oscil:en1|count[5]       ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 0.528      ;
+; 0.376 ; test_data_gen:inst|vga_x[2]                     ; test_data_gen:inst|vga_x[2]                     ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 0.528      ;
+; 0.376 ; test_data_gen:inst|vga_x[3]                     ; test_data_gen:inst|vga_x[3]                     ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 0.528      ;
+; 0.376 ; test_data_gen:inst|vga_x[9]                     ; test_data_gen:inst|vga_x[9]                     ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 0.528      ;
+; 0.376 ; audio_top:inst3|rng:expl|shifter[7]             ; audio_top:inst3|rng:expl|shifter[8]             ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 0.528      ;
+; 0.377 ; audio_top:inst3|engine_oscil:en0|count[12]      ; audio_top:inst3|engine_oscil:en0|count[12]      ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 0.529      ;
+; 0.377 ; audio_top:inst3|engine_oscil:en1|count[1]       ; audio_top:inst3|engine_oscil:en1|count[1]       ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 0.529      ;
+; 0.377 ; audio_top:inst3|rng:expl|shifter[2]             ; audio_top:inst3|rng:expl|shifter[3]             ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 0.529      ;
+; 0.378 ; audio_top:inst3|engine_oscil:en0|count[1]       ; audio_top:inst3|engine_oscil:en0|count[1]       ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 0.530      ;
+; 0.378 ; audio_top:inst3|engine_oscil:en1|count[3]       ; audio_top:inst3|engine_oscil:en1|count[3]       ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 0.530      ;
+; 0.379 ; audio_top:inst3|engine_oscil:en0|count[14]      ; audio_top:inst3|engine_oscil:en0|count[14]      ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 0.531      ;
+; 0.379 ; audio_top:inst3|engine_oscil:en1|count[12]      ; audio_top:inst3|engine_oscil:en1|count[12]      ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 0.531      ;
+; 0.379 ; audio_top:inst3|rng:expl|shifter[4]             ; audio_top:inst3|rng:expl|shifter[5]             ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 0.531      ;
+; 0.380 ; audio_top:inst3|engine_oscil:en0|count[5]       ; audio_top:inst3|engine_oscil:en0|count[5]       ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 0.532      ;
+; 0.380 ; audio_top:inst3|engine_oscil:en1|count[14]      ; audio_top:inst3|engine_oscil:en1|count[14]      ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 0.532      ;
+; 0.380 ; audio_top:inst3|engine_oscil:en1|count[15]      ; audio_top:inst3|engine_oscil:en1|count[15]      ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 0.532      ;
+; 0.380 ; audio_top:inst3|rng:expl|shifter[10]            ; audio_top:inst3|rng:expl|shifter[11]            ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 0.532      ;
+; 0.382 ; audio_top:inst3|rng:expl|shifter[15]            ; audio_top:inst3|rng:expl|shifter[16]            ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 0.534      ;
+; 0.384 ; audio_top:inst3|rng:expl|shifter[6]             ; audio_top:inst3|rng:expl|shifter[0]             ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 0.536      ;
+; 0.394 ; audio_top:inst3|rng:expl|shifter[3]             ; audio_top:inst3|rng:expl|shifter[4]             ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; -0.001     ; 0.545      ;
+; 0.398 ; audio_top:inst3|rng:expl|shifter[18]            ; audio_top:inst3|rng:expl|shifter[19]            ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; -0.001     ; 0.549      ;
+; 0.410 ; audio_top:inst3|rng:expl|shifter[23]            ; audio_top:inst3|rng:expl|shifter[0]             ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 0.562      ;
+; 0.433 ; audio_top:inst3|engine_oscil:en0|new_period[1]  ; audio_top:inst3|engine_oscil:en0|period[1]      ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.002      ; 0.587      ;
+; 0.436 ; test_data_gen:inst|vga_x[6]                     ; test_data_gen:inst|vga_x[6]                     ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 0.588      ;
+; 0.437 ; test_data_gen:inst|vga_x[7]                     ; test_data_gen:inst|vga_x[7]                     ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 0.589      ;
+; 0.440 ; audio_top:inst3|engine_oscil:en1|new_period[4]  ; audio_top:inst3|engine_oscil:en1|period[4]      ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 0.592      ;
+; 0.441 ; audio_top:inst3|engine_oscil:en0|count[3]       ; audio_top:inst3|engine_oscil:en0|count[3]       ; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 0.000        ; 0.000      ; 0.593      ;
 +-------+-------------------------------------------------+-------------------------------------------------+-------------------------+-------------------------+--------------+------------+------------+
 
 
@@ -982,13 +991,17 @@ No paths to report.
 +-----------+-------------------------+-------+-------+------------+-------------------------+
 ; Data Port ; Clock Port              ; Rise  ; Fall  ; Clock Edge ; Clock Reference         ;
 +-----------+-------------------------+-------+-------+------------+-------------------------+
-; but2      ; gen25mhz:inst1|count[0] ; 4.005 ; 4.005 ; Rise       ; gen25mhz:inst1|count[0] ;
-; reset     ; gen25mhz:inst1|count[0] ; 3.540 ; 3.540 ; Rise       ; gen25mhz:inst1|count[0] ;
-; sw01[*]   ; gen25mhz:inst1|count[0] ; 1.049 ; 1.049 ; Rise       ; gen25mhz:inst1|count[0] ;
-;  sw01[0]  ; gen25mhz:inst1|count[0] ; 1.037 ; 1.037 ; Rise       ; gen25mhz:inst1|count[0] ;
-;  sw01[1]  ; gen25mhz:inst1|count[0] ; 1.049 ; 1.049 ; Rise       ; gen25mhz:inst1|count[0] ;
-; sw8       ; gen25mhz:inst1|count[0] ; 0.670 ; 0.670 ; Rise       ; gen25mhz:inst1|count[0] ;
-; sw9       ; gen25mhz:inst1|count[0] ; 1.505 ; 1.505 ; Rise       ; gen25mhz:inst1|count[0] ;
+; but2      ; gen25mhz:inst1|count[0] ; 4.128 ; 4.128 ; Rise       ; gen25mhz:inst1|count[0] ;
+; but3      ; gen25mhz:inst1|count[0] ; 4.014 ; 4.014 ; Rise       ; gen25mhz:inst1|count[0] ;
+; reset     ; gen25mhz:inst1|count[0] ; 3.589 ; 3.589 ; Rise       ; gen25mhz:inst1|count[0] ;
+; sw01[*]   ; gen25mhz:inst1|count[0] ; 1.163 ; 1.163 ; Rise       ; gen25mhz:inst1|count[0] ;
+;  sw01[0]  ; gen25mhz:inst1|count[0] ; 1.163 ; 1.163 ; Rise       ; gen25mhz:inst1|count[0] ;
+;  sw01[1]  ; gen25mhz:inst1|count[0] ; 1.063 ; 1.063 ; Rise       ; gen25mhz:inst1|count[0] ;
+; sw8       ; gen25mhz:inst1|count[0] ; 0.482 ; 0.482 ; Rise       ; gen25mhz:inst1|count[0] ;
+; sw9       ; gen25mhz:inst1|count[0] ; 1.499 ; 1.499 ; Rise       ; gen25mhz:inst1|count[0] ;
+; sw23[*]   ; gen25mhz:inst1|count[0] ; 1.241 ; 1.241 ; Rise       ; gen25mhz:inst1|count[0] ;
+;  sw23[0]  ; gen25mhz:inst1|count[0] ; 1.046 ; 1.046 ; Rise       ; gen25mhz:inst1|count[0] ;
+;  sw23[1]  ; gen25mhz:inst1|count[0] ; 1.241 ; 1.241 ; Rise       ; gen25mhz:inst1|count[0] ;
 +-----------+-------------------------+-------+-------+------------+-------------------------+
 
 
@@ -997,13 +1010,17 @@ No paths to report.
 +-----------+-------------------------+--------+--------+------------+-------------------------+
 ; Data Port ; Clock Port              ; Rise   ; Fall   ; Clock Edge ; Clock Reference         ;
 +-----------+-------------------------+--------+--------+------------+-------------------------+
-; but2      ; gen25mhz:inst1|count[0] ; -2.902 ; -2.902 ; Rise       ; gen25mhz:inst1|count[0] ;
-; reset     ; gen25mhz:inst1|count[0] ; -1.837 ; -1.837 ; Rise       ; gen25mhz:inst1|count[0] ;
-; sw01[*]   ; gen25mhz:inst1|count[0] ; 0.507  ; 0.507  ; Rise       ; gen25mhz:inst1|count[0] ;
-;  sw01[0]  ; gen25mhz:inst1|count[0] ; 0.507  ; 0.507  ; Rise       ; gen25mhz:inst1|count[0] ;
-;  sw01[1]  ; gen25mhz:inst1|count[0] ; 0.345  ; 0.345  ; Rise       ; gen25mhz:inst1|count[0] ;
-; sw8       ; gen25mhz:inst1|count[0] ; 0.063  ; 0.063  ; Rise       ; gen25mhz:inst1|count[0] ;
-; sw9       ; gen25mhz:inst1|count[0] ; 0.008  ; 0.008  ; Rise       ; gen25mhz:inst1|count[0] ;
+; but2      ; gen25mhz:inst1|count[0] ; -2.974 ; -2.974 ; Rise       ; gen25mhz:inst1|count[0] ;
+; but3      ; gen25mhz:inst1|count[0] ; -3.045 ; -3.045 ; Rise       ; gen25mhz:inst1|count[0] ;
+; reset     ; gen25mhz:inst1|count[0] ; -1.963 ; -1.963 ; Rise       ; gen25mhz:inst1|count[0] ;
+; sw01[*]   ; gen25mhz:inst1|count[0] ; 0.486  ; 0.486  ; Rise       ; gen25mhz:inst1|count[0] ;
+;  sw01[0]  ; gen25mhz:inst1|count[0] ; 0.456  ; 0.456  ; Rise       ; gen25mhz:inst1|count[0] ;
+;  sw01[1]  ; gen25mhz:inst1|count[0] ; 0.486  ; 0.486  ; Rise       ; gen25mhz:inst1|count[0] ;
+; sw8       ; gen25mhz:inst1|count[0] ; 0.096  ; 0.096  ; Rise       ; gen25mhz:inst1|count[0] ;
+; sw9       ; gen25mhz:inst1|count[0] ; 0.224  ; 0.224  ; Rise       ; gen25mhz:inst1|count[0] ;
+; sw23[*]   ; gen25mhz:inst1|count[0] ; 0.496  ; 0.496  ; Rise       ; gen25mhz:inst1|count[0] ;
+;  sw23[0]  ; gen25mhz:inst1|count[0] ; 0.496  ; 0.496  ; Rise       ; gen25mhz:inst1|count[0] ;
+;  sw23[1]  ; gen25mhz:inst1|count[0] ; 0.103  ; 0.103  ; Rise       ; gen25mhz:inst1|count[0] ;
 +-----------+-------------------------+--------+--------+------------+-------------------------+
 
 
@@ -1012,8 +1029,9 @@ No paths to report.
 +-----------+-------------------------+-------+-------+------------+-------------------------+
 ; Data Port ; Clock Port              ; Rise  ; Fall  ; Clock Edge ; Clock Reference         ;
 +-----------+-------------------------+-------+-------+------------+-------------------------+
-; wave[*]   ; gen25mhz:inst1|count[0] ; 4.881 ; 4.881 ; Rise       ; gen25mhz:inst1|count[0] ;
-;  wave[0]  ; gen25mhz:inst1|count[0] ; 4.881 ; 4.881 ; Rise       ; gen25mhz:inst1|count[0] ;
+; wave[*]   ; gen25mhz:inst1|count[0] ; 4.632 ; 4.632 ; Rise       ; gen25mhz:inst1|count[0] ;
+;  wave[0]  ; gen25mhz:inst1|count[0] ; 4.591 ; 4.591 ; Rise       ; gen25mhz:inst1|count[0] ;
+;  wave[1]  ; gen25mhz:inst1|count[0] ; 4.632 ; 4.632 ; Rise       ; gen25mhz:inst1|count[0] ;
 +-----------+-------------------------+-------+-------+------------+-------------------------+
 
 
@@ -1022,8 +1040,9 @@ No paths to report.
 +-----------+-------------------------+-------+-------+------------+-------------------------+
 ; Data Port ; Clock Port              ; Rise  ; Fall  ; Clock Edge ; Clock Reference         ;
 +-----------+-------------------------+-------+-------+------------+-------------------------+
-; wave[*]   ; gen25mhz:inst1|count[0] ; 4.436 ; 4.436 ; Rise       ; gen25mhz:inst1|count[0] ;
-;  wave[0]  ; gen25mhz:inst1|count[0] ; 4.436 ; 4.436 ; Rise       ; gen25mhz:inst1|count[0] ;
+; wave[*]   ; gen25mhz:inst1|count[0] ; 4.458 ; 4.458 ; Rise       ; gen25mhz:inst1|count[0] ;
+;  wave[0]  ; gen25mhz:inst1|count[0] ; 4.458 ; 4.458 ; Rise       ; gen25mhz:inst1|count[0] ;
+;  wave[1]  ; gen25mhz:inst1|count[0] ; 4.568 ; 4.568 ; Rise       ; gen25mhz:inst1|count[0] ;
 +-----------+-------------------------+-------+-------+------------+-------------------------+
 
 
@@ -1032,12 +1051,12 @@ No paths to report.
 +--------------------------+----------+--------+----------+---------+---------------------+
 ; Clock                    ; Setup    ; Hold   ; Recovery ; Removal ; Minimum Pulse Width ;
 +--------------------------+----------+--------+----------+---------+---------------------+
-; Worst-case Slack         ; -4.339   ; -1.864 ; N/A      ; N/A     ; -1.631              ;
+; Worst-case Slack         ; -4.389   ; -1.864 ; N/A      ; N/A     ; -1.631              ;
 ;  clock_50mhz             ; 1.343    ; -1.864 ; N/A      ; N/A     ; -1.631              ;
-;  gen25mhz:inst1|count[0] ; -4.339   ; 0.238  ; N/A      ; N/A     ; -0.611              ;
-; Design-wide TNS          ; -262.043 ; -1.864 ; 0.0      ; 0.0     ; -115.277            ;
+;  gen25mhz:inst1|count[0] ; -4.389   ; 0.238  ; N/A      ; N/A     ; -0.611              ;
+; Design-wide TNS          ; -480.543 ; -1.864 ; 0.0      ; 0.0     ; -184.931            ;
 ;  clock_50mhz             ; 0.000    ; -1.864 ; N/A      ; N/A     ; -2.853              ;
-;  gen25mhz:inst1|count[0] ; -262.043 ; 0.000  ; N/A      ; N/A     ; -112.424            ;
+;  gen25mhz:inst1|count[0] ; -480.543 ; 0.000  ; N/A      ; N/A     ; -182.078            ;
 +--------------------------+----------+--------+----------+---------+---------------------+
 
 
@@ -1046,13 +1065,17 @@ No paths to report.
 +-----------+-------------------------+-------+-------+------------+-------------------------+
 ; Data Port ; Clock Port              ; Rise  ; Fall  ; Clock Edge ; Clock Reference         ;
 +-----------+-------------------------+-------+-------+------------+-------------------------+
-; but2      ; gen25mhz:inst1|count[0] ; 9.330 ; 9.330 ; Rise       ; gen25mhz:inst1|count[0] ;
-; reset     ; gen25mhz:inst1|count[0] ; 8.185 ; 8.185 ; Rise       ; gen25mhz:inst1|count[0] ;
-; sw01[*]   ; gen25mhz:inst1|count[0] ; 3.811 ; 3.811 ; Rise       ; gen25mhz:inst1|count[0] ;
-;  sw01[0]  ; gen25mhz:inst1|count[0] ; 3.811 ; 3.811 ; Rise       ; gen25mhz:inst1|count[0] ;
-;  sw01[1]  ; gen25mhz:inst1|count[0] ; 3.791 ; 3.791 ; Rise       ; gen25mhz:inst1|count[0] ;
-; sw8       ; gen25mhz:inst1|count[0] ; 2.464 ; 2.464 ; Rise       ; gen25mhz:inst1|count[0] ;
-; sw9       ; gen25mhz:inst1|count[0] ; 4.758 ; 4.758 ; Rise       ; gen25mhz:inst1|count[0] ;
+; but2      ; gen25mhz:inst1|count[0] ; 9.547 ; 9.547 ; Rise       ; gen25mhz:inst1|count[0] ;
+; but3      ; gen25mhz:inst1|count[0] ; 9.510 ; 9.510 ; Rise       ; gen25mhz:inst1|count[0] ;
+; reset     ; gen25mhz:inst1|count[0] ; 8.086 ; 8.086 ; Rise       ; gen25mhz:inst1|count[0] ;
+; sw01[*]   ; gen25mhz:inst1|count[0] ; 4.083 ; 4.083 ; Rise       ; gen25mhz:inst1|count[0] ;
+;  sw01[0]  ; gen25mhz:inst1|count[0] ; 4.083 ; 4.083 ; Rise       ; gen25mhz:inst1|count[0] ;
+;  sw01[1]  ; gen25mhz:inst1|count[0] ; 3.804 ; 3.804 ; Rise       ; gen25mhz:inst1|count[0] ;
+; sw8       ; gen25mhz:inst1|count[0] ; 2.231 ; 2.231 ; Rise       ; gen25mhz:inst1|count[0] ;
+; sw9       ; gen25mhz:inst1|count[0] ; 4.819 ; 4.819 ; Rise       ; gen25mhz:inst1|count[0] ;
+; sw23[*]   ; gen25mhz:inst1|count[0] ; 4.099 ; 4.099 ; Rise       ; gen25mhz:inst1|count[0] ;
+;  sw23[0]  ; gen25mhz:inst1|count[0] ; 3.943 ; 3.943 ; Rise       ; gen25mhz:inst1|count[0] ;
+;  sw23[1]  ; gen25mhz:inst1|count[0] ; 4.099 ; 4.099 ; Rise       ; gen25mhz:inst1|count[0] ;
 +-----------+-------------------------+-------+-------+------------+-------------------------+
 
 
@@ -1061,13 +1084,17 @@ No paths to report.
 +-----------+-------------------------+--------+--------+------------+-------------------------+
 ; Data Port ; Clock Port              ; Rise   ; Fall   ; Clock Edge ; Clock Reference         ;
 +-----------+-------------------------+--------+--------+------------+-------------------------+
-; but2      ; gen25mhz:inst1|count[0] ; -2.902 ; -2.902 ; Rise       ; gen25mhz:inst1|count[0] ;
-; reset     ; gen25mhz:inst1|count[0] ; -1.837 ; -1.837 ; Rise       ; gen25mhz:inst1|count[0] ;
-; sw01[*]   ; gen25mhz:inst1|count[0] ; 0.507  ; 0.507  ; Rise       ; gen25mhz:inst1|count[0] ;
-;  sw01[0]  ; gen25mhz:inst1|count[0] ; 0.507  ; 0.507  ; Rise       ; gen25mhz:inst1|count[0] ;
-;  sw01[1]  ; gen25mhz:inst1|count[0] ; 0.345  ; 0.345  ; Rise       ; gen25mhz:inst1|count[0] ;
-; sw8       ; gen25mhz:inst1|count[0] ; 0.063  ; 0.063  ; Rise       ; gen25mhz:inst1|count[0] ;
-; sw9       ; gen25mhz:inst1|count[0] ; 0.008  ; 0.008  ; Rise       ; gen25mhz:inst1|count[0] ;
+; but2      ; gen25mhz:inst1|count[0] ; -2.974 ; -2.974 ; Rise       ; gen25mhz:inst1|count[0] ;
+; but3      ; gen25mhz:inst1|count[0] ; -3.045 ; -3.045 ; Rise       ; gen25mhz:inst1|count[0] ;
+; reset     ; gen25mhz:inst1|count[0] ; -1.963 ; -1.963 ; Rise       ; gen25mhz:inst1|count[0] ;
+; sw01[*]   ; gen25mhz:inst1|count[0] ; 0.486  ; 0.486  ; Rise       ; gen25mhz:inst1|count[0] ;
+;  sw01[0]  ; gen25mhz:inst1|count[0] ; 0.456  ; 0.456  ; Rise       ; gen25mhz:inst1|count[0] ;
+;  sw01[1]  ; gen25mhz:inst1|count[0] ; 0.486  ; 0.486  ; Rise       ; gen25mhz:inst1|count[0] ;
+; sw8       ; gen25mhz:inst1|count[0] ; 0.096  ; 0.096  ; Rise       ; gen25mhz:inst1|count[0] ;
+; sw9       ; gen25mhz:inst1|count[0] ; 0.224  ; 0.224  ; Rise       ; gen25mhz:inst1|count[0] ;
+; sw23[*]   ; gen25mhz:inst1|count[0] ; 0.496  ; 0.496  ; Rise       ; gen25mhz:inst1|count[0] ;
+;  sw23[0]  ; gen25mhz:inst1|count[0] ; 0.496  ; 0.496  ; Rise       ; gen25mhz:inst1|count[0] ;
+;  sw23[1]  ; gen25mhz:inst1|count[0] ; 0.103  ; 0.103  ; Rise       ; gen25mhz:inst1|count[0] ;
 +-----------+-------------------------+--------+--------+------------+-------------------------+
 
 
@@ -1076,8 +1103,9 @@ No paths to report.
 +-----------+-------------------------+-------+-------+------------+-------------------------+
 ; Data Port ; Clock Port              ; Rise  ; Fall  ; Clock Edge ; Clock Reference         ;
 +-----------+-------------------------+-------+-------+------------+-------------------------+
-; wave[*]   ; gen25mhz:inst1|count[0] ; 9.847 ; 9.847 ; Rise       ; gen25mhz:inst1|count[0] ;
-;  wave[0]  ; gen25mhz:inst1|count[0] ; 9.847 ; 9.847 ; Rise       ; gen25mhz:inst1|count[0] ;
+; wave[*]   ; gen25mhz:inst1|count[0] ; 9.302 ; 9.302 ; Rise       ; gen25mhz:inst1|count[0] ;
+;  wave[0]  ; gen25mhz:inst1|count[0] ; 9.239 ; 9.239 ; Rise       ; gen25mhz:inst1|count[0] ;
+;  wave[1]  ; gen25mhz:inst1|count[0] ; 9.302 ; 9.302 ; Rise       ; gen25mhz:inst1|count[0] ;
 +-----------+-------------------------+-------+-------+------------+-------------------------+
 
 
@@ -1086,8 +1114,9 @@ No paths to report.
 +-----------+-------------------------+-------+-------+------------+-------------------------+
 ; Data Port ; Clock Port              ; Rise  ; Fall  ; Clock Edge ; Clock Reference         ;
 +-----------+-------------------------+-------+-------+------------+-------------------------+
-; wave[*]   ; gen25mhz:inst1|count[0] ; 4.436 ; 4.436 ; Rise       ; gen25mhz:inst1|count[0] ;
-;  wave[0]  ; gen25mhz:inst1|count[0] ; 4.436 ; 4.436 ; Rise       ; gen25mhz:inst1|count[0] ;
+; wave[*]   ; gen25mhz:inst1|count[0] ; 4.458 ; 4.458 ; Rise       ; gen25mhz:inst1|count[0] ;
+;  wave[0]  ; gen25mhz:inst1|count[0] ; 4.458 ; 4.458 ; Rise       ; gen25mhz:inst1|count[0] ;
+;  wave[1]  ; gen25mhz:inst1|count[0] ; 4.568 ; 4.568 ; Rise       ; gen25mhz:inst1|count[0] ;
 +-----------+-------------------------+-------+-------+------------+-------------------------+
 
 
@@ -1097,7 +1126,7 @@ No paths to report.
 ; From Clock              ; To Clock                ; RR Paths ; FR Paths ; RF Paths ; FF Paths ;
 +-------------------------+-------------------------+----------+----------+----------+----------+
 ; gen25mhz:inst1|count[0] ; clock_50mhz             ; 1        ; 1        ; 0        ; 0        ;
-; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 2860     ; 0        ; 0        ; 0        ;
+; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 5470     ; 0        ; 0        ; 0        ;
 +-------------------------+-------------------------+----------+----------+----------+----------+
 Entries labeled "false path" only account for clock-to-clock false paths and not path-based false paths. As a result, actual path counts may be lower than reported.
 
@@ -1108,7 +1137,7 @@ Entries labeled "false path" only account for clock-to-clock false paths and not
 ; From Clock              ; To Clock                ; RR Paths ; FR Paths ; RF Paths ; FF Paths ;
 +-------------------------+-------------------------+----------+----------+----------+----------+
 ; gen25mhz:inst1|count[0] ; clock_50mhz             ; 1        ; 1        ; 0        ; 0        ;
-; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 2860     ; 0        ; 0        ; 0        ;
+; gen25mhz:inst1|count[0] ; gen25mhz:inst1|count[0] ; 5470     ; 0        ; 0        ; 0        ;
 +-------------------------+-------------------------+----------+----------+----------+----------+
 Entries labeled "false path" only account for clock-to-clock false paths and not path-based false paths. As a result, actual path counts may be lower than reported.
 
@@ -1132,10 +1161,10 @@ No dedicated SERDES Receiver circuitry present in device or used in design
 +---------------------------------+-------+------+
 ; Illegal Clocks                  ; 0     ; 0    ;
 ; Unconstrained Clocks            ; 0     ; 0    ;
-; Unconstrained Input Ports       ; 6     ; 6    ;
-; Unconstrained Input Port Paths  ; 263   ; 263  ;
-; Unconstrained Output Ports      ; 1     ; 1    ;
-; Unconstrained Output Port Paths ; 2     ; 2    ;
+; Unconstrained Input Ports       ; 9     ; 9    ;
+; Unconstrained Input Port Paths  ; 467   ; 467  ;
+; Unconstrained Output Ports      ; 2     ; 2    ;
+; Unconstrained Output Port Paths ; 5     ; 5    ;
 +---------------------------------+-------+------+
 
 
@@ -1145,7 +1174,7 @@ No dedicated SERDES Receiver circuitry present in device or used in design
 Info: *******************************************************************
 Info: Running Quartus II 32-bit TimeQuest Timing Analyzer
     Info: Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Full Version
-    Info: Processing started: Tue Dec 28 19:10:30 2021
+    Info: Processing started: Tue Dec 28 20:02:09 2021
 Info: Command: quartus_sta de1 -c top_de1
 Info: qsta_default_script.tcl version: #1
 Info (20030): Parallel compilation is enabled and will use 16 of the 16 processors detected
@@ -1159,30 +1188,30 @@ Info (332105): Deriving Clocks
 Info: Found TIMEQUEST_REPORT_SCRIPT_INCLUDE_DEFAULT_ANALYSIS = ON
 Info: Analyzing Slow Model
 Critical Warning (332148): Timing requirements not met
-Info (332146): Worst-case setup slack is -4.339
+Info (332146): Worst-case setup slack is -4.389
     Info (332119):     Slack End Point TNS Clock 
     Info (332119): ========= ============= =====================
-    Info (332119):    -4.339      -262.043 gen25mhz:inst1|count[0] 
+    Info (332119):    -4.389      -480.543 gen25mhz:inst1|count[0] 
     Info (332119):     2.116         0.000 clock_50mhz 
 Info (332146): Worst-case hold slack is -1.864
     Info (332119):     Slack End Point TNS Clock 
     Info (332119): ========= ============= =====================
     Info (332119):    -1.864        -1.864 clock_50mhz 
-    Info (332119):     0.614         0.000 gen25mhz:inst1|count[0] 
+    Info (332119):     0.616         0.000 gen25mhz:inst1|count[0] 
 Info (332140): No Recovery paths to report
 Info (332140): No Removal paths to report
 Info (332146): Worst-case minimum pulse width slack is -1.631
     Info (332119):     Slack End Point TNS Clock 
     Info (332119): ========= ============= =====================
     Info (332119):    -1.631        -2.853 clock_50mhz 
-    Info (332119):    -0.611      -112.424 gen25mhz:inst1|count[0] 
+    Info (332119):    -0.611      -182.078 gen25mhz:inst1|count[0] 
 Info (332001): The selected device family is not supported by the report_metastability command.
 Info: Analyzing Fast Model
 Critical Warning (332148): Timing requirements not met
-Info (332146): Worst-case setup slack is -1.122
+Info (332146): Worst-case setup slack is -1.116
     Info (332119):     Slack End Point TNS Clock 
     Info (332119): ========= ============= =====================
-    Info (332119):    -1.122       -51.967 gen25mhz:inst1|count[0] 
+    Info (332119):    -1.116      -102.531 gen25mhz:inst1|count[0] 
     Info (332119):     1.343         0.000 clock_50mhz 
 Info (332146): Worst-case hold slack is -0.963
     Info (332119):     Slack End Point TNS Clock 
@@ -1195,14 +1224,14 @@ Info (332146): Worst-case minimum pulse width slack is -1.380
     Info (332119):     Slack End Point TNS Clock 
     Info (332119): ========= ============= =====================
     Info (332119):    -1.380        -2.380 clock_50mhz 
-    Info (332119):    -0.500       -92.000 gen25mhz:inst1|count[0] 
+    Info (332119):    -0.500      -149.000 gen25mhz:inst1|count[0] 
 Info (332001): The selected device family is not supported by the report_metastability command.
 Info (332102): Design is not fully constrained for setup requirements
 Info (332102): Design is not fully constrained for hold requirements
 Info: Quartus II 32-bit TimeQuest Timing Analyzer was successful. 0 errors, 3 warnings
-    Info: Peak virtual memory: 335 megabytes
-    Info: Processing ended: Tue Dec 28 19:11:14 2021
-    Info: Elapsed time: 00:00:44
+    Info: Peak virtual memory: 324 megabytes
+    Info: Processing ended: Tue Dec 28 20:03:31 2021
+    Info: Elapsed time: 00:01:22
     Info: Total CPU time (on all processors): 00:00:01
 
 

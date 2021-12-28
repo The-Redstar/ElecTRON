@@ -1,14 +1,14 @@
-Fitter Status : Successful - Tue Dec 28 19:09:35 2021
+Fitter Status : Successful - Tue Dec 28 20:00:40 2021
 Quartus II 32-bit Version : 13.0.1 Build 232 06/12/2013 SP 1 SJ Full Version
 Revision Name : top_de1
 Top-level Entity Name : top_de1
 Family : Cyclone II
 Device : EP2C20F484C7
 Timing Models : Final
-Total logic elements : 148 / 18,752 ( < 1 % )
-    Total combinational functions : 148 / 18,752 ( < 1 % )
-    Dedicated logic registers : 93 / 18,752 ( < 1 % )
-Total registers : 93
+Total logic elements : 256 / 18,752 ( 1 % )
+    Total combinational functions : 253 / 18,752 ( 1 % )
+    Dedicated logic registers : 150 / 18,752 ( < 1 % )
+Total registers : 150
 Total pins : 13 / 315 ( 4 % )
 Total virtual pins : 0
 Total memory bits : 0 / 239,616 ( 0 % )

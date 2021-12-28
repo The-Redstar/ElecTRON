@@ -1,5 +1,5 @@
 Analysis & Synthesis report for top_de1
-Tue Dec 28 19:08:55 2021
+Tue Dec 28 19:59:43 2021
 Quartus II 32-bit Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Full Version
 
 
@@ -13,13 +13,12 @@ Quartus II 32-bit Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Full Ver
   5. Analysis & Synthesis Source Files Read
   6. Analysis & Synthesis Resource Usage Summary
   7. Analysis & Synthesis Resource Utilization by Entity
-  8. Registers Removed During Synthesis
-  9. General Register Statistics
- 10. Multiplexer Restructuring Statistics (Restructuring Performed)
- 11. Port Connectivity Checks: "audio_top:inst3|engine_oscil:en1"
- 12. Port Connectivity Checks: "audio_top:inst3|engine_oscil:en0"
- 13. Elapsed Time Per Partition
- 14. Analysis & Synthesis Messages
+  8. General Register Statistics
+  9. Multiplexer Restructuring Statistics (Restructuring Performed)
+ 10. Port Connectivity Checks: "audio_top:inst3|engine_oscil:en1"
+ 11. Port Connectivity Checks: "audio_top:inst3|engine_oscil:en0"
+ 12. Elapsed Time Per Partition
+ 13. Analysis & Synthesis Messages
 
 
 
@@ -45,15 +44,15 @@ applicable agreement for further details.
 +---------------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                          ;
 +------------------------------------+--------------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Tue Dec 28 19:08:52 2021            ;
+; Analysis & Synthesis Status        ; Successful - Tue Dec 28 19:59:39 2021            ;
 ; Quartus II 32-bit Version          ; 13.0.1 Build 232 06/12/2013 SP 1 SJ Full Version ;
 ; Revision Name                      ; top_de1                                          ;
 ; Top-level Entity Name              ; top_de1                                          ;
 ; Family                             ; Cyclone II                                       ;
-; Total logic elements               ; 150                                              ;
-;     Total combinational functions  ; 148                                              ;
-;     Dedicated logic registers      ; 93                                               ;
-; Total registers                    ; 93                                               ;
+; Total logic elements               ; 257                                              ;
+;     Total combinational functions  ; 253                                              ;
+;     Dedicated logic registers      ; 150                                              ;
+; Total registers                    ; 150                                              ;
 ; Total pins                         ; 13                                               ;
 ; Total virtual pins                 ; 0                                                ;
 ; Total memory bits                  ; 0                                                ;
@@ -191,28 +190,28 @@ applicable agreement for further details.
 +---------------------------------------------+-------------------------+
 ; Resource                                    ; Usage                   ;
 +---------------------------------------------+-------------------------+
-; Estimated Total logic elements              ; 150                     ;
+; Estimated Total logic elements              ; 257                     ;
 ;                                             ;                         ;
-; Total combinational functions               ; 148                     ;
+; Total combinational functions               ; 253                     ;
 ; Logic element usage by number of LUT inputs ;                         ;
-;     -- 4 input functions                    ; 36                      ;
-;     -- 3 input functions                    ; 59                      ;
-;     -- <=2 input functions                  ; 53                      ;
+;     -- 4 input functions                    ; 70                      ;
+;     -- 3 input functions                    ; 94                      ;
+;     -- <=2 input functions                  ; 89                      ;
 ;                                             ;                         ;
 ; Logic elements by mode                      ;                         ;
-;     -- normal mode                          ; 90                      ;
-;     -- arithmetic mode                      ; 58                      ;
+;     -- normal mode                          ; 144                     ;
+;     -- arithmetic mode                      ; 109                     ;
 ;                                             ;                         ;
-; Total registers                             ; 93                      ;
-;     -- Dedicated logic registers            ; 93                      ;
+; Total registers                             ; 150                     ;
+;     -- Dedicated logic registers            ; 150                     ;
 ;     -- I/O registers                        ; 0                       ;
 ;                                             ;                         ;
 ; I/O pins                                    ; 13                      ;
 ; Embedded Multiplier 9-bit elements          ; 0                       ;
 ; Maximum fan-out node                        ; gen25mhz:inst1|count[0] ;
-; Maximum fan-out                             ; 93                      ;
-; Total fan-out                               ; 727                     ;
-; Average fan-out                             ; 2.86                    ;
+; Maximum fan-out                             ; 150                     ;
+; Total fan-out                               ; 1237                    ;
+; Average fan-out                             ; 2.97                    ;
 +---------------------------------------------+-------------------------+
 
 
@@ -221,9 +220,10 @@ applicable agreement for further details.
 +----------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+-------------------------------------------+--------------+
 ; Compilation Hierarchy Node ; LC Combinationals ; LC Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name                       ; Library Name ;
 +----------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+-------------------------------------------+--------------+
-; |top_de1                   ; 148 (1)           ; 93 (0)       ; 0           ; 0            ; 0       ; 0         ; 13   ; 0            ; |top_de1                                  ; work         ;
-;    |audio_top:inst3|       ; 131 (2)           ; 81 (0)       ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top_de1|audio_top:inst3                  ; work         ;
-;       |engine_oscil:en0|   ; 103 (103)         ; 57 (57)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top_de1|audio_top:inst3|engine_oscil:en0 ; work         ;
+; |top_de1                   ; 253 (1)           ; 150 (0)      ; 0           ; 0            ; 0       ; 0         ; 13   ; 0            ; |top_de1                                  ; work         ;
+;    |audio_top:inst3|       ; 236 (2)           ; 138 (0)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top_de1|audio_top:inst3                  ; work         ;
+;       |engine_oscil:en0|   ; 104 (104)         ; 57 (57)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top_de1|audio_top:inst3|engine_oscil:en0 ; work         ;
+;       |engine_oscil:en1|   ; 104 (104)         ; 57 (57)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top_de1|audio_top:inst3|engine_oscil:en1 ; work         ;
 ;       |rng:expl|           ; 26 (26)           ; 24 (24)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top_de1|audio_top:inst3|rng:expl         ; work         ;
 ;    |gen25mhz:inst1|        ; 1 (1)             ; 1 (1)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top_de1|gen25mhz:inst1                   ; work         ;
 ;    |test_data_gen:inst|    ; 15 (15)           ; 11 (11)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top_de1|test_data_gen:inst               ; work         ;
@@ -231,32 +231,17 @@ applicable agreement for further details.
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
 
 
-+---------------------------------------------------------------------------------------------+
-; Registers Removed During Synthesis                                                          ;
-+----------------------------------------------------+----------------------------------------+
-; Register name                                      ; Reason for Removal                     ;
-+----------------------------------------------------+----------------------------------------+
-; audio_top:inst3|engine_oscil:en1|period[0,1]       ; Lost fanout                            ;
-; audio_top:inst3|engine_oscil:en1|new_period[0..17] ; Lost fanout                            ;
-; audio_top:inst3|engine_oscil:en1|prev_dir[0,1]     ; Lost fanout                            ;
-; audio_top:inst3|engine_oscil:en1|count[0..17]      ; Lost fanout                            ;
-; audio_top:inst3|engine_oscil:en1|period[2..17]     ; Lost fanout                            ;
-; audio_top:inst3|engine_oscil:en1|wave              ; Stuck at GND due to stuck port data_in ;
-; Total Number of Removed Registers = 57             ;                                        ;
-+----------------------------------------------------+----------------------------------------+
-
-
 +------------------------------------------------------+
 ; General Register Statistics                          ;
 +----------------------------------------------+-------+
 ; Statistic                                    ; Value ;
 +----------------------------------------------+-------+
-; Total registers                              ; 93    ;
-; Number of registers using Synchronous Clear  ; 28    ;
-; Number of registers using Synchronous Load   ; 18    ;
+; Total registers                              ; 150   ;
+; Number of registers using Synchronous Clear  ; 46    ;
+; Number of registers using Synchronous Load   ; 36    ;
 ; Number of registers using Asynchronous Clear ; 0     ;
 ; Number of registers using Asynchronous Load  ; 0     ;
-; Number of registers using Clock Enable       ; 60    ;
+; Number of registers using Clock Enable       ; 96    ;
 ; Number of registers using Preset             ; 0     ;
 +----------------------------------------------+-------+
 
@@ -267,12 +252,17 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                               ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------------------------------------+
 ; 3:1                ; 24 bits   ; 48 LEs        ; 24 LEs               ; 24 LEs                 ; Yes        ; |top_de1|audio_top:inst3|rng:expl|shifter[23]            ;
-; 3:1                ; 16 bits   ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |top_de1|audio_top:inst3|engine_oscil:en0|period[12]     ;
-; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |top_de1|audio_top:inst3|engine_oscil:en0|period[15]     ;
-; 3:1                ; 18 bits   ; 36 LEs        ; 18 LEs               ; 18 LEs                 ; Yes        ; |top_de1|audio_top:inst3|engine_oscil:en0|count[16]      ;
-; 3:1                ; 10 bits   ; 20 LEs        ; 10 LEs               ; 10 LEs                 ; Yes        ; |top_de1|test_data_gen:inst|vga_x[3]                     ;
-; 4:1                ; 16 bits   ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |top_de1|audio_top:inst3|engine_oscil:en0|new_period[12] ;
+; 3:1                ; 16 bits   ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |top_de1|audio_top:inst3|engine_oscil:en0|period[11]     ;
+; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |top_de1|audio_top:inst3|engine_oscil:en0|period[14]     ;
+; 3:1                ; 18 bits   ; 36 LEs        ; 18 LEs               ; 18 LEs                 ; Yes        ; |top_de1|audio_top:inst3|engine_oscil:en0|count[13]      ;
+; 3:1                ; 16 bits   ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |top_de1|audio_top:inst3|engine_oscil:en1|period[16]     ;
+; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |top_de1|audio_top:inst3|engine_oscil:en1|period[15]     ;
+; 3:1                ; 18 bits   ; 36 LEs        ; 18 LEs               ; 18 LEs                 ; Yes        ; |top_de1|audio_top:inst3|engine_oscil:en1|count[3]       ;
+; 3:1                ; 10 bits   ; 20 LEs        ; 10 LEs               ; 10 LEs                 ; Yes        ; |top_de1|test_data_gen:inst|vga_x[9]                     ;
+; 4:1                ; 16 bits   ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |top_de1|audio_top:inst3|engine_oscil:en0|new_period[17] ;
 ; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |top_de1|audio_top:inst3|engine_oscil:en0|new_period[15] ;
+; 4:1                ; 16 bits   ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |top_de1|audio_top:inst3|engine_oscil:en1|new_period[10] ;
+; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |top_de1|audio_top:inst3|engine_oscil:en1|new_period[14] ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------------------------------------+
 
 
@@ -281,7 +271,6 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +--------+-------+----------+----------------------------------+
 ; Port   ; Type  ; Severity ; Details                          ;
 +--------+-------+----------+----------------------------------+
-; reset  ; Input ; Info     ; Stuck at VCC                     ;
 ; player ; Input ; Info     ; Stuck at VCC                     ;
 +--------+-------+----------+----------------------------------+
 
@@ -300,7 +289,7 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +----------------+--------------+
 ; Partition Name ; Elapsed Time ;
 +----------------+--------------+
-; Top            ; 00:00:04     ;
+; Top            ; 00:00:06     ;
 +----------------+--------------+
 
 
@@ -310,7 +299,7 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 Info: *******************************************************************
 Info: Running Quartus II 32-bit Analysis & Synthesis
     Info: Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Full Version
-    Info: Processing started: Tue Dec 28 19:07:31 2021
+    Info: Processing started: Tue Dec 28 19:57:47 2021
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off de1 -c top_de1
 Info (20030): Parallel compilation is enabled and will use 16 of the 16 processors detected
 Info (12021): Found 1 design units, including 0 entities, in source file /tmp/.x2go-mhpadriaanse/media/disk/_cygdrive_C_Users_Marijn_Nodig_TUDELF1_B2_Q2_L_x2go/electron/audio/VHDL/test_data_gen_behaviour_cfg.vhd
@@ -348,28 +337,21 @@ Info (12021): Found 2 design units, including 1 entities, in source file gen25mh
 Info (12127): Elaborating entity "top_de1" for the top level hierarchy
 Info (12128): Elaborating entity "audio_top" for hierarchy "audio_top:inst3"
 Info (12128): Elaborating entity "engine_oscil" for hierarchy "audio_top:inst3|engine_oscil:en0"
-Warning (10492): VHDL Process Statement warning at engine_oscil-behaviour.vhd(55): signal "count_boosted" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
 Info (12128): Elaborating entity "rng" for hierarchy "audio_top:inst3|rng:expl"
 Info (12128): Elaborating entity "gen25mhz" for hierarchy "gen25mhz:inst1"
 Info (12128): Elaborating entity "test_data_gen" for hierarchy "test_data_gen:inst"
-Warning (13024): Output pins are stuck at VCC or GND
-    Warning (13410): Pin "wave[1]" is stuck at GND
-Info (17049): 56 registers lost all their fanouts during netlist optimizations.
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
-Warning (21074): Design contains 4 input pin(s) that do not drive logic
-    Warning (15610): No output dependent on input pin "but3"
+Warning (21074): Design contains 1 input pin(s) that do not drive logic
     Warning (15610): No output dependent on input pin "sw7"
-    Warning (15610): No output dependent on input pin "sw23[1]"
-    Warning (15610): No output dependent on input pin "sw23[0]"
-Info (21057): Implemented 163 device resources after synthesis - the final resource count might be different
+Info (21057): Implemented 270 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 11 input pins
     Info (21059): Implemented 2 output pins
-    Info (21061): Implemented 150 logic cells
-Info: Quartus II 32-bit Analysis & Synthesis was successful. 0 errors, 8 warnings
-    Info: Peak virtual memory: 359 megabytes
-    Info: Processing ended: Tue Dec 28 19:08:57 2021
-    Info: Elapsed time: 00:01:26
+    Info (21061): Implemented 257 logic cells
+Info: Quartus II 32-bit Analysis & Synthesis was successful. 0 errors, 2 warnings
+    Info: Peak virtual memory: 372 megabytes
+    Info: Processing ended: Tue Dec 28 19:59:46 2021
+    Info: Elapsed time: 00:01:59
     Info: Total CPU time (on all processors): 00:00:03
 
 

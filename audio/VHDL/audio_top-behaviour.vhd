@@ -53,11 +53,11 @@ expl: rng port map(
 
 
 	en0_rst <= reset or not(engine_en);
-	en1_rst <= '1';--en0_rst;
+	en1_rst <= en0_rst;
 	rng_rst <= reset or not(crash_en);
 
-	wave(0) <= en0_wave xor en1_wave xor rng_wave;
-	wave(1) <= en0_wave and en1_wave;
+	wave(0) <= en0_wave xor rng_wave;
+	wave(1) <= en`_wave xor rng_wave;
 
 
 
