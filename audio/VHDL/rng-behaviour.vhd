@@ -14,9 +14,11 @@ begin
 		if rising_edge(clk) then
 			if reset='1' then
 				shifter <= (others => '0');
-			else
+			elsif audio_clk='1' then
 				shifter(23 downto 1) <= shifter(22 downto 0);
 				shifter(0) <= shifter(6) xnor shifter(15) xnor shifter(21) xnor shifter(23);
+			else
+				shifter<=shifter;
 			end if;
 		end if;
 	end process;

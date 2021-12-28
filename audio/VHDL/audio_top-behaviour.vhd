@@ -16,9 +16,10 @@ architecture behaviour of audio_top is
 	
 	
 	component rng is
-	port(	clk		: in  std_logic;
-			reset	: in  std_logic;
-			wave	: out std_logic);
+	port(	clk			: in  std_logic;
+			reset		: in  std_logic;
+			audio_clk	: in  std_logic;
+			wave		: out std_logic);
 	end component;
 
 	
@@ -47,11 +48,12 @@ en1: engine_oscil port map(
 expl: rng port map(
 		clk=>clk,
 		reset=>rng_rst,
+		audio_clk=>audio_clk,
 		wave=>rng_wave);
 
 
 	en0_rst <= reset or not(engine_en);
-	en1_rst <= en0_rst;
+	en1_rst <= '1';--en0_rst;
 	rng_rst <= reset or not(crash_en);
 
 	wave(0) <= en0_wave xor en1_wave xor rng_wave;

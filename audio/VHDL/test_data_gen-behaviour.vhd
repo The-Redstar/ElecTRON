@@ -21,7 +21,7 @@ begin
 				if vga_x=to_unsigned(799,10) then
 					vga_x<=(others => '0');
 					audio_clk<='1';
-					if vga_x=to_unsigned(514,10) then
+					if vga_y=to_unsigned(514,10) then
 						vga_y<=(others => '0');
 						if frames=to_unsigned(8,10) then
 							frames<=(others => '0');
