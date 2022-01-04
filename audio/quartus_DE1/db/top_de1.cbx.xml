@@ -1,5 +1,7 @@
 <?xml version="1.0" ?>
 <LOG_ROOT>
 	<PROJECT NAME="top_de1">
+		<CBX_INST_ENTRY INSTANCE_NAME="|top_de1|audio_top:inst3|engine_oscil:en0|lpm_mult:Mult0" CBX_FILE_NAME="mult_57t.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|top_de1|audio_top:inst3|engine_oscil:en1|lpm_mult:Mult0" CBX_FILE_NAME="mult_57t.tdf"/>
 	</PROJECT>
 </LOG_ROOT>
