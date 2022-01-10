@@ -513,13 +513,11 @@ create_next_state: 	process (state, new_state, reset, input, busy, clk, unsigned
 		e_next_direction_1			<= '0';
 		e_player_0_state			<= '0';
 		e_player_1_state			<= '0';			
-<<<<<<< HEAD
+
 		e_map_select				<= '0';	
-		e_speed					<= '0';		
-=======
-		e_map_select				<= '0';			
+		
 		e_speed_select				<= '0';			
->>>>>>> 957cfc384f4a6b84caf98b65261b27f711caa3ef
+
 			
 		d_position_0				<= (others => '0');
 		d_position_1				<= (others => '0');	
@@ -539,11 +537,9 @@ create_next_state: 	process (state, new_state, reset, input, busy, clk, unsigned
 		d_player_0_state			<= (others => '0');
 		d_player_1_state			<= (others => '0');
 		d_map_select				<= (others => '0');
-<<<<<<< HEAD
-		d_speed					<= (others => '0');
-=======
+
 		d_speed_select				<= (others => '0');
->>>>>>> 957cfc384f4a6b84caf98b65261b27f711caa3ef
+
 		
 		
 		address_fsm	   			<= (others => '0');
@@ -605,7 +601,7 @@ create_next_state: 	process (state, new_state, reset, input, busy, clk, unsigned
 				d_next_direction_0 	<= input(1 downto 0);
 				d_next_direction_1	<= input(3 downto 2);
 
-				e_speed			<= '1';
+				e_speed_select			<= '1';
 				d_speed			<= input(3 downto 2);
 				
 				e_map_select		<= '1';
