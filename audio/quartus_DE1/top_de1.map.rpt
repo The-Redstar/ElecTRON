@@ -1,5 +1,5 @@
 Analysis & Synthesis report for top_de1
-Tue Jan  4 17:16:49 2022
+Tue Jan  4 20:49:21 2022
 Quartus II 32-bit Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Full Version
 
 
@@ -13,17 +13,13 @@ Quartus II 32-bit Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Full Ver
   5. Analysis & Synthesis Source Files Read
   6. Analysis & Synthesis Resource Usage Summary
   7. Analysis & Synthesis Resource Utilization by Entity
-  8. Analysis & Synthesis DSP Block Usage Summary
-  9. Registers Removed During Synthesis
- 10. General Register Statistics
- 11. Multiplexer Restructuring Statistics (Restructuring Performed)
- 12. Parameter Settings for Inferred Entity Instance: audio_top:inst3|engine_oscil:en1|lpm_mult:Mult0
- 13. Parameter Settings for Inferred Entity Instance: audio_top:inst3|engine_oscil:en0|lpm_mult:Mult0
- 14. lpm_mult Parameter Settings by Entity Instance
- 15. Port Connectivity Checks: "audio_top:inst3|engine_oscil:en1"
- 16. Port Connectivity Checks: "audio_top:inst3|engine_oscil:en0"
- 17. Elapsed Time Per Partition
- 18. Analysis & Synthesis Messages
+  8. Registers Removed During Synthesis
+  9. General Register Statistics
+ 10. Multiplexer Restructuring Statistics (Restructuring Performed)
+ 11. Port Connectivity Checks: "audio_top:inst3|engine_oscil:en1"
+ 12. Port Connectivity Checks: "audio_top:inst3|engine_oscil:en0"
+ 13. Elapsed Time Per Partition
+ 14. Analysis & Synthesis Messages
 
 
 
@@ -49,19 +45,19 @@ applicable agreement for further details.
 +---------------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                          ;
 +------------------------------------+--------------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Tue Jan  4 17:16:46 2022            ;
+; Analysis & Synthesis Status        ; Successful - Tue Jan  4 20:49:18 2022            ;
 ; Quartus II 32-bit Version          ; 13.0.1 Build 232 06/12/2013 SP 1 SJ Full Version ;
 ; Revision Name                      ; top_de1                                          ;
 ; Top-level Entity Name              ; top_de1                                          ;
 ; Family                             ; Cyclone II                                       ;
-; Total logic elements               ; 382                                              ;
-;     Total combinational functions  ; 376                                              ;
-;     Dedicated logic registers      ; 147                                              ;
-; Total registers                    ; 147                                              ;
+; Total logic elements               ; 505                                              ;
+;     Total combinational functions  ; 491                                              ;
+;     Dedicated logic registers      ; 155                                              ;
+; Total registers                    ; 155                                              ;
 ; Total pins                         ; 13                                               ;
 ; Total virtual pins                 ; 0                                                ;
 ; Total memory bits                  ; 0                                                ;
-; Embedded Multiplier 9-bit elements ; 4                                                ;
+; Embedded Multiplier 9-bit elements ; 0                                                ;
 ; Total PLLs                         ; 0                                                ;
 +------------------------------------+--------------------------------------------------+
 
@@ -187,13 +183,6 @@ applicable agreement for further details.
 ; ../VHDL/audio_top-behaviour.vhd         ; yes             ; User VHDL File                     ; /tmp/.x2go-mhpadriaanse/media/disk/_cygdrive_C_Users_Marijn_Nodig_TUDELF1_B2_Q2_L_x2go/electron/audio/VHDL/audio_top-behaviour.vhd         ;         ;
 ; top_de1.bdf                             ; yes             ; User Block Diagram/Schematic File  ; /tmp/.x2go-mhpadriaanse/media/disk/_cygdrive_C_Users_Marijn_Nodig_TUDELF1_B2_Q2_L_x2go/electron/audio/quartus_DE1/top_de1.bdf              ;         ;
 ; gen25mhz.vhd                            ; yes             ; User VHDL File                     ; /tmp/.x2go-mhpadriaanse/media/disk/_cygdrive_C_Users_Marijn_Nodig_TUDELF1_B2_Q2_L_x2go/electron/audio/quartus_DE1/gen25mhz.vhd             ;         ;
-; lpm_mult.tdf                            ; yes             ; Megafunction                       ; /data/public/common/software/altera/13.0sp1/quartus/libraries/megafunctions/lpm_mult.tdf                                                   ;         ;
-; aglobal130.inc                          ; yes             ; Megafunction                       ; /data/public/common/software/altera/13.0sp1/quartus/libraries/megafunctions/aglobal130.inc                                                 ;         ;
-; lpm_add_sub.inc                         ; yes             ; Megafunction                       ; /data/public/common/software/altera/13.0sp1/quartus/libraries/megafunctions/lpm_add_sub.inc                                                ;         ;
-; multcore.inc                            ; yes             ; Megafunction                       ; /data/public/common/software/altera/13.0sp1/quartus/libraries/megafunctions/multcore.inc                                                   ;         ;
-; bypassff.inc                            ; yes             ; Megafunction                       ; /data/public/common/software/altera/13.0sp1/quartus/libraries/megafunctions/bypassff.inc                                                   ;         ;
-; altshift.inc                            ; yes             ; Megafunction                       ; /data/public/common/software/altera/13.0sp1/quartus/libraries/megafunctions/altshift.inc                                                   ;         ;
-; db/mult_57t.tdf                         ; yes             ; Auto-Generated Megafunction        ; /tmp/.x2go-mhpadriaanse/media/disk/_cygdrive_C_Users_Marijn_Nodig_TUDELF1_B2_Q2_L_x2go/electron/audio/quartus_DE1/db/mult_57t.tdf          ;         ;
 +-----------------------------------------+-----------------+------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------+---------+
 
 
@@ -202,66 +191,44 @@ applicable agreement for further details.
 +---------------------------------------------+-------------------------+
 ; Resource                                    ; Usage                   ;
 +---------------------------------------------+-------------------------+
-; Estimated Total logic elements              ; 382                     ;
+; Estimated Total logic elements              ; 505                     ;
 ;                                             ;                         ;
-; Total combinational functions               ; 376                     ;
+; Total combinational functions               ; 491                     ;
 ; Logic element usage by number of LUT inputs ;                         ;
-;     -- 4 input functions                    ; 157                     ;
-;     -- 3 input functions                    ; 78                      ;
-;     -- <=2 input functions                  ; 141                     ;
+;     -- 4 input functions                    ; 103                     ;
+;     -- 3 input functions                    ; 201                     ;
+;     -- <=2 input functions                  ; 187                     ;
 ;                                             ;                         ;
 ; Logic elements by mode                      ;                         ;
-;     -- normal mode                          ; 236                     ;
-;     -- arithmetic mode                      ; 140                     ;
+;     -- normal mode                          ; 247                     ;
+;     -- arithmetic mode                      ; 244                     ;
 ;                                             ;                         ;
-; Total registers                             ; 147                     ;
-;     -- Dedicated logic registers            ; 147                     ;
+; Total registers                             ; 155                     ;
+;     -- Dedicated logic registers            ; 155                     ;
 ;     -- I/O registers                        ; 0                       ;
 ;                                             ;                         ;
 ; I/O pins                                    ; 13                      ;
-; Embedded Multiplier 9-bit elements          ; 4                       ;
+; Embedded Multiplier 9-bit elements          ; 0                       ;
 ; Maximum fan-out node                        ; gen25mhz:inst1|count[0] ;
-; Maximum fan-out                             ; 147                     ;
-; Total fan-out                               ; 1592                    ;
-; Average fan-out                             ; 2.95                    ;
+; Maximum fan-out                             ; 155                     ;
+; Total fan-out                               ; 1811                    ;
+; Average fan-out                             ; 2.75                    ;
 +---------------------------------------------+-------------------------+
 
 
-+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                                                                 ;
-+---------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+----------------------------------------------------------------------------------+--------------+
-; Compilation Hierarchy Node            ; LC Combinationals ; LC Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name                                                              ; Library Name ;
-+---------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+----------------------------------------------------------------------------------+--------------+
-; |top_de1                              ; 376 (1)           ; 147 (0)      ; 0           ; 4            ; 0       ; 2         ; 13   ; 0            ; |top_de1                                                                         ; work         ;
-;    |audio_top:inst3|                  ; 374 (2)           ; 146 (0)      ; 0           ; 4            ; 0       ; 2         ; 0    ; 0            ; |top_de1|audio_top:inst3                                                         ; work         ;
-;       |engine_oscil:en0|              ; 173 (173)         ; 60 (60)      ; 0           ; 2            ; 0       ; 1         ; 0    ; 0            ; |top_de1|audio_top:inst3|engine_oscil:en0                                        ; work         ;
-;          |lpm_mult:Mult0|             ; 0 (0)             ; 0 (0)        ; 0           ; 2            ; 0       ; 1         ; 0    ; 0            ; |top_de1|audio_top:inst3|engine_oscil:en0|lpm_mult:Mult0                         ; work         ;
-;             |mult_57t:auto_generated| ; 0 (0)             ; 0 (0)        ; 0           ; 2            ; 0       ; 1         ; 0    ; 0            ; |top_de1|audio_top:inst3|engine_oscil:en0|lpm_mult:Mult0|mult_57t:auto_generated ; work         ;
-;       |engine_oscil:en1|              ; 175 (175)         ; 62 (62)      ; 0           ; 2            ; 0       ; 1         ; 0    ; 0            ; |top_de1|audio_top:inst3|engine_oscil:en1                                        ; work         ;
-;          |lpm_mult:Mult0|             ; 0 (0)             ; 0 (0)        ; 0           ; 2            ; 0       ; 1         ; 0    ; 0            ; |top_de1|audio_top:inst3|engine_oscil:en1|lpm_mult:Mult0                         ; work         ;
-;             |mult_57t:auto_generated| ; 0 (0)             ; 0 (0)        ; 0           ; 2            ; 0       ; 1         ; 0    ; 0            ; |top_de1|audio_top:inst3|engine_oscil:en1|lpm_mult:Mult0|mult_57t:auto_generated ; work         ;
-;       |rng:expl|                      ; 24 (24)           ; 24 (24)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top_de1|audio_top:inst3|rng:expl                                                ; work         ;
-;    |gen25mhz:inst1|                   ; 1 (1)             ; 1 (1)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top_de1|gen25mhz:inst1                                                          ; work         ;
-+---------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+----------------------------------------------------------------------------------+--------------+
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                               ;
++----------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+-------------------------------------------+--------------+
+; Compilation Hierarchy Node ; LC Combinationals ; LC Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name                       ; Library Name ;
++----------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+-------------------------------------------+--------------+
+; |top_de1                   ; 491 (0)           ; 155 (0)      ; 0           ; 0            ; 0       ; 0         ; 13   ; 0            ; |top_de1                                  ; work         ;
+;    |audio_top:inst3|       ; 490 (2)           ; 154 (0)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top_de1|audio_top:inst3                  ; work         ;
+;       |engine_oscil:en0|   ; 229 (229)         ; 64 (64)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top_de1|audio_top:inst3|engine_oscil:en0 ; work         ;
+;       |engine_oscil:en1|   ; 235 (235)         ; 66 (66)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top_de1|audio_top:inst3|engine_oscil:en1 ; work         ;
+;       |rng:expl|           ; 24 (24)           ; 24 (24)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top_de1|audio_top:inst3|rng:expl         ; work         ;
+;    |gen25mhz:inst1|        ; 1 (1)             ; 1 (1)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top_de1|gen25mhz:inst1                   ; work         ;
++----------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+-------------------------------------------+--------------+
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
-
-
-+-----------------------------------------------------+
-; Analysis & Synthesis DSP Block Usage Summary        ;
-+---------------------------------------+-------------+
-; Statistic                             ; Number Used ;
-+---------------------------------------+-------------+
-; Simple Multipliers (9-bit)            ; 0           ;
-; Simple Multipliers (18-bit)           ; 2           ;
-; Embedded Multiplier Blocks            ; --          ;
-; Embedded Multiplier 9-bit elements    ; 4           ;
-; Signed Embedded Multipliers           ; 0           ;
-; Unsigned Embedded Multipliers         ; 2           ;
-; Mixed Sign Embedded Multipliers       ; 0           ;
-; Variable Sign Embedded Multipliers    ; 0           ;
-; Dedicated Input Shift Register Chains ; 0           ;
-+---------------------------------------+-------------+
-Note: number of Embedded Multiplier Blocks used is only available after a successful fit.
 
 
 +---------------------------------------------------------------------------------------------------------+
@@ -280,12 +247,12 @@ Note: number of Embedded Multiplier Blocks used is only available after a succes
 +----------------------------------------------+-------+
 ; Statistic                                    ; Value ;
 +----------------------------------------------+-------+
-; Total registers                              ; 147   ;
+; Total registers                              ; 155   ;
 ; Number of registers using Synchronous Clear  ; 39    ;
-; Number of registers using Synchronous Load   ; 4     ;
+; Number of registers using Synchronous Load   ; 0     ;
 ; Number of registers using Asynchronous Clear ; 0     ;
 ; Number of registers using Asynchronous Load  ; 0     ;
-; Number of registers using Clock Enable       ; 74    ;
+; Number of registers using Clock Enable       ; 82    ;
 ; Number of registers using Preset             ; 0     ;
 +----------------------------------------------+-------+
 
@@ -295,120 +262,17 @@ Note: number of Embedded Multiplier Blocks used is only available after a succes
 +--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------------------------------------+
 ; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                               ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------------------------------------+
-; 3:1                ; 19 bits   ; 38 LEs        ; 19 LEs               ; 19 LEs                 ; Yes        ; |top_de1|audio_top:inst3|engine_oscil:en1|count[17]      ;
-; 3:1                ; 19 bits   ; 38 LEs        ; 19 LEs               ; 19 LEs                 ; Yes        ; |top_de1|audio_top:inst3|engine_oscil:en0|count[1]       ;
-; 4:1                ; 17 bits   ; 34 LEs        ; 34 LEs               ; 0 LEs                  ; Yes        ; |top_de1|audio_top:inst3|engine_oscil:en1|period[16]     ;
-; 4:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; Yes        ; |top_de1|audio_top:inst3|engine_oscil:en1|period[15]     ;
-; 4:1                ; 17 bits   ; 34 LEs        ; 34 LEs               ; 0 LEs                  ; Yes        ; |top_de1|audio_top:inst3|engine_oscil:en0|period[1]      ;
-; 4:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; Yes        ; |top_de1|audio_top:inst3|engine_oscil:en0|period[15]     ;
-; 7:1                ; 4 bits    ; 16 LEs        ; 8 LEs                ; 8 LEs                  ; Yes        ; |top_de1|audio_top:inst3|engine_oscil:en1|new_period[3]  ;
-; 7:1                ; 4 bits    ; 16 LEs        ; 8 LEs                ; 8 LEs                  ; Yes        ; |top_de1|audio_top:inst3|engine_oscil:en0|new_period[18] ;
-; 7:1                ; 12 bits   ; 48 LEs        ; 48 LEs               ; 0 LEs                  ; Yes        ; |top_de1|audio_top:inst3|engine_oscil:en1|new_period[7]  ;
-; 7:1                ; 2 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |top_de1|audio_top:inst3|engine_oscil:en1|new_period[15] ;
-; 7:1                ; 12 bits   ; 48 LEs        ; 48 LEs               ; 0 LEs                  ; Yes        ; |top_de1|audio_top:inst3|engine_oscil:en0|new_period[13] ;
-; 7:1                ; 2 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |top_de1|audio_top:inst3|engine_oscil:en0|new_period[14] ;
+; 3:1                ; 17 bits   ; 34 LEs        ; 17 LEs               ; 17 LEs                 ; Yes        ; |top_de1|audio_top:inst3|engine_oscil:en1|period[7]      ;
+; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |top_de1|audio_top:inst3|engine_oscil:en1|period[14]     ;
+; 3:1                ; 19 bits   ; 38 LEs        ; 19 LEs               ; 19 LEs                 ; Yes        ; |top_de1|audio_top:inst3|engine_oscil:en1|count[15]      ;
+; 3:1                ; 17 bits   ; 34 LEs        ; 17 LEs               ; 17 LEs                 ; Yes        ; |top_de1|audio_top:inst3|engine_oscil:en0|period[0]      ;
+; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |top_de1|audio_top:inst3|engine_oscil:en0|period[14]     ;
+; 3:1                ; 19 bits   ; 38 LEs        ; 19 LEs               ; 19 LEs                 ; Yes        ; |top_de1|audio_top:inst3|engine_oscil:en0|count[15]      ;
+; 7:1                ; 16 bits   ; 64 LEs        ; 64 LEs               ; 0 LEs                  ; Yes        ; |top_de1|audio_top:inst3|engine_oscil:en1|new_period[1]  ;
+; 7:1                ; 2 bits    ; 8 LEs         ; 6 LEs                ; 2 LEs                  ; Yes        ; |top_de1|audio_top:inst3|engine_oscil:en1|new_period[14] ;
+; 7:1                ; 16 bits   ; 64 LEs        ; 64 LEs               ; 0 LEs                  ; Yes        ; |top_de1|audio_top:inst3|engine_oscil:en0|new_period[16] ;
+; 7:1                ; 2 bits    ; 8 LEs         ; 6 LEs                ; 2 LEs                  ; Yes        ; |top_de1|audio_top:inst3|engine_oscil:en0|new_period[14] ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------------------------------------+
-
-
-+--------------------------------------------------------------------------------------------------+
-; Parameter Settings for Inferred Entity Instance: audio_top:inst3|engine_oscil:en1|lpm_mult:Mult0 ;
-+------------------------------------------------+------------+------------------------------------+
-; Parameter Name                                 ; Value      ; Type                               ;
-+------------------------------------------------+------------+------------------------------------+
-; AUTO_CARRY_CHAINS                              ; ON         ; AUTO_CARRY                         ;
-; IGNORE_CARRY_BUFFERS                           ; OFF        ; IGNORE_CARRY                       ;
-; AUTO_CASCADE_CHAINS                            ; ON         ; AUTO_CASCADE                       ;
-; IGNORE_CASCADE_BUFFERS                         ; OFF        ; IGNORE_CASCADE                     ;
-; LPM_WIDTHA                                     ; 14         ; Untyped                            ;
-; LPM_WIDTHB                                     ; 5          ; Untyped                            ;
-; LPM_WIDTHP                                     ; 19         ; Untyped                            ;
-; LPM_WIDTHR                                     ; 19         ; Untyped                            ;
-; LPM_WIDTHS                                     ; 1          ; Untyped                            ;
-; LPM_REPRESENTATION                             ; UNSIGNED   ; Untyped                            ;
-; LPM_PIPELINE                                   ; 0          ; Untyped                            ;
-; LATENCY                                        ; 0          ; Untyped                            ;
-; INPUT_A_IS_CONSTANT                            ; NO         ; Untyped                            ;
-; INPUT_B_IS_CONSTANT                            ; NO         ; Untyped                            ;
-; USE_EAB                                        ; OFF        ; Untyped                            ;
-; MAXIMIZE_SPEED                                 ; 5          ; Untyped                            ;
-; DEVICE_FAMILY                                  ; Cyclone II ; Untyped                            ;
-; CARRY_CHAIN                                    ; MANUAL     ; Untyped                            ;
-; APEX20K_TECHNOLOGY_MAPPER                      ; LUT        ; TECH_MAPPER_APEX20K                ;
-; DEDICATED_MULTIPLIER_CIRCUITRY                 ; AUTO       ; Untyped                            ;
-; DEDICATED_MULTIPLIER_MIN_INPUT_WIDTH_FOR_AUTO  ; 0          ; Untyped                            ;
-; DEDICATED_MULTIPLIER_MIN_OUTPUT_WIDTH_FOR_AUTO ; 0          ; Untyped                            ;
-; CBXI_PARAMETER                                 ; mult_57t   ; Untyped                            ;
-; INPUT_A_FIXED_VALUE                            ; Bx         ; Untyped                            ;
-; INPUT_B_FIXED_VALUE                            ; Bx         ; Untyped                            ;
-; USE_AHDL_IMPLEMENTATION                        ; OFF        ; Untyped                            ;
-+------------------------------------------------+------------+------------------------------------+
-Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
-
-
-+--------------------------------------------------------------------------------------------------+
-; Parameter Settings for Inferred Entity Instance: audio_top:inst3|engine_oscil:en0|lpm_mult:Mult0 ;
-+------------------------------------------------+------------+------------------------------------+
-; Parameter Name                                 ; Value      ; Type                               ;
-+------------------------------------------------+------------+------------------------------------+
-; AUTO_CARRY_CHAINS                              ; ON         ; AUTO_CARRY                         ;
-; IGNORE_CARRY_BUFFERS                           ; OFF        ; IGNORE_CARRY                       ;
-; AUTO_CASCADE_CHAINS                            ; ON         ; AUTO_CASCADE                       ;
-; IGNORE_CASCADE_BUFFERS                         ; OFF        ; IGNORE_CASCADE                     ;
-; LPM_WIDTHA                                     ; 14         ; Untyped                            ;
-; LPM_WIDTHB                                     ; 5          ; Untyped                            ;
-; LPM_WIDTHP                                     ; 19         ; Untyped                            ;
-; LPM_WIDTHR                                     ; 19         ; Untyped                            ;
-; LPM_WIDTHS                                     ; 1          ; Untyped                            ;
-; LPM_REPRESENTATION                             ; UNSIGNED   ; Untyped                            ;
-; LPM_PIPELINE                                   ; 0          ; Untyped                            ;
-; LATENCY                                        ; 0          ; Untyped                            ;
-; INPUT_A_IS_CONSTANT                            ; NO         ; Untyped                            ;
-; INPUT_B_IS_CONSTANT                            ; NO         ; Untyped                            ;
-; USE_EAB                                        ; OFF        ; Untyped                            ;
-; MAXIMIZE_SPEED                                 ; 5          ; Untyped                            ;
-; DEVICE_FAMILY                                  ; Cyclone II ; Untyped                            ;
-; CARRY_CHAIN                                    ; MANUAL     ; Untyped                            ;
-; APEX20K_TECHNOLOGY_MAPPER                      ; LUT        ; TECH_MAPPER_APEX20K                ;
-; DEDICATED_MULTIPLIER_CIRCUITRY                 ; AUTO       ; Untyped                            ;
-; DEDICATED_MULTIPLIER_MIN_INPUT_WIDTH_FOR_AUTO  ; 0          ; Untyped                            ;
-; DEDICATED_MULTIPLIER_MIN_OUTPUT_WIDTH_FOR_AUTO ; 0          ; Untyped                            ;
-; CBXI_PARAMETER                                 ; mult_57t   ; Untyped                            ;
-; INPUT_A_FIXED_VALUE                            ; Bx         ; Untyped                            ;
-; INPUT_B_FIXED_VALUE                            ; Bx         ; Untyped                            ;
-; USE_AHDL_IMPLEMENTATION                        ; OFF        ; Untyped                            ;
-+------------------------------------------------+------------+------------------------------------+
-Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
-
-
-+-----------------------------------------------------------------------------------------+
-; lpm_mult Parameter Settings by Entity Instance                                          ;
-+---------------------------------------+-------------------------------------------------+
-; Name                                  ; Value                                           ;
-+---------------------------------------+-------------------------------------------------+
-; Number of entity instances            ; 2                                               ;
-; Entity Instance                       ; audio_top:inst3|engine_oscil:en1|lpm_mult:Mult0 ;
-;     -- LPM_WIDTHA                     ; 14                                              ;
-;     -- LPM_WIDTHB                     ; 5                                               ;
-;     -- LPM_WIDTHP                     ; 19                                              ;
-;     -- LPM_REPRESENTATION             ; UNSIGNED                                        ;
-;     -- INPUT_A_IS_CONSTANT            ; NO                                              ;
-;     -- INPUT_B_IS_CONSTANT            ; NO                                              ;
-;     -- USE_EAB                        ; OFF                                             ;
-;     -- DEDICATED_MULTIPLIER_CIRCUITRY ; AUTO                                            ;
-;     -- INPUT_A_FIXED_VALUE            ; Bx                                              ;
-;     -- INPUT_B_FIXED_VALUE            ; Bx                                              ;
-; Entity Instance                       ; audio_top:inst3|engine_oscil:en0|lpm_mult:Mult0 ;
-;     -- LPM_WIDTHA                     ; 14                                              ;
-;     -- LPM_WIDTHB                     ; 5                                               ;
-;     -- LPM_WIDTHP                     ; 19                                              ;
-;     -- LPM_REPRESENTATION             ; UNSIGNED                                        ;
-;     -- INPUT_A_IS_CONSTANT            ; NO                                              ;
-;     -- INPUT_B_IS_CONSTANT            ; NO                                              ;
-;     -- USE_EAB                        ; OFF                                             ;
-;     -- DEDICATED_MULTIPLIER_CIRCUITRY ; AUTO                                            ;
-;     -- INPUT_A_FIXED_VALUE            ; Bx                                              ;
-;     -- INPUT_B_FIXED_VALUE            ; Bx                                              ;
-+---------------------------------------+-------------------------------------------------+
 
 
 +--------------------------------------------------------------+
@@ -434,7 +298,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 +----------------+--------------+
 ; Partition Name ; Elapsed Time ;
 +----------------+--------------+
-; Top            ; 00:00:27     ;
+; Top            ; 00:00:05     ;
 +----------------+--------------+
 
 
@@ -444,7 +308,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus II 32-bit Analysis & Synthesis
     Info: Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Full Version
-    Info: Processing started: Tue Jan  4 17:14:28 2022
+    Info: Processing started: Tue Jan  4 20:47:53 2022
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off de1 -c top_de1
 Info (20030): Parallel compilation is enabled and will use 16 of the 16 processors detected
 Info (12021): Found 1 design units, including 0 entities, in source file /tmp/.x2go-mhpadriaanse/media/disk/_cygdrive_C_Users_Marijn_Nodig_TUDELF1_B2_Q2_L_x2go/electron/audio/VHDL/test_data_gen_behaviour_cfg.vhd
@@ -482,36 +346,28 @@ Info (12021): Found 2 design units, including 1 entities, in source file gen25mh
 Info (12127): Elaborating entity "top_de1" for the top level hierarchy
 Info (12128): Elaborating entity "audio_top" for hierarchy "audio_top:inst3"
 Info (12128): Elaborating entity "engine_oscil" for hierarchy "audio_top:inst3|engine_oscil:en0"
+Warning (10492): VHDL Process Statement warning at engine_oscil-behaviour.vhd(111): signal "frozen_bits" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at engine_oscil-behaviour.vhd(133): signal "frozen_bits" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at engine_oscil-behaviour.vhd(133): signal "crash" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at engine_oscil-behaviour.vhd(135): signal "frozen_bits" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at engine_oscil-behaviour.vhd(135): signal "crash" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at engine_oscil-behaviour.vhd(137): signal "frozen_bits" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at engine_oscil-behaviour.vhd(137): signal "crash" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at engine_oscil-behaviour.vhd(139): signal "frozen_bits" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at engine_oscil-behaviour.vhd(139): signal "crash" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
 Info (12128): Elaborating entity "rng" for hierarchy "audio_top:inst3|rng:expl"
 Info (12128): Elaborating entity "gen25mhz" for hierarchy "gen25mhz:inst1"
 Info (12128): Elaborating entity "test_data_gen" for hierarchy "test_data_gen:inst"
-Info (278001): Inferred 2 megafunctions from design logic
-    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "audio_top:inst3|engine_oscil:en1|Mult0"
-    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "audio_top:inst3|engine_oscil:en0|Mult0"
-Info (12130): Elaborated megafunction instantiation "audio_top:inst3|engine_oscil:en1|lpm_mult:Mult0"
-Info (12133): Instantiated megafunction "audio_top:inst3|engine_oscil:en1|lpm_mult:Mult0" with the following parameter:
-    Info (12134): Parameter "LPM_WIDTHA" = "14"
-    Info (12134): Parameter "LPM_WIDTHB" = "5"
-    Info (12134): Parameter "LPM_WIDTHP" = "19"
-    Info (12134): Parameter "LPM_WIDTHR" = "19"
-    Info (12134): Parameter "LPM_WIDTHS" = "1"
-    Info (12134): Parameter "LPM_REPRESENTATION" = "UNSIGNED"
-    Info (12134): Parameter "INPUT_A_IS_CONSTANT" = "NO"
-    Info (12134): Parameter "INPUT_B_IS_CONSTANT" = "NO"
-    Info (12134): Parameter "MAXIMIZE_SPEED" = "5"
-Info (12021): Found 1 design units, including 1 entities, in source file db/mult_57t.tdf
-    Info (12023): Found entity 1: mult_57t
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
-Info (21057): Implemented 399 device resources after synthesis - the final resource count might be different
+Info (21057): Implemented 518 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 11 input pins
     Info (21059): Implemented 2 output pins
-    Info (21061): Implemented 382 logic cells
-    Info (21062): Implemented 4 DSP elements
-Info: Quartus II 32-bit Analysis & Synthesis was successful. 0 errors, 0 warnings
-    Info: Peak virtual memory: 370 megabytes
-    Info: Processing ended: Tue Jan  4 17:16:52 2022
-    Info: Elapsed time: 00:02:24
+    Info (21061): Implemented 505 logic cells
+Info: Quartus II 32-bit Analysis & Synthesis was successful. 0 errors, 9 warnings
+    Info: Peak virtual memory: 366 megabytes
+    Info: Processing ended: Tue Jan  4 20:49:23 2022
+    Info: Elapsed time: 00:01:30
     Info: Total CPU time (on all processors): 00:00:04
 
 

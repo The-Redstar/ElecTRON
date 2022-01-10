@@ -21,9 +21,12 @@ architecture behaviour of engine_oscil is
 	signal prev_dir:	std_logic_vector(1 downto 0);
 	signal prev_engine, prev_crash:	std_logic;
 	
+	signal frozen_bits, next_frozen_bits: std_logic_vector(3 downto 0);
+	
 	constant ENGINE_START_PERIOD	: unsigned(18 downto 0) := "011ZZ01000Z10010000"; --"0111101000010010000";
 	constant BEEP_PERIOD			: unsigned(18 downto 0) := "0100001000010010000";
-	constant CRASH_START_PERIOD		: unsigned(18 downto 0) := "0010000000000000000";
+	constant CRASH_START_PERIOD		: unsigned(18 downto 0) := "0011110000000000000";
+	
 begin
 
 --clocking
@@ -45,6 +48,7 @@ begin
 			prev_dir<=dir;
 			prev_engine<=engine;
 			prev_crash<=crash;
+			frozen_bits<=next_frozen_bits;
 		end if;
 	end process;
 
@@ -98,19 +102,20 @@ begin
 --count and new period
 	process(count,period_boosted,new_period,period,boost,bits,crash)
 		--variable long_bits: unsigned(18 downto 0);
-		variable mult_bits: unsigned(4 downto 0);
+		--variable mult_bits: unsigned(4 downto 0);
 	begin
 		--long_bits:=(others=>'0');
 		--long_bits(15 downto 12) := unsigned(bits);
-		mult_bits(4):='1';
-		mult_bits(3 downto 0):=unsigned(bits);
-		
+		--mult_bits(4):='1';
+		--mult_bits(3 downto 0):=unsigned(bits);
+		next_frozen_bits <= frozen_bits;
 		if count=period_boosted  then --reset on period
+			next_frozen_bits<=bits;
 			next_count <= (others => '0');
 			if crash='1' then
 				--next_period <= new_period+long_bits;
 				--next_period(16 downto 13) <= unsigned(bits);
-				next_period<=new_period(17 downto 4)*mult_bits;
+				next_period <= new_period;--new_period(17 downto 4)*mult_bits;
 			else
 				next_period <= new_period;
 			end if;
@@ -124,10 +129,14 @@ begin
 --wave output
 	process(count,period_boosted)
 	begin
-		if count<shift_right(period_boosted,1) then
-			next_wave<='1';
+		if count<shift_right(period_boosted,2) then
+			next_wave<=frozen_bits(0) or not crash;--'1';
+		elsif count<shift_right(period_boosted,1) then
+			next_wave<=frozen_bits(1) or not crash;--'1';
+		elsif count<shift_right(period_boosted,1)+shift_right(period_boosted,2) then
+			next_wave<=frozen_bits(2) and crash;--'0';
 		else
-			next_wave<='0';
+			next_wave<=frozen_bits(3) and crash;--'0';
 		end if;
 	end process;
 
