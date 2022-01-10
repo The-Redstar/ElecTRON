@@ -4,10 +4,10 @@ use IEEE.std_logic_1164.all;
 use ieee.numeric_std.all;
 
 
-entity game_engine_tb is
-end entity game_engine_tb;
+entity game_engine_tb_2 is
+end entity game_engine_tb_2;
 
-architecture structural of game_engine_tb is
+architecture structural of game_engine_tb_2 is
 
 	
 	component game_engine is
