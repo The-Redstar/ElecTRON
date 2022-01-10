@@ -18,7 +18,7 @@ architecture behaviour of game_engine is
 	signal next_layer_0, next_layer_1, d_next_layer_0, d_next_layer_1, e_next_layer_0, e_next_layer_1 : std_logic;
 	signal border_0, border_1, d_border_0, d_border_1, e_border_0, e_border_1: std_logic;
 	signal d_read_data_reg, read_data_reg : std_logic_vector (7 downto 0);
-	signal player_0_state, player_1_state, d_player_0_state, d_player_1_state, d_map_select, d_speed_select, map_select, speed_select: std_logic_vector (1 downto 0);
+	signal player_0_state, player_1_state, d_player_0_state, d_player_1_state, d_map_select, d_speed_select, speed_select: std_logic_vector (1 downto 0);
 	signal e_position_0, e_position_1, e_read_data_reg, e_direction_0, e_direction_1, e_next_direction_0, e_next_direction_1, e_player_0_state, e_player_1_state: std_logic;
 	--signals for memory communication
 	signal read_data_fsm, write_data_fsm : std_logic_vector(7 downto 0);
@@ -120,7 +120,8 @@ architecture behaviour of game_engine is
 			q_next_dir_1  : out std_logic_vector(1 downto 0);
 			q_p_state_0   : out std_logic_vector(1 downto 0);
 			q_p_state_1   : out std_logic_vector(1 downto 0);
-			q_map_select  : out std_logic_vector(1 downto 0));
+			q_map_select  : out std_logic_vector(1 downto 0);
+			q_speed_select: out std_logic_vector(1 downto 0));
 	end component;
 
 begin
