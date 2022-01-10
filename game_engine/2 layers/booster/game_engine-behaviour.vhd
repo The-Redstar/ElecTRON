@@ -31,7 +31,7 @@ architecture behaviour of game_engine is
 	signal booster_begin_0, booster_begin_1, booster_0, booster_1, booster_sync, collision_middle, collision_head: std_logic;
 	--other signals
 	signal wallshape_0, wallshape_1 : std_logic_vector(2 downto 0);
-	signal speed_unsigned : unsigned (4 downto 0);
+	signal unsigned_speed : unsigned (4 downto 0);
 
 	component busy_counter is
 	port(clk               : in  std_logic;
@@ -477,17 +477,17 @@ collision: process (next_position_0, next_position_1, position_0, position_1, la
 		end if;
 	end process;
 
-game_speed: process(speed)
+game_speed: process(speed_select)
 	begin
-		if (speed = "00") then
-			unsigned_speed <= 4;
-		elsif (speed = "01") then
-			unsigned_speed <= 8;
-		elsif (speed = "10") then
-			unsigned_speed <= 15;
-		else unsigned_speed <= 30;
+		if (speed_select = "00") then
+			unsigned_speed <= "00100";
+		elsif (speed_select = "01") then
+			unsigned_speed <= "01000";
+		elsif (speed_select = "10") then
+			unsigned_speed <= "01111";
+		else unsigned_speed <= "11110";
 		end if;
-
+end process;
 
 create_next_state: 	process (state, new_state, reset, input, busy, clk, unsigned_busy_count, direction_0, direction_1, next_direction_0, next_direction_1, position_0, position_1, next_position_0, next_position_1, player_0_state, player_1_state, mem_com_ready, select_button, position_grid_0, position_grid_1, read_data_fsm, layer_0, layer_1, read_data_reg, wallshape_0, wallshape_1, next_layer_0, next_layer_1, border_0, border_1, collision_head, collision_middle)
 	begin
@@ -603,7 +603,7 @@ create_next_state: 	process (state, new_state, reset, input, busy, clk, unsigned
 				d_next_direction_1	<= input(3 downto 2);
 
 				e_speed_select			<= '1';
-				d_speed			<= input(3 downto 2);
+				d_speed_select			<= input(3 downto 2);
 				
 				e_map_select		<= '1';
 				d_map_select		<= input(1 downto 0);
