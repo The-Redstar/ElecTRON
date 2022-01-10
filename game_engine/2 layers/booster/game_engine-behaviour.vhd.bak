@@ -471,7 +471,7 @@ collision: process (next_position_0, next_position_1, position_0, position_1, la
 		end if;
 	end process;
 
-game_speed: process(speed)
+game_speed: process()
 	begin
 		if (speed = "00") then
 			unsigned_speed <= 4;
