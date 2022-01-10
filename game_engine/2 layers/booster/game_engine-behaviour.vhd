@@ -14,11 +14,11 @@ architecture behaviour of game_engine is
 	signal d_next_direction_0, d_next_direction_1, next_direction_0, next_direction_1 : std_logic_vector(1 downto 0);
 	signal position_0, position_1, next_position_0, next_position_1 : std_logic_vector (9 downto 0);
 	signal d_position_0, d_position_1 : std_logic_vector (9 downto 0);
-	signal layer_0, layer_1, d_layer_0, d_layer_1, e_layer_0, e_layer_1, d_booster_0, d_booster_1, e_booster_0, e_booster_1, d_booster_sync, e_booster_sync, e_map_select: std_logic;
+	signal layer_0, layer_1, d_layer_0, d_layer_1, e_layer_0, e_layer_1, d_booster_0, d_booster_1, e_booster_0, e_booster_1, d_booster_sync, e_booster_sync, e_map_select, e_speed_select: std_logic;
 	signal next_layer_0, next_layer_1, d_next_layer_0, d_next_layer_1, e_next_layer_0, e_next_layer_1 : std_logic;
 	signal border_0, border_1, d_border_0, d_border_1, e_border_0, e_border_1: std_logic;
 	signal d_read_data_reg, read_data_reg : std_logic_vector (7 downto 0);
-	signal player_0_state, player_1_state, d_player_0_state, d_player_1_state, d_map_select: std_logic_vector (1 downto 0);
+	signal player_0_state, player_1_state, d_player_0_state, d_player_1_state, d_map_select, d_speed_select, map_select, speed_select: std_logic_vector (1 downto 0);
 	signal e_position_0, e_position_1, e_read_data_reg, e_direction_0, e_direction_1, e_next_direction_0, e_next_direction_1, e_player_0_state, e_player_1_state: std_logic;
 	--signals for memory communication
 	signal read_data_fsm, write_data_fsm : std_logic_vector(7 downto 0);
@@ -100,6 +100,8 @@ architecture behaviour of game_engine is
 			d_p_state_1   : in  std_logic_vector(1 downto 0);
 			e_map_select  : in  std_logic;
 			d_map_select  : in  std_logic_vector(1 downto 0);
+			e_speed_select: in  std_logic;
+			d_speed_select: in  std_logic_vector(1 downto 0);
 			q_position_0  : out std_logic_vector(9 downto 0);
 			q_position_1  : out std_logic_vector(9 downto 0);
 			q_layer_0	  : out std_logic;
@@ -163,6 +165,8 @@ reg: ge_register port map (clk => clk,
 			d_p_state_1   => d_player_1_state,
 			e_map_select  => e_map_select,
 			d_map_select  => d_map_select,
+			e_speed_select=> e_speed_select,
+			d_speed_select=> d_speed_select,
 			q_position_0  => position_0,
 			q_position_1  => position_1,
 			q_layer_0	  => layer_0,
@@ -181,7 +185,8 @@ reg: ge_register port map (clk => clk,
 			q_next_dir_1  => next_direction_1,
 			q_p_state_0   => player_0_state,
 			q_p_state_1   => player_1_state,
-			q_map_select  => map_select);
+			q_map_select  => map_select,
+			q_speed_select=> speed_select);
 			
 counter: busy_counter port map (clk => clk,
 			global_reset => reset,
@@ -484,7 +489,7 @@ create_next_state: 	process (state, new_state, reset, input, busy, clk, unsigned
 		e_layer_1					<= '0';
 		e_booster_0					<= '0';
 		e_booster_1					<= '0';
-		e_booster_sync					<= '0';
+		e_booster_sync				<= '0';
 		e_next_layer_0				<= '0';
 		e_next_layer_1				<= '0';
 		e_border_0					<= '0';
@@ -497,6 +502,7 @@ create_next_state: 	process (state, new_state, reset, input, busy, clk, unsigned
 		e_player_0_state			<= '0';
 		e_player_1_state			<= '0';			
 		e_map_select				<= '0';			
+		e_speed_select				<= '0';			
 			
 		d_position_0				<= (others => '0');
 		d_position_1				<= (others => '0');	
@@ -516,6 +522,7 @@ create_next_state: 	process (state, new_state, reset, input, busy, clk, unsigned
 		d_player_0_state			<= (others => '0');
 		d_player_1_state			<= (others => '0');
 		d_map_select				<= (others => '0');
+		d_speed_select				<= (others => '0');
 		
 		
 		address_fsm	   			<= (others => '0');

@@ -152,6 +152,11 @@ begin
 					e    => e_map_select,
 					d    => d_map_select,
 					q    => q_map_select);
+	speed_select:reg_2 port map			   ( clk  => clk,
+					reset=> reset,
+					e    => e_speed_select,
+					d    => d_speed_select,
+					q    => q_speed_select);
 
 end structural;
 
