@@ -5,7 +5,7 @@ use ieee.numeric_std.all;
 
 architecture behaviour of game_engine is
 
-	type game_state is (reset_state, loading_state, booster, check_booster, home_screen, get_ready, before_start_state, read_inputs, read1_memory_player_0, read1_memory_player_1, read2_memory_player_0, read2_memory_player_1, check_who_won, wait_state, write_memory_player_0, write_memory_player_1, change_data, check_how_collision, player_0_won, player_1_won, tie, busy_reset, check_jump_0, check_jump_1);
+	type game_state is (reset_state, loading_state, booster, check_booster, home_screen, get_ready, before_start_state, read_inputs, read1_memory_player_0, read1_memory_player_1, read2_memory_player_0, read2_memory_player_1, check_who_won, wait_state, write_memory_player_0, write_memory_player_1, change_data, check_how_collision, player_0_won, player_1_won, tie, busy_reset, check_jump_0, check_jump_1, initial_conditions);
 
 
 	signal state, new_state: game_state;
@@ -595,42 +595,56 @@ create_next_state: 	process (state, new_state, reset, input, busy, clk, unsigned
 
 			when home_screen =>
 				if (select_button = '1') then
-					new_state <= get_ready;
+					new_state <= initial_conditions;
 				else 
 					new_state <= home_screen;
 				end if;
-				e_direction_0 		<= '1';
-				e_direction_1 		<= '1'; 
-				d_next_direction_0 	<= input(1 downto 0);
-				d_next_direction_1	<= input(3 downto 2);
-
+ 				--e_direction_0 		<= '1';
+				--e_direction_1 		<= '1'; 
+				--d_next_direction_0 	<= input(1 downto 0);
+				--d_next_direction_1	<= input(3 downto 2);
+ 
 				e_speed_select			<= '1';
 				d_speed_select			<= input(3 downto 2);
 				
 				e_map_select		<= '1';
 				d_map_select		<= input(1 downto 0);
 				
-			when get_ready =>
-				-- wait for the player to press the button in the right direction: meaning they are ready to play
-				d_position_0				<= position_grid_0 (9 downto 0);
-				d_position_1				<= position_grid_1 (9 downto 0);
+			when initial_conditions =>
+				state_vga 					<= "101";
+				--setting the initial conditions from de grid controller
 				e_position_0				<= '1';
 				e_position_1				<= '1';
+				d_position_0				<= position_grid_0 (9 downto 0);
+				d_position_1				<= position_grid_1 (9 downto 0);
+				
 				e_layer_0					<= '1';
 				e_layer_1					<= '1';
 				d_layer_0					<= position_grid_0 (10);
 				d_layer_1					<= position_grid_1 (10);
 				
-				state_vga 					<= "101";
-				e_player_0_state			<= '1';
-				e_player_1_state			<= '1';
 				e_direction_0				<= '1';
 				e_direction_1				<= '1';
 				d_direction_0				<= direction_grid_0;
 				d_direction_1				<= direction_grid_1;
+				
 				e_booster_0					<= '1';
 				e_booster_1					<= '1';
-				e_booster_sync					<= '1';
+				e_booster_sync				<= '1';
+				
+				--Select button has to be pressed twice. To make sure it doesnt go trough two sates with one press, there should be a check for 0.
+				if (select_button = '0') then
+					new_state <= get_ready;
+				else
+					new_state <= initial_conditions;
+				end if;
+			when get_ready =>
+				-- wait for the player to press the button in the right direction: meaning they are ready to play
+				
+				
+				state_vga 					<= "101";
+				e_player_0_state			<= '1';
+				e_player_1_state			<= '1';
 				
 				
 				-- when player 0 is ready to play the next state is 'player_0_ready'
