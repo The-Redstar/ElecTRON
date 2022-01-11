@@ -31,7 +31,7 @@ architecture behaviour of game_engine is
 	signal booster_begin_0, booster_begin_1, booster_0, booster_1, booster_sync, collision_middle, collision_head: std_logic;
 	--other signals
 	signal wallshape_0, wallshape_1 : std_logic_vector(2 downto 0);
-	signal unsigned_speed : unsigned (4 downto 0);
+	signal unsigned_speed : unsigned (3 downto 0);
 
 	component busy_counter is
 	port(clk               : in  std_logic;
@@ -480,12 +480,12 @@ collision: process (next_position_0, next_position_1, position_0, position_1, la
 game_speed: process(speed_select)
 	begin
 		if (speed_select = "00") then
-			unsigned_speed <= "00100";
+			unsigned_speed <= "1010";
 		elsif (speed_select = "01") then
-			unsigned_speed <= "01000";
+			unsigned_speed <= "1000";
 		elsif (speed_select = "10") then
-			unsigned_speed <= "01111";
-		else unsigned_speed <= "11110";
+			unsigned_speed <= "0110";
+		else unsigned_speed <= "0101";
 		end if;
 end process;
 
