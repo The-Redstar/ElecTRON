@@ -112,13 +112,13 @@ rounding_process: process(rel_x, rel_y)
 bounds:	process(xe0, xe1, xg1, xg3, xg4, xg5, xg6, xs9, xs10, xs11, xs12, xs14, xe14, xe15, ye0, ye1, yg1, yg3, yg4, yg5, yg6, ys9, ys10, ys11, ys12, ys14, ye14, ye15, dx, dy,rounding)
 	--using the conditions above make the bounding box signals
 	begin
-		--the bounds of the first layer
-		bbox_wall(0)<=xg4 and xs11 and ys11; --N
-		bbox_wall(2)<=xg4 and xs11 and yg4;  --S
-		bbox_wall(3)<=yg4 and ys11 and xg4;  --E
-		bbox_wall(1)<=yg4 and ys11 and xs11; --W
+		--the bounds of the first (bottom) layer
+		bbox_wall(0)<=xg3 and xs12 and ys12; --N
+		bbox_wall(2)<=xg3 and xs12 and yg3;  --S
+		bbox_wall(3)<=yg3 and ys12 and xg3;  --E
+		bbox_wall(1)<=yg3 and ys12 and xs12; --W
 		-------------------------------------
-		--the bounds of the second layer 
+		--the bounds of the second (top) layer 
 		--(the walls are thinner on the second layer)
 		bbox_wall(4)<=xg5 and xs10 and ys10; --N
 		bbox_wall(6)<=xg5 and xs10 and yg5;  --S
@@ -231,9 +231,14 @@ layering: process(bbox_wall, bbox_dot, bbox_v, bbox_h, bbox_border, bbox_jump, b
 		elsif player1_layer='1' and player1_inner_explosion_pixel then
 			color<=C_player1_explosion_inner;
 		elsif player0_layer='1' and player0_outer_explosion_pixel then
-			color<=C_player0_explosion_outer;
+			if player1_layer='1' and player1_outer_explosion_pixel then --collision
+				color<="1111";
+			else
+				color<=C_player0_explosion_outer;
+			end if;
 		elsif player1_layer='1' and player1_outer_explosion_pixel then
 			color<=C_player1_explosion_outer;
+			
 		elsif player0_layer='1' and player0_right_explosion_pixel then
 			color<=C_player0_explosion_outer;
 		elsif player1_layer='1' and player1_right_explosion_pixel then
@@ -287,7 +292,11 @@ layering: process(bbox_wall, bbox_dot, bbox_v, bbox_h, bbox_border, bbox_jump, b
 		elsif player1_inner_explosion_pixel then
 			color<=C_player1_explosion_inner;
 		elsif player0_outer_explosion_pixel then
-			color<=C_player0_explosion_outer;
+			if player1_outer_explosion_pixel then --collision
+				color<="1111";
+			else
+				color<=C_player0_explosion_outer;
+			end if;
 		elsif player1_outer_explosion_pixel then
 			color<=C_player1_explosion_outer;
 		elsif player0_right_explosion_pixel then

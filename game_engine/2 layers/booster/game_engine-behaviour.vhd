@@ -14,11 +14,11 @@ architecture behaviour of game_engine is
 	signal d_next_direction_0, d_next_direction_1, next_direction_0, next_direction_1 : std_logic_vector(1 downto 0);
 	signal position_0, position_1, next_position_0, next_position_1 : std_logic_vector (9 downto 0);
 	signal d_position_0, d_position_1 : std_logic_vector (9 downto 0);
-	signal layer_0, layer_1, d_layer_0, d_layer_1, e_layer_0, e_layer_1, d_booster_0, d_booster_1, e_booster_0, e_booster_1, d_booster_sync, e_booster_sync, e_map_select: std_logic;
+	signal layer_0, layer_1, d_layer_0, d_layer_1, e_layer_0, e_layer_1, d_booster_0, d_booster_1, e_booster_0, e_booster_1, d_booster_sync, e_booster_sync, e_map_select, e_speed_select: std_logic;
 	signal next_layer_0, next_layer_1, d_next_layer_0, d_next_layer_1, e_next_layer_0, e_next_layer_1 : std_logic;
 	signal border_0, border_1, d_border_0, d_border_1, e_border_0, e_border_1: std_logic;
 	signal d_read_data_reg, read_data_reg : std_logic_vector (7 downto 0);
-	signal player_0_state, player_1_state, d_player_0_state, d_player_1_state, d_map_select: std_logic_vector (1 downto 0);
+	signal player_0_state, player_1_state, d_player_0_state, d_player_1_state, d_map_select, d_speed_select, speed_select: std_logic_vector (1 downto 0);
 	signal e_position_0, e_position_1, e_read_data_reg, e_direction_0, e_direction_1, e_next_direction_0, e_next_direction_1, e_player_0_state, e_player_1_state: std_logic;
 	--signals for memory communication
 	signal read_data_fsm, write_data_fsm : std_logic_vector(7 downto 0);
@@ -31,6 +31,7 @@ architecture behaviour of game_engine is
 	signal booster_begin_0, booster_begin_1, booster_0, booster_1, booster_sync, collision_middle, collision_head: std_logic;
 	--other signals
 	signal wallshape_0, wallshape_1 : std_logic_vector(2 downto 0);
+	signal unsigned_speed : unsigned (4 downto 0);
 
 	component busy_counter is
 	port(clk               : in  std_logic;
@@ -100,6 +101,8 @@ architecture behaviour of game_engine is
 			d_p_state_1   : in  std_logic_vector(1 downto 0);
 			e_map_select  : in  std_logic;
 			d_map_select  : in  std_logic_vector(1 downto 0);
+			e_speed_select: in  std_logic;
+			d_speed_select: in  std_logic_vector(1 downto 0);
 			q_position_0  : out std_logic_vector(9 downto 0);
 			q_position_1  : out std_logic_vector(9 downto 0);
 			q_layer_0	  : out std_logic;
@@ -118,7 +121,8 @@ architecture behaviour of game_engine is
 			q_next_dir_1  : out std_logic_vector(1 downto 0);
 			q_p_state_0   : out std_logic_vector(1 downto 0);
 			q_p_state_1   : out std_logic_vector(1 downto 0);
-			q_map_select  : out std_logic_vector(1 downto 0));
+			q_map_select  : out std_logic_vector(1 downto 0);
+			q_speed_select: out std_logic_vector(1 downto 0));
 	end component;
 
 begin
@@ -163,6 +167,8 @@ reg: ge_register port map (clk => clk,
 			d_p_state_1   => d_player_1_state,
 			e_map_select  => e_map_select,
 			d_map_select  => d_map_select,
+			e_speed_select=> e_speed_select,
+			d_speed_select=> d_speed_select,
 			q_position_0  => position_0,
 			q_position_1  => position_1,
 			q_layer_0	  => layer_0,
@@ -181,7 +187,8 @@ reg: ge_register port map (clk => clk,
 			q_next_dir_1  => next_direction_1,
 			q_p_state_0   => player_0_state,
 			q_p_state_1   => player_1_state,
-			q_map_select  => map_select);
+			q_map_select  => map_select,
+			q_speed_select=> speed_select);
 			
 counter: busy_counter port map (clk => clk,
 			global_reset => reset,
@@ -240,13 +247,13 @@ updates: 	process (clk)
 begin_booster: process (input, direction_0, direction_1)
 	begin
 	
-		if (input(1) = (not direction_0(1))) then 
+		if ((input(1) = (not direction_0(1))) and (input(0) = direction_0(0))) then 
 			booster_begin_0 <= '1';
 		else
 			booster_begin_0 <= '0';
 		end if;
 		
-		if (input(3) = (not direction_1(1))) then
+		if ((input(3) = (not direction_1(1))) and (input(2) = direction_1(0))) then
 			booster_begin_1 <= '1';
 		else
 			booster_begin_1 <= '0';
@@ -470,6 +477,17 @@ collision: process (next_position_0, next_position_1, position_0, position_1, la
 		end if;
 	end process;
 
+game_speed: process(speed_select)
+	begin
+		if (speed_select = "00") then
+			unsigned_speed <= "00100";
+		elsif (speed_select = "01") then
+			unsigned_speed <= "01000";
+		elsif (speed_select = "10") then
+			unsigned_speed <= "01111";
+		else unsigned_speed <= "11110";
+		end if;
+end process;
 
 create_next_state: 	process (state, new_state, reset, input, busy, clk, unsigned_busy_count, direction_0, direction_1, next_direction_0, next_direction_1, position_0, position_1, next_position_0, next_position_1, player_0_state, player_1_state, mem_com_ready, select_button, position_grid_0, position_grid_1, read_data_fsm, layer_0, layer_1, read_data_reg, wallshape_0, wallshape_1, next_layer_0, next_layer_1, border_0, border_1, collision_head, collision_middle)
 	begin
@@ -484,7 +502,7 @@ create_next_state: 	process (state, new_state, reset, input, busy, clk, unsigned
 		e_layer_1					<= '0';
 		e_booster_0					<= '0';
 		e_booster_1					<= '0';
-		e_booster_sync					<= '0';
+		e_booster_sync				<= '0';
 		e_next_layer_0				<= '0';
 		e_next_layer_1				<= '0';
 		e_border_0					<= '0';
@@ -495,7 +513,13 @@ create_next_state: 	process (state, new_state, reset, input, busy, clk, unsigned
 		e_next_direction_0			<= '0';	
 		e_next_direction_1			<= '0';
 		e_player_0_state			<= '0';
-		e_player_1_state			<= '0';				
+		e_player_1_state			<= '0';			
+
+		e_map_select				<= '0';	
+		
+		e_speed_select				<= '0';			
+
+			
 		d_position_0				<= (others => '0');
 		d_position_1				<= (others => '0');	
 		d_layer_0					<= '0';
@@ -513,6 +537,10 @@ create_next_state: 	process (state, new_state, reset, input, busy, clk, unsigned
 		d_next_direction_1			<= (others => '0');
 		d_player_0_state			<= (others => '0');
 		d_player_1_state			<= (others => '0');
+		d_map_select				<= (others => '0');
+
+		d_speed_select				<= (others => '0');
+
 		
 		
 		address_fsm	   			<= (others => '0');
@@ -534,8 +562,11 @@ create_next_state: 	process (state, new_state, reset, input, busy, clk, unsigned
 				-- in this state all the values are set to zero to reset everything
 				state_vga 				<= "100";
 				-- go to the state 'want_to_load' next
-				new_state <= loading_state;
-			
+				if (select_button = '0') then
+					new_state <= loading_state;
+				else
+					new_state <= reset_state;
+				end if;
 			
 			when loading_state =>
 				-- continue to let the memory module know to clear the memory and check when the memory is done
@@ -569,7 +600,13 @@ create_next_state: 	process (state, new_state, reset, input, busy, clk, unsigned
 				e_direction_0 		<= '1';
 				e_direction_1 		<= '1'; 
 				d_next_direction_0 	<= input(1 downto 0);
-				d_next_direction_1	<= input(3 downto 2);		
+				d_next_direction_1	<= input(3 downto 2);
+
+				e_speed_select			<= '1';
+				d_speed_select			<= input(3 downto 2);
+				
+				e_map_select		<= '1';
+				d_map_select		<= input(1 downto 0);
 				
 			when get_ready =>
 				-- wait for the player to press the button in the right direction: meaning they are ready to play
@@ -577,6 +614,8 @@ create_next_state: 	process (state, new_state, reset, input, busy, clk, unsigned
 				d_position_1				<= position_grid_1 (9 downto 0);
 				e_position_0				<= '1';
 				e_position_1				<= '1';
+				e_layer_0					<= '1';
+				e_layer_1					<= '1';
 				d_layer_0					<= position_grid_0 (10);
 				d_layer_1					<= position_grid_1 (10);
 				
@@ -625,7 +664,7 @@ create_next_state: 	process (state, new_state, reset, input, busy, clk, unsigned
 				-- this determines how fast a player moves in the playingfield
 				state_vga 				<= "111";
 				-- when waited long enough go the next state: read_inputs, otherwise keep waiting
-				if (unsigned( unsigned_busy_count) >= 8) then
+				if (unsigned( unsigned_busy_count) >= unsigned_speed) then
 					new_state <= busy_reset;
 				else
 					new_state <= wait_state;
