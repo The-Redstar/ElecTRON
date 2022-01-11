@@ -22,7 +22,8 @@ architecture structural of game_engine_tb is
 		ramp			   : in  std_logic_vector(7 downto 0);
 		position_grid_0	   : in std_logic_vector(10 downto 0);
 		position_grid_1	   : in std_logic_vector(10 downto 0);
-select_button	   : in std_logic;	
+select_button	   : in std_logic;
+test_button	   : in std_logic;		
 		direction_grid_0 : in std_logic_vector(1 downto 0);
 		direction_grid_1 : in std_logic_vector(1 downto 0);
         state_vga          : out std_logic_vector(2 downto 0);
@@ -51,6 +52,7 @@ select_button	   : in std_logic;
     signal write_memory       : std_logic_vector(7 downto 0);
 signal position_grid_0	   : std_logic_vector(10 downto 0);
 signal select_button	   : std_logic;	
+signal test_button	   : std_logic;	
 		signal position_grid_1	   : std_logic_vector(10 downto 0);
 	signal direction_grid_0 : std_logic_vector(1 downto 0);
 		signal direction_grid_1 : std_logic_vector(1 downto 0);
@@ -81,6 +83,7 @@ begin
 							border		=> border, 
 							ramp	=> ramp,	
 							select_button => select_button,
+							test_button => test_button,
 							position_grid_0 => position_grid_0,
 							position_grid_1	 => position_grid_1,	
 							direction_grid_0 => direction_grid_0,
@@ -97,6 +100,7 @@ begin
 							clear_memory       => clear_memory
 				);
 ramp <= "00000000" after 0 ns;
+test_button <= '1' after 0 ns;
 border <= "00000000" after 0 ns;
 select_button <= '1' after 0 ns,
 		'0' after 800 ns,
