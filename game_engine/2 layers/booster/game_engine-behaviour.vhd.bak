@@ -479,13 +479,15 @@ collision: process (next_position_0, next_position_1, position_0, position_1, la
 
 game_speed: process(speed_select)
 	begin
-		if (speed_select = "00") then
-			unsigned_speed <= "00100";
+		if (test_button = '1') then
+			unsigned_speed <= "11111"
+		elsif (speed_select = "00") then
+			unsigned_speed <= "01010";
 		elsif (speed_select = "01") then
 			unsigned_speed <= "01000";
 		elsif (speed_select = "10") then
-			unsigned_speed <= "01111";
-		else unsigned_speed <= "11110";
+			unsigned_speed <= "00110";
+		else unsigned_speed <= "00101";
 		end if;
 end process;
 
