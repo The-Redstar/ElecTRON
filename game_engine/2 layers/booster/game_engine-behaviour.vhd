@@ -14,11 +14,11 @@ architecture behaviour of game_engine is
 	signal d_next_direction_0, d_next_direction_1, next_direction_0, next_direction_1 : std_logic_vector(1 downto 0);
 	signal position_0, position_1, next_position_0, next_position_1 : std_logic_vector (9 downto 0);
 	signal d_position_0, d_position_1 : std_logic_vector (9 downto 0);
-	signal layer_0, layer_1, d_layer_0, d_layer_1, e_layer_0, e_layer_1, d_booster_0, d_booster_1, e_booster_0, e_booster_1, d_booster_sync, e_booster_sync, e_map_select, e_speed_select: std_logic;
+	signal layer_0, layer_1, d_layer_0, d_layer_1, e_layer_0, e_layer_1, d_booster_0, d_booster_1, e_booster_0, e_booster_1, d_booster_sync, e_booster_sync, e_map_select, e_speed_select, e_boost_audio: std_logic;
 	signal next_layer_0, next_layer_1, d_next_layer_0, d_next_layer_1, e_next_layer_0, e_next_layer_1 : std_logic;
 	signal border_0, border_1, d_border_0, d_border_1, e_border_0, e_border_1: std_logic;
 	signal d_read_data_reg, read_data_reg : std_logic_vector (7 downto 0);
-	signal player_0_state, player_1_state, d_player_0_state, d_player_1_state, d_map_select, d_speed_select, speed_select: std_logic_vector (1 downto 0);
+	signal player_0_state, player_1_state, d_player_0_state, d_player_1_state, d_map_select, d_speed_select, speed_select, d_boost_audio: std_logic_vector (1 downto 0);
 	signal e_position_0, e_position_1, e_read_data_reg, e_direction_0, e_direction_1, e_next_direction_0, e_next_direction_1, e_player_0_state, e_player_1_state: std_logic;
 	--signals for memory communication
 	signal read_data_fsm, write_data_fsm : std_logic_vector(7 downto 0);
@@ -75,6 +75,8 @@ architecture behaviour of game_engine is
 			e_booster_1	  : in  std_logic;
 			d_booster_0	  : in  std_logic;
 			d_booster_1	  : in  std_logic;
+			e_boost_audio : in  std_logic;
+			d_boost_audio : in  std_logic_vector(1 downto 0);
 			e_booster_sync	  : in  std_logic;
 			d_booster_sync  : in  std_logic;
 			e_next_layer_0: in  std_logic;
@@ -110,6 +112,7 @@ architecture behaviour of game_engine is
 			q_booster_0	  : out std_logic;
 			q_booster_1	  : out std_logic;
 			q_booster_sync	  : out std_logic;
+			q_boost_audio : out std_logic_vector(1 downto 0);
 			q_next_layer_0: out std_logic;
 			q_next_layer_1: out std_logic;
 			q_border_0	  : out std_logic;
@@ -141,6 +144,8 @@ reg: ge_register port map (clk => clk,
 			e_booster_1	  => e_booster_1,
 			d_booster_0	  => d_booster_0,
 			d_booster_1	  => d_booster_1,
+			e_boost_audio => e_boost_audio,
+			d_boost_audio => d_boost_audio,
 			e_booster_sync	  => e_booster_sync,
 			d_booster_sync	  => d_booster_sync,
 			e_next_layer_0=> e_next_layer_0,
@@ -175,6 +180,7 @@ reg: ge_register port map (clk => clk,
 			q_layer_1	  => layer_1,
 			q_booster_0	  => booster_0,
 			q_booster_1	  => booster_1,
+			q_boost_audio => boost_audio,
 			q_booster_sync	  => booster_sync,
 			q_next_layer_0=> next_layer_0,
 			q_next_layer_1=> next_layer_1,
@@ -695,41 +701,50 @@ create_next_state: 	process (state, new_state, reset, input, busy, clk, unsigned
 			when read_inputs =>
 				-- read the inputs from the players and remember them
 				state_vga 					<= "111";
-				-- remember the values of the input of the players in 'next_direction_#player'
-				if (booster_begin_0 = '1') then
-					e_next_direction_0			<= '0';	
-				else	
-					e_next_direction_0			<= '1';
-					d_next_direction_0			<= input(1 downto 0);
-				end if;
-
-				if (booster_begin_1 = '1') then
-					e_next_direction_1			<= '0';
-				else	
-					e_next_direction_1			<= '1';
-					d_next_direction_1			<= input(3 downto 2);
-				end if;									
-	
-				-- go to the state 'wall_shape' next
-				new_state <= booster;
-
-			when booster =>
+				
 				e_booster_0 <= '1';
 				e_booster_1 <= '1';
 				e_booster_sync <= '1';
 				d_booster_sync <= not booster_sync;
-				if (booster_begin_0 = '1') then
-					d_booster_0 <= '1';
-				else 
-					d_booster_0 <= booster_sync;
-				end if;
 				
-				if (booster_begin_1 = '1') then
-					d_booster_1 <= '1';
-				else 
-					d_booster_1 <= booster_sync;
+				-- remember the values of the input of the players in 'next_direction_#player'
+				if (booster_begin_0 = '1') then
+					d_booster_0					<= '1';
+				else	
+					e_next_direction_0			<= '1';
+					d_next_direction_0			<= input(1 downto 0);
+					d_booster_0 				<= booster_sync;
 				end if;
+
+				if (booster_begin_1 = '1') then
+					d_booster_1 				<= '1';
+				else	
+					e_next_direction_1			<= '1';
+					d_next_direction_1			<= input(3 downto 2);
+					d_booster_1 				<= booster_sync;
+				end if;									
+	
+				-- go to the state 'wall_shape' next
 				new_state <= check_booster;
+
+			-- when booster =>
+				-- state_vga 					<= "111";
+				
+				-- e_booster_0 <= '1';
+				-- e_booster_1 <= '1';
+				-- e_booster_sync <= '1';
+				-- d_booster_sync <= not booster_sync;
+				-- if (booster_begin_0 = '1') then
+				-- else 
+					-- d_booster_0 <= booster_sync;
+				-- end if;
+				
+				-- if (booster_begin_1 = '1') then
+					-- d_booster_1 <= '1';
+				-- else 
+					-- d_booster_1 <= booster_sync;
+				-- end if;
+				-- new_state <= check_booster;
 				
 			when check_booster =>
 			
