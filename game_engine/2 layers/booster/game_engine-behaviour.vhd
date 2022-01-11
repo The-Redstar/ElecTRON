@@ -669,7 +669,7 @@ create_next_state: 	process (state, new_state, reset, input, busy, clk, unsigned
 			when before_start_state =>
 			--wait a bit more then two seconds before the game starts
 				state_vga 				<= "111";
-				if (unsigned( unsigned_busy_count) >= 12) then 
+				if (unsigned( unsigned_busy_count) >= 127) then 
 					new_state <= busy_reset;
 				else
 					new_state <= before_start_state;
