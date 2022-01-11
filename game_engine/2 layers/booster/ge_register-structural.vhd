@@ -111,6 +111,11 @@ begin
 					e    => e_booster_sync,
 					d    => d_booster_sync,
 					q    => q_booster_sync);
+	boost_audio:reg_2 port map			   ( clk  => clk,
+					reset=> reset,
+					e    => e_boost_audio,
+					d    => d_boost_audio,
+					q    => q_boost_audio);
 
 	r_mem_0:reg_8 port map			     ( clk  => clk,
 					reset=> reset,

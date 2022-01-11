@@ -14,11 +14,12 @@ entity game_engine is
 		ramp			   : in  std_logic_vector(7 downto 0);
 		position_grid_0	   : in std_logic_vector(10 downto 0);
 		position_grid_1	   : in std_logic_vector(10 downto 0);
-		direction_grid_0 : in std_logic_vector(1 downto 0);
-		direction_grid_1 : in std_logic_vector(1 downto 0);
-select_button	   : in std_logic;
-test_button	: in std_logic;
-	pulse_audio	: out std_logic;
+		direction_grid_0   : in std_logic_vector(1 downto 0);
+		direction_grid_1   : in std_logic_vector(1 downto 0);
+		select_button	   : in std_logic;
+		test_button		   : in std_logic;
+		pulse_audio		   : out std_logic;
+		boost_audio		   : out std_logic_vector(1 downto 0);
         state_vga          : out std_logic_vector(2 downto 0);
         write_enable       : out std_logic;
         write_memory       : out std_logic_vector(7 downto 0);
