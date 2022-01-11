@@ -5,7 +5,7 @@ use ieee.numeric_std.all;
 
 architecture behaviour of game_engine is
 
-	type game_state is (reset_state, loading_state, booster, check_booster, home_screen, get_ready, before_start_state, read_inputs, read1_memory_player_0, read1_memory_player_1, read2_memory_player_0, read2_memory_player_1, check_who_won, wait_state, write_memory_player_0, write_memory_player_1, change_data, check_how_collision, player_0_won, player_1_won, tie, busy_reset, check_jump_0, check_jump_1, initial_conditions);
+	type game_state is (reset_state, loading_state, check_booster, home_screen, get_ready, before_start_state, read_inputs, read1_memory_player_0, read1_memory_player_1, read2_memory_player_0, read2_memory_player_1, check_who_won, wait_state, write_memory_player_0, write_memory_player_1, change_data, check_how_collision, player_0_won, player_1_won, tie, busy_reset, check_jump_0, check_jump_1, initial_conditions);
 
 
 	signal state, new_state: game_state;
@@ -233,6 +233,7 @@ direction_0_vga <= direction_0;
 direction_1_vga <= direction_1;
 player_state_0_vga <= player_0_state;
 player_state_1_vga <= player_1_state;
+
 
 
 
@@ -510,6 +511,7 @@ create_next_state: 	process (state, new_state, reset, input, busy, clk, unsigned
 		e_layer_1					<= '0';
 		e_booster_0					<= '0';
 		e_booster_1					<= '0';
+		e_boost_audio				<= '0';
 		e_booster_sync				<= '0';
 		e_next_layer_0				<= '0';
 		e_next_layer_1				<= '0';
@@ -534,6 +536,7 @@ create_next_state: 	process (state, new_state, reset, input, busy, clk, unsigned
 		d_layer_1					<= '0';
 		d_booster_0					<= '0';
 		d_booster_1					<= '0';
+		d_boost_audio				<= (others => '0');
 		d_booster_sync					<= '0';
 		--determined in different process
 		--d_next_layer
@@ -704,24 +707,29 @@ create_next_state: 	process (state, new_state, reset, input, busy, clk, unsigned
 				
 				e_booster_0 <= '1';
 				e_booster_1 <= '1';
+				e_boost_audio <= '1';
 				e_booster_sync <= '1';
 				d_booster_sync <= not booster_sync;
 				
 				-- remember the values of the input of the players in 'next_direction_#player'
 				if (booster_begin_0 = '1') then
 					d_booster_0					<= '1';
+					d_boost_audio(0)			<= '1';
 				else	
 					e_next_direction_0			<= '1';
 					d_next_direction_0			<= input(1 downto 0);
 					d_booster_0 				<= booster_sync;
+					d_boost_audio(0)			<= '0';
 				end if;
 
 				if (booster_begin_1 = '1') then
 					d_booster_1 				<= '1';
+					d_boost_audio(1)			<= '1';
 				else	
 					e_next_direction_1			<= '1';
 					d_next_direction_1			<= input(3 downto 2);
 					d_booster_1 				<= booster_sync;
+					d_boost_audio(1)			<= '0';
 				end if;									
 	
 				-- go to the state 'wall_shape' next
