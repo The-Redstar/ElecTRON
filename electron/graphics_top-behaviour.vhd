@@ -50,6 +50,7 @@ architecture behaviour of graphics_top is
 	port(	x			: in  std_logic_vector(8 downto 0);
 			y			: in  std_logic_vector(8 downto 0);
 			pixelator	: in  std_logic_vector(3 downto 0);
+			speed		: in  std_logic_vector(1 downto 0);
 			color		: out std_logic_vector(3 downto 0));
 	end component;
 
@@ -172,6 +173,7 @@ hscr: homescreen port map(
 		x=>homescreen_x,
 		y=>homescreen_y,
 		pixelator=>pixelator_color,
+		speed=>player1_input,
 		color=>homescreen_color
 	);
 
