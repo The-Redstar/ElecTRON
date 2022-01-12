@@ -675,7 +675,7 @@ create_next_state: 	process (state, new_state, reset, input, busy, clk, unsigned
 				-- reset the counter
 				busy_counter_reset			<= '1';
 				state_vga 					<= "111";
-				new_state	`				<= read_inputs;
+				new_state <= read_inputs;
 
 			when read_inputs =>
 				state_vga 					<= "111";
