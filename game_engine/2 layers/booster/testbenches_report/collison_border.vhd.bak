@@ -1,15 +1,13 @@
 library IEEE;
---testbench for booster
---show positions_vga 
---run until a bit less then 2000000 and zoom out a lot
+--testbench for collision border
 use IEEE.std_logic_1164.all;
 use ieee.numeric_std.all;
 
 
-entity game_engine_tb is
-end entity game_engine_tb;
+entity game_engine_border_tb is
+end entity game_engine_border_tb;
 
-architecture structural of game_engine_tb is
+architecture structural of game_engine_border_tb is
 
 	
 	component game_engine is
@@ -103,12 +101,13 @@ begin
 				);
 ramp <= "00000000" after 0 ns;
 test_button <= '1' after 0 ns;
-border <= "00000000" after 0 ns;
+border <= "00000001" after 0 ns;
 select_button <= '1' after 0 ns,
 		'0' after 800 ns,
 		'1' after 1000 ns,
 		'0' after 1200 ns,
-		'1' after 1300 ns;
+		'1' after 1300 ns,
+		'0' after 10000 ns;
 position_grid_0 <=  "01110111001" after 0 ns;
 position_grid_1 <=  "01110100100" after 0 ns;
 direction_grid_0 <= "00" after 0 ns;
@@ -121,10 +120,8 @@ reset <= '1' after 0 ns,
 	'0' after 60 ns; -- goes to loading state
 
 input <= "0010" after 0 ns, 
-	"0000" after 230 ns, -- goes to wait state
-	"0001" after 300000 ns,
-	"0011" after 400000 ns,
-	"0000" after 1000000 ns;
+	"0000" after 230 ns;
+	
 
 -- normally the busy signal has a lower frequency, however for simulating the game_engine that takes to long
 -- therefore a higher frequency was used during the wait_state, once out of the wait_state the busy signal remains 0 for a while like with the real busy signal to go through all the other states
