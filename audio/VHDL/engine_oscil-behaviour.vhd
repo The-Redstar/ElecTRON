@@ -127,16 +127,20 @@ begin
 	end process;
 
 --wave output
-	process(count,period_boosted)
+	process(count,period,period_boosted)
 	begin
-		if count<shift_right(period_boosted,2) then
-			next_wave<=frozen_bits(0) or not crash;--'1';
-		elsif count<shift_right(period_boosted,1) then
-			next_wave<=frozen_bits(1) or not crash;--'1';
-		elsif count<shift_right(period_boosted,1)+shift_right(period_boosted,2) then
-			next_wave<=frozen_bits(2) and crash;--'0';
+		if period>to_unsigned(10,19) then --disable when counter flips around to very high frequencies
+			if count<shift_right(period_boosted,2) then
+				next_wave<=frozen_bits(0) or not crash or beep;--'1';
+			elsif count<shift_right(period_boosted,1) then
+				next_wave<=frozen_bits(1) or not crash or beep;--'1';
+			elsif count<shift_right(period_boosted,1)+shift_right(period_boosted,2) then
+				next_wave<=frozen_bits(2) and crash and not beep;--'0';
+			else
+				next_wave<=frozen_bits(3) and crash and not beep;--'0';
+			end if;
 		else
-			next_wave<=frozen_bits(3) and crash;--'0';
+			next_wave<='0';
 		end if;
 	end process;
 
