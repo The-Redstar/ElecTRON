@@ -15,6 +15,7 @@ entity electron is
         memory_reset_out  : out std_logic;
         x_increment_out   : out std_logic;
         y_increment_out   : out std_logic;
-        w_increment_out   : out std_logic);
+        w_increment_out   : out std_logic;
+	test_button		  : in std_logic);
 end electron;
 

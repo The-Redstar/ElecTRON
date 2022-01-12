@@ -16,7 +16,9 @@ architecture structural of electron is
 	   direction_grid_0   : in  std_logic_vector(1 downto 0);
 	   direction_grid_1   : in  std_logic_vector(1 downto 0);
 	   select_button		    : in  std_logic;
+	   test_button		      : in  std_logic;
 	   pulse_audio		      : out std_logic;
+	   boost_audio		      : out  std_logic_vector(1 downto 0);
            state_vga          : out std_logic_vector(2 downto 0);
            write_enable       : out std_logic;
            write_memory       : out std_logic_vector(7 downto 0);
@@ -131,6 +133,7 @@ architecture structural of electron is
 	signal start_position_0, start_position_1: std_logic_vector (10 downto 0);
 	signal start_direction_0, start_direction_1: std_logic_vector (1 downto 0);
 	signal map_selected: std_logic_vector (1 downto 0);
+	signal boost_audio_0, boost_audio_1: std_logic;
 
 begin
 	lbl0:game_engine port map ( 
@@ -147,7 +150,10 @@ begin
 					direction_grid_0  => start_direction_0,
 					direction_grid_1 => start_direction_1,
 	  				select_button		    => start_in,
+					test_button			=> test_button,
 	   				pulse_audio		      => audio,
+					boost_audio(0)			=> boost_audio_0,
+					boost_audio(1)			=> boost_audio_1,
 					state_vga			=> game_state,
 					write_enable		=> write_enable,
 					write_memory		=> write_memory,
@@ -203,8 +209,8 @@ begin
 					player1_dir			=> direction_1,
 					player0_state			=> player_state_0,
 					player1_state			=> player_state_1,
-					player0_boost			=> '0',
-					player1_boost			=> '0',
+					player0_boost			=> boost_audio_0,
+					player1_boost			=> boost_audio_1,
 					player0_input			=> direction_in (1 downto 0),
 					player1_input			=> direction_in (3 downto 2),
 					busy			=> busy,
