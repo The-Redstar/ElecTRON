@@ -586,6 +586,7 @@ create_next_state: 	process (state, new_state, reset, input, busy, clk, unsigned
 				end if;
 
 			when home_screen =>
+				state_vga				<="000";
 				if (select_button = '1') then
 					new_state <= initial_conditions;
 				else 
@@ -599,7 +600,7 @@ create_next_state: 	process (state, new_state, reset, input, busy, clk, unsigned
 				d_map_select			<= input(1 downto 0);
 				
 			when initial_conditions =>
-				state_vga 					<= "101";
+				state_vga 					<= "000";
 				--setting the initial conditions from de grid controller
 				e_position_0				<= '1';
 				e_position_1				<= '1';
@@ -653,9 +654,11 @@ create_next_state: 	process (state, new_state, reset, input, busy, clk, unsigned
 				
 			when before_start_state =>
 			--wait a bit more then two seconds before the game starts
-				state_vga 				<= "111";
+				state_vga 				<= "101";
 				if (unsigned( unsigned_busy_count) >= 127) then 
 					new_state <= busy_reset;
+				elsif (unsigned(unsigned_busy_count) >= 31) then
+					pulse_audio <= not unsigned_busy_count(4);
 				else
 					new_state <= before_start_state;
 				end if;
@@ -711,6 +714,7 @@ create_next_state: 	process (state, new_state, reset, input, busy, clk, unsigned
 
 			when check_booster =>
 				-- go to new state depending on the value of 'booster_#player'
+				state_vga 					<= "111";
 				if (booster_0 = '1') then 
 					new_state <= read1_memory_player_0;
 				elsif (booster_1 = '1') then 
@@ -912,7 +916,6 @@ create_next_state: 	process (state, new_state, reset, input, busy, clk, unsigned
 			when change_data =>
 				-- change the data that is going to the graphics engine and update data in the register
 				state_vga   				<= "111";
-				pulse_audio <= '1';
 				e_direction_0 <= '1';
 				e_direction_1 <= '1';
 				d_direction_0 <= next_direction_0;
