@@ -1,0 +1,356 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 d/tmp/.x2go-mhpadriaanse/media/disk/_cygdrive_C_Users_Marijn_Nodig_TUDELF1_B2_Q2_L_x2go/electron/audio
+Eaudio_top
+Z1 w1642074542
+Z2 DPx3 std 6 textio 0 22 zE1`LPoLg^DX3Oz^4Fj1K3
+Z3 DPx4 ieee 14 std_logic_1164 0 22 eNV`TJ_GofJTzYa?f<@Oe1
+R0
+8VHDL/audio_top.vhd
+FVHDL/audio_top.vhd
+l0
+L4
+VzX4>L<]Y<e7c<EBRROXMP0
+!s100 13G7Tc?Mci7EM`9mK;iSU2
+Z4 OL;C;10.5b;63
+33
+!s110 1642087652
+!i10b 1
+!s108 1642087650.000000
+!s90 -2008|-lower|-explicit|-work|work|VHDL/audio_top.vhd|-quiet|-nologo|
+!s107 VHDL/audio_top.vhd|
+!i113 0
+Z5 o-quiet -nologo -2008 -lower -explicit -work work
+Z6 tExplicit 1 CvgOpt 0
+Abehaviour
+Z7 DEx4 work 9 audio_top 0 22 zX4>L<]Y<e7c<EBRROXMP0
+Z8 DPx4 ieee 11 numeric_std 0 22 :ASDNFgHXf_ih3J@9F3Ze1
+R2
+R3
+8VHDL/audio_top-behaviour.vhd
+FVHDL/audio_top-behaviour.vhd
+l31
+L5
+V3BPh=YMMAYzmGR6PO=0OX3
+!s100 NjE1WmJ7Qh_Ee??0<Lm`82
+R4
+33
+!s110 1642087655
+!i10b 1
+!s108 1642087653.000000
+!s90 -2008|-lower|-explicit|-work|work|VHDL/audio_top-behaviour.vhd|-quiet|-nologo|
+!s107 VHDL/audio_top-behaviour.vhd|
+!i113 0
+R5
+R6
+Caudio_top_behaviour_cfg
+eaudio_top
+Z9 abehaviour
+Z10 DEx4 work 3 rng 0 22 LzW6kAKhmYScC@LM5cjI83
+Z11 DEx4 work 12 engine_oscil 0 22 0D<1^CoCWMz>KXmNHYa2B3
+DCx4 work 17 rng_behaviour_cfg 0 22 QR]=L2zm]7Jj3@E4eNeVl0
+DCx4 work 26 engine_oscil_behaviour_cfg 0 22 c@EB;aTmn4OEBmR@efCNH1
+R8
+DAx4 work 9 audio_top 9 behaviour 22 3BPh=YMMAYzmGR6PO=0OX3
+R2
+R3
+R7
+R1
+R0
+8VHDL/audio_top_behaviour_cfg.vhd
+FVHDL/audio_top_behaviour_cfg.vhd
+l0
+L1
+V;z;POgO4fa8XB^GhbP4Wc0
+!s100 N>[Hm^NggQRjjdCfWEY:@2
+R4
+33
+!s110 1642087658
+!i10b 0
+!s108 1642087656.000000
+!s90 -2008|-lower|-explicit|-work|work|VHDL/audio_top_behaviour_cfg.vhd|-quiet|-nologo|
+!s107 VHDL/audio_top_behaviour_cfg.vhd|
+!i113 0
+R5
+R6
+Eaudio_top_tb
+w1642087166
+R2
+R3
+R0
+8VHDL/audio_top_tb.vhd
+FVHDL/audio_top_tb.vhd
+l0
+L4
+VT_bSbO;8JS>dzkEM76=0K0
+!s100 `m`EiU_;^fleNRGagLWUH0
+R4
+33
+!s110 1642087694
+!i10b 1
+!s108 1642087692.000000
+!s90 -2008|-lower|-explicit|-work|work|VHDL/audio_top_tb.vhd|-quiet|-nologo|
+!s107 VHDL/audio_top_tb.vhd|
+!i113 0
+R5
+R6
+Abehaviour
+w1642087610
+Z12 DEx4 work 12 audio_top_tb 0 22 T_bSbO;8JS>dzkEM76=0K0
+R2
+R3
+8VHDL/audio_top_tb-behaviour.vhd
+FVHDL/audio_top_tb-behaviour.vhd
+l31
+L4
+VHTJ[[QL5X_;6=iYe2`^]D2
+!s100 gI^2AKMRBNcF3ZinG]F8>1
+R4
+33
+!s110 1642087696
+!i10b 1
+!s108 1642087694.000000
+!s90 -2008|-lower|-explicit|-work|work|VHDL/audio_top_tb-behaviour.vhd|-quiet|-nologo|
+!s107 VHDL/audio_top_tb-behaviour.vhd|
+!i113 0
+R5
+R6
+Caudio_top_tb_behaviour_cfg
+eaudio_top_tb
+R9
+R7
+DCx4 work 23 audio_top_behaviour_cfg 0 22 ;z;POgO4fa8XB^GhbP4Wc0
+DAx4 work 12 audio_top_tb 9 behaviour 22 HTJ[[QL5X_;6=iYe2`^]D2
+R2
+R3
+R12
+w1642087674
+R0
+8VHDL/audio_top_tb_behaviour_cfg.vhd
+FVHDL/audio_top_tb_behaviour_cfg.vhd
+l0
+L1
+V56iHeohSlV>7Cf4j<=8F=0
+!s100 aSVZmjXFF6[_FHd;J36NT2
+R4
+33
+!s110 1642087699
+!i10b 0
+!s108 1642087698.000000
+!s90 -2008|-lower|-explicit|-work|work|VHDL/audio_top_tb_behaviour_cfg.vhd|-quiet|-nologo|
+!s107 VHDL/audio_top_tb_behaviour_cfg.vhd|
+!i113 0
+R5
+R6
+Eengine_oscil
+w1641306596
+R2
+R3
+R0
+8VHDL/engine_oscil.vhd
+FVHDL/engine_oscil.vhd
+l0
+L4
+V0D<1^CoCWMz>KXmNHYa2B3
+!s100 FmW?[?8fjLb8B;UT<fn_V0
+R4
+33
+!s110 1641307738
+!i10b 1
+!s108 1641307734.000000
+!s90 -2008|-lower|-explicit|-work|work|VHDL/engine_oscil.vhd|-quiet|-nologo|
+!s107 VHDL/engine_oscil.vhd|
+!i113 0
+R5
+R6
+Abehaviour
+w1641307727
+R11
+R8
+R2
+R3
+8VHDL/engine_oscil-behaviour.vhd
+FVHDL/engine_oscil-behaviour.vhd
+l27
+L17
+VJN6HY9ZYR:LiZUURUmd4d3
+!s100 a>MHYHoS;3@X3dWOFl^h=0
+R4
+33
+!s110 1641307745
+!i10b 1
+!s108 1641307741.000000
+!s90 -2008|-lower|-explicit|-work|work|VHDL/engine_oscil-behaviour.vhd|-quiet|-nologo|
+!s107 VHDL/engine_oscil-behaviour.vhd|
+!i113 0
+R5
+R6
+Cengine_oscil_behaviour_cfg
+eengine_oscil
+R9
+R8
+DAx4 work 12 engine_oscil 9 behaviour 22 JN6HY9ZYR:LiZUURUmd4d3
+R2
+R3
+R11
+w1640626742
+R0
+8VHDL/engine_oscil_behaviour_cfg.vhd
+FVHDL/engine_oscil_behaviour_cfg.vhd
+l0
+L1
+Vc@EB;aTmn4OEBmR@efCNH1
+!s100 T^I]TZN6hnWj^0dPSKYhn2
+R4
+33
+!s110 1641307754
+!i10b 0
+!s108 1641307749.000000
+!s90 -2008|-lower|-explicit|-work|work|VHDL/engine_oscil_behaviour_cfg.vhd|-quiet|-nologo|
+!s107 VHDL/engine_oscil_behaviour_cfg.vhd|
+!i113 0
+R5
+R6
+Erng
+w1641307855
+R2
+R3
+R0
+8VHDL/rng.vhd
+FVHDL/rng.vhd
+l0
+L4
+VLzW6kAKhmYScC@LM5cjI83
+!s100 @FG?[9ZV<S3@`XUJ5iA3;0
+R4
+33
+!s110 1641307911
+!i10b 1
+!s108 1641307906.000000
+!s90 -2008|-lower|-explicit|-work|work|VHDL/rng.vhd|-quiet|-nologo|
+!s107 VHDL/rng.vhd|
+!i113 0
+R5
+R6
+Abehaviour
+w1641307862
+R10
+R2
+R3
+8VHDL/rng-behaviour.vhd
+FVHDL/rng-behaviour.vhd
+l10
+L8
+VR6;lY5KAKo[8k>]FdAO831
+!s100 cTf_Rid^cU28Q@Pz>g`jb2
+R4
+33
+!s110 1641307917
+!i10b 1
+!s108 1641307913.000000
+!s90 -2008|-lower|-explicit|-work|work|VHDL/rng-behaviour.vhd|-quiet|-nologo|
+!s107 VHDL/rng-behaviour.vhd|
+!i113 0
+R5
+R6
+Crng_behaviour_cfg
+erng
+R9
+DAx4 work 3 rng 9 behaviour 22 R6;lY5KAKo[8k>]FdAO831
+R2
+R3
+R10
+w1640626751
+R0
+8VHDL/rng_behaviour_cfg.vhd
+FVHDL/rng_behaviour_cfg.vhd
+l0
+L1
+VQR]=L2zm]7Jj3@E4eNeVl0
+!s100 NF]4o<C6^;FDa[;]8^fQo3
+R4
+33
+!s110 1641307925
+!i10b 0
+!s108 1641307920.000000
+!s90 -2008|-lower|-explicit|-work|work|VHDL/rng_behaviour_cfg.vhd|-quiet|-nologo|
+!s107 VHDL/rng_behaviour_cfg.vhd|
+!i113 0
+R5
+R6
+Etest_data_gen
+w1640626072
+R2
+R3
+R0
+8VHDL/test_data_gen.vhd
+FVHDL/test_data_gen.vhd
+l0
+L4
+V4DLO<W]dJ7N[?U2bYBLJ92
+!s100 8O6L7:]7iGecmiIFZPz9c0
+R4
+33
+!s110 1640626121
+!i10b 1
+!s108 1640626117.000000
+!s90 -2008|-lower|-explicit|-work|work|VHDL/test_data_gen.vhd|-quiet|-nologo|
+!s107 VHDL/test_data_gen.vhd|
+!i113 0
+R5
+R6
+Abehaviour
+w1640626323
+Z13 DEx4 work 13 test_data_gen 0 22 4DLO<W]dJ7N[?U2bYBLJ92
+R8
+R2
+R3
+8VHDL/test_data_gen-behaviour.vhd
+FVHDL/test_data_gen-behaviour.vhd
+l8
+L5
+VoJ1_NaUhid^Mm6>GHmg^K3
+!s100 h;D_FCXccTgc`Zk9H2TJG1
+R4
+33
+!s110 1640626327
+!i10b 1
+!s108 1640626323.000000
+!s90 -2008|-lower|-explicit|-work|work|VHDL/test_data_gen-behaviour.vhd|-quiet|-nologo|
+!s107 VHDL/test_data_gen-behaviour.vhd|
+!i113 0
+R5
+R6
+Ctest_data_gen_behaviour_cfg
+etest_data_gen
+R9
+R8
+DAx4 work 13 test_data_gen 9 behaviour 22 oJ1_NaUhid^Mm6>GHmg^K3
+R2
+R3
+R13
+w1640626690
+R0
+8VHDL/test_data_gen_behaviour_cfg.vhd
+FVHDL/test_data_gen_behaviour_cfg.vhd
+l0
+L1
+VP55h4Zh0B==4@W8LekE:e0
+!s100 ZN9`G?l<GgG=kT8czJBU?1
+R4
+33
+!s110 1640626693
+!i10b 0
+!s108 1640626689.000000
+!s90 -2008|-lower|-explicit|-work|work|VHDL/test_data_gen_behaviour_cfg.vhd|-quiet|-nologo|
+!s107 VHDL/test_data_gen_behaviour_cfg.vhd|
+!i113 0
+R5
+R6
