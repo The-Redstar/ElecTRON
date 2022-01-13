@@ -84,16 +84,16 @@ begin
 					d    => d_next_layer_1,
 					q    => q_next_layer_1);
 
-	booster_0:reg_1 port map			      ( clk  => clk,
+	move_0:reg_1 port map			      ( clk  => clk,
 					reset=> reset,
-					e    => e_booster_0,
-					d    => d_booster_0,
-					q    => q_booster_0);
-	booster_1:reg_1 port map			      ( clk  => clk,
+					e    => e_move_0,
+					d    => d_move_0,
+					q    => q_move_0);
+	move_1:reg_1 port map			      ( clk  => clk,
 					reset=> reset,
-					e    => e_booster_1,
-					d    => d_booster_1,
-					q    => q_booster_1);
+					e    => e_move_1,
+					d    => d_move_1,
+					q    => q_move_1);
 
 	border_0:reg_1 port map			      ( clk  => clk,
 					reset=> reset,

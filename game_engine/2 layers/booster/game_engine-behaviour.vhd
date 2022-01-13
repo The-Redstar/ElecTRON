@@ -13,7 +13,7 @@ architecture behaviour of game_engine is
 	signal d_next_direction_0, d_next_direction_1, next_direction_0, next_direction_1 : std_logic_vector(1 downto 0);
 	signal position_0, position_1, next_position_0, next_position_1 : std_logic_vector (9 downto 0);
 	signal d_position_0, d_position_1 : std_logic_vector (9 downto 0);
-	signal layer_0, layer_1, d_layer_0, d_layer_1, e_layer_0, e_layer_1, d_booster_0, d_booster_1, e_booster_0, e_booster_1, d_booster_sync, e_booster_sync, e_map_select, e_speed_select, e_boost_audio: std_logic;
+	signal layer_0, layer_1, d_layer_0, d_layer_1, e_layer_0, e_layer_1, d_move_0, d_move_1, e_move_0, e_move_1, d_booster_sync, e_booster_sync, e_map_select, e_speed_select, e_boost_audio: std_logic;
 	signal next_layer_0, next_layer_1, d_next_layer_0, d_next_layer_1, e_next_layer_0, e_next_layer_1 : std_logic;
 	signal border_0, border_1, d_border_0, d_border_1, e_border_0, e_border_1: std_logic;
 	signal d_read_data_reg, read_data_reg : std_logic_vector (7 downto 0);
@@ -25,9 +25,9 @@ architecture behaviour of game_engine is
 	signal address_fsm 	   : std_logic_vector(9 downto 0);
 	--signals for busy counter
 	signal busy_counter_reset: std_logic;
-	signal unsigned_busy_count: std_logic_vector(6 downto 0);
+	signal busy_count: std_logic_vector(6 downto 0);
 	--other signals
-	signal booster_begin_0, booster_begin_1, booster_0, booster_1, booster_sync, collision_middle, collision_head: std_logic;
+	signal booster_0, booster_1, move_0, move_1, booster_sync, collision_middle, collision_head: std_logic;
 	signal wallshape_0, wallshape_1 : std_logic_vector(2 downto 0);
 	signal unsigned_speed : unsigned (4 downto 0);
 
@@ -68,10 +68,10 @@ architecture behaviour of game_engine is
 			e_layer_1	  	: in  std_logic;
 			d_layer_0	  	: in  std_logic;
 			d_layer_1	  	: in  std_logic;
-			e_booster_0	  	: in  std_logic;		
-			e_booster_1	  	: in  std_logic;
-			d_booster_0	  	: in  std_logic;
-			d_booster_1	  	: in  std_logic;
+			e_move_0	  	: in  std_logic;		
+			e_move_1	  	: in  std_logic;
+			d_move_0	  	: in  std_logic;
+			d_move_1	  	: in  std_logic;
 			e_boost_audio 	: in  std_logic;
 			d_boost_audio 	: in  std_logic_vector(1 downto 0);
 			e_booster_sync	: in  std_logic;
@@ -106,8 +106,8 @@ architecture behaviour of game_engine is
 			q_position_1  	: out std_logic_vector(9 downto 0);
 			q_layer_0	  	: out std_logic;
 			q_layer_1	  	: out std_logic;
-			q_booster_0	  	: out std_logic;
-			q_booster_1	  	: out std_logic;
+			q_move_0	  	: out std_logic;
+			q_move_1	  	: out std_logic;
 			q_booster_sync	: out std_logic;
 			q_boost_audio 	: out std_logic_vector(1 downto 0);
 			q_next_layer_0	: out std_logic;
@@ -137,10 +137,10 @@ reg: ge_register port map (clk => clk,
 			e_layer_1	  	=> e_layer_1,
 			d_layer_0	  	=> d_layer_0,
 			d_layer_1	  	=> d_layer_1,
-			e_booster_0	  	=> e_booster_0,
-			e_booster_1	  	=> e_booster_1,
-			d_booster_0	  	=> d_booster_0,
-			d_booster_1	  	=> d_booster_1,
+			e_move_0	  	=> e_move_0,
+			e_move_1	  	=> e_move_1,
+			d_move_0	  	=> d_move_0,
+			d_move_1	  	=> d_move_1,
 			e_boost_audio 	=> e_boost_audio,
 			d_boost_audio 	=> d_boost_audio,
 			e_booster_sync	=> e_booster_sync,
@@ -175,8 +175,8 @@ reg: ge_register port map (clk => clk,
 			q_position_1 	=> position_1,
 			q_layer_0	  	=> layer_0,
 			q_layer_1	  	=> layer_1,
-			q_booster_0	  	=> booster_0,
-			q_booster_1	  	=> booster_1,
+			q_move_0	  	=> move_0,
+			q_move_1	  	=> move_1,
 			q_boost_audio 	=> boost_audio,
 			q_booster_sync	=> booster_sync,
 			q_next_layer_0	=> next_layer_0,
@@ -198,7 +198,7 @@ counter: busy_counter port map (
 			global_reset 		=> reset,
 			game_engine_reset 	=> busy_counter_reset,
 			busy 				=> busy,
-			busy_count 				=> unsigned_busy_count);
+			busy_count 				=> busy_count);
 
 mem_com: memory_communication port map (
 					clk 				=> clk,
@@ -249,15 +249,15 @@ begin_booster: process (input, direction_0, direction_1)
 	begin
 	-- if a player presses the opposite direction of what it is currently going it starts to boost
 		if ((input(1) = (not direction_0(1))) and (input(0) = direction_0(0))) then 
-			booster_begin_0 <= '1';
+			booster_0 <= '1';
 		else
-			booster_begin_0 <= '0';
+			booster_0 <= '0';
 		end if;
 		
 		if ((input(3) = (not direction_1(1))) and (input(2) = direction_1(0))) then
-			booster_begin_1 <= '1';
+			booster_1 <= '1';
 		else
-			booster_begin_1 <= '0';
+			booster_1 <= '0';
 		end if;
 	end process;
 
@@ -503,7 +503,7 @@ game_speed: process(speed_select)
 		end if;
 end process;
 
-create_next_state: 	process (state, new_state, reset, input, busy, clk, unsigned_busy_count, direction_0, direction_1, next_direction_0, next_direction_1, position_0, position_1, next_position_0, next_position_1, player_0_state, player_1_state, mem_com_ready, select_button, position_grid_0, position_grid_1, read_data_fsm, layer_0, layer_1, read_data_reg, wallshape_0, wallshape_1, next_layer_0, next_layer_1, border_0, border_1, collision_head, collision_middle)
+create_next_state: 	process (state, new_state, reset, input, busy, clk, busy_count, direction_0, direction_1, next_direction_0, next_direction_1, position_0, position_1, next_position_0, next_position_1, player_0_state, player_1_state, mem_com_ready, select_button, position_grid_0, position_grid_1, read_data_fsm, layer_0, layer_1, read_data_reg, wallshape_0, wallshape_1, next_layer_0, next_layer_1, border_0, border_1, collision_head, collision_middle)
 	begin
 
 		--set all signals to zero if not specified in case statement
@@ -513,8 +513,8 @@ create_next_state: 	process (state, new_state, reset, input, busy, clk, unsigned
 		e_position_1				<= '0';	
 		e_layer_0					<= '0';
 		e_layer_1					<= '0';
-		e_booster_0					<= '0';
-		e_booster_1					<= '0';
+		e_move_0					<= '0';
+		e_move_1					<= '0';
 		e_boost_audio				<= '0';
 		e_booster_sync				<= '0';
 		e_next_layer_0				<= '0';
@@ -534,8 +534,8 @@ create_next_state: 	process (state, new_state, reset, input, busy, clk, unsigned
 		d_position_1				<= (others => '0');	
 		d_layer_0					<= '0';
 		d_layer_1					<= '0';
-		d_booster_0					<= '0';
-		d_booster_1					<= '0';
+		d_move_0					<= '0';
+		d_move_1					<= '0';
 		d_boost_audio				<= (others => '0');
 		d_booster_sync				<= '0';
 		d_read_data_reg				<= (others => '0');
@@ -617,8 +617,8 @@ create_next_state: 	process (state, new_state, reset, input, busy, clk, unsigned
 				d_direction_0				<= direction_grid_0;
 				d_direction_1				<= direction_grid_1;
 				
-				e_booster_0					<= '1';
-				e_booster_1					<= '1';
+				e_move_0					<= '1';
+				e_move_1					<= '1';
 				e_booster_sync				<= '1';
 				
 				--select button has to be pressed twice, to make sure it doesnt go trough two sates with one press, there should be a check for 0.
@@ -655,10 +655,10 @@ create_next_state: 	process (state, new_state, reset, input, busy, clk, unsigned
 			when before_start_state =>
 			--wait a bit more then two seconds before the game starts
 				state_vga 				<= "101";
-				if (unsigned( unsigned_busy_count) >= 127) then 
+				if (unsigned( busy_count) >= 127) then 
 					new_state <= busy_reset;
-				elsif (unsigned(unsigned_busy_count) >= 31) then
-					pulse_audio <= not unsigned_busy_count(4);
+				elsif (unsigned(busy_count) >= 31) then
+					pulse_audio <= not busy_count(4);
 				else
 					new_state <= before_start_state;
 				end if;
@@ -668,7 +668,7 @@ create_next_state: 	process (state, new_state, reset, input, busy, clk, unsigned
 				-- this determines how fast a player moves in the playingfield
 				state_vga 				<= "111";
 				-- when waited long enough go the next state: busy_reset, otherwise keep waiting
-				if (unsigned( unsigned_busy_count) >= unsigned_speed) then
+				if (unsigned( busy_count) >= unsigned_speed) then
 					new_state <= busy_reset;
 				else
 					new_state <= wait_state;
@@ -682,31 +682,31 @@ create_next_state: 	process (state, new_state, reset, input, busy, clk, unsigned
 
 			when read_inputs =>
 				state_vga 					<= "111";
-				e_booster_0 				<= '1';
-				e_booster_1 				<= '1';
+				e_move_0 					<= '1';
+				e_move_1 					<= '1';
 				e_boost_audio 				<= '1';
 				e_booster_sync 				<= '1';
 				d_booster_sync 				<= not booster_sync;
 				
 				-- remember the values of the input of the players in 'next_direction_#player'
 				-- check if a player is boosting
-				if (booster_begin_0 = '1') then
-					d_booster_0					<= '1';
+				if (booster_0 = '1') then
+					d_move_0					<= '1';
 					d_boost_audio(0)			<= '1';
 				else	
 					e_next_direction_0			<= '1';
 					d_next_direction_0			<= input(1 downto 0);
-					d_booster_0 				<= booster_sync;
+					d_move_0 					<= booster_sync;
 					d_boost_audio(0)			<= '0';
 				end if;
 
-				if (booster_begin_1 = '1') then
-					d_booster_1 				<= '1';
+				if (booster_1 = '1') then
+					d_move_1 					<= '1';
 					d_boost_audio(1)			<= '1';
 				else	
 					e_next_direction_1			<= '1';
 					d_next_direction_1			<= input(3 downto 2);
-					d_booster_1 				<= booster_sync;
+					d_move_1 					<= booster_sync;
 					d_boost_audio(1)			<= '0';
 				end if;									
 	
@@ -715,9 +715,9 @@ create_next_state: 	process (state, new_state, reset, input, busy, clk, unsigned
 			when check_booster =>
 				-- go to new state depending on the value of 'booster_#player'
 				state_vga 					<= "111";
-				if (booster_0 = '1') then 
+				if (move_0 = '1') then 
 					new_state <= read1_memory_player_0;
-				elsif (booster_1 = '1') then 
+				elsif (move_1 = '1') then 
 					new_state <= read1_memory_player_1;
 				else
 					new_state <= wait_state;
@@ -769,7 +769,7 @@ create_next_state: 	process (state, new_state, reset, input, busy, clk, unsigned
 				
 				-- wait until the memory is ready to go to the next state 
 				if (mem_com_ready = '1') then
-					if (booster_1 = '1') then 
+					if (move_1 = '1') then 
 						new_state <= read1_memory_player_1;
 					else
 						new_state <= read2_memory_player_0;
@@ -826,7 +826,7 @@ create_next_state: 	process (state, new_state, reset, input, busy, clk, unsigned
 				
 				-- wait till the memory is finished before going to the next state
 				if (mem_com_ready = '1') then
-					if (booster_0 = '1') then
+					if (move_0 = '1') then
 						new_state <= read2_memory_player_0;
 					else 
 						new_state <= read2_memory_player_1;
@@ -854,7 +854,7 @@ create_next_state: 	process (state, new_state, reset, input, busy, clk, unsigned
 							e_player_0_state <= '1';
 						end if;
 					end if;
-					if (booster_1 = '1') then
+					if (move_1 = '1') then
 						new_state <= read2_memory_player_1; 
 					else
 						new_state <= check_how_collision;
@@ -921,16 +921,16 @@ create_next_state: 	process (state, new_state, reset, input, busy, clk, unsigned
 				d_direction_0 <= next_direction_0;
 				d_direction_1 <= next_direction_1;
 				
-				-- if player 0 collides on the border of cell do not change its position, otherwise if booster_0 = '1' do
-				if ((player_0_state /= "01") and (booster_0 = '1')) then
+				-- if player 0 collides on the border of cell do not change its position, otherwise if move_0 = '1' do
+				if ((player_0_state /= "01") and (move_0 = '1')) then
 					e_position_0 <= '1';
 					d_position_0 <= next_position_0;
 					e_layer_0	 <= '1';
 					d_layer_0	 <= next_layer_0;
 				end if;
 					
-				-- if player 0 collides on the border of cell do not change its position, otherwise booster_1 = '1' do
-				if ((player_1_state /= "01") and (booster_1 = '1')) then
+				-- if player 0 collides on the border of cell do not change its position, otherwise move_1 = '1' do
+				if ((player_1_state /= "01") and (move_1 = '1')) then
 					e_position_1 <= '1';
 					d_position_1 <= next_position_1;
 					e_layer_1	 <= '1';
