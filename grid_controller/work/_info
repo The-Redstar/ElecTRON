@@ -7,4 +7,152 @@ z2
 !i10e 25
 !i10f 100
 cModel Technology
-d/tmp/.x2go-mhpadriaanse/media/disk/_cygdrive_C_Users_Marijn_Nodig_TUDELF1_B2_Q2_L_x2go/electron/grid_controller
+Z0 d/tmp/.x2go-mhpadriaanse/media/disk/_cygdrive_C_Users_Marijn_Nodig_TUDELF1_B2_Q2_L_x2go/electron/grid_controller
+T_opt
+!s110 1642088985
+V2`DP]4KAoeVolW0i]F[dJ1
+04 25 0 work grid_top_tb_behaviour_cfg 1
+=1-000ae431a4f1-61e04a12-da51-193f7
+o-quiet -auto_acc_if_foreign -work work -L TSMCLib
+tCvgOpt 0
+n@_opt
+OL;O;10.5b;63
+Egrid_top
+Z1 w1642087939
+Z2 DPx3 std 6 textio 0 22 zE1`LPoLg^DX3Oz^4Fj1K3
+Z3 DPx4 ieee 14 std_logic_1164 0 22 eNV`TJ_GofJTzYa?f<@Oe1
+R0
+8VHDL/grid_top.vhd
+FVHDL/grid_top.vhd
+l0
+L4
+V1Y6folRIAEC@zcg5kNaZ81
+!s100 OOmBnf<l:mo;V`zl5b5AT3
+Z4 OL;C;10.5b;63
+33
+!s110 1642088139
+!i10b 1
+!s108 1642088135.000000
+!s90 -2008|-just|E|-lower|-explicit|-work|work|VHDL/grid_top.vhd|-quiet|-nologo|
+!s107 VHDL/grid_top.vhd|
+!i113 0
+o-quiet -nologo -2008 -just E -lower -explicit -work work
+Z5 tExplicit 1 CvgOpt 0
+Abehaviour
+Z6 DEx4 work 8 grid_top 0 22 1Y6folRIAEC@zcg5kNaZ81
+Z7 DPx4 ieee 11 numeric_std 0 22 :ASDNFgHXf_ih3J@9F3Ze1
+R2
+R3
+8VHDL/grid_top-behaviour.vhd
+FVHDL/grid_top-behaviour.vhd
+l42
+L35
+VN]^Ao;z7m<VTK27hl5^nG3
+!s100 CWkYEe2JUIB1B^Xl=T2kL2
+R4
+33
+!s110 1642088142
+!i10b 1
+!s108 1642088140.000000
+!s90 -2008|-just|A|-lower|-explicit|-work|work|VHDL/grid_top-behaviour.vhd|-quiet|-nologo|
+!s107 VHDL/grid_top-behaviour.vhd|
+!i113 0
+o-quiet -nologo -2008 -just A -lower -explicit -work work
+R5
+Cgrid_top_behaviour_cfg
+egrid_top
+Z8 abehaviour
+R7
+DAx4 work 8 grid_top 9 behaviour 22 N]^Ao;z7m<VTK27hl5^nG3
+R2
+R3
+R6
+R1
+R0
+8VHDL/grid_top_behaviour_cfg.vhd
+FVHDL/grid_top_behaviour_cfg.vhd
+l0
+L1
+VHRcN4F4PDJk@oCfbzPzYh3
+!s100 @E;k=W_XzzVGeNadeob0O3
+R4
+33
+!s110 1642088148
+!i10b 0
+!s108 1642088146.000000
+!s90 -2008|-just|C|-lower|-explicit|-work|work|VHDL/grid_top_behaviour_cfg.vhd|-quiet|-nologo|
+!s107 VHDL/grid_top_behaviour_cfg.vhd|
+!i113 0
+o-quiet -nologo -2008 -just C -lower -explicit -work work
+R5
+Egrid_top_tb
+w1642088232
+R2
+R3
+R0
+8VHDL/grid_top_tb.vhd
+FVHDL/grid_top_tb.vhd
+l0
+L4
+VcB64C9K1nJz2U0LlRaf:H3
+!s100 IiBCfLZBF0jX;PZX;M4DM0
+R4
+33
+!s110 1642088757
+!i10b 1
+!s108 1642088755.000000
+!s90 -2008|-lower|-explicit|-work|work|VHDL/grid_top_tb.vhd|-quiet|-nologo|
+!s107 VHDL/grid_top_tb.vhd|
+!i113 0
+Z9 o-quiet -nologo -2008 -lower -explicit -work work
+R5
+Abehaviour
+w1642088891
+Z10 DEx4 work 11 grid_top_tb 0 22 cB64C9K1nJz2U0LlRaf:H3
+R7
+R2
+R3
+8VHDL/grid_top_tb-behaviour.vhd
+FVHDL/grid_top_tb-behaviour.vhd
+l29
+L5
+V?C3=bH8P>lHJU0I95l_fS0
+!s100 FjD6EG`h`oDRK]cIcSWFR0
+R4
+33
+!s110 1642088899
+!i10b 1
+!s108 1642088897.000000
+!s90 -2008|-lower|-explicit|-work|work|VHDL/grid_top_tb-behaviour.vhd|-quiet|-nologo|
+!s107 VHDL/grid_top_tb-behaviour.vhd|
+!i113 0
+R9
+R5
+Cgrid_top_tb_behaviour_cfg
+egrid_top_tb
+R8
+R6
+DCx4 work 22 grid_top_behaviour_cfg 0 22 HRcN4F4PDJk@oCfbzPzYh3
+R7
+DAx4 work 11 grid_top_tb 9 behaviour 22 ?C3=bH8P>lHJU0I95l_fS0
+R2
+R3
+R10
+w1642088749
+R0
+8VHDL/grid_top_tb_behaviour_cfg.vhd
+FVHDL/grid_top_tb_behaviour_cfg.vhd
+l0
+L1
+VWoN_C:?g7eRU=i62VDD?j0
+!s100 S=I0>VGVVNF173W<hXA2n3
+R4
+33
+!s110 1642088920
+!i10b 0
+!s108 1642088918.000000
+!s90 -2008|-lower|-explicit|-work|work|VHDL/grid_top_tb_behaviour_cfg.vhd|-quiet|-nologo|
+!s107 VHDL/grid_top_tb_behaviour_cfg.vhd|
+!i113 0
+R9
+R5
