@@ -1,5 +1,14 @@
 Library vendor : Model Technology
 Maximum unnamed designs : 3
+OPTIMIZED DESIGN _opt
+    Compile time: Thu Jan 13 16:49:45 2022
+    Version string: 2`DP]4KAoeVolW0i]F[dJ1
+    Top-level model: work grid_top_tb_behaviour_cfg 1
+    Compile options: -quiet -auto_acc_if_foreign -work work -L TSMCLib
+    Compile defaults: CvgOpt=0
+    Short name: @_opt
+    Opcode format: 10.5b; VCOM/VLOG SE-64 Object version 63
+    Source directory: /tmp/.x2go-mhpadriaanse/media/disk/_cygdrive_C_Users_Marijn_Nodig_TUDELF1_B2_Q2_L_x2go/electron/grid_controller
 ENTITY grid_top
     Source modified time: Thu Jan 13 16:32:19 2022
     Depends on: P std textio zE1`LPoLg^DX3Oz^4Fj1K3
