@@ -1,7 +1,5 @@
 library IEEE;
---testbench for booster
---show positions_vga 
---run until a bit less then 2000000 and zoom out a lot
+--head middle
 use IEEE.std_logic_1164.all;
 use ieee.numeric_std.all;
 
@@ -108,8 +106,7 @@ select_button <= '1' after 0 ns,
 		'0' after 800 ns,
 		'1' after 1000 ns,
 		'0' after 1200 ns,
-		'1' after 1240 ns,
-		'0' after 1400 ns;
+		'1' after 1300 ns;
 position_grid_0 <=  "01110111001" after 0 ns;
 position_grid_1 <=  "01110100100" after 0 ns;
 direction_grid_0 <= "00" after 0 ns;
@@ -123,10 +120,9 @@ reset <= 	'1' after 0 ns,
 			'0' after 60 ns;
 
 input <= 	"0000" after 0 ns,
-			"1101" after 1300 ns;
+			"1101" after 800 ns;
 
-busy <= '1' after 0 ns,
-	'0' after 1000 ns when busy /= '0' else '1'  after 1000 ns;
+busy <= 	'0' after 0 ns;
 
 
 read_memory <=	"00000000" after 0 ns;
