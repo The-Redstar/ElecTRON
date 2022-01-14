@@ -896,7 +896,7 @@ create_next_state: 	process (state, new_state, reset, input, busy, clk, busy_cou
 				elsif (collision_head = '1') then --players crash against eachother at the border of a cell
 					e_player_0_state <= '1'; 
 					d_player_0_state <= "01";
-				elsif (collision_middle = '1') then --players crash against eachother in the middle of a cell
+				elsif ((collision_middle = '1') and (border_1 = '0')) then --players crash against eachother in the middle of a cell
 					e_player_0_state <= '1';
 				end if;
 
@@ -906,7 +906,7 @@ create_next_state: 	process (state, new_state, reset, input, busy, clk, busy_cou
 				elsif (collision_head = '1') then --players crash against eachother at the border of a cell
 					e_player_1_state <= '1'; 
 					d_player_1_state <= "01";
-				elsif  (collision_middle = '1') then --players crash against eachother in the middle of a cell
+				elsif  ((collision_middle = '1') and (border_0 = '0')) then --players crash against eachother in the middle of a cell
 					e_player_1_state <= '1';
 				end if;
 
