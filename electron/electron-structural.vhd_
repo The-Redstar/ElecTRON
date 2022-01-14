@@ -5,7 +5,7 @@ architecture structural of electron is
    component game_engine
 	  port(clk            : in  std_logic;
            reset              : in  std_logic;
-	   input              : in  std_logic_vector(3 downto 0);
+		   input              : in  std_logic_vector(3 downto 0);
 	   busy               : in  std_logic;
            read_memory        : in  std_logic_vector(7 downto 0);
            memory_ready       : in  std_logic;
@@ -18,7 +18,7 @@ architecture structural of electron is
 	   select_button		    : in  std_logic;
 	   test_button		      : in  std_logic;
 	   pulse_audio		      : out std_logic;
-	   boost_audio		      : in  std_logic_vector(1 downto 0);
+	   boost_audio		      : out  std_logic_vector(1 downto 0);
            state_vga          : out std_logic_vector(2 downto 0);
            write_enable       : out std_logic;
            write_memory       : out std_logic_vector(7 downto 0);
@@ -88,7 +88,6 @@ architecture structural of electron is
 		   player1_input	: in  std_logic_vector(1 downto 0);
 
 		   busy				: out std_logic;
-		   audio_clock		: out std_logic;
 
 		   game_state		: in  std_logic_vector(2 downto 0));
    end component;
@@ -113,6 +112,19 @@ architecture structural of electron is
         		player0_start_dir : out std_logic_vector(1 downto 0);
         		player1_start_dir : out std_logic_vector(1 downto 0));
    end component;
+   
+   component audio_top
+		port (clk				: in std_logic;
+				reset			: in std_logic;
+				game_state		: in std_logic_vector(2 downto 0);
+				beep_clk		: in std_logic;
+				button			: in std_logic;
+				player0_dir		: in std_logic_vector(1 downto 0);
+				player1_dir		: in std_logic_vector(1 downto 0);
+				player0_boost	: in std_logic;
+				player1_boost	: in std_logic;
+				wave			: out std_logic_vector(1 downto 0));
+	end component;
 
 	signal busy: std_logic;
 	signal read_memory, write_memory: std_logic_vector(7 downto 0);
@@ -125,11 +137,10 @@ architecture structural of electron is
 	signal x_increment, y_increment: std_logic;
 	signal reset_vga_mem: std_logic;
 	signal x_address, y_address: std_logic_vector (4 downto 0);
-	signal random3: std_logic;
 	signal ramps, borders: std_logic_vector (7 downto 0);
 	signal direction_between: std_logic_vector (3 downto 0);
 	signal start_between: std_logic;
-	signal audio: std_logic;
+	signal pulse_audio: std_logic;
 	signal start_position_0, start_position_1: std_logic_vector (10 downto 0);
 	signal start_direction_0, start_direction_1: std_logic_vector (1 downto 0);
 	signal map_selected: std_logic_vector (1 downto 0);
@@ -139,7 +150,7 @@ begin
 	lbl0:game_engine port map ( 
 					clk  				=> clk,
 					reset				=> rst,
-					input    			=> direction_in,
+					input    			=> direction_between,
 					busy    			=> busy,
 					read_memory    		=> read_memory,
 					memory_ready		=> memory_ready,
@@ -149,9 +160,9 @@ begin
 					position_grid_1	   => start_position_1,
 					direction_grid_0  => start_direction_0,
 					direction_grid_1 => start_direction_1,
-	  				select_button		    => start_in,
+	  				select_button		    => start_between,
 					test_button			=> test_button,
-	   				pulse_audio		      => audio,
+	   				pulse_audio		      => pulse_audio,
 					boost_audio(0)			=> boost_audio_0,
 					boost_audio(1)			=> boost_audio_1,
 					state_vga			=> game_state,
@@ -211,11 +222,11 @@ begin
 					player1_state			=> player_state_1,
 					player0_boost			=> boost_audio_0,
 					player1_boost			=> boost_audio_1,
-					player0_input			=> direction_in (1 downto 0),
-					player1_input			=> direction_in (3 downto 2),
+					player0_input			=> direction_between (1 downto 0),
+					player1_input			=> direction_between (3 downto 2),
 					busy			=> busy,
-					audio_clock			=> random3,
 					game_state			=> game_state);
+					
 	lbl3:input_buffer port map (
 					clk	=> clk,
 					rst	=> rst,
@@ -226,15 +237,27 @@ begin
 
 	lbl4:grid_top port map (
 					map_select 			=> map_selected,
-        					x_addr     			=> x_address,
-       					y_addr     			=> y_address,
-        					jumps      			=> ramps,
-        					borders    			=> borders,
-        					player0_start_pos 			=> start_position_0,
-        					player1_start_pos 			=> start_position_1,
-        					player0_start_dir 			=> start_direction_0,
-        					player1_start_dir 			=> start_direction_1);
-				
+        			x_addr     			=> x_address,
+       				y_addr     			=> y_address,
+					jumps      			=> ramps,
+					borders    			=> borders,
+					player0_start_pos 			=> start_position_0,
+					player1_start_pos 			=> start_position_1,
+					player0_start_dir 			=> start_direction_0,
+					player1_start_dir 			=> start_direction_1);
+							
+	lbl5:audio_top port map(
+					clk 				=> clk,
+					reset				=> rst,
+					game_state			=> game_state,
+					beep_clk			=> pulse_audio,
+					button				=> start_in,
+					player0_dir			=> direction_0,
+					player1_dir			=> direction_1,
+					player0_boost		=> boost_audio_0,
+					player1_boost		=> boost_audio_1,
+					wave				=> audio);
+					
 
 end structural;
 

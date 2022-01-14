@@ -10,5 +10,7 @@ configuration electron_structural_cfg of electron is
       end for;
       for all: grid_top use configuration work.grid_top_behaviour_cfg;
       end for;
+      for all: audio_top use configuration work.audio_top_behaviour_cfg;
+      end for;
    end for;
 end electron_structural_cfg;
