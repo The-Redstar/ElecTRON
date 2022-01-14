@@ -22,6 +22,7 @@ architecture behaviour of engine_oscil is
 	signal prev_engine, prev_crash:	std_logic;
 	
 	signal frozen_bits, next_frozen_bits: std_logic_vector(3 downto 0);
+	signal frozen_boost, next_frozen_boost:	std_logic;
 	
 	constant ENGINE_START_PERIOD	: unsigned(18 downto 0) := "011ZZ01000Z10010000"; --"0111101000010010000";
 	constant BEEP_PERIOD			: unsigned(18 downto 0) := "0100001000010010000";
@@ -35,8 +36,8 @@ begin
 		if rising_edge(clk) then
 			if reset='1' then
 				count<=(others => '0');
-				period<=unsigned(period_start);
-				new_period<=unsigned(period_start);
+				period<=to_unsigned(1,19);--unsigned(period_start); --one clock cycle of emptiness to load proper period
+				new_period<=to_unsigned(1,19);--unsigned(period_start);
 				wave<='0';
 			else
 				count<=next_count;
@@ -48,6 +49,7 @@ begin
 			prev_dir<=dir;
 			prev_engine<=engine;
 			prev_crash<=crash;
+			frozen_boost<=next_frozen_boost;
 			frozen_bits<=next_frozen_bits;
 		end if;
 	end process;
@@ -68,10 +70,6 @@ begin
 	begin
 		next_new_period <= new_period; --default: keep period
 		
-		if beep='1' then --constant period for beep
-			next_new_period <= BEEP_PERIOD;
-		end if;
-		
 		if engine='1' and (prev_engine='0' or dir/=prev_dir) then --reset period on direction change or when starting engine mode
 			next_new_period <= period_start;
 		elsif crash='1' and prev_crash='0' then --set to crash period when starting crash sound
@@ -84,12 +82,16 @@ begin
 				next_new_period <= new_period+6;
 			end if;
 		end if;
+		
+		if beep='1' then --constant period for beep
+			next_new_period <= BEEP_PERIOD;
+		end if;
 	end process;
 	
 	--boosted period
-	process(period,count,boost)
+	process(period,count,frozen_boost)
 	begin
-		if boost='1' then --double frequency when boosting
+		if frozen_boost='1' then --double frequency when boosting
 			period_boosted <= shift_right(period,1);
 			count_boosted <= shift_left(count,1);
 		else
@@ -100,7 +102,7 @@ begin
 	
 
 --count and new period
-	process(count,period_boosted,new_period,period,boost,bits,crash)
+	process(count,period_boosted,new_period,period,boost,bits,crash, frozen_boost)
 		--variable long_bits: unsigned(18 downto 0);
 		--variable mult_bits: unsigned(4 downto 0);
 	begin
@@ -109,8 +111,10 @@ begin
 		--mult_bits(4):='1';
 		--mult_bits(3 downto 0):=unsigned(bits);
 		next_frozen_bits <= frozen_bits;
+		next_frozen_boost <= frozen_boost;
 		if count=period_boosted  then --reset on period
 			next_frozen_bits<=bits;
+			next_frozen_boost <= boost;
 			next_count <= (others => '0');
 			if crash='1' then
 				--next_period <= new_period+long_bits;
@@ -127,9 +131,9 @@ begin
 	end process;
 
 --wave output
-	process(count,period,period_boosted)
+	process(count,period,period_boosted,frozen_bits)
 	begin
-		if period>to_unsigned(10,19) then --disable when counter flips around to very high frequencies
+		if period>to_unsigned(51600,19) then --disable when counter flips around to very high frequencies
 			if count<shift_right(period_boosted,2) then
 				next_wave<=frozen_bits(0) or not crash or beep;--'1';
 			elsif count<shift_right(period_boosted,1) then

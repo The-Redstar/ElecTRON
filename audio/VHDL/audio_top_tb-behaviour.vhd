@@ -36,25 +36,25 @@ begin
    reset <= '1' after 0 ns,
             '0' after 80 ns;
             
-   game_state <=	"000" after 0 ns,
-   					"101" after 10 ms,
-   					"111" after 20 ms,
-   					"001" after 30 ms;
+   game_state <=	"000" after 0 ns, --home, no output
+   					"101" after 100 ms, --readying
+   					"111" after 200 ms, --playing
+   					"001" after 300 ms; --death
    					
    beep_clk <= 	'0' after 0 ns,
-   				'1' after 12 ms,
-   				'0' after 19 ms;
+   				'1' after 140 ms,
+   				'0' after 190 ms;
    
    button <=	'0' after 0 ns,
-   				'1' after 3 ms,
-   				'0' after 12 ms;
+   				'1' after 30 ms,
+   				'0' after 120 ms;
    				
    player0_dir <= "00" after 0 ns;
    player1_dir <=	"00" after 0 ns,
-   					"11" after 25 ms;
+   					"11" after 250 ms;
    player0_boost <= '0' after 0 ns,
-   					'1' after 23 ms,
-   					'0' after 30 ms;
+   					'1' after 230 ms,
+   					'0' after 300 ms;
    player1_boost <= '0' after 0 ns;
 end behaviour;
 

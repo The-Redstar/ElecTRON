@@ -58,7 +58,7 @@ expl: rng port map(
 		bits=>bits);
 
 
-	process(game_state)
+	process(game_state, beep_clk, button)
 	begin
 		if game_state="111" then -- playing
 			engine_en<='1';
