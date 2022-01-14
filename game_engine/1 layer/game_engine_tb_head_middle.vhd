@@ -1,7 +1,5 @@
 library IEEE;
---testbench for booster
---show positions_vga 
---run until a bit less then 2000000 and zoom out a lot
+--head middle
 use IEEE.std_logic_1164.all;
 use ieee.numeric_std.all;
 
