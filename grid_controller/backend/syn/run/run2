@@ -1,0 +1,1 @@
+ssh -XY mhpadriaanse@ce-epo3-cad.ewi.tudelft.nl cd /tmp/.x2go-mhpadriaanse/media/disk/_cygdrive_C_Users_Marijn_Nodig_TUDELF1_B2_Q2_L_x2go/electron/grid_controller/backend/syn/run\; genus -files ../tcl/syn2.tcl

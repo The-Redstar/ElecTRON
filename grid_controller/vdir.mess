@@ -51,17 +51,17 @@ VHDL CONFIGURATION grid_top_behaviour_cfg
     Depends on: P std textio zE1`LPoLg^DX3Oz^4Fj1K3
     Depends on: P ieee std_logic_1164 eNV`TJ_GofJTzYa?f<@Oe1
     Depends on: E work grid_top 1Y6folRIAEC@zcg5kNaZ81
-    Source modified time: Thu Jan 13 16:32:19 2022
+    Source modified time: Fri Jan 14 14:57:24 2022
     Source directory: /tmp/.x2go-mhpadriaanse/media/disk/_cygdrive_C_Users_Marijn_Nodig_TUDELF1_B2_Q2_L_x2go/electron/grid_controller
     HDL source file: VHDL/grid_top_behaviour_cfg.vhd
     Source file: VHDL/grid_top_behaviour_cfg.vhd
     Start location: VHDL/grid_top_behaviour_cfg.vhd:1
-    Version string: HRcN4F4PDJk@oCfbzPzYh3
+    Version string: G;aAKoR@aEnlPzX2;d3=81
     Opcode format: 10.5b; VCOM SE-64 Object version 63
     VHDL language standard: 3 (VHDL-2008)
-    Compile time: Thu Jan 13 16:35:48 2022
+    Compile time: Fri Jan 14 15:00:06 2022
     Compiled in vopt flow
-    Compile options: -quiet -nologo -2008 -just C -lower -explicit -work work
+    Compile options: -quiet -nologo -2008 -lower -explicit -work work
     Compile defaults: Explicit=1 CvgOpt=0
 ENTITY grid_top_tb
     Source modified time: Thu Jan 13 16:37:12 2022
@@ -101,13 +101,13 @@ VHDL CONFIGURATION grid_top_tb_behaviour_cfg
     Configuration applies to entity: grid_top_tb
     Block configuration applies to architecture: behaviour
     Depends on: E work grid_top 1Y6folRIAEC@zcg5kNaZ81
-    Depends on: C work grid_top_behaviour_cfg HRcN4F4PDJk@oCfbzPzYh3
+    Depends on: C work grid_top_behaviour_cfg G;aAKoR@aEnlPzX2;d3=81
     Depends on: P ieee numeric_std :ASDNFgHXf_ih3J@9F3Ze1
     Depends on: A work grid_top_tb behaviour ?C3=bH8P>lHJU0I95l_fS0
     Depends on: P std textio zE1`LPoLg^DX3Oz^4Fj1K3
     Depends on: P ieee std_logic_1164 eNV`TJ_GofJTzYa?f<@Oe1
     Depends on: E work grid_top_tb cB64C9K1nJz2U0LlRaf:H3
-    Source modified time: Thu Jan 13 16:45:49 2022
+    Source modified time: Fri Jan 14 14:57:24 2022
     Source directory: /tmp/.x2go-mhpadriaanse/media/disk/_cygdrive_C_Users_Marijn_Nodig_TUDELF1_B2_Q2_L_x2go/electron/grid_controller
     HDL source file: VHDL/grid_top_tb_behaviour_cfg.vhd
     Source file: VHDL/grid_top_tb_behaviour_cfg.vhd
@@ -115,7 +115,7 @@ VHDL CONFIGURATION grid_top_tb_behaviour_cfg
     Version string: WoN_C:?g7eRU=i62VDD?j0
     Opcode format: 10.5b; VCOM SE-64 Object version 63
     VHDL language standard: 3 (VHDL-2008)
-    Compile time: Thu Jan 13 16:48:40 2022
+    Compile time: Fri Jan 14 15:00:11 2022
     Compiled in vopt flow
     Compile options: -quiet -nologo -2008 -lower -explicit -work work
     Compile defaults: Explicit=1 CvgOpt=0
