@@ -5,7 +5,7 @@ architecture structural of electron is
    component game_engine
 	  port(clk            : in  std_logic;
            reset              : in  std_logic;
-		   input              : in  std_logic_vector(3 downto 0);
+	   input              : in  std_logic_vector(3 downto 0);
 	   busy               : in  std_logic;
            read_memory        : in  std_logic_vector(7 downto 0);
            memory_ready       : in  std_logic;
@@ -145,8 +145,37 @@ architecture structural of electron is
 	signal start_direction_0, start_direction_1: std_logic_vector (1 downto 0);
 	signal map_selected: std_logic_vector (1 downto 0);
 	signal boost_audio_0, boost_audio_1: std_logic;
+	signal audio_out: std_logic_vector(1 downto 0);
+	signal color_out: std_logic_vector(3 downto 0);
+	signal direction_in: std_logic_vector(3 downto 0);
+	signal read_memory_in: std_logic_vector(7 downto 0);
 
 begin
+
+	busy_out <= busy;
+
+	audio_out_0 <= audio_out(0);
+	audio_out_1 <= audio_out(1);
+	
+	color_out_0 <= color_out(0);
+	color_out_1 <= color_out(1);
+	color_out_2 <= color_out(2);
+	color_out_3 <= color_out(3);
+
+	read_memory_in(0) <= read_memory_in_0;
+	read_memory_in(1) <= read_memory_in_1;
+	read_memory_in(2) <= read_memory_in_2;
+	read_memory_in(3) <= read_memory_in_3;
+	read_memory_in(4) <= read_memory_in_4;
+	read_memory_in(5) <= read_memory_in_5;
+	read_memory_in(6) <= read_memory_in_6;
+	read_memory_in(7) <= read_memory_in_7;
+
+	direction_in(0) <= direction_in_0;
+	direction_in(1) <= direction_in_1;
+	direction_in(2) <= direction_in_2;
+	direction_in(3) <= direction_in_3;
+
 	lbl0:game_engine port map ( 
 					clk  				=> clk,
 					reset				=> rst,
@@ -222,23 +251,23 @@ begin
 					player1_state			=> player_state_1,
 					player0_boost			=> boost_audio_0,
 					player1_boost			=> boost_audio_1,
-					player0_input			=> direction_between (1 downto 0),
-					player1_input			=> direction_between (3 downto 2),
+					player0_input			=> direction_between(1 downto 0),
+					player1_input			=> direction_between(3 downto 2),
 					busy			=> busy,
 					game_state			=> game_state);
 					
 	lbl3:input_buffer port map (
-					clk	=> clk,
-					rst	=> rst,
-					dir_in	=> direction_in,
-					start_in => start_in,
-					dir_out => direction_between,
-					start_out	=> start_between);
+					clk		=> clk,
+					rst		=> rst,
+					dir_in		=> direction_in,
+					start_in 		=> start_in,
+					dir_out 		=> direction_between,
+					start_out		=> start_between);
 
 	lbl4:grid_top port map (
 					map_select 			=> map_selected,
-        			x_addr     			=> x_address,
-       				y_addr     			=> y_address,
+        					x_addr     			=> x_address,
+       					y_addr     			=> y_address,
 					jumps      			=> ramps,
 					borders    			=> borders,
 					player0_start_pos 			=> start_position_0,
@@ -246,17 +275,17 @@ begin
 					player0_start_dir 			=> start_direction_0,
 					player1_start_dir 			=> start_direction_1);
 							
-	lbl5:audio_top port map(
-					clk 				=> clk,
-					reset				=> rst,
+	lbl5:audio_top port map (
+					clk 			=> clk,
+					reset			=> rst,
 					game_state			=> game_state,
 					beep_clk			=> pulse_audio,
-					button				=> start_between,
+					button			=> start_between,
 					player0_dir			=> direction_0,
 					player1_dir			=> direction_1,
-					player0_boost		=> boost_audio_0,
-					player1_boost		=> boost_audio_1,
-					wave				=> audio);
+					player0_boost			=> boost_audio_0,
+					player1_boost			=> boost_audio_1,
+					wave			=> audio_out);
 					
 
 end structural;

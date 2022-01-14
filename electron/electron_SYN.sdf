@@ -1,7 +1,7 @@
 (DELAYFILE
   (SDFVERSION  "OVI 3.0")
   (DESIGN      "electron")
-  (DATE        "Fri Jan 14 12:24:23 CET 2022")
+  (DATE        "Fri Jan 14 20:23:38 CET 2022")
   (VENDOR      "Cadence, Inc.")
   (PROGRAM     "Genus(TM) Synthesis Solution")
   (VERSION     "17.11-s014_1")
@@ -1135,7 +1135,7 @@
           (PORT A2 (::0.0))
           (PORT B1 (::0.0))
           (PORT B2 (::0.0))
-          (IOPATH B2 ZN (::366) (::191))
+          (IOPATH B2 ZN (::391) (::191))
           (IOPATH A1 ZN (::310) (::297))
           (IOPATH B1 ZN (::354) (::142))
           (IOPATH A2 ZN (::401) (::341))
@@ -1696,7 +1696,7 @@
           (PORT A3 (::0.0))
           (PORT A4 (::0.0))
           (IOPATH A3 Z (::187) (::369))
-          (IOPATH A4 Z (::240) (::313))
+          (IOPATH A4 Z (::240) (::365))
           (IOPATH A1 Z (::335) (::470))
           (IOPATH A2 Z (::209) (::415))
         )
@@ -1754,7 +1754,7 @@
           (PORT A4 (::0.0))
           (IOPATH A3 ZN (::370) (::126))
           (IOPATH A4 ZN (::448) (::309))
-          (IOPATH A1 ZN (::264) (::162))
+          (IOPATH A1 ZN (::316) (::162))
           (IOPATH A2 ZN (::328) (::158))
         )
      )
@@ -1777,7 +1777,7 @@
           (COND A1==1'b1&&A2==1'b1&&A3==1'b0 (IOPATH B ZN (::182) (::129)))
           (COND A1==1'b1&&A2==1'b1&&A3==1'b1 (IOPATH B ZN (::188) (::112)))
           (IOPATH B ZN (::188) (::152))
-          (IOPATH A1 ZN (::313) (::119))
+          (IOPATH A1 ZN (::311) (::114))
           (IOPATH A2 ZN (::326) (::180))
         )
      )
@@ -1836,10 +1836,10 @@
           (PORT A1 (::0.0))
           (PORT A2 (::0.0))
           (PORT B (::0.0))
-          (COND A1==1'b0&&A2==1'b1 (IOPATH B ZN (::195) (::195)))
-          (COND A1==1'b1&&A2==1'b0 (IOPATH B ZN (::194) (::178)))
-          (COND A1==1'b1&&A2==1'b1 (IOPATH B ZN (::202) (::159)))
-          (IOPATH B ZN (::202) (::195))
+          (COND A1==1'b0&&A2==1'b1 (IOPATH B ZN (::408) (::332)))
+          (COND A1==1'b1&&A2==1'b0 (IOPATH B ZN (::406) (::296)))
+          (COND A1==1'b1&&A2==1'b1 (IOPATH B ZN (::418) (::285)))
+          (IOPATH B ZN (::418) (::332))
           (IOPATH A1 ZN (::293) (::140))
           (IOPATH A2 ZN (::323) (::162))
         )
@@ -1930,14 +1930,14 @@
      )
   )
   (CELL
-     (CELLTYPE "INR2XD0BWP7T")
+     (CELLTYPE "AN2D4BWP7T")
      (INSTANCE lbl2_g3683)
      (DELAY
         (ABSOLUTE
           (PORT A1 (::0.0))
-          (PORT B1 (::0.0))
-          (IOPATH A1 ZN (::252) (::275))
-          (IOPATH B1 ZN (::161) (::115))
+          (PORT A2 (::0.0))
+          (IOPATH A1 Z (::1274) (::810))
+          (IOPATH A2 Z (::1242) (::746))
         )
      )
   )
@@ -2001,7 +2001,7 @@
           (PORT B1 (::0.0))
           (PORT B2 (::0.0))
           (IOPATH B2 ZN (::207) (::220))
-          (IOPATH A1 ZN (::170) (::312))
+          (IOPATH A1 ZN (::181) (::339))
           (IOPATH B1 ZN (::172) (::216))
           (IOPATH A2 ZN (::234) (::372))
         )
@@ -2054,10 +2054,10 @@
           (PORT A2 (::0.0))
           (PORT A3 (::0.0))
           (PORT A4 (::0.0))
-          (IOPATH A3 ZN (::184) (::236))
-          (IOPATH A4 ZN (::190) (::234))
-          (IOPATH A1 ZN (::181) (::258))
-          (IOPATH A2 ZN (::165) (::226))
+          (IOPATH A3 ZN (::234) (::318))
+          (IOPATH A4 ZN (::240) (::315))
+          (IOPATH A1 ZN (::230) (::342))
+          (IOPATH A2 ZN (::214) (::306))
         )
      )
   )
@@ -2205,7 +2205,7 @@
   )
   (CELL
      (CELLTYPE "INVD0BWP7T")
-     (INSTANCE lbl2_g3714)
+     (INSTANCE lbl2_g3715)
      (DELAY
         (ABSOLUTE
           (PORT I (::0.0))
@@ -3206,21 +3206,6 @@
      )
   )
   (CELL
-     (CELLTYPE "DFQD1BWP7T")
-     (INSTANCE lbl2_v_count_reg_9)
-     (DELAY
-        (ABSOLUTE
-          (PORT CP (::0.0))
-          (PORT D (::0.0))
-          (IOPATH CP Q (::375) (::415))
-        )
-     )
-     (TIMINGCHECK
-        (SETUPHOLD (negedge D) (posedge CP) (::88) (::40))
-        (SETUPHOLD (posedge D) (posedge CP) (::95) (::-8))
-     )
-  )
-  (CELL
      (CELLTYPE "AO22D0BWP7T")
      (INSTANCE lbl2_g3249)
      (DELAY
@@ -3237,14 +3222,14 @@
           (COND A2==1'b1&&B1==1'b0&&B2==1'b1 (IOPATH A1 Z (::232) (::261)))
           (IOPATH A2 Z (::275) (::397))
           (IOPATH B2 Z (::332) (::448))
-          (COND A1==1'b0&&A2==1'b0&&B2==1'b1 (IOPATH B1 Z (::244) (::259)))
+          (COND A1==1'b0&&A2==1'b0&&B2==1'b1 (IOPATH B1 Z (::238) (::257)))
           (COND A1==1'b1&&B1==1'b0&&B2==1'b0 (IOPATH A2 Z (::262) (::323)))
           (IOPATH A1 Z (::243) (::292))
           (COND A1==1'b1&&B1==1'b1&&B2==1'b0 (IOPATH A2 Z (::275) (::397)))
           (COND A1==1'b1&&B1==1'b0&&B2==1'b1 (IOPATH A2 Z (::260) (::365)))
-          (COND A1==1'b1&&A2==1'b0&&B2==1'b1 (IOPATH B1 Z (::243) (::330)))
-          (COND A1==1'b0&&A2==1'b1&&B2==1'b1 (IOPATH B1 Z (::232) (::298)))
-          (IOPATH B1 Z (::244) (::330))
+          (COND A1==1'b1&&A2==1'b0&&B2==1'b1 (IOPATH B1 Z (::238) (::329)))
+          (COND A1==1'b0&&A2==1'b1&&B2==1'b1 (IOPATH B1 Z (::226) (::296)))
+          (IOPATH B1 Z (::238) (::329))
         )
      )
   )
@@ -3789,7 +3774,7 @@
           (IOPATH C ZN (::668) (::480))
           (COND A1==1'b0&&A2==1'b1&&C==1'b0 (IOPATH B ZN (::678) (::332)))
           (COND A1==1'b1&&A2==1'b0&&C==1'b0 (IOPATH B ZN (::700) (::332)))
-          (IOPATH A2 ZN (::500) (::307))
+          (IOPATH A2 ZN (::498) (::303))
         )
      )
   )
@@ -3808,13 +3793,13 @@
           (COND A1==1'b1&&A2==1'b0&&B1==1'b1 (IOPATH B2 ZN (::346) (::180)))
           (COND A2==1'b1&&B1==1'b1&&B2==1'b0 (IOPATH A1 ZN (::260) (::152)))
           (COND A2==1'b1&&B1==1'b0&&B2==1'b1 (IOPATH A1 ZN (::230) (::151)))
-          (IOPATH A2 ZN (::254) (::118))
+          (IOPATH A2 ZN (::252) (::114))
           (IOPATH B2 ZN (::346) (::193))
           (COND A1==1'b0&&A2==1'b0&&B2==1'b1 (IOPATH B1 ZN (::345) (::236)))
-          (COND A1==1'b1&&B1==1'b0&&B2==1'b0 (IOPATH A2 ZN (::178) (::116)))
+          (COND A1==1'b1&&B1==1'b0&&B2==1'b0 (IOPATH A2 ZN (::176) (::113)))
           (IOPATH A1 ZN (::260) (::152))
-          (COND A1==1'b1&&B1==1'b1&&B2==1'b0 (IOPATH A2 ZN (::254) (::118)))
-          (COND A1==1'b1&&B1==1'b0&&B2==1'b1 (IOPATH A2 ZN (::224) (::117)))
+          (COND A1==1'b1&&B1==1'b1&&B2==1'b0 (IOPATH A2 ZN (::252) (::114)))
+          (COND A1==1'b1&&B1==1'b0&&B2==1'b1 (IOPATH A2 ZN (::222) (::113)))
           (COND A1==1'b1&&A2==1'b0&&B2==1'b1 (IOPATH B1 ZN (::413) (::222)))
           (COND A1==1'b0&&A2==1'b1&&B2==1'b1 (IOPATH B1 ZN (::378) (::220)))
           (IOPATH B1 ZN (::413) (::236))
@@ -4135,7 +4120,7 @@
   )
   (CELL
      (CELLTYPE "INR2D1BWP7T")
-     (INSTANCE lbl2_g3717)
+     (INSTANCE lbl2_g3718)
      (DELAY
         (ABSOLUTE
           (PORT A1 (::0.0))
@@ -4147,7 +4132,7 @@
   )
   (CELL
      (CELLTYPE "NR2XD0BWP7T")
-     (INSTANCE lbl2_g3718)
+     (INSTANCE lbl2_g3719)
      (DELAY
         (ABSOLUTE
           (PORT A1 (::0.0))
@@ -4177,6 +4162,22 @@
      )
   )
   (CELL
+     (CELLTYPE "DFD1BWP7T")
+     (INSTANCE lbl2_v_count_reg_9)
+     (DELAY
+        (ABSOLUTE
+          (PORT CP (::0.0))
+          (PORT D (::0.0))
+          (IOPATH CP Q (::364) (::412))
+          (IOPATH CP QN (::507) (::445))
+        )
+     )
+     (TIMINGCHECK
+        (SETUPHOLD (negedge D) (posedge CP) (::88) (::40))
+        (SETUPHOLD (posedge D) (posedge CP) (::94) (::-8))
+     )
+  )
+  (CELL
      (CELLTYPE "DFKCND1BWP7T")
      (INSTANCE lbl2_h_count_reg_9)
      (DELAY
@@ -4197,7 +4198,7 @@
   )
   (CELL
      (CELLTYPE "IND2D1BWP7T")
-     (INSTANCE lbl2_g3723)
+     (INSTANCE lbl2_g3726)
      (DELAY
         (ABSOLUTE
           (PORT A1 (::0.0))
@@ -50583,8 +50584,8 @@
      (TIMINGCHECK
         (SETUPHOLD (negedge CN) (posedge CP) (::510) (::-226))
         (SETUPHOLD (posedge CN) (posedge CP) (::170) (::-90))
-        (SETUPHOLD (negedge D) (posedge CP) (::218) (::-64))
-        (SETUPHOLD (posedge D) (posedge CP) (::145) (::-70))
+        (SETUPHOLD (negedge D) (posedge CP) (::248) (::-95))
+        (SETUPHOLD (posedge D) (posedge CP) (::162) (::-86))
      )
   )
   (CELL
@@ -50934,7 +50935,7 @@
           (PORT A1 (::0.0))
           (PORT A2 (::0.0))
           (IOPATH A1 ZN (::92) (::84))
-          (IOPATH A2 ZN (::97) (::85))
+          (IOPATH A2 ZN (::239) (::108))
         )
      )
   )
@@ -50951,7 +50952,7 @@
           (IOPATH B ZN (::101) (::86))
           (IOPATH A1 ZN (::203) (::184))
           (COND A1==1'b0&&A2==1'b0 (IOPATH B ZN (::101) (::86)))
-          (IOPATH A2 ZN (::217) (::212))
+          (IOPATH A2 ZN (::313) (::397))
         )
      )
   )
@@ -51544,7 +51545,7 @@
      )
      (TIMINGCHECK
         (SETUPHOLD (negedge D) (posedge CP) (::85) (::44))
-        (SETUPHOLD (posedge D) (posedge CP) (::87) (::-3))
+        (SETUPHOLD (posedge D) (posedge CP) (::92) (::-6))
      )
   )
   (CELL
@@ -54204,7 +54205,7 @@
         (ABSOLUTE
           (PORT A1 (::0.0))
           (PORT A2 (::0.0))
-          (IOPATH A1 ZN (::115) (::102))
+          (IOPATH A1 ZN (::116) (::102))
           (IOPATH A2 ZN (::186) (::214))
         )
      )
@@ -54220,7 +54221,7 @@
           (COND A1==1'b0&&A2==1'b1 (IOPATH B ZN (::198) (::76)))
           (COND A1==1'b1&&A2==1'b0 (IOPATH B ZN (::229) (::76)))
           (IOPATH B ZN (::229) (::82))
-          (IOPATH A1 ZN (::180) (::128))
+          (IOPATH A1 ZN (::180) (::129))
           (COND A1==1'b0&&A2==1'b0 (IOPATH B ZN (::167) (::82)))
           (IOPATH A2 ZN (::182) (::91))
         )
