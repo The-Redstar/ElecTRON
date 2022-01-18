@@ -659,6 +659,7 @@ create_next_state: 	process (state, new_state, reset, input, busy, clk, busy_cou
 					new_state <= busy_reset;
 				elsif (unsigned(busy_count) >= 31) then
 					pulse_audio <= not busy_count(4);
+					new_state <= before_start_state;
 				else
 					new_state <= before_start_state;
 				end if;
@@ -916,10 +917,16 @@ create_next_state: 	process (state, new_state, reset, input, busy, clk, busy_cou
 			when change_data =>
 				-- change the data that is going to the graphics engine and update data in the register
 				state_vga   				<= "111";
-				e_direction_0 <= '1';
-				e_direction_1 <= '1';
-				d_direction_0 <= next_direction_0;
-				d_direction_1 <= next_direction_1;
+				
+				if (move_0 = '1') then 
+					e_direction_0 <= '1';
+					d_direction_0 <= next_direction_0;
+				end if;
+				
+				if (move_1 = '1') then 
+					e_direction_1 <= '1';
+					d_direction_1 <= next_direction_1;
+				end if;
 				
 				-- if player 0 collides on the border of cell do not change its position, otherwise if move_0 = '1' do
 				if ((player_0_state /= "01") and (move_0 = '1')) then
